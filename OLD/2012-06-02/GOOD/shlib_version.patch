@@ -1,6 +1,0 @@
-diff -Nru perl-5.16.0.orig/shlib_version perl-5.16.0/shlib_version
---- perl-5.16.0.orig/shlib_version	Wed Dec 31 17:00:00 1969
-+++ shlib_version	Mon May 28 17:55:59 2012
-@@ -0,0 +1,2 @@
-+major=16
-+minor=0
