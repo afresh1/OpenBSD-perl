@@ -1,0 +1,62 @@
+perl-5.16.0-local.diff
+#- - cpan/Digest-MD5/MD5.xs needs to be fixed again
+#- - cpan/Digest-MD5/t/files.t needs the new md5 after it is fixed
+
+# 319.patch - millert: Note local patches in src/gnu/usr.bin/perl/patchlevel.h
+
+320.patch - millert: Remove bar.pm~ (still needed)
+321.patch - millert: use snprintf() not sprintf() in x2p/str.c
+
+#- - pregenerage unicode files: lib/unicore/mktables
+#325.patch - millert: pregenerate unicode files
+#326.patch - millert: fix previous
+#327.patch - millert: update manifest for previous
+# These commands look handy:
+# prove Porting/Maintainers :: --checkmani lib ext
+# prove Porting/Maintainers :: --checkmani
+#
+
+
+330.patch - millert: XS bits are not generated if NOPIC
+331.patch - millert: generate above on instead of disabling
+332.patch - millert: make THREADED_PERL=true work again (not by default)
+341.patch - schwarze: switch to installing source manuals
+343.patch - millert: Tell perl not to attempt to use LC_COLLATE or LC_NUMERIC
+
+347.patch - espie: Import OpenBSD-MkTemp
+348.patch - espie: extra .xs glue to use mkstemp and mkdtemp directly
+349.patch - espie: hook in requisite bits for OpenBSD::MkTemp to build and man
+
+342.patch - deraadt: test to help diagnose missing symlinks
+346.patch - millert: new method of building symlink tree (work around bug above)
+
+#317.patch - millert: Apply fix for CVE-2010-0405; from matthieu@
+#318.patch - millert: Update to Compress-Raw-Bzip2 2.031 (code changes in 317)
+#322.patch - millert: Fix test failures caused by RCS keyword expansion
+#323.patch - millert: undo the previous
+#324.patch - millert: Fix [perl #74404] h2ph using deprecated goto
+#328.patch - millert: update perlfaq8 to mention TIOCGSIZE instead of TIOCGWINSZ
+#329.patch - millert: undo previous, as TIOCGWINSZ is newer
+#333.patch - jasper: update CGI to 3.50, includes fix for SA42443 (& patchlevel.h)
+#334.patch - millert: CGI to 3.51, which includes a better fix for SA42443
+#335.patch - jasper: Update Test::Simple to 0.96
+#336.patch - jasper: update List::Util to 1.23, as needed by newer p5-POE
+#337.patch - jasper: Test::Simple to 0.98
+#338.patch - bluhm: Perl security fix for CVE-2011-1487
+#339.patch - bluhm: Perl security fix for CVE-2011-1487 (OPENBSD_4_9)
+#340.patch - bluhm: Perl security fix for CVE-2011-1487 (OPENBSD_4_8)
+#344.patch - rointel: Digest module to 1.17 (security fix)
+#345.patch - jasper: Security fix for CVE-2011-2939
+
+./Makefile.SH might need:
+@@ -190,7 +190,7 @@
+
+     : Parallel makes reveal that we have some interdependencies
+     case $f in
+-       Encode) extra_dep="$extra_dep
++       Encode|POSIX|SDBM_File) extra_dep="$extra_dep
+ $this_target: lib/auto/Cwd/Cwd.$dlext" ;;
+        Math/BigInt/FastCalc|Devel/NYTProf) extra_dep="$extra_dep
+ $this_target: lib/auto/List/Util/Util.$dlext" ;;
+
+

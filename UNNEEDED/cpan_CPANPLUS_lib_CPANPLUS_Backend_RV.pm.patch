@@ -1,0 +1,12 @@
+diff -x CVS -Nru ../perl-5.12.2/cpan/CPANPLUS/lib/CPANPLUS/Backend/RV.pm ./cpan/CPANPLUS/lib/CPANPLUS/Backend/RV.pm
+--- ../perl-5.12.2/cpan/CPANPLUS/lib/CPANPLUS/Backend/RV.pm	Sun Sep  5 08:14:32 2010
++++ ./cpan/CPANPLUS/lib/CPANPLUS/Backend/RV.pm	Fri Sep 24 08:06:45 2010
+@@ -19,7 +19,7 @@
+ 
+ =head1 NAME
+ 
+-CPANPLUS::Backend::RV
++CPANPLUS::Backend::RV - return value objects for multi-module calls to CPANPLUS::Backend
+ 
+ =head1 SYNOPSIS
+ 

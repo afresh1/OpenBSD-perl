@@ -1,0 +1,16 @@
+diff -Nrux *.orig ../perl-5.16.0.orig/installperl ./installperl
+--- ../perl-5.16.0.orig/installperl	Tue Apr 24 17:18:34 2012
++++ ./installperl	Sun Jun  3 18:07:03 2012
+@@ -250,9 +250,9 @@
+     }
+ }
+ 
+--f 't/rantests'		|| $Is_W32
+-			|| warn "WARNING: You've never run 'make test' or",
+-				" some tests failed! (Installing anyway.)\n";
++#-f 't/rantests'		|| $Is_W32
++#			|| warn "WARNING: You've never run 'make test' or",
++#				" some tests failed! (Installing anyway.)\n";
+ } #if (!$Is_NetWare)
+ 
+ # This will be used to store the packlist

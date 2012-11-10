@@ -1,0 +1,12 @@
+diff -x CVS -Nru ../perl-5.12.2/cpan/CPANPLUS/lib/CPANPLUS/Dist.pm ./cpan/CPANPLUS/lib/CPANPLUS/Dist.pm
+--- ../perl-5.12.2/cpan/CPANPLUS/lib/CPANPLUS/Dist.pm	Mon Sep  6 16:30:32 2010
++++ ./cpan/CPANPLUS/lib/CPANPLUS/Dist.pm	Fri Sep 24 08:06:45 2010
+@@ -22,7 +22,7 @@
+ 
+ =head1 NAME
+ 
+-CPANPLUS::Dist
++CPANPLUS::Dist - base class for CPANPLUS::Dist::MM and CPANPLUS::Dist::Build
+ 
+ =head1 SYNOPSIS
+ 

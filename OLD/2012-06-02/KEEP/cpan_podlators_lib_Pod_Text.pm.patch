@@ -1,0 +1,16 @@
+diff -Nru perl-5.16.0.orig/cpan/podlators/lib/Pod/Text.pm perl-5.16.0/cpan/podlators/lib/Pod/Text.pm
+--- perl-5.16.0.orig/cpan/podlators/lib/Pod/Text.pm	Tue Feb 14 21:44:44 2012
++++ cpan/podlators/lib/Pod/Text.pm	Mon May 28 16:32:45 2012
+@@ -679,6 +679,12 @@
+     $self->parse_from_file (@_);
+ }
+ 
++sub begin_pod {
++    my $self = shift;
++    $$self{EXCLUDE} = 0;
++    $$self{VERBATIM} = 0;
++}
++
+ ##############################################################################
+ # Module return value and documentation
+ ##############################################################################

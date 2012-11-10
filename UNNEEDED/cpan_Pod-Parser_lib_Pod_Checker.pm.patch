@@ -1,0 +1,12 @@
+diff -x CVS -Nru ../perl-5.12.2/cpan/Pod-Parser/lib/Pod/Checker.pm ./cpan/Pod-Parser/lib/Pod/Checker.pm
+--- ../perl-5.12.2/cpan/Pod-Parser/lib/Pod/Checker.pm	Sun Sep  5 08:14:32 2010
++++ ./cpan/Pod-Parser/lib/Pod/Checker.pm	Fri Sep 24 08:06:54 2010
+@@ -18,7 +18,7 @@
+ 
+ =head1 NAME
+ 
+-Pod::Checker, podchecker() - check pod documents for syntax errors
++Pod::Checker, podchecker - check pod documents for syntax errors
+ 
+ =head1 SYNOPSIS
+ 

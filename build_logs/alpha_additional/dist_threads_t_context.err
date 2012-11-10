@@ -1,0 +1,32 @@
+1..31
+ok 1 - Loaded
+ok 2 - Array/list context
+ok 3 - Implicit array context
+ok 4 - Scalar context
+ok 5 - Implicit scalar context
+ok 6 - Void context
+ok 7 - Implicit void context
+ok 8 - Array/list context
+ok 9 - Explicit array context
+ok 10 - Scalar context
+ok 11 - Explicit scalar context
+ok 12 - Void context
+ok 13 - Explicit void context
+ok 14 - Implicit array context
+ok 15 - Array/list context
+ok 16 - Implicit array context
+ok 17 - Implicit scalar context
+ok 18 - Scalar context
+ok 19 - Implicit scalar context
+ok 20 - Implicit void context
+ok 21 - Void context
+ok 22 - Implicit void context
+ok 23 - Explicit array context
+ok 24 - Array/list context
+ok 25 - Explicit array context
+ok 26 - Explicit scalar context
+ok 27 - Scalar context
+ok 28 - Explicit scalar context
+ok 29 - Explicit void context
+ok 30 - Void context
+ok 31 - Explicit void context

@@ -1,0 +1,12 @@
+diff -x CVS -Nru ../perl-5.12.2/cpan/CPANPLUS/lib/CPANPLUS/Hacking.pod ./cpan/CPANPLUS/lib/CPANPLUS/Hacking.pod
+--- ../perl-5.12.2/cpan/CPANPLUS/lib/CPANPLUS/Hacking.pod	Sun Sep  5 08:14:32 2010
++++ ./cpan/CPANPLUS/lib/CPANPLUS/Hacking.pod	Fri Sep 24 08:06:45 2010
+@@ -2,7 +2,7 @@
+ 
+ =head1 NAME
+ 
+-CPANPLUS::Hacking
++CPANPLUS::Hacking - developing with the CPANPLUS environment
+ 
+ =head1 DESCRIPTION
+ 

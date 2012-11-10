@@ -1,0 +1,12 @@
+diff -x CVS -Nru ../perl-5.12.2/lib/perl5db.pl ./lib/perl5db.pl
+--- ../perl-5.12.2/lib/perl5db.pl	Mon Sep  6 16:30:32 2010
++++ ./lib/perl5db.pl	Fri Sep 24 08:06:59 2010
+@@ -3012,7 +3012,7 @@
+ =head4 C<$rc> - Recall command
+ 
+ Manages the commands in C<@hist> (which is created if C<Term::ReadLine> reports
+-that the terminal supports history). It find the the command required, puts it
++that the terminal supports history). It find the command required, puts it
+ into C<$cmd>, and redoes the loop to execute it.
+ 
+ =cut

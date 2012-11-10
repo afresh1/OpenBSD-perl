@@ -1,0 +1,15 @@
+diff -Nrux *.orig ../perl-5.16.0.orig/hints/openbsd.sh ./hints/openbsd.sh
+--- ../perl-5.16.0.orig/hints/openbsd.sh	Tue Feb 14 21:44:48 2012
++++ ./hints/openbsd.sh	Mon Jun  4 01:59:22 2012
+@@ -206,9 +206,9 @@
+ 	locincpth='/usr/local/include'
+ 	loclibpth='/usr/local/lib'
+ 	# Link perl with shared libperl
+-	if [ "$usedl" = "$define" -a -r shlib_version ]; then
++	if [ "$usedl" = "$define" -a -r $src/shlib_version ]; then
+ 		useshrplib=true
+-		libperl=`. ./shlib_version; echo libperl.so.${major}.${minor}`
++		libperl=`. $src/shlib_version; echo libperl.so.${major}.${minor}`
+ 	fi
+ 	;;
+ esac

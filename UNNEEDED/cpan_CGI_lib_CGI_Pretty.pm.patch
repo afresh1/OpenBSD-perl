@@ -1,0 +1,12 @@
+diff -x CVS -Nru ../perl-5.12.2/cpan/CGI/lib/CGI/Pretty.pm ./cpan/CGI/lib/CGI/Pretty.pm
+--- ../perl-5.12.2/cpan/CGI/lib/CGI/Pretty.pm	Sun Sep  5 08:14:32 2010
++++ ./cpan/CGI/lib/CGI/Pretty.pm	Thu Jan  6 14:23:16 2011
+@@ -252,7 +252,7 @@
+ =head2 Recommendation for when to use CGI::Pretty
+ 
+ CGI::Pretty is far slower than using CGI.pm directly. A benchmark showed that
+-it could be about 10 times slower. Adding newslines and spaces may alter the
++it could be about 10 times slower. Adding newlines and spaces may alter the
+ rendered appearance of HTML. Also, the extra newlines and spaces also make the
+ file size larger, making the files take longer to download.
+ 

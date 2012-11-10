@@ -1,0 +1,12 @@
+diff -Nru perl-5.16.0.orig/cpan/Pod-Parser/lib/Pod/Checker.pm perl-5.16.0/cpan/Pod-Parser/lib/Pod/Checker.pm
+--- perl-5.16.0.orig/cpan/Pod-Parser/lib/Pod/Checker.pm	Tue Apr 24 17:18:31 2012
++++ cpan/Pod-Parser/lib/Pod/Checker.pm	Mon May 28 16:32:44 2012
+@@ -18,7 +18,7 @@
+ 
+ =head1 NAME
+ 
+-Pod::Checker, podchecker() - check pod documents for syntax errors
++Pod::Checker, podchecker - check pod documents for syntax errors
+ 
+ =head1 SYNOPSIS
+ 

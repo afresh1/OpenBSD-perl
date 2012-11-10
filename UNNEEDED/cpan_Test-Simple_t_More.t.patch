@@ -1,0 +1,24 @@
+diff -x CVS -Nru ../perl-5.12.2/cpan/Test-Simple/t/More.t ./cpan/Test-Simple/t/More.t
+--- ../perl-5.12.2/cpan/Test-Simple/t/More.t	Mon Sep  6 16:30:32 2010
++++ ./cpan/Test-Simple/t/More.t	Fri Jan  7 05:19:31 2011
+@@ -8,7 +8,7 @@
+ }
+ 
+ use lib 't/lib';
+-use Test::More tests => 53;
++use Test::More tests => 54;
+ 
+ # Make sure we don't mess with $@ or $!.  Test at bottom.
+ my $Err   = "this should not be touched";
+@@ -173,6 +173,11 @@
+ is_deeply( { foo => $sub, bar => [1, $glob] },
+            { foo => $sub, bar => [1, $glob] }
+          );
++
++
++# rt.cpan.org 53469  is_deeply with regexes
++is_deeply( qr/a/, qr/a/, "same regex" );
++
+ 
+ # These two tests must remain at the end.
+ is( $@, $Err,               '$@ untouched' );

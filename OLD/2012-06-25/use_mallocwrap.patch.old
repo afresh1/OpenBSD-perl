@@ -1,0 +1,33 @@
+diff -x CVS -Nru ../perl-5.12.2/hints/openbsd.sh ./hints/openbsd.sh
+--- ../perl-5.12.2/hints/openbsd.sh	Mon Sep  6 16:30:32 2010
++++ ./hints/openbsd.sh	Mon Oct 12 18:25:48 2009
+@@ -11,11 +11,6 @@
+ # OpenBSD has a better malloc than perl...
+ test "$usemymalloc" || usemymalloc='n'
+ 
+-# malloc wrap works
+-case "$usemallocwrap" in
+-'') usemallocwrap='define' ;;
+-esac
+-
+ # Currently, vfork(2) is not a real win over fork(2).
+ usevfork="$undef"
+ 
+diff -x CVS -Nru ../perl-5.12.2/hints/openbsd.sh ./hints/openbsd.sh
+--- ../perl-5.12.2/hints/openbsd.sh	Mon Sep  6 16:30:32 2010
++++ ./hints/openbsd.sh	Mon Oct 12 18:25:48 2009
+@@ -80,6 +75,14 @@
+ 	;;
+ esac
+ 
++# malloc wrap causes problems on m68k
++if [ X"$usemallocwrap" = X"" ]; then
++	case "${ARCH}" in
++	m68k) usemallocwrap="$undef" ;;
++	*)    usemallocwrap="define" ;;
++	esac
++fi
++
+ # OpenBSD doesn't need libcrypt but many folks keep a stub lib
+ # around for old NetBSD binaries.
+ libswanted=`echo $libswanted | sed 's/ crypt / /'`

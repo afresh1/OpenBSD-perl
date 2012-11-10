@@ -1,0 +1,37 @@
+# http://www.openbsd.org/cgi-bin/cvsweb/src/gnu/usr.bin/perl/utils/h2ph.PL.diff?r1=1.11;r2=1.12;f=h;f=u
+diff -Nru perl-5.16.0.orig/utils/h2ph.PL perl-5.16.0/utils/h2ph.PL
+--- perl-5.16.0.orig/utils/h2ph.PL	Tue Apr 24 17:18:36 2012
++++ utils/h2ph.PL	Mon May 28 16:32:55 2012
+@@ -571,7 +571,7 @@
+                 $in =~ s/\?\?</{/g;                         # | ??<|  {|
+                 $in =~ s/\?\?>/}/g;                         # | ??>|  }|
+             }
+-	    if ($in =~ /^\#ifdef __LANGUAGE_PASCAL__/) {
++	    if ($in =~ s/^\#ifdef __LANGUAGE_PASCAL__//) {
+ 		# Tru64 disassembler.h evilness: mixed C and Pascal.
+ 		while (<IN>) {
+ 		    last if /^\#endif/;
+@@ -579,8 +579,8 @@
+ 		$in = "";
+ 		next READ;
+ 	    }
+-	    if ($in =~ /^extern inline / && # Inlined assembler.
+-		$^O eq 'linux' && $file =~ m!(?:^|/)asm/[^/]+\.h$!) {
++	    # Skip inlined functions in headers
++	    if ($in =~ s/^(extern|static) (__inline__|inline) .*[^;]\s*$//) {
+ 		while (<IN>) {
+ 		    last if /^}/;
+ 		}
+--- ../perl-5.16.0.orig/t/lib/h2ph.pht	Tue Feb 14 21:44:51 2012
++++ t/lib/h2ph.pht	Fri Jun  1 22:05:49 2012
+@@ -90,10 +90,6 @@
+     }
+     eval("sub flim () { 0; }") unless defined(&flim);
+     eval("sub flam () { 1; }") unless defined(&flam);
+-    eval 'sub blli_in_use {
+-        my($blli) = @_;
+-	    eval q({  ($blli->{l2_proto}) ||  ($blli->{l3_proto}); });
+-    }' unless defined(&blli_in_use);
+     eval 'sub multiline () {"multilinestring";}' unless defined(&multiline);
+ }
+ 1;

@@ -1,0 +1,30 @@
+diff -x CVS -Nru ../perl-5.12.2/pp.c ./pp.c
+--- ../perl-5.12.2/pp.c	Mon Sep  6 16:30:32 2010
++++ ./pp.c	Mon Apr 18 14:29:51 2011
+@@ -3949,6 +3949,8 @@
+ 	    SvCUR_set(dest, need - 1);
+ 	}
+     }
++    if (dest != source && SvTAINTED(source))
++	SvTAINT(dest);
+     SvSETMAGIC(dest);
+     RETURN;
+ }
+@@ -4222,6 +4224,8 @@
+ 	    SvCUR_set(dest, d - (U8*)SvPVX_const(dest));
+ 	}
+     } /* End of isn't utf8 */
++    if (dest != source && SvTAINTED(source))
++	SvTAINT(dest);
+     SvSETMAGIC(dest);
+     RETURN;
+ }
+@@ -4433,6 +4437,8 @@
+ 	    SvCUR_set(dest, d - (U8*)SvPVX_const(dest));
+ 	}
+     }
++    if (dest != source && SvTAINTED(source))
++	SvTAINT(dest);
+     SvSETMAGIC(dest);
+     RETURN;
+ }

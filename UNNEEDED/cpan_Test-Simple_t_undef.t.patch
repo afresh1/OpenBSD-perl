@@ -1,0 +1,15 @@
+diff -x CVS -Nru ../perl-5.12.2/cpan/Test-Simple/t/undef.t ./cpan/Test-Simple/t/undef.t
+--- ../perl-5.12.2/cpan/Test-Simple/t/undef.t	Mon Sep  6 16:30:32 2010
++++ ./cpan/Test-Simple/t/undef.t	Fri Jan  7 05:19:31 2011
+@@ -70,9 +70,9 @@
+ no_warnings;
+ 
+ 
+-#line 64
++#line 74
+ cmp_ok( undef, '<=', 2, '  undef <= 2' );
+-warnings_like(qr/Use of uninitialized value.* at cmp_ok \[from $Filename line 64\] line 1\.\n/);
++warnings_like(qr/Use of uninitialized value.* at \(eval in cmp_ok\) $Filename line 74\.\n/);
+ 
+ 
+ 

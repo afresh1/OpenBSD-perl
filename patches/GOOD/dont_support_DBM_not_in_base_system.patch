@@ -1,0 +1,22 @@
+--- ./ext/NDBM_File/Makefile.PL.orig	Sun May 20 06:00:56 2012
++++ ./ext/NDBM_File/Makefile.PL	Wed Jun 27 17:12:44 2012
+@@ -1,7 +1,7 @@
+ use ExtUtils::MakeMaker;
+ WriteMakefile(
+     NAME	=> 'NDBM_File',
+-    LIBS => ["-L/usr/local/lib -lndbm", "-ldbm -lucb"],
++    #LIBS => ["-L/usr/local/lib -lndbm", "-ldbm -lucb"],
+     XSPROTOARG => '-noprototypes', 		# XXX remove later?
+     VERSION_FROM => 'NDBM_File.pm',
+     INC => ($^O eq "MacOS" ? "-i ::::db:include" : "")
+--- ./lib/AnyDBM_File.pm.orig	Tue Apr 24 17:18:34 2012
++++ ./lib/AnyDBM_File.pm	Wed Jun 27 17:12:44 2012
+@@ -22,8 +22,6 @@
+ 
+ AnyDBM_File - provide framework for multiple DBMs
+ 
+-NDBM_File, DB_File, GDBM_File, SDBM_File, ODBM_File - various DBM implementations
+-
+ =head1 SYNOPSIS
+ 
+     use AnyDBM_File;

@@ -1,0 +1,12 @@
+diff -x CVS -Nru ../perl-5.12.2/cpan/Digest-MD5/Changes ./cpan/Digest-MD5/Changes
+--- ../perl-5.12.2/cpan/Digest-MD5/Changes	Mon Sep  6 16:30:32 2010
++++ ./cpan/Digest-MD5/Changes	Fri Sep 24 08:06:46 2010
+@@ -364,7 +364,7 @@
+    Avoid LONG and BYTE types in SHA.xs as they was in conflict
+    with similar definitions in <winnt.h>.
+ 
+-   Patch by Marko Asplund <aspa@hip.fi> to make the the alignment
++   Patch by Marko Asplund <aspa@hip.fi> to make the alignment
+    test program link successfully with sfio-perl.
+ 
+    Fixed a typo in MD5.xs that might have affected 64-bit systems.

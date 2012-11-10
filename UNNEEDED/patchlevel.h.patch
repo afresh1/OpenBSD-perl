@@ -1,0 +1,18 @@
+diff -x CVS -Nru ../perl-5.12.2/patchlevel.h ./patchlevel.h
+--- ../perl-5.12.2/patchlevel.h	Mon Sep  6 16:31:19 2010
++++ ./patchlevel.h	Tue Nov  1 06:52:21 2011
+@@ -127,6 +127,13 @@
+ #  endif
+ static const char * const local_patches[] = {
+ 	NULL
++	,"CVE-2010-0405"
++	,"Updated CGI to 3.51"
++	,"Updated Test::Simple to 0.98"
++	,"Updated List::Util to 1.23"
++	,"CVE-2011-1487"
++	,"Updated Digest to 1.17"
++	,"CVE-2011-2939"
+ #ifdef PERL_GIT_UNCOMMITTED_CHANGES
+ 	,"uncommitted-changes"
+ #endif
+Binary files ../perl-5.12.2/perl.c and ./perl.c differ

@@ -1,0 +1,94 @@
+diff -Nrux *.orig ../perl-5.16.0.orig/Makefile.SH ./Makefile.SH
+--- ../perl-5.16.0.orig/Makefile.SH	Mon May 14 12:49:21 2012
++++ ./Makefile.SH	Sun Jun  3 23:44:41 2012
+@@ -701,9 +701,9 @@
+ LIBPERL_NONSHR		= libperl_nonshr$(LIB_EXT)
+ MINIPERL_NONSHR		= miniperl_nonshr$(EXE_EXT)
+ 
+-$(LIBPERL_NONSHR): $(obj)
+-	$(RMS) $(LIBPERL_NONSHR)
+-	$(AR) rcu $(LIBPERL_NONSHR) $(obj)
++#$(LIBPERL_NONSHR): $(obj)
++#	$(RMS) $(LIBPERL_NONSHR)
++#	$(AR) rcu $(LIBPERL_NONSHR) $(obj)
+ 
+ $(MINIPERL_NONSHR): $(LIBPERL_NONSHR) miniperlmain$(OBJ_EXT) opmini$(OBJ_EXT)  perlmini$(OBJ_EXT)
+ 	$(CC) $(LDFLAGS) -o $(MINIPERL_NONSHR) miniperlmain$(OBJ_EXT) \
+diff -Nrux *.orig ../perl-5.16.0.orig/Makefile.SH ./Makefile.SH
+--- ../perl-5.16.0.orig/Makefile.SH	Mon May 14 12:49:21 2012
++++ ./Makefile.SH	Mon Jun  4 21:07:41 2012
+@@ -789,33 +789,33 @@
+ 		;;
+     esac
+ 	$spitshell >>$Makefile <<'!NO!SUBS!'
+-$(LIBPERL): $& $(obj) $(DYNALOADER) $(LIBPERLEXPORT)
+-!NO!SUBS!
+-	case "$useshrplib" in
+-	true)
+-		$spitshell >>$Makefile <<'!NO!SUBS!'
+-	rm -f $@
+-	$(LD) -o $@ $(SHRPLDFLAGS) $(obj) $(DYNALOADER) $(libs)
+-!NO!SUBS!
+-		case "$osname" in
+-		aix)
+-			$spitshell >>$Makefile <<'!NO!SUBS!'
+-	rm -f libperl$(OBJ_EXT)
+-	mv $@ libperl$(OBJ_EXT)
+-	$(AR) qv $(LIBPERL) libperl$(OBJ_EXT)
+-!NO!SUBS!
+-			;;
+-		esac
+-		;;
+-	*)
+-		$spitshell >>$Makefile <<'!NO!SUBS!'
+-	rm -f $(LIBPERL)
+-	$(AR) rcu $(LIBPERL) $(obj) $(DYNALOADER)
+-	@$(ranlib) $(LIBPERL)
+-!NO!SUBS!
+-		;;
+-	esac
+-	$spitshell >>$Makefile <<'!NO!SUBS!'
++#$(LIBPERL): $& $(obj) $(DYNALOADER) $(LIBPERLEXPORT)
++#!NO!SUBS!
++#	case "$useshrplib" in
++#	true)
++#		$spitshell >>$Makefile <<'!NO!SUBS!'
++#	rm -f $@
++#	$(LD) -o $@ $(SHRPLDFLAGS) $(obj) $(DYNALOADER) $(libs)
++#!NO!SUBS!
++#		case "$osname" in
++#		aix)
++#			$spitshell >>$Makefile <<'!NO!SUBS!'
++#	rm -f libperl$(OBJ_EXT)
++#	mv $@ libperl$(OBJ_EXT)
++#	$(AR) qv $(LIBPERL) libperl$(OBJ_EXT)
++#!NO!SUBS!
++#			;;
++#		esac
++#		;;
++#	*)
++#		$spitshell >>$Makefile <<'!NO!SUBS!'
++#	rm -f $(LIBPERL)
++#	$(AR) rcu $(LIBPERL) $(obj) $(DYNALOADER)
++#	@$(ranlib) $(LIBPERL)
++#!NO!SUBS!
++#		;;
++#	esac
++#	$spitshell >>$Makefile <<'!NO!SUBS!'
+ 
+ # How to build executables.
+ 
+diff -Nrux *.orig ../perl-5.16.0.orig/ext/DynaLoader/Makefile.PL ./ext/DynaLoader/Makefile.PL
+--- ../perl-5.16.0.orig/ext/DynaLoader/Makefile.PL	Sun May 20 06:00:24 2012
++++ ./ext/DynaLoader/Makefile.PL	Mon Jun  4 20:37:12 2012
+@@ -64,8 +64,8 @@
+ 
+     return "
+ $object : \$(FIRST_MAKEFILE) \$(OBJECT)
+-	\$(RM_RF) $object
+-	\$(CP) \$(OBJECT) $object
++	#\$(RM_RF) $object
++	#\$(CP) \$(OBJECT) $object
+ 
+ static :: $object
+ ";

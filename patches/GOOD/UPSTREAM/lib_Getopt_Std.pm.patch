@@ -1,0 +1,11 @@
+--- ./lib/Getopt/Std.pm.orig	Tue Apr 24 17:18:34 2012
++++ ./lib/Getopt/Std.pm	Wed Jun 27 11:34:23 2012
+@@ -4,7 +4,7 @@
+ 
+ =head1 NAME
+ 
+-getopt, getopts - Process single-character switches with switch clustering
++Getopt::Std, getopt, getopts - Process single-character switches with switch clustering
+ 
+ =head1 SYNOPSIS
+ 

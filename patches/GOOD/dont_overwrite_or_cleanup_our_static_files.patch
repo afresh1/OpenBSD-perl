@@ -1,0 +1,18 @@
+--- ./Makefile.SH.orig	Wed Jun 27 21:46:14 2012
++++ ./Makefile.SH	Wed Jun 27 21:46:14 2012
+@@ -1264,14 +1264,13 @@
+ 	-rm -f perl.Addrs perl.Counts t/perl.Addrs t/perl.Counts *perl.xok
+ 	-rm -f cygwin.c libperl*.def libperl*.dll cygperl*.dll *.exe.stackdump
+ 	-rm -f $(PERL_EXE) $(MINIPERL_EXE) $(LIBPERL) libperl.* microperl
+-	-rm -f config.arch config.over $(DTRACE_H) runtests
++	-rm -f $(DTRACE_H) runtests
+ 
+ # Do not 'make _tidy' directly.
+ _tidy:
+ 	-cd pod; $(LDLIBPTH) $(MAKE) clean
+ 	-cd utils; $(LDLIBPTH) $(MAKE) clean
+ 	-cd x2p; $(LDLIBPTH) $(MAKE) clean
+-	-rm -f lib/Config_git.pl git_version.h
+ 	-@for x in $(DYNALOADER) $(dynamic_ext) $(static_ext) $(nonxs_ext) ; do \
+ 	$(MINIPERL) make_ext.pl --target=clean $$x MAKE=$(MAKE) ; \
+ 	done

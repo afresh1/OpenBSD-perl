@@ -1,0 +1,4 @@
+1..11
+ok 1 - at dist/threads/t/libc.t line 17
+# use threads
+Segmentation fault (core dumped) 

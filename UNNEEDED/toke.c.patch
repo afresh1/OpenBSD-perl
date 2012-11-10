@@ -1,0 +1,23 @@
+diff -x CVS -Nru ../perl-5.12.2/toke.c ./toke.c
+--- ../perl-5.12.2/toke.c	Mon Sep  6 16:30:32 2010
++++ ./toke.c	Fri Sep 24 08:06:43 2010
+@@ -3145,7 +3145,8 @@
+ 
+ 			    /* Convert first code point to hex, including the
+ 			     * boiler plate before it */
+-			    sprintf(hex_string, "\\N{U+%X", (unsigned int) uv);
++			    snprintf(hex_string, sizeof(hex_string),
++				     "\\N{U+%X", (unsigned int) uv);
+ 			    output_length = strlen(hex_string);
+ 
+ 			    /* Make sure there is enough space to hold it */
+@@ -3169,7 +3170,8 @@
+ 				    uv = UNICODE_REPLACEMENT;
+ 				}
+ 
+-				sprintf(hex_string, ".%X", (unsigned int) uv);
++				snprintf(hex_string, sizeof(hex_string),
++					".%X", (unsigned int) uv);
+ 				output_length = strlen(hex_string);
+ 
+ 				d = off + SvGROW(sv, off

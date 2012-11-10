@@ -1,0 +1,12 @@
+diff -Nrux *.orig ../perl-5.16.0.orig/installperl ./installperl
+--- ../perl-5.16.0.orig/installperl	Tue Apr 24 17:18:34 2012
++++ ./installperl	Sun Jun  3 17:41:09 2012
+@@ -196,7 +196,7 @@
+ my $installarchlib = "$opts{destdir}$Config{installarchlib}";
+ my $installsitelib = "$opts{destdir}$Config{installsitelib}";
+ my $installsitearch = "$opts{destdir}$Config{installsitearch}";
+-my $installman1dir = "$opts{destdir}$Config{installman1dir}";
++my $installman1dir = "none";
+ my $man1ext = $Config{man1ext};
+ my $libperl = $Config{libperl};
+ # Shared library and dynamic loading suffixes.

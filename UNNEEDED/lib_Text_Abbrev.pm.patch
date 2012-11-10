@@ -1,0 +1,12 @@
+diff -x CVS -Nru ../perl-5.12.2/lib/Text/Abbrev.pm ./lib/Text/Abbrev.pm
+--- ../perl-5.12.2/lib/Text/Abbrev.pm	Sun Sep  5 08:14:33 2010
++++ ./lib/Text/Abbrev.pm	Mon Oct 12 18:25:48 2009
+@@ -6,7 +6,7 @@
+ 
+ =head1 NAME
+ 
+-abbrev - create an abbreviation table from a list
++Text::Abbrev - create an abbreviation table from a list
+ 
+ =head1 SYNOPSIS
+ 

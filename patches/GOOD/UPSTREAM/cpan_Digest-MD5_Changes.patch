@@ -1,0 +1,11 @@
+--- ./cpan/Digest-MD5/Changes.orig	Tue Feb 14 21:44:38 2012
++++ ./cpan/Digest-MD5/Changes	Wed Jun 27 15:28:38 2012
+@@ -412,7 +412,7 @@
+    Avoid LONG and BYTE types in SHA.xs as they was in conflict
+    with similar definitions in <winnt.h>.
+ 
+-   Patch by Marko Asplund <aspa@hip.fi> to make the the alignment
++   Patch by Marko Asplund <aspa@hip.fi> to make the alignment
+    test program link successfully with sfio-perl.
+ 
+    Fixed a typo in MD5.xs that might have affected 64-bit systems.

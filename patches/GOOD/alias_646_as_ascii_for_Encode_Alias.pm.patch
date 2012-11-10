@@ -1,0 +1,10 @@
+--- ./cpan/Encode/lib/Encode/Alias.pm.orig	Tue Apr 24 17:18:31 2012
++++ ./cpan/Encode/lib/Encode/Alias.pm	Wed Jun 27 19:23:56 2012
+@@ -152,6 +152,7 @@
+     define_alias( qr/^(?:US-?)ascii$/i       => '"ascii"' );
+     define_alias( 'C'                        => 'ascii' );
+     define_alias( qr/\b(?:ISO[-_]?)?646(?:[-_]?US)?$/i => '"ascii"' );
++    define_alias( '646'                      => 'ascii' );
+ 
+     # Allow variants of iso-8859-1 etc.
+     define_alias( qr/\biso[-_]?(\d+)[-_](\d+)$/i => '"iso-$1-$2"' );

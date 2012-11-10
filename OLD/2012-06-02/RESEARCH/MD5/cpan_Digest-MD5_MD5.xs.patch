@@ -1,0 +1,21 @@
+diff -Nru perl-5.16.0.orig/cpan/Digest-MD5/MD5.xs perl-5.16.0/cpan/Digest-MD5/MD5.xs
+--- perl-5.16.0.orig/cpan/Digest-MD5/MD5.xs	Tue Feb 14 21:44:38 2012
++++ cpan/Digest-MD5/MD5.xs	Mon May 28 16:32:44 2012
+@@ -39,6 +39,8 @@
+ #include "EXTERN.h"
+ #include "perl.h"
+ #include "XSUB.h"
++#include <sys/types.h>
++#include <md5.h>
+ #ifdef __cplusplus
+ }
+ #endif
+@@ -629,7 +631,7 @@
+ 	InputStream fh
+     PREINIT:
+ 	MD5_CTX* context = get_md5_ctx(aTHX_ self);
+-	STRLEN fill = context->bytes_low & 0x3F;
++	STRLEN fill = (context->count >> 3) & (MD5_BLOCK_LENGTH - 1);
+ #ifdef USE_HEAP_INSTEAD_OF_STACK
+ 	unsigned char* buffer;
+ #else

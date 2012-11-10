@@ -1,0 +1,1199 @@
+---------------------
+PatchSet 325 
+Date: 2010/09/28 09:25:02
+Author: millert
+Branch: HEAD
+Tag: (none) 
+Log:
+pregenerate unicode files; mktables uses too much memory for some platforms
+
+Need to run something like:
+$(MINIPERL) $(Icwd) lib/unicore/mktables -C lib/unicore -P pod -maketest -makelist -p
+
+Members: 
+	MANIFEST:1.23->1.24 
+	Makefile.SH:1.20->1.21 
+	lib/unicore/Canonical.pl:1.2->1.3 
+	lib/unicore/CombiningClass.pl:1.2->1.3 
+	lib/unicore/Decomposition.pl:1.2->1.3 
+	lib/unicore/Exact.pl:1.2->1.3 
+	lib/unicore/Name.pl:1.2->1.3 
+	lib/unicore/PVA.pl:INITIAL->1.1 
+	lib/unicore/Properties:1.2->1.3 
+	lib/unicore/mktables.lst:1.2->1.3 
+	lib/unicore/To/Digit.pl:1.2->1.3 
+	lib/unicore/To/Fold.pl:1.2->1.3 
+	lib/unicore/To/Lower.pl:1.2->1.3 
+	lib/unicore/To/Title.pl:1.2->1.3 
+	lib/unicore/To/Upper.pl:1.2->1.3 
+	lib/unicore/lib/bc/AL.pl:INITIAL->1.1 
+	lib/unicore/lib/bc/AN.pl:INITIAL->1.1 
+	lib/unicore/lib/bc/B.pl:INITIAL->1.1 
+	lib/unicore/lib/bc/BN.pl:INITIAL->1.1 
+	lib/unicore/lib/bc/CS.pl:INITIAL->1.1 
+	lib/unicore/lib/bc/EN.pl:INITIAL->1.1 
+	lib/unicore/lib/bc/ES.pl:INITIAL->1.1 
+	lib/unicore/lib/bc/ET.pl:INITIAL->1.1 
+	lib/unicore/lib/bc/L.pl:INITIAL->1.1 
+	lib/unicore/lib/bc/LRE.pl:INITIAL->1.1 
+	lib/unicore/lib/bc/LRO.pl:INITIAL->1.1 
+	lib/unicore/lib/bc/NSM.pl:INITIAL->1.1 
+	lib/unicore/lib/bc/ON.pl:INITIAL->1.1 
+	lib/unicore/lib/bc/PDF.pl:INITIAL->1.1 
+	lib/unicore/lib/bc/R.pl:INITIAL->1.1 
+	lib/unicore/lib/bc/RLE.pl:INITIAL->1.1 
+	lib/unicore/lib/bc/RLO.pl:INITIAL->1.1 
+	lib/unicore/lib/bc/S.pl:INITIAL->1.1 
+	lib/unicore/lib/bc/WS.pl:INITIAL->1.1 
+	lib/unicore/lib/ccc/A.pl:INITIAL->1.1 
+	lib/unicore/lib/ccc/AL.pl:INITIAL->1.1 
+	lib/unicore/lib/ccc/AR.pl:INITIAL->1.1 
+	lib/unicore/lib/ccc/ATA.pl:INITIAL->1.1 
+	lib/unicore/lib/ccc/ATAR.pl:INITIAL->1.1 
+	lib/unicore/lib/ccc/ATB.pl:INITIAL->1.1 
+	lib/unicore/lib/ccc/ATBL.pl:INITIAL->1.1 
+	lib/unicore/lib/ccc/B.pl:INITIAL->1.1 
+	lib/unicore/lib/ccc/BL.pl:INITIAL->1.1 
+	lib/unicore/lib/ccc/BR.pl:INITIAL->1.1 
+	lib/unicore/lib/ccc/DA.pl:INITIAL->1.1 
+	lib/unicore/lib/ccc/DB.pl:INITIAL->1.1 
+	lib/unicore/lib/ccc/IS.pl:INITIAL->1.1 
+	lib/unicore/lib/ccc/KV.pl:INITIAL->1.1 
+	lib/unicore/lib/ccc/L.pl:INITIAL->1.1 
+	lib/unicore/lib/ccc/NK.pl:INITIAL->1.1 
+	lib/unicore/lib/ccc/NR.pl:INITIAL->1.1 
+	lib/unicore/lib/ccc/OV.pl:INITIAL->1.1 
+	lib/unicore/lib/ccc/R.pl:INITIAL->1.1 
+	lib/unicore/lib/ccc/VR.pl:INITIAL->1.1 
+	lib/unicore/lib/dt/Can.pl:INITIAL->1.1 
+	lib/unicore/lib/dt/Com.pl:INITIAL->1.1 
+	lib/unicore/lib/dt/Enc.pl:INITIAL->1.1 
+	lib/unicore/lib/dt/Fin.pl:INITIAL->1.1 
+	lib/unicore/lib/dt/Font.pl:INITIAL->1.1 
+	lib/unicore/lib/dt/Fra.pl:INITIAL->1.1 
+	lib/unicore/lib/dt/Init.pl:INITIAL->1.1 
+	lib/unicore/lib/dt/Iso.pl:INITIAL->1.1 
+	lib/unicore/lib/dt/Med.pl:INITIAL->1.1 
+	lib/unicore/lib/dt/Nar.pl:INITIAL->1.1 
+	lib/unicore/lib/dt/Nb.pl:INITIAL->1.1 
+	lib/unicore/lib/dt/Sml.pl:INITIAL->1.1 
+	lib/unicore/lib/dt/Sqr.pl:INITIAL->1.1 
+	lib/unicore/lib/dt/Sub.pl:INITIAL->1.1 
+	lib/unicore/lib/dt/Sup.pl:INITIAL->1.1 
+	lib/unicore/lib/dt/Vert.pl:INITIAL->1.1 
+	lib/unicore/lib/dt/Wide.pl:INITIAL->1.1 
+	lib/unicore/lib/ea/A.pl:INITIAL->1.1 
+	lib/unicore/lib/ea/F.pl:INITIAL->1.1 
+	lib/unicore/lib/ea/H.pl:INITIAL->1.1 
+	lib/unicore/lib/ea/N.pl:INITIAL->1.1 
+	lib/unicore/lib/ea/Na.pl:INITIAL->1.1 
+	lib/unicore/lib/ea/W.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/AHex.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/ASCII.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Alnum.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Alpha.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Alphabet.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Any.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Arab.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Armn.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/AsciiHex.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Assigned.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Avst.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Bali.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Bamu.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Beng.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/BidiC.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/BidiCont.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Blank.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Bopo.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Brai.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Bugi.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Buhd.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/C.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Canadian.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Cari.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Cc.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Cf.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Cham.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Cher.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Cn.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Cntrl.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Co.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Copt.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Cprt.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Cs.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Cyrl.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Dash.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Dash2.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/DefaultI.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Dep.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Deprecat.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Deva.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Dia.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Diacriti.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Digit.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Dsrt.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Egyptian.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Ethi.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Ext.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Extender.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Geor.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Glag.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Goth.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Graph.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Grek.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Gujr.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Guru.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Hang.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Hani.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Hano.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Hebr.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Hex.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/HexDigit.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Hira.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/HorizSpa.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Hyphen.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Hyphen2.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/IDSB.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/IDST.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/IdContin.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/IdStart.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Ideo.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Ideograp.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/IdsBinar.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/IdsTrina.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Imperial.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InAegean.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InAlphab.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InAncie2.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InAncie3.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InAncien.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InArabi2.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InArabi3.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InArabi4.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InArabic.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InArmeni.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InArrows.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InAvesta.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InBaline.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InBamum.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InBasicL.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InBengal.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InBlockE.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InBopom2.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InBopomo.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InBoxDra.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InBraill.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InBugine.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InBuhid.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InByzant.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InCarian.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InCham.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InCherok.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InCjkCo2.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InCjkCo3.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InCjkCo4.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InCjkCom.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InCjkRad.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InCjkStr.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InCjkSym.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InCjkUn2.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InCjkUn3.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InCjkUn4.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InCjkUni.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InCombi2.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InCombi3.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InCombi4.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InCombin.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InCommon.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InContro.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InCoptic.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InCounti.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InCunei2.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InCuneif.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InCurren.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InCyprio.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InCyril2.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InCyril3.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InCyril4.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InCyrill.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InDesere.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InDevan2.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InDevana.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InDingba.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InDomino.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InEgypti.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InEnclo2.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InEnclo3.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InEnclo4.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InEnclos.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InEthio2.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InEthio3.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InEthiop.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InGenera.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InGeomet.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InGeorg2.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InGeorgi.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InGlagol.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InGothic.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InGreekA.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InGreekE.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InGujara.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InGurmuk.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InHalfwi.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InHangu2.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InHangu3.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InHangu4.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InHangu5.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InHangul.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InHanuno.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InHebrew.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InHighPr.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InHighSu.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InHiraga.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InIdeogr.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InImperi.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InInscr2.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InInscri.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InIpaExt.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InJavane.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InKaithi.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InKanbun.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InKangxi.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InKannad.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InKatak2.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InKataka.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InKayahL.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InKharos.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InKhmer.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InKhmerS.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InLao.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InLatin1.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InLatin2.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InLatin3.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InLatin4.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InLatin5.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InLatinE.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InLepcha.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InLetter.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InLimbu.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InLinea2.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InLinear.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InLisu.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InLowSur.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InLycian.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InLydian.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InMahjon.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InMalaya.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InMathe2.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InMathem.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InMeetei.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InMisce2.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InMisce3.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InMisce4.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InMisce5.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InMiscel.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InModifi.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InMongol.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InMusica.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InMyanm2.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InMyanma.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InNewTai.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InNko.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InNumber.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InOgham.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InOlChik.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InOldIta.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InOldPer.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InOldSou.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InOldTur.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InOptica.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InOriya.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InOsmany.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InPhagsP.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InPhaist.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InPhoeni.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InPhone2.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InPhonet.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InPrivat.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InRejang.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InRumiNu.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InRunic.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InSamari.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InSauras.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InShavia.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InSinhal.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InSmallF.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InSpacin.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InSpecia.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InSundan.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InSupers.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InSuppl2.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InSuppl3.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InSuppl4.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InSuppl5.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InSuppl6.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InSupple.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InSyloti.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InSyriac.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InTagalo.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InTagban.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InTags.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InTaiLe.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InTaiTha.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InTaiVie.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InTaiXua.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InTamil.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InTelugu.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InThaana.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InThai.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InTibeta.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InTifina.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InUgarit.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InUnifi2.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InUnifie.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InVai.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InVaria2.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InVariat.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InVedicE.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InVertic.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InYiRadi.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InYiSyll.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/InYijing.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Inscrip2.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Inscript.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Java.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/JoinC.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/JoinCont.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Kana.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/KayahLi.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Khar.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Khmr.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Knda.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Kthi.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/L.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/LC.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/LOE.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Laoo.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Latn.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Lepc.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Limb.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/LinearB.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Lisu.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Ll.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Lm.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Lo.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/LogicalO.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Lower.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Lowercas.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Lt.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Lu.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Lyci.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Lydi.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/M.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Math.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Mc.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Me.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/MeeteiMa.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Mlym.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Mn.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Mong.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Mymr.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/N.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/NChar.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Nd.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/NewTaiLu.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Nkoo.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Nl.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/No.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Nonchara.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/OAlpha.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/ODI.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/OGrExt.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/OIDC.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/OIDS.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/OLower.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/OMath.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/OUpper.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Ogam.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/OlChiki.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/OldItali.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/OldPersi.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/OldSouth.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/OldTurki.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Orya.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Osma.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/OtherAlp.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/OtherDef.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/OtherGra.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/OtherIdC.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/OtherIdS.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/OtherLow.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/OtherMat.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/OtherUpp.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/P.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/PatSyn.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/PatWS.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/PatternS.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/PatternW.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Pc.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Pd.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Pe.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/PerlSpac.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/PerlWord.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Pf.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/PhagsPa.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Phnx.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Pi.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Po.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/PosixAln.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/PosixAlp.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/PosixBla.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/PosixCnt.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/PosixDig.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/PosixGra.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/PosixLow.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/PosixPri.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/PosixPun.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/PosixSpa.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/PosixUpp.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Print.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Ps.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Punct.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/QMark.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Quotatio.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Radical.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Radical2.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Rjng.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Runr.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/S.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/SD.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/STerm.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Samr.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Saur.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Sc.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Shaw.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Sinh.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Sk.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Sm.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/So.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/SoftDott.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Space.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/SpacePer.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Sterm2.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Sund.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/SylotiNa.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Syrc.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Tagb.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/TaiLe.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/TaiTham.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/TaiViet.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Taml.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Telu.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Term.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Terminal.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Tfng.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Tglg.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Thaa.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Thai.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Tibt.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Title.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/UIdeo.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Ugar.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/UnifiedI.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Upper.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Uppercas.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/VS.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Vaii.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Variatio.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/VertSpac.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/WSpace.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/WhiteSpa.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Word.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/XDigit.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Xsux.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Yiii.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Z.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Zinh.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Zl.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Zp.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Zs.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/Zyyy.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/_CanonDC.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/_CaseIgn.pl:INITIAL->1.1 
+	lib/unicore/lib/gc_sc/_CombAbo.pl:INITIAL->1.1 
+	lib/unicore/lib/hst/L.pl:INITIAL->1.1 
+	lib/unicore/lib/hst/LV.pl:INITIAL->1.1 
+	lib/unicore/lib/hst/LVT.pl:INITIAL->1.1 
+	lib/unicore/lib/hst/T.pl:INITIAL->1.1 
+	lib/unicore/lib/hst/V.pl:INITIAL->1.1 
+	lib/unicore/lib/jt/C.pl:INITIAL->1.1 
+	lib/unicore/lib/jt/D.pl:INITIAL->1.1 
+	lib/unicore/lib/jt/R.pl:INITIAL->1.1 
+	lib/unicore/lib/jt/U.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/AI.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/AL.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/B2.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/BA.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/BB.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/BK.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/CB.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/CL.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/CM.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/CP.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/CR.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/EX.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/GL.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/H2.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/H3.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/HY.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/ID.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/IN.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/IS.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/JL.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/JT.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/JV.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/LF.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/NL.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/NS.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/NU.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/OP.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/PO.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/PR.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/QU.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/SA.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/SG.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/SP.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/SY.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/WJ.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/XX.pl:INITIAL->1.1 
+	lib/unicore/lib/lb/ZW.pl:INITIAL->1.1 
+	lib/unicore/lib/nt/De.pl:INITIAL->1.1 
+	lib/unicore/lib/nt/Di.pl:INITIAL->1.1 
+	lib/unicore/lib/nt/Nu.pl:INITIAL->1.1 
+	pod/perluniprops.pod:INITIAL->1.1 
+
+Index: src/gnu/usr.bin/perl/MANIFEST
+diff -u src/gnu/usr.bin/perl/MANIFEST:1.23 src/gnu/usr.bin/perl/MANIFEST:1.24
+--- MANIFEST:1.23	Sat Sep 25 14:12:04 2010
++++ MANIFEST	Tue Sep 28 16:25:02 2010
+@@ -3602,13 +3602,17 @@
+ lib/unicore/auxiliary/WordBreakProperty.txt	Unicode character database
+ lib/unicore/BidiMirroring.txt			Unicode character database
+ lib/unicore/Blocks.txt				Unicode character database
++lib/unicore/Canonical.pl
+ lib/unicore/CaseFolding.txt			Unicode character database
+ lib/unicore/CJKRadicals.txt			Unicode character database
++lib/unicore/CombiningClass.pl
+ lib/unicore/CompositionExclusions.txt		Unicode character database
+ lib/unicore/DAge.txt				Unicode character database
+ lib/unicore/DCoreProperties.txt			Unicode character database
++lib/unicore/Decomposition.pl
+ lib/unicore/DNormalizationProps.txt		Unicode character database
+ lib/unicore/EastAsianWidth.txt			Unicode character database
++lib/unicore/Exact.pl
+ lib/unicore/extracted/DBidiClass.txt		Unicode character database
+ lib/unicore/extracted/DBinaryProperties.txt	Unicode character database
+ lib/unicore/extracted/DCombiningClass.txt	Unicode character database
+@@ -3623,22 +3627,576 @@
+ lib/unicore/HangulSyllableType.txt		Unicode character database
+ lib/unicore/Index.txt				Unicode character database
+ lib/unicore/Jamo.txt				Unicode character database
++lib/unicore/lib/bc/AL.pl
++lib/unicore/lib/bc/AN.pl
++lib/unicore/lib/bc/BN.pl
++lib/unicore/lib/bc/B.pl
++lib/unicore/lib/bc/CS.pl
++lib/unicore/lib/bc/EN.pl
++lib/unicore/lib/bc/ES.pl
++lib/unicore/lib/bc/ET.pl
++lib/unicore/lib/bc/L.pl
++lib/unicore/lib/bc/LRE.pl
++lib/unicore/lib/bc/LRO.pl
++lib/unicore/lib/bc/NSM.pl
++lib/unicore/lib/bc/ON.pl
++lib/unicore/lib/bc/PDF.pl
++lib/unicore/lib/bc/RLE.pl
++lib/unicore/lib/bc/RLO.pl
++lib/unicore/lib/bc/R.pl
++lib/unicore/lib/bc/S.pl
++lib/unicore/lib/bc/WS.pl
++lib/unicore/lib/ccc/AL.pl
++lib/unicore/lib/ccc/A.pl
++lib/unicore/lib/ccc/AR.pl
++lib/unicore/lib/ccc/ATA.pl
++lib/unicore/lib/ccc/ATAR.pl
++lib/unicore/lib/ccc/ATBL.pl
++lib/unicore/lib/ccc/ATB.pl
++lib/unicore/lib/ccc/BL.pl
++lib/unicore/lib/ccc/B.pl
++lib/unicore/lib/ccc/BR.pl
++lib/unicore/lib/ccc/DA.pl
++lib/unicore/lib/ccc/DB.pl
++lib/unicore/lib/ccc/IS.pl
++lib/unicore/lib/ccc/KV.pl
++lib/unicore/lib/ccc/L.pl
++lib/unicore/lib/ccc/NK.pl
++lib/unicore/lib/ccc/NR.pl
++lib/unicore/lib/ccc/OV.pl
++lib/unicore/lib/ccc/R.pl
++lib/unicore/lib/ccc/VR.pl
++lib/unicore/lib/dt/Can.pl
++lib/unicore/lib/dt/Com.pl
++lib/unicore/lib/dt/Enc.pl
++lib/unicore/lib/dt/Fin.pl
++lib/unicore/lib/dt/Font.pl
++lib/unicore/lib/dt/Fra.pl
++lib/unicore/lib/dt/Init.pl
++lib/unicore/lib/dt/Iso.pl
++lib/unicore/lib/dt/Med.pl
++lib/unicore/lib/dt/Nar.pl
++lib/unicore/lib/dt/Nb.pl
++lib/unicore/lib/dt/Sml.pl
++lib/unicore/lib/dt/Sqr.pl
++lib/unicore/lib/dt/Sub.pl
++lib/unicore/lib/dt/Sup.pl
++lib/unicore/lib/dt/Vert.pl
++lib/unicore/lib/dt/Wide.pl
++lib/unicore/lib/ea/A.pl
++lib/unicore/lib/ea/F.pl
++lib/unicore/lib/ea/H.pl
++lib/unicore/lib/ea/Na.pl
++lib/unicore/lib/ea/N.pl
++lib/unicore/lib/ea/W.pl
++lib/unicore/lib/gc_sc/AHex.pl
++lib/unicore/lib/gc_sc/Alnum.pl
++lib/unicore/lib/gc_sc/Alphabet.pl
++lib/unicore/lib/gc_sc/Alpha.pl
++lib/unicore/lib/gc_sc/Any.pl
++lib/unicore/lib/gc_sc/Arab.pl
++lib/unicore/lib/gc_sc/Armn.pl
++lib/unicore/lib/gc_sc/AsciiHex.pl
++lib/unicore/lib/gc_sc/ASCII.pl
++lib/unicore/lib/gc_sc/Assigned.pl
++lib/unicore/lib/gc_sc/Avst.pl
++lib/unicore/lib/gc_sc/Bali.pl
++lib/unicore/lib/gc_sc/Bamu.pl
++lib/unicore/lib/gc_sc/Beng.pl
++lib/unicore/lib/gc_sc/BidiCont.pl
++lib/unicore/lib/gc_sc/BidiC.pl
++lib/unicore/lib/gc_sc/Blank.pl
++lib/unicore/lib/gc_sc/Bopo.pl
++lib/unicore/lib/gc_sc/Brai.pl
++lib/unicore/lib/gc_sc/Bugi.pl
++lib/unicore/lib/gc_sc/Buhd.pl
++lib/unicore/lib/gc_sc/Canadian.pl
++lib/unicore/lib/gc_sc/_CanonDC.pl
++lib/unicore/lib/gc_sc/Cari.pl
++lib/unicore/lib/gc_sc/_CaseIgn.pl
++lib/unicore/lib/gc_sc/Cc.pl
++lib/unicore/lib/gc_sc/Cf.pl
++lib/unicore/lib/gc_sc/Cham.pl
++lib/unicore/lib/gc_sc/Cher.pl
++lib/unicore/lib/gc_sc/Cn.pl
++lib/unicore/lib/gc_sc/Cntrl.pl
++lib/unicore/lib/gc_sc/_CombAbo.pl
++lib/unicore/lib/gc_sc/Co.pl
++lib/unicore/lib/gc_sc/Copt.pl
++lib/unicore/lib/gc_sc/C.pl
++lib/unicore/lib/gc_sc/Cprt.pl
++lib/unicore/lib/gc_sc/Cs.pl
++lib/unicore/lib/gc_sc/Cyrl.pl
++lib/unicore/lib/gc_sc/Dash2.pl
++lib/unicore/lib/gc_sc/Dash.pl
++lib/unicore/lib/gc_sc/DefaultI.pl
++lib/unicore/lib/gc_sc/Dep.pl
++lib/unicore/lib/gc_sc/Deprecat.pl
++lib/unicore/lib/gc_sc/Deva.pl
++lib/unicore/lib/gc_sc/Diacriti.pl
++lib/unicore/lib/gc_sc/Dia.pl
++lib/unicore/lib/gc_sc/Digit.pl
++lib/unicore/lib/gc_sc/Dsrt.pl
++lib/unicore/lib/gc_sc/Egyptian.pl
++lib/unicore/lib/gc_sc/Ethi.pl
++lib/unicore/lib/gc_sc/Extender.pl
++lib/unicore/lib/gc_sc/Ext.pl
++lib/unicore/lib/gc_sc/Geor.pl
++lib/unicore/lib/gc_sc/Glag.pl
++lib/unicore/lib/gc_sc/Goth.pl
++lib/unicore/lib/gc_sc/Graph.pl
++lib/unicore/lib/gc_sc/Grek.pl
++lib/unicore/lib/gc_sc/Gujr.pl
++lib/unicore/lib/gc_sc/Guru.pl
++lib/unicore/lib/gc_sc/Hang.pl
++lib/unicore/lib/gc_sc/Hani.pl
++lib/unicore/lib/gc_sc/Hano.pl
++lib/unicore/lib/gc_sc/Hebr.pl
++lib/unicore/lib/gc_sc/HexDigit.pl
++lib/unicore/lib/gc_sc/Hex.pl
++lib/unicore/lib/gc_sc/Hira.pl
++lib/unicore/lib/gc_sc/HorizSpa.pl
++lib/unicore/lib/gc_sc/Hyphen2.pl
++lib/unicore/lib/gc_sc/Hyphen.pl
++lib/unicore/lib/gc_sc/IdContin.pl
++lib/unicore/lib/gc_sc/Ideograp.pl
++lib/unicore/lib/gc_sc/Ideo.pl
++lib/unicore/lib/gc_sc/IdsBinar.pl
++lib/unicore/lib/gc_sc/IDSB.pl
++lib/unicore/lib/gc_sc/IdStart.pl
++lib/unicore/lib/gc_sc/IDST.pl
++lib/unicore/lib/gc_sc/IdsTrina.pl
++lib/unicore/lib/gc_sc/Imperial.pl
++lib/unicore/lib/gc_sc/InAegean.pl
++lib/unicore/lib/gc_sc/InAlphab.pl
++lib/unicore/lib/gc_sc/InAncie2.pl
++lib/unicore/lib/gc_sc/InAncie3.pl
++lib/unicore/lib/gc_sc/InAncien.pl
++lib/unicore/lib/gc_sc/InArabi2.pl
++lib/unicore/lib/gc_sc/InArabi3.pl
++lib/unicore/lib/gc_sc/InArabi4.pl
++lib/unicore/lib/gc_sc/InArabic.pl
++lib/unicore/lib/gc_sc/InArmeni.pl
++lib/unicore/lib/gc_sc/InArrows.pl
++lib/unicore/lib/gc_sc/InAvesta.pl
++lib/unicore/lib/gc_sc/InBaline.pl
++lib/unicore/lib/gc_sc/InBamum.pl
++lib/unicore/lib/gc_sc/InBasicL.pl
++lib/unicore/lib/gc_sc/InBengal.pl
++lib/unicore/lib/gc_sc/InBlockE.pl
++lib/unicore/lib/gc_sc/InBopom2.pl
++lib/unicore/lib/gc_sc/InBopomo.pl
++lib/unicore/lib/gc_sc/InBoxDra.pl
++lib/unicore/lib/gc_sc/InBraill.pl
++lib/unicore/lib/gc_sc/InBugine.pl
++lib/unicore/lib/gc_sc/InBuhid.pl
++lib/unicore/lib/gc_sc/InByzant.pl
++lib/unicore/lib/gc_sc/InCarian.pl
++lib/unicore/lib/gc_sc/InCham.pl
++lib/unicore/lib/gc_sc/InCherok.pl
++lib/unicore/lib/gc_sc/InCjkCo2.pl
++lib/unicore/lib/gc_sc/InCjkCo3.pl
++lib/unicore/lib/gc_sc/InCjkCo4.pl
++lib/unicore/lib/gc_sc/InCjkCom.pl
++lib/unicore/lib/gc_sc/InCjkRad.pl
++lib/unicore/lib/gc_sc/InCjkStr.pl
++lib/unicore/lib/gc_sc/InCjkSym.pl
++lib/unicore/lib/gc_sc/InCjkUn2.pl
++lib/unicore/lib/gc_sc/InCjkUn3.pl
++lib/unicore/lib/gc_sc/InCjkUn4.pl
++lib/unicore/lib/gc_sc/InCjkUni.pl
++lib/unicore/lib/gc_sc/InCombi2.pl
++lib/unicore/lib/gc_sc/InCombi3.pl
++lib/unicore/lib/gc_sc/InCombi4.pl
++lib/unicore/lib/gc_sc/InCombin.pl
++lib/unicore/lib/gc_sc/InCommon.pl
++lib/unicore/lib/gc_sc/InContro.pl
++lib/unicore/lib/gc_sc/InCoptic.pl
++lib/unicore/lib/gc_sc/InCounti.pl
++lib/unicore/lib/gc_sc/InCunei2.pl
++lib/unicore/lib/gc_sc/InCuneif.pl
++lib/unicore/lib/gc_sc/InCurren.pl
++lib/unicore/lib/gc_sc/InCyprio.pl
++lib/unicore/lib/gc_sc/InCyril2.pl
++lib/unicore/lib/gc_sc/InCyril3.pl
++lib/unicore/lib/gc_sc/InCyril4.pl
++lib/unicore/lib/gc_sc/InCyrill.pl
++lib/unicore/lib/gc_sc/InDesere.pl
++lib/unicore/lib/gc_sc/InDevan2.pl
++lib/unicore/lib/gc_sc/InDevana.pl
++lib/unicore/lib/gc_sc/InDingba.pl
++lib/unicore/lib/gc_sc/InDomino.pl
++lib/unicore/lib/gc_sc/InEgypti.pl
++lib/unicore/lib/gc_sc/InEnclo2.pl
++lib/unicore/lib/gc_sc/InEnclo3.pl
++lib/unicore/lib/gc_sc/InEnclo4.pl
++lib/unicore/lib/gc_sc/InEnclos.pl
++lib/unicore/lib/gc_sc/InEthio2.pl
++lib/unicore/lib/gc_sc/InEthio3.pl
++lib/unicore/lib/gc_sc/InEthiop.pl
++lib/unicore/lib/gc_sc/InGenera.pl
++lib/unicore/lib/gc_sc/InGeomet.pl
++lib/unicore/lib/gc_sc/InGeorg2.pl
++lib/unicore/lib/gc_sc/InGeorgi.pl
++lib/unicore/lib/gc_sc/InGlagol.pl
++lib/unicore/lib/gc_sc/InGothic.pl
++lib/unicore/lib/gc_sc/InGreekA.pl
++lib/unicore/lib/gc_sc/InGreekE.pl
++lib/unicore/lib/gc_sc/InGujara.pl
++lib/unicore/lib/gc_sc/InGurmuk.pl
++lib/unicore/lib/gc_sc/InHalfwi.pl
++lib/unicore/lib/gc_sc/InHangu2.pl
++lib/unicore/lib/gc_sc/InHangu3.pl
++lib/unicore/lib/gc_sc/InHangu4.pl
++lib/unicore/lib/gc_sc/InHangu5.pl
++lib/unicore/lib/gc_sc/InHangul.pl
++lib/unicore/lib/gc_sc/InHanuno.pl
++lib/unicore/lib/gc_sc/InHebrew.pl
++lib/unicore/lib/gc_sc/InHighPr.pl
++lib/unicore/lib/gc_sc/InHighSu.pl
++lib/unicore/lib/gc_sc/InHiraga.pl
++lib/unicore/lib/gc_sc/InIdeogr.pl
++lib/unicore/lib/gc_sc/InImperi.pl
++lib/unicore/lib/gc_sc/InInscr2.pl
++lib/unicore/lib/gc_sc/InInscri.pl
++lib/unicore/lib/gc_sc/InIpaExt.pl
++lib/unicore/lib/gc_sc/InJavane.pl
++lib/unicore/lib/gc_sc/InKaithi.pl
++lib/unicore/lib/gc_sc/InKanbun.pl
++lib/unicore/lib/gc_sc/InKangxi.pl
++lib/unicore/lib/gc_sc/InKannad.pl
++lib/unicore/lib/gc_sc/InKatak2.pl
++lib/unicore/lib/gc_sc/InKataka.pl
++lib/unicore/lib/gc_sc/InKayahL.pl
++lib/unicore/lib/gc_sc/InKharos.pl
++lib/unicore/lib/gc_sc/InKhmer.pl
++lib/unicore/lib/gc_sc/InKhmerS.pl
++lib/unicore/lib/gc_sc/InLao.pl
++lib/unicore/lib/gc_sc/InLatin1.pl
++lib/unicore/lib/gc_sc/InLatin2.pl
++lib/unicore/lib/gc_sc/InLatin3.pl
++lib/unicore/lib/gc_sc/InLatin4.pl
++lib/unicore/lib/gc_sc/InLatin5.pl
++lib/unicore/lib/gc_sc/InLatinE.pl
++lib/unicore/lib/gc_sc/InLepcha.pl
++lib/unicore/lib/gc_sc/InLetter.pl
++lib/unicore/lib/gc_sc/InLimbu.pl
++lib/unicore/lib/gc_sc/InLinea2.pl
++lib/unicore/lib/gc_sc/InLinear.pl
++lib/unicore/lib/gc_sc/InLisu.pl
++lib/unicore/lib/gc_sc/InLowSur.pl
++lib/unicore/lib/gc_sc/InLycian.pl
++lib/unicore/lib/gc_sc/InLydian.pl
++lib/unicore/lib/gc_sc/InMahjon.pl
++lib/unicore/lib/gc_sc/InMalaya.pl
++lib/unicore/lib/gc_sc/InMathe2.pl
++lib/unicore/lib/gc_sc/InMathem.pl
++lib/unicore/lib/gc_sc/InMeetei.pl
++lib/unicore/lib/gc_sc/InMisce2.pl
++lib/unicore/lib/gc_sc/InMisce3.pl
++lib/unicore/lib/gc_sc/InMisce4.pl
++lib/unicore/lib/gc_sc/InMisce5.pl
++lib/unicore/lib/gc_sc/InMiscel.pl
++lib/unicore/lib/gc_sc/InModifi.pl
++lib/unicore/lib/gc_sc/InMongol.pl
++lib/unicore/lib/gc_sc/InMusica.pl
++lib/unicore/lib/gc_sc/InMyanm2.pl
++lib/unicore/lib/gc_sc/InMyanma.pl
++lib/unicore/lib/gc_sc/InNewTai.pl
++lib/unicore/lib/gc_sc/InNko.pl
++lib/unicore/lib/gc_sc/InNumber.pl
++lib/unicore/lib/gc_sc/InOgham.pl
++lib/unicore/lib/gc_sc/InOlChik.pl
++lib/unicore/lib/gc_sc/InOldIta.pl
++lib/unicore/lib/gc_sc/InOldPer.pl
++lib/unicore/lib/gc_sc/InOldSou.pl
++lib/unicore/lib/gc_sc/InOldTur.pl
++lib/unicore/lib/gc_sc/InOptica.pl
++lib/unicore/lib/gc_sc/InOriya.pl
++lib/unicore/lib/gc_sc/InOsmany.pl
++lib/unicore/lib/gc_sc/InPhagsP.pl
++lib/unicore/lib/gc_sc/InPhaist.pl
++lib/unicore/lib/gc_sc/InPhoeni.pl
++lib/unicore/lib/gc_sc/InPhone2.pl
++lib/unicore/lib/gc_sc/InPhonet.pl
++lib/unicore/lib/gc_sc/InPrivat.pl
++lib/unicore/lib/gc_sc/InRejang.pl
++lib/unicore/lib/gc_sc/InRumiNu.pl
++lib/unicore/lib/gc_sc/InRunic.pl
++lib/unicore/lib/gc_sc/InSamari.pl
++lib/unicore/lib/gc_sc/InSauras.pl
++lib/unicore/lib/gc_sc/Inscrip2.pl
++lib/unicore/lib/gc_sc/Inscript.pl
++lib/unicore/lib/gc_sc/InShavia.pl
++lib/unicore/lib/gc_sc/InSinhal.pl
++lib/unicore/lib/gc_sc/InSmallF.pl
++lib/unicore/lib/gc_sc/InSpacin.pl
++lib/unicore/lib/gc_sc/InSpecia.pl
++lib/unicore/lib/gc_sc/InSundan.pl
++lib/unicore/lib/gc_sc/InSupers.pl
++lib/unicore/lib/gc_sc/InSuppl2.pl
++lib/unicore/lib/gc_sc/InSuppl3.pl
++lib/unicore/lib/gc_sc/InSuppl4.pl
++lib/unicore/lib/gc_sc/InSuppl5.pl
++lib/unicore/lib/gc_sc/InSuppl6.pl
++lib/unicore/lib/gc_sc/InSupple.pl
++lib/unicore/lib/gc_sc/InSyloti.pl
++lib/unicore/lib/gc_sc/InSyriac.pl
++lib/unicore/lib/gc_sc/InTagalo.pl
++lib/unicore/lib/gc_sc/InTagban.pl
++lib/unicore/lib/gc_sc/InTags.pl
++lib/unicore/lib/gc_sc/InTaiLe.pl
++lib/unicore/lib/gc_sc/InTaiTha.pl
++lib/unicore/lib/gc_sc/InTaiVie.pl
++lib/unicore/lib/gc_sc/InTaiXua.pl
++lib/unicore/lib/gc_sc/InTamil.pl
++lib/unicore/lib/gc_sc/InTelugu.pl
++lib/unicore/lib/gc_sc/InThaana.pl
++lib/unicore/lib/gc_sc/InThai.pl
++lib/unicore/lib/gc_sc/InTibeta.pl
++lib/unicore/lib/gc_sc/InTifina.pl
++lib/unicore/lib/gc_sc/InUgarit.pl
++lib/unicore/lib/gc_sc/InUnifi2.pl
++lib/unicore/lib/gc_sc/InUnifie.pl
++lib/unicore/lib/gc_sc/InVai.pl
++lib/unicore/lib/gc_sc/InVaria2.pl
++lib/unicore/lib/gc_sc/InVariat.pl
++lib/unicore/lib/gc_sc/InVedicE.pl
++lib/unicore/lib/gc_sc/InVertic.pl
++lib/unicore/lib/gc_sc/InYijing.pl
++lib/unicore/lib/gc_sc/InYiRadi.pl
++lib/unicore/lib/gc_sc/InYiSyll.pl
++lib/unicore/lib/gc_sc/Java.pl
++lib/unicore/lib/gc_sc/JoinCont.pl
++lib/unicore/lib/gc_sc/JoinC.pl
++lib/unicore/lib/gc_sc/Kana.pl
++lib/unicore/lib/gc_sc/KayahLi.pl
++lib/unicore/lib/gc_sc/Khar.pl
++lib/unicore/lib/gc_sc/Khmr.pl
++lib/unicore/lib/gc_sc/Knda.pl
++lib/unicore/lib/gc_sc/Kthi.pl
++lib/unicore/lib/gc_sc/Laoo.pl
++lib/unicore/lib/gc_sc/Latn.pl
++lib/unicore/lib/gc_sc/LC.pl
++lib/unicore/lib/gc_sc/Lepc.pl
++lib/unicore/lib/gc_sc/Limb.pl
++lib/unicore/lib/gc_sc/LinearB.pl
++lib/unicore/lib/gc_sc/Lisu.pl
++lib/unicore/lib/gc_sc/Ll.pl
++lib/unicore/lib/gc_sc/Lm.pl
++lib/unicore/lib/gc_sc/LOE.pl
++lib/unicore/lib/gc_sc/LogicalO.pl
++lib/unicore/lib/gc_sc/Lo.pl
++lib/unicore/lib/gc_sc/Lowercas.pl
++lib/unicore/lib/gc_sc/Lower.pl
++lib/unicore/lib/gc_sc/L.pl
++lib/unicore/lib/gc_sc/Lt.pl
++lib/unicore/lib/gc_sc/Lu.pl
++lib/unicore/lib/gc_sc/Lyci.pl
++lib/unicore/lib/gc_sc/Lydi.pl
++lib/unicore/lib/gc_sc/Math.pl
++lib/unicore/lib/gc_sc/Mc.pl
++lib/unicore/lib/gc_sc/MeeteiMa.pl
++lib/unicore/lib/gc_sc/Me.pl
++lib/unicore/lib/gc_sc/Mlym.pl
++lib/unicore/lib/gc_sc/Mn.pl
++lib/unicore/lib/gc_sc/Mong.pl
++lib/unicore/lib/gc_sc/M.pl
++lib/unicore/lib/gc_sc/Mymr.pl
++lib/unicore/lib/gc_sc/NChar.pl
++lib/unicore/lib/gc_sc/Nd.pl
++lib/unicore/lib/gc_sc/NewTaiLu.pl
++lib/unicore/lib/gc_sc/Nkoo.pl
++lib/unicore/lib/gc_sc/Nl.pl
++lib/unicore/lib/gc_sc/Nonchara.pl
++lib/unicore/lib/gc_sc/No.pl
++lib/unicore/lib/gc_sc/N.pl
++lib/unicore/lib/gc_sc/OAlpha.pl
++lib/unicore/lib/gc_sc/ODI.pl
++lib/unicore/lib/gc_sc/Ogam.pl
++lib/unicore/lib/gc_sc/OGrExt.pl
++lib/unicore/lib/gc_sc/OIDC.pl
++lib/unicore/lib/gc_sc/OIDS.pl
++lib/unicore/lib/gc_sc/OlChiki.pl
++lib/unicore/lib/gc_sc/OldItali.pl
++lib/unicore/lib/gc_sc/OldPersi.pl
++lib/unicore/lib/gc_sc/OldSouth.pl
++lib/unicore/lib/gc_sc/OldTurki.pl
++lib/unicore/lib/gc_sc/OLower.pl
++lib/unicore/lib/gc_sc/OMath.pl
++lib/unicore/lib/gc_sc/Orya.pl
++lib/unicore/lib/gc_sc/Osma.pl
++lib/unicore/lib/gc_sc/OtherAlp.pl
++lib/unicore/lib/gc_sc/OtherDef.pl
++lib/unicore/lib/gc_sc/OtherGra.pl
++lib/unicore/lib/gc_sc/OtherIdC.pl
++lib/unicore/lib/gc_sc/OtherIdS.pl
++lib/unicore/lib/gc_sc/OtherLow.pl
++lib/unicore/lib/gc_sc/OtherMat.pl
++lib/unicore/lib/gc_sc/OtherUpp.pl
++lib/unicore/lib/gc_sc/OUpper.pl
++lib/unicore/lib/gc_sc/PatSyn.pl
++lib/unicore/lib/gc_sc/PatternS.pl
++lib/unicore/lib/gc_sc/PatternW.pl
++lib/unicore/lib/gc_sc/PatWS.pl
++lib/unicore/lib/gc_sc/Pc.pl
++lib/unicore/lib/gc_sc/Pd.pl
++lib/unicore/lib/gc_sc/Pe.pl
++lib/unicore/lib/gc_sc/PerlSpac.pl
++lib/unicore/lib/gc_sc/PerlWord.pl
++lib/unicore/lib/gc_sc/Pf.pl
++lib/unicore/lib/gc_sc/PhagsPa.pl
++lib/unicore/lib/gc_sc/Phnx.pl
++lib/unicore/lib/gc_sc/Pi.pl
++lib/unicore/lib/gc_sc/Po.pl
++lib/unicore/lib/gc_sc/PosixAln.pl
++lib/unicore/lib/gc_sc/PosixAlp.pl
++lib/unicore/lib/gc_sc/PosixBla.pl
++lib/unicore/lib/gc_sc/PosixCnt.pl
++lib/unicore/lib/gc_sc/PosixDig.pl
++lib/unicore/lib/gc_sc/PosixGra.pl
++lib/unicore/lib/gc_sc/PosixLow.pl
++lib/unicore/lib/gc_sc/PosixPri.pl
++lib/unicore/lib/gc_sc/PosixPun.pl
++lib/unicore/lib/gc_sc/PosixSpa.pl
++lib/unicore/lib/gc_sc/PosixUpp.pl
++lib/unicore/lib/gc_sc/P.pl
++lib/unicore/lib/gc_sc/Print.pl
++lib/unicore/lib/gc_sc/Ps.pl
++lib/unicore/lib/gc_sc/Punct.pl
++lib/unicore/lib/gc_sc/QMark.pl
++lib/unicore/lib/gc_sc/Quotatio.pl
++lib/unicore/lib/gc_sc/Radical2.pl
++lib/unicore/lib/gc_sc/Radical.pl
++lib/unicore/lib/gc_sc/Rjng.pl
++lib/unicore/lib/gc_sc/Runr.pl
++lib/unicore/lib/gc_sc/Samr.pl
++lib/unicore/lib/gc_sc/Saur.pl
++lib/unicore/lib/gc_sc/Sc.pl
++lib/unicore/lib/gc_sc/SD.pl
++lib/unicore/lib/gc_sc/Shaw.pl
++lib/unicore/lib/gc_sc/Sinh.pl
++lib/unicore/lib/gc_sc/Sk.pl
++lib/unicore/lib/gc_sc/Sm.pl
++lib/unicore/lib/gc_sc/SoftDott.pl
++lib/unicore/lib/gc_sc/So.pl
++lib/unicore/lib/gc_sc/SpacePer.pl
++lib/unicore/lib/gc_sc/Space.pl
++lib/unicore/lib/gc_sc/S.pl
++lib/unicore/lib/gc_sc/Sterm2.pl
++lib/unicore/lib/gc_sc/STerm.pl
++lib/unicore/lib/gc_sc/Sund.pl
++lib/unicore/lib/gc_sc/SylotiNa.pl
++lib/unicore/lib/gc_sc/Syrc.pl
++lib/unicore/lib/gc_sc/Tagb.pl
++lib/unicore/lib/gc_sc/TaiLe.pl
++lib/unicore/lib/gc_sc/TaiTham.pl
++lib/unicore/lib/gc_sc/TaiViet.pl
++lib/unicore/lib/gc_sc/Taml.pl
++lib/unicore/lib/gc_sc/Telu.pl
++lib/unicore/lib/gc_sc/Terminal.pl
++lib/unicore/lib/gc_sc/Term.pl
++lib/unicore/lib/gc_sc/Tfng.pl
++lib/unicore/lib/gc_sc/Tglg.pl
++lib/unicore/lib/gc_sc/Thaa.pl
++lib/unicore/lib/gc_sc/Thai.pl
++lib/unicore/lib/gc_sc/Tibt.pl
++lib/unicore/lib/gc_sc/Title.pl
++lib/unicore/lib/gc_sc/Ugar.pl
++lib/unicore/lib/gc_sc/UIdeo.pl
++lib/unicore/lib/gc_sc/UnifiedI.pl
++lib/unicore/lib/gc_sc/Uppercas.pl
++lib/unicore/lib/gc_sc/Upper.pl
++lib/unicore/lib/gc_sc/Vaii.pl
++lib/unicore/lib/gc_sc/Variatio.pl
++lib/unicore/lib/gc_sc/VertSpac.pl
++lib/unicore/lib/gc_sc/VS.pl
++lib/unicore/lib/gc_sc/WhiteSpa.pl
++lib/unicore/lib/gc_sc/Word.pl
++lib/unicore/lib/gc_sc/WSpace.pl
++lib/unicore/lib/gc_sc/XDigit.pl
++lib/unicore/lib/gc_sc/Xsux.pl
++lib/unicore/lib/gc_sc/Yiii.pl
++lib/unicore/lib/gc_sc/Zinh.pl
++lib/unicore/lib/gc_sc/Zl.pl
++lib/unicore/lib/gc_sc/Z.pl
++lib/unicore/lib/gc_sc/Zp.pl
++lib/unicore/lib/gc_sc/Zs.pl
++lib/unicore/lib/gc_sc/Zyyy.pl
++lib/unicore/lib/hst/L.pl
++lib/unicore/lib/hst/LV.pl
++lib/unicore/lib/hst/LVT.pl
++lib/unicore/lib/hst/T.pl
++lib/unicore/lib/hst/V.pl
++lib/unicore/lib/jt/C.pl
++lib/unicore/lib/jt/D.pl
++lib/unicore/lib/jt/R.pl
++lib/unicore/lib/jt/U.pl
++lib/unicore/lib/lb/AI.pl
++lib/unicore/lib/lb/AL.pl
++lib/unicore/lib/lb/B2.pl
++lib/unicore/lib/lb/BA.pl
++lib/unicore/lib/lb/BB.pl
++lib/unicore/lib/lb/BK.pl
++lib/unicore/lib/lb/CB.pl
++lib/unicore/lib/lb/CL.pl
++lib/unicore/lib/lb/CM.pl
++lib/unicore/lib/lb/CP.pl
++lib/unicore/lib/lb/CR.pl
++lib/unicore/lib/lb/EX.pl
++lib/unicore/lib/lb/GL.pl
++lib/unicore/lib/lb/H2.pl
++lib/unicore/lib/lb/H3.pl
++lib/unicore/lib/lb/HY.pl
++lib/unicore/lib/lb/ID.pl
++lib/unicore/lib/lb/IN.pl
++lib/unicore/lib/lb/IS.pl
++lib/unicore/lib/lb/JL.pl
++lib/unicore/lib/lb/JT.pl
++lib/unicore/lib/lb/JV.pl
++lib/unicore/lib/lb/LF.pl
++lib/unicore/lib/lb/NL.pl
++lib/unicore/lib/lb/NS.pl
++lib/unicore/lib/lb/NU.pl
++lib/unicore/lib/lb/OP.pl
++lib/unicore/lib/lb/PO.pl
++lib/unicore/lib/lb/PR.pl
++lib/unicore/lib/lb/QU.pl
++lib/unicore/lib/lb/SA.pl
++lib/unicore/lib/lb/SG.pl
++lib/unicore/lib/lb/SP.pl
++lib/unicore/lib/lb/SY.pl
++lib/unicore/lib/lb/WJ.pl
++lib/unicore/lib/lb/XX.pl
++lib/unicore/lib/lb/ZW.pl
++lib/unicore/lib/nt/De.pl
++lib/unicore/lib/nt/Di.pl
++lib/unicore/lib/nt/Nu.pl
+ lib/unicore/LineBreak.txt			Unicode character database
+ lib/unicore/Makefile				Unicode character database
+ lib/unicore/mktables				Unicode character database generator
++lib/unicore/mktables.lst
+ lib/unicore/NameAliases.txt			Unicode character database
+ lib/unicore/NamedSequences.txt			Unicode character database
+ lib/unicore/NamedSqProv.txt			Unicode character database
++lib/unicore/Name.pl
+ lib/unicore/NamesList.txt			Unicode character database
+ lib/unicore/NormalizationCorrections.txt	Unicode character database
++lib/unicore/Properties
+ lib/unicore/PropertyAliases.txt			Unicode character database
+ lib/unicore/PropList.txt			Unicode character database
+ lib/unicore/PropValueAliases.txt		Unicode character database
++lib/unicore/PVA.pl
+ lib/unicore/README.perl				Unicode character database
+ lib/unicore/ReadMe.txt				Unicode character database info
+ lib/unicore/Scripts.txt				Unicode character database
+ lib/unicore/SpecialCasing.txt			Unicode character database
+ lib/unicore/StandardizedVariants.txt		Unicode character database
++lib/unicore/To/Digit.pl
++lib/unicore/To/Fold.pl
++lib/unicore/To/Lower.pl
++lib/unicore/To/Title.pl
++lib/unicore/To/Upper.pl
+ lib/unicore/UnicodeData.txt			Unicode character database
+ lib/unicore/version				The version of the Unicode
+ lib/UNIVERSAL.pm		Base class for ALL classes
+@@ -3984,6 +4542,7 @@
+ pod/perlunicode.pod		Perl Unicode support
+ pod/perlunifaq.pod		Perl Unicode FAQ
+ pod/perluniintro.pod		Perl Unicode introduction
++pod/perluniprops.pod
+ pod/perlunitut.pod		Perl Unicode tutorial
+ pod/perlutil.pod		utilities packaged with the Perl distribution
+ pod/perlvar.pod			Perl predefined variables
+Index: src/gnu/usr.bin/perl/Makefile.SH
+diff -u src/gnu/usr.bin/perl/Makefile.SH:1.20 src/gnu/usr.bin/perl/Makefile.SH:1.21
+--- Makefile.SH:1.20	Fri Sep 24 15:06:39 2010
++++ Makefile.SH	Tue Sep 28 16:25:02 2010
+@@ -995,10 +995,8 @@
+ unidatafiles $(unidatafiles) pod/perluniprops.pod: uni.data
+ 
+ uni.data: $(MINIPERL_EXE) $(CONFIGPM) lib/unicore/mktables $(nonxs_ext)
+-	$(MINIPERL) $(Icwd) lib/unicore/mktables -C lib/unicore -P pod -maketest -makelist -p
+-#	Commented out so always runs, mktables looks at far more files than we
+-#	can in this makefile to decide if needs to run or not
+-#	touch uni.data
++#	$(MINIPERL) $(Icwd) lib/unicore/mktables -C lib/unicore -P pod -maketest -makelist -p
++	touch uni.data
+ 
+ # $(PERL_EXE) and ext because buildtoc uses Text::Wrap uses re
+ # But also this ensures that all extensions are built before we try to scan

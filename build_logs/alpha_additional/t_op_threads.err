@@ -1,0 +1,7 @@
+1..26
+ok 1 - delete() under threads
+ok 2 - weaken ref under threads
+ok 3 - weaken ref \#2 under threads
+# parent 14749: continue
+# kid 1 before sort
+Segmentation fault (core dumped) 

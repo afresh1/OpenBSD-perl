@@ -1,0 +1,12 @@
+diff -ru ../perl-5.16.0.orig/x2p/str.c ./x2p/str.c
+--- ../perl-5.16.0.orig/x2p/str.c	Tue Feb 14 21:44:53 2012
++++ ./x2p/str.c	Sat Jun  2 14:31:32 2012
+@@ -29,7 +29,7 @@
+     GROWSTR(&(str->str_ptr), &(str->str_len), 24);
+     s = str->str_ptr;
+     if (str->str_nok) {
+-	sprintf(s,"%.20g",str->str_nval);
++	my_snprintf(s,str->str_len,"%.20g",str->str_nval);
+ 	while (*s) s++;
+     }
+     *s = '\0';

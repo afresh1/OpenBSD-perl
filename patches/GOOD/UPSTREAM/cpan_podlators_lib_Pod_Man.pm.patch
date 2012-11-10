@@ -1,0 +1,13 @@
+--- ./cpan/podlators/lib/Pod/Man.pm.orig	Tue Feb 14 21:44:44 2012
++++ ./cpan/podlators/lib/Pod/Man.pm	Wed Jun 27 11:08:27 2012
+@@ -832,7 +832,9 @@
+                 $cut = $i + 1;
+                 $cut++ if ($dirs[$i + 1] && $dirs[$i + 1] eq 'lib');
+                 last;
+-            }
++            } elsif ($dirs[$i] eq 'lib' && $dirs[$i + 1] && $dirs[0] eq 'ext') {
++                $cut = $i + 1;
++	    }
+         }
+         if ($cut > 0) {
+             splice (@dirs, 0, $cut);

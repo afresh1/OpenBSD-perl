@@ -1,0 +1,25 @@
+diff -x CVS -Nru ../perl-5.12.2/configpm ./configpm
+--- ../perl-5.12.2/configpm	Mon Sep  6 16:30:32 2010
++++ ./configpm	Fri Sep 24 08:06:39 2010
+@@ -56,6 +56,11 @@
+ my %Extensions = map {($_,$_)}
+                  qw(dynamic_ext static_ext extensions known_extensions);
+ 
++# libpaths that should be truncated after the first path element
++my %Libpathtrunc = map {($_,$_)}
++                   qw(archlib archlibexp privlib privlibexp sitearch sitearchexp
++                      sitelib sitelibexp);
++
+ # allowed opts as well as specifies default and initial values
+ my %Allowed_Opts = (
+     'cross'    => '', # --cross=PLATFORM - crosscompiling for PLATFORM
+@@ -266,6 +271,9 @@
+     }
+     $in_v = $val !~ /$quote\n/;
+     next if $in_v;
++
++    # XXX - should use PERLLIB_SEP, not hard-code ':'
++    $val =~ s/^([^:]+).*${quote}\w*$/$1${quote}/ if $Libpathtrunc{$name};
+ 
+     s,/,::,g if $Extensions{$name};
+ 

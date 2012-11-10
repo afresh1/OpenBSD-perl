@@ -1,0 +1,12 @@
+diff -x CVS -Nru ../perl-5.12.2/pod/buildtoc ./pod/buildtoc
+--- ../perl-5.12.2/pod/buildtoc	Mon Sep  6 16:30:32 2010
++++ ./pod/buildtoc	Fri Sep 24 08:07:03 2010
+@@ -398,7 +398,7 @@
+ 	    output "\n \n\n=head2 ";
+ 	    $_ = <>;
+ 	    # Remove svn keyword expansions from the Perl FAQ
+-	    s/ \(\$Revision: \d+ \$\)//g;
++	    s/ \(\045Revision: \d+ \045\)//g;
+ 	    if ( /^\s*$pod\b/ ) {
+ 		s/$pod\.pm/$pod/;       # '.pm' in NAME !?
+ 		output $_;

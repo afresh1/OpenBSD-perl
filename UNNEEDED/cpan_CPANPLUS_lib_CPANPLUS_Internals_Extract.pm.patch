@@ -1,0 +1,12 @@
+diff -x CVS -Nru ../perl-5.12.2/cpan/CPANPLUS/lib/CPANPLUS/Internals/Extract.pm ./cpan/CPANPLUS/lib/CPANPLUS/Internals/Extract.pm
+--- ../perl-5.12.2/cpan/CPANPLUS/lib/CPANPLUS/Internals/Extract.pm	Sun Sep  5 08:14:32 2010
++++ ./cpan/CPANPLUS/lib/CPANPLUS/Internals/Extract.pm	Fri Sep 24 08:06:45 2010
+@@ -19,7 +19,7 @@
+ 
+ =head1 NAME
+ 
+-CPANPLUS::Internals::Extract
++CPANPLUS::Internals::Extract - extract compressed files for CPANPLUS
+ 
+ =head1 SYNOPSIS
+ 

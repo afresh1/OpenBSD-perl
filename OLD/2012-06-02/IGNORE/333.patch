@@ -1,0 +1,249 @@
+---------------------
+PatchSet 333 
+Date: 2010/12/06 07:34:15
+Author: jasper
+Branch: HEAD
+Tag: (none) 
+Log:
+- update CGI to 3.50, which includes a fix for SA42443,
+"multipart_init()" HTTP Header Injection Vulnerability.
+- add a mention in patchlevel.h (reminded by millert@)
+
+ok millert@
+
+Members: 
+	patchlevel.h:1.19->1.20 
+	cpan/CGI/Changes:1.1->1.2 
+	cpan/CGI/lib/CGI.pm:1.2->1.3 
+	cpan/CGI/lib/CGI/Cookie.pm:1.1->1.2 
+	cpan/CGI/lib/CGI/Fast.pm:1.2->1.3 
+	cpan/CGI/t/fast.t:INITIAL->1.1 
+	cpan/CGI/t/http.t:1.1->1.2 
+
+Index: src/gnu/usr.bin/perl/patchlevel.h
+diff -u src/gnu/usr.bin/perl/patchlevel.h:1.19 src/gnu/usr.bin/perl/patchlevel.h:1.20
+--- patchlevel.h:1.19	Sat Sep 25 13:13:55 2010
++++ patchlevel.h	Mon Dec  6 14:34:15 2010
+@@ -128,6 +128,7 @@
+ static const char * const local_patches[] = {
+ 	NULL
+ 	,"CVE-2010-0405"
++	,"Updated CGI to 3.50"
+ #ifdef PERL_GIT_UNCOMMITTED_CHANGES
+ 	,"uncommitted-changes"
+ #endif
+Index: src/gnu/usr.bin/perl/cpan/CGI/Changes
+diff -u src/gnu/usr.bin/perl/cpan/CGI/Changes:1.1 src/gnu/usr.bin/perl/cpan/CGI/Changes:1.2
+--- cpan/CGI/Changes:1.1	Fri Sep 24 14:49:03 2010
++++ cpan/CGI/Changes	Mon Dec  6 14:34:15 2010
+@@ -1,3 +1,21 @@
++Version 3.50
++  
++  [SECURITY]
++  1. The MIME boundary in multipart_init is now random. 
++     Thanks to Byron Jones, Masahiro Yamada, Reed Loden, and  Mark Stosberg
++  2. Further improvements to handling of newlines embedded in header values. 
++     An exception is thrown if header values contain invalid newlines. 
++     Thanks to Michal Zalewski, Max Kanat-Alexander, Yanick Champoux,
++     Lincoln Stein, Frédéric Buclin and Mark Stosberg
++
++  [DOCUMENTATION]
++  1. Correcting/clarifying documentation for param_fetch(). Thanks to 
++        Renée Bäcker. (RT#59132)
++
++  [INTERNALS]
++  1. Fixing https test in http.t. (RT#54768)
++  2. Tests were added for multipart_init(). Thanks to Mark Stosberg and CGI::Simple. 
++
+ Version 3.49
+ 
+   [BUG FIXES]
+Index: src/gnu/usr.bin/perl/cpan/CGI/lib/CGI.pm
+diff -u src/gnu/usr.bin/perl/cpan/CGI/lib/CGI.pm:1.2 src/gnu/usr.bin/perl/cpan/CGI/lib/CGI.pm:1.3
+--- cpan/CGI/lib/CGI.pm:1.2	Fri Sep 24 15:06:44 2010
++++ cpan/CGI/lib/CGI.pm	Mon Dec  6 14:34:15 2010
+@@ -18,8 +18,9 @@
+ # The most recent version and complete docs are available at:
+ #   http://stein.cshl.org/WWW/software/CGI/
+ 
++# The revision is no longer being updated since moving to git. 
+ $CGI::revision = '$Id: CGI.pm,v 1.266 2009/07/30 16:32:34 lstein Exp $';
+-$CGI::VERSION='3.49';
++$CGI::VERSION='3.50';
+ 
+ # HARD-CODED LOCATION FOR FILE UPLOAD TEMPORARY FILES.
+ # UNCOMMENT THIS ONLY IF YOU KNOW WHAT YOU'RE DOING.
+@@ -1457,7 +1458,14 @@
+ sub multipart_init {
+     my($self,@p) = self_or_default(@_);
+     my($boundary,@other) = rearrange_header([BOUNDARY],@p);
+-    $boundary = $boundary || '------- =_aaaaaaaaaa0';
++    if (!$boundary) {
++        $boundary = '------- =_';
++        my @chrs = ('0'..'9', 'A'..'Z', 'a'..'z');
++        for (1..17) {
++            $boundary .= $chrs[rand(scalar @chrs)];
++        }
++    }
++
+     $self->{'separator'} = "$CRLF--$boundary$CRLF";
+     $self->{'final_separator'} = "$CRLF--$boundary--$CRLF";
+     $type = SERVER_PUSH($boundary);
+@@ -1545,12 +1553,19 @@
+     # CR escaping for values, per RFC 822
+     for my $header ($type,$status,$cookie,$target,$expires,$nph,$charset,$attachment,$p3p,@other) {
+         if (defined $header) {
+-            $header =~ s/
+-                (?<=\n)    # For any character proceeded by a newline
+-                (?=\S)     # ... that is not whitespace
+-            / /xg;         # ... inject a leading space in the new line
+-        }
+-    }
++            # From RFC 822:
++            # Unfolding  is  accomplished  by regarding   CRLF   immediately
++            # followed  by  a  LWSP-char  as equivalent to the LWSP-char.
++            $header =~ s/$CRLF(\s)/$1/g;
++
++            # All other uses of newlines are invalid input. 
++            if ($header =~ m/$CRLF/) {
++                # shorten very long values in the diagnostic
++                $header = substr($header,0,72).'...' if (length $header > 72);
++                die "Invalid header value contains a newline not followed by whitespace: $header";
++            }
++        } 
++   }
+ 
+     $nph     ||= $NPH;
+ 
+@@ -1615,7 +1630,6 @@
+ }
+ END_OF_FUNC
+ 
+-
+ #### Method: cache
+ # Control whether header() will produce the no-cache
+ # Pragma directive.
+@@ -4707,9 +4721,10 @@
+    unshift @{$q->param_fetch(-name=>'address')},'George Munster';
+ 
+ If you need access to the parameter list in a way that isn't covered
+-by the methods above, you can obtain a direct reference to it by
+-calling the B<param_fetch()> method with the name of the .  This
+-will return an array reference to the named parameters, which you then
++by the methods given in the previous sections, you can obtain a direct 
++reference to it by
++calling the B<param_fetch()> method with the name of the parameter.  This
++will return an array reference to the named parameter, which you then
+ can manipulate in any way you like.
+ 
+ You can also use a named argument style using the B<-name> argument.
+Index: src/gnu/usr.bin/perl/cpan/CGI/lib/CGI/Cookie.pm
+diff -u src/gnu/usr.bin/perl/cpan/CGI/lib/CGI/Cookie.pm:1.1 src/gnu/usr.bin/perl/cpan/CGI/lib/CGI/Cookie.pm:1.2
+--- cpan/CGI/lib/CGI/Cookie.pm:1.1	Fri Sep 24 14:49:03 2010
++++ cpan/CGI/lib/CGI/Cookie.pm	Mon Dec  6 14:34:15 2010
+@@ -305,7 +305,9 @@
+ 
+ For full information on cookies see 
+ 
+-	http://www.ics.uci.edu/pub/ietf/http/rfc2109.txt
++	http://tools.ietf.org/html/rfc2109
++	http://tools.ietf.org/html/rfc2965
++	http://tools.ietf.org/html/draft-ietf-httpstate-cookie
+ 
+ =head1 USING CGI::Cookie
+ 
+@@ -355,18 +357,19 @@
+ If the "secure" attribute is set, the cookie will only be sent to your
+ script if the CGI request is occurring on a secure channel, such as SSL.
+ 
+-=item B<4. httponly flag>
++=item B<5. httponly flag>
+ 
+ If the "httponly" attribute is set, the cookie will only be accessible
+ through HTTP Requests. This cookie will be inaccessible via JavaScript
+ (to prevent XSS attacks).
+ 
+-But, currently this feature only used and recognised by 
+-MS Internet Explorer 6 Service Pack 1 and later.
++This feature is only supported by recent browsers like Internet Explorer
++6 Service Pack 1, Firefox 3.0 and Opera 9.5 (and later of course).
+ 
+-See this URL for more information:
++See these URLs for more information:
+ 
+-L<http://msdn.microsoft.com/en-us/library/ms533046%28VS.85%29.aspx>
++	http://msdn.microsoft.com/en-us/library/ms533046.aspx
++	http://www.owasp.org/index.php/HTTPOnly#Browsers_Supporting_HTTPOnly
+ 
+ =back
+ 
+Index: src/gnu/usr.bin/perl/cpan/CGI/lib/CGI/Fast.pm
+diff -u src/gnu/usr.bin/perl/cpan/CGI/lib/CGI/Fast.pm:1.2 src/gnu/usr.bin/perl/cpan/CGI/lib/CGI/Fast.pm:1.3
+--- cpan/CGI/lib/CGI/Fast.pm:1.2	Fri Sep 24 15:06:44 2010
++++ cpan/CGI/lib/CGI/Fast.pm	Mon Dec  6 14:34:15 2010
+@@ -181,7 +181,7 @@
+ =item FCGI_SOCKET_PATH
+ 
+ The address (TCP/IP) or path (UNIX Domain) of the socket the external FastCGI
+-script to which bind can listen for incoming connections from the web server.
++script to which bind an listen for incoming connections from the web server.
+ 
+ =item FCGI_LISTEN_QUEUE
+ 
+--- /dev/null	Sun May 27 20:26:57 2012
++++ cpan/CGI/t/fast.t	Sun May 27 20:26:59 2012
+@@ -0,0 +1,39 @@
++#!perl -w
++
++my $fcgi;
++BEGIN {
++	local $@;
++	eval { require FCGI };
++	$fcgi = $@ ? 0 : 1;
++}
++
++use Test::More tests => 10;
++
++# Shut up "used only once" warnings.
++() = $CGI::Q;
++() = $CGI::Fast::Ext_Request;
++
++SKIP: {
++	skip( 'FCGI not installed, cannot continue', 10 ) unless $fcgi;
++
++	require CGI::Fast;
++	ok( my $q = CGI::Fast->new(), 'created new CGI::Fast object' );
++	is( $q, $CGI::Q, 'checking to see if the object was stored properly' );
++	is( $q->param(), (), 'no params' );
++
++	ok( $q = CGI::Fast->new({ foo => 'bar' }), 'creating object with params' );
++	is( $q->param('foo'), 'bar', 'checking passed param' );
++
++	# if this is false, the package var will be empty
++	$ENV{FCGI_SOCKET_PATH} = 0;
++	is( $CGI::Fast::Ext_Request, undef, 'checking no active request' );
++
++    is($CGI::PRIVATE_TEMPFILES,0, "reality check default value for CGI::PRIVATE_TEMPFILES");
++	import CGI::Fast '-private_tempfiles';
++    CGI::Fast->new;
++    is($CGI::PRIVATE_TEMPFILES,1, "pragma in subclass set package variable in parent class. ");
++    $q = CGI::Fast->new({ a => 1 });
++    ok($q, "reality check: something was returned from CGI::Fast->new besides undef");
++    is($CGI::PRIVATE_TEMPFILES,1, "package variable in parent class persists through multiple calls to CGI::Fast->new ");
++
++};
+Index: src/gnu/usr.bin/perl/cpan/CGI/t/http.t
+diff -u src/gnu/usr.bin/perl/cpan/CGI/t/http.t:1.1 src/gnu/usr.bin/perl/cpan/CGI/t/http.t:1.2
+--- cpan/CGI/t/http.t:1.1	Fri Sep 24 14:49:03 2010
++++ cpan/CGI/t/http.t	Mon Dec  6 14:34:15 2010
+@@ -34,8 +34,8 @@
+     # https()
+     # The same as http(), but operates on the HTTPS environment variables present when the SSL protocol is in
+     # effect.  Can be used to determine whether SSL is turned on.
+-    local $ENV{'HTTPS'} = 'ON';
+-    local $ENV{'HTTPS_KEYSIZE'} = 512;
++    local %ENV;
++    @ENV{qw/ HTTPS HTTPS_KEYSIZE /} = ('ON', 512);
+     is $cgi->https(), 'ON', 'scalar context to check SSL is on';
+     ok eq_set( [$cgi->https()], [qw(HTTPS HTTPS_KEYSIZE)]), 'list context returns https keys';
+ }

@@ -1,0 +1,38 @@
+---------------------
+PatchSet 320 
+Date: 2010/09/25 07:12:04
+Author: millert
+Branch: HEAD
+Tag: (none) 
+Log:
+Remove Bar.pm~ which causes emacs people issues (and they have enough
+of those already).  Requested by deraadt@
+
+Members: 
+	MANIFEST:1.22->1.23 
+	cpan/Module-Pluggable/t/lib/EditorJunk/Plugin/Bar.pm~:1.1->1.2(DEAD) 
+
+Index: src/gnu/usr.bin/perl/MANIFEST
+diff -u src/gnu/usr.bin/perl/MANIFEST:1.22 src/gnu/usr.bin/perl/MANIFEST:1.23
+--- MANIFEST:1.22	Fri Sep 24 15:06:38 2010
++++ MANIFEST	Sat Sep 25 14:12:04 2010
+@@ -1659,7 +1659,6 @@
+ cpan/Module-Pluggable/t/lib/Acme/Foo-Bar.pm		Module::Pluggable tests
+ cpan/Module-Pluggable/t/lib/Acme/MyTest/Plugin/Foo.pm	Module::Pluggable tests
+ cpan/Module-Pluggable/t/lib/EditorJunk/Plugin/Bar.pm	Module::Pluggable tests
+-cpan/Module-Pluggable/t/lib/EditorJunk/Plugin/Bar.pm~	Module::Pluggable tests
+ cpan/Module-Pluggable/t/lib/EditorJunk/Plugin/Bar.pm.swo	Module::Pluggable tests
+ cpan/Module-Pluggable/t/lib/EditorJunk/Plugin/Bar.pm.swp	Module::Pluggable tests
+ cpan/Module-Pluggable/t/lib/EditorJunk/Plugin/Foo.pm	Module::Pluggable tests
+--- cpan/Module-Pluggable/t/lib/EditorJunk/Plugin/Bar.pm~	Sun May 27 18:49:05 2012
++++ /dev/null	Sun May 27 18:49:05 2012
+@@ -1,9 +0,0 @@
+-package EditorJunk::Bar;
+-
+-
+-use strict;
+-
+-
+-1;
+-
+-

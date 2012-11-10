@@ -1,0 +1,13 @@
+--- ../perl-5.16.0.orig/lib/Config.t	Tue Feb 14 21:44:48 2012
++++ lib/Config.t	Wed May 30 21:58:21 2012
+@@ -271,8 +271,8 @@
+     }
+     # So we expect to find it in @INC
+ 
+-    ok (exists $orig_inc{$dir}, "Expect $lib '$dir' to be in \@INC")
+-      or $failed++;
++    ok (exists $orig_inc{$_}, "Expect $lib '$_' to be in \@INC")
++      or $failed++ for split ':', $dir;
+   }
+ }
+ _diag ('@INC is:', @orig_inc) if $failed;

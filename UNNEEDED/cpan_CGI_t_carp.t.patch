@@ -1,0 +1,65 @@
+diff -x CVS -Nru ../perl-5.12.2/cpan/CGI/t/carp.t ./cpan/CGI/t/carp.t
+--- ../perl-5.12.2/cpan/CGI/t/carp.t	Sun Sep  5 08:14:32 2010
++++ ./cpan/CGI/t/carp.t	Thu Jan  6 14:23:16 2011
+@@ -1,12 +1,12 @@
+ # -*- Mode: cperl; coding: utf-8; cperl-indent-level: 2 -*-
+-#!/usr/local/bin/perl -w
++#!perl -w
+ 
+ use strict;
+ 
+-use Test::More tests => 59;
++use Test::More tests => 61;
+ use IO::Handle;
+ 
+-BEGIN { use_ok('CGI::Carp') };
++use CGI::Carp;
+ 
+ #-----------------------------------------------------------------------------
+ # Test id
+@@ -337,9 +337,14 @@
+     CGI::Carp::die( My::Stringified::Object->new );
+     $result{string_object} .= $_ while <STDOUT>;
+ 
++    undef $@;
+     CGI::Carp::die();
+     $result{no_args} .= $_ while <STDOUT>;
+ 
++    $@ = "I think I caught a virus";
++    CGI::Carp::die();
++    $result{propagated} .= $_ while <STDOUT>;
++
+     untie *STDOUT;
+ 
+     like $result{string}    => qr/regular string/, 'regular string, wrapped';
+@@ -352,6 +357,9 @@
+       'stringified object, wrapped';
+     like $result{no_args} => qr/Died at/, 'no args, wrapped';
+ 
++    like $result{propagated} => qr/I think I caught a virus\t\.{3}propagated/, 
++        'propagating $@ if no argument';
++
+ }
+ 
+ {
+@@ -371,3 +379,20 @@
+         return bless {}, shift;
+     }
+ }
++
++
++@result = ();
++tie *STDOUT, 'StoreStuff' or die "Can't tie STDOUT";
++ {
++ 	eval {
++ 		$CGI::Carp::TO_BROWSER = 0;
++ 		die 'Message ToBrowser = 0';
++	};
++ 	$result[0] = $@;
++ 	$result[1] .= $_ while (<STDOUT>);
++ }
++untie *STDOUT;
++
++ like $result[0] => qr/Message ToBrowser/, 'die message for ToBrowser = 0 is OK';
++ ok !$result[1], 'No output for ToBrowser = 0';
++

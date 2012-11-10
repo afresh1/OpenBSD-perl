@@ -1,0 +1,12 @@
+diff -x CVS -Nru ../perl-5.12.2/installperl ./installperl
+--- ../perl-5.12.2/installperl	Sun Sep  5 08:14:33 2010
++++ ./installperl	Fri Sep 24 08:06:40 2010
+@@ -154,7 +154,7 @@
+ }
+ 
+ # Exclude nonxs extensions that are not architecture dependent
+-my @nonxs = grep(!/^Errno$/, split(' ', $Config{'nonxs_ext'}));
++my @nonxs = grep(!/^(Errno|IO\/Compress)$/, split(' ', $Config{'nonxs_ext'}));
+ 
+ my @ext_dirs = qw(cpan dist ext);
+ foreach my $ext_dir (@ext_dirs) {

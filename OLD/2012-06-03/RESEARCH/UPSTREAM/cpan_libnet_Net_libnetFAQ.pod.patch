@@ -1,0 +1,11 @@
+diff -x CVS -Nru ../perl-5.12.2/cpan/libnet/Net/libnetFAQ.pod ./cpan/libnet/Net/libnetFAQ.pod
+--- ../perl-5.12.2/cpan/libnet/Net/libnetFAQ.pod	Sun Sep  5 08:14:33 2010
++++ ./cpan/libnet/Net/libnetFAQ.pod	Fri Sep 24 08:06:55 2010
+@@ -1,6 +1,6 @@
+ =head1 NAME
+ 
+-libnetFAQ - libnet Frequently Asked Questions
++Net::libnetFAQ - libnet Frequently Asked Questions
+ 
+ =head1 DESCRIPTION
+ 

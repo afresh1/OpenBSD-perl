@@ -1,0 +1,12 @@
+diff -x CVS -Nru ../perl-5.12.2/cpan/CPANPLUS/lib/CPANPLUS/Shell/Default/Plugins/Remote.pm ./cpan/CPANPLUS/lib/CPANPLUS/Shell/Default/Plugins/Remote.pm
+--- ../perl-5.12.2/cpan/CPANPLUS/lib/CPANPLUS/Shell/Default/Plugins/Remote.pm	Sun Sep  5 08:14:32 2010
++++ ./cpan/CPANPLUS/lib/CPANPLUS/Shell/Default/Plugins/Remote.pm	Fri Sep 24 08:06:45 2010
+@@ -9,7 +9,7 @@
+ 
+ =head1 NAME
+ 
+-CPANPLUS::Shell::Default::Plugins::Remote
++CPANPLUS::Shell::Default::Plugins::Remote - plugin that allows connections to CPANPLUS::Daemon
+ 
+ =head1 SYNOPSIS
+ 

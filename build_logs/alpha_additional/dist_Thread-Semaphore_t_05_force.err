@@ -1,0 +1,6 @@
+1..8
+ok 1 - New Semaphore
+ok 2 - New Semaphore
+ok 3 - Thread got semaphore
+ok 4 - Main has semaphore
+Segmentation fault (core dumped) 

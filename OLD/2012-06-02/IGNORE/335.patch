@@ -1,0 +1,1154 @@
+---------------------
+PatchSet 335 
+Date: 2011/01/07 05:19:31
+Author: jasper
+Branch: HEAD
+Tag: OPENBSD_4_9_BASE 
+Log:
+- Update Test::Simple to 0.96
+
+from Abel Abraham Camarillo Ojeda
+ok espie@ millert@
+
+Members: 
+	patchlevel.h:1.21->1.22 
+	cpan/Test-Simple/Changes:1.1->1.2 
+	cpan/Test-Simple/lib/Test/Builder.pm:1.1->1.2 
+	cpan/Test-Simple/lib/Test/More.pm:1.1->1.2 
+	cpan/Test-Simple/lib/Test/Simple.pm:1.1->1.2 
+	cpan/Test-Simple/lib/Test/Builder/Module.pm:1.1->1.2 
+	cpan/Test-Simple/lib/Test/Builder/Tester.pm:1.1->1.2 
+	cpan/Test-Simple/lib/Test/Builder/Tester/Color.pm:1.1->1.2 
+	cpan/Test-Simple/t/More.t:1.1->1.2 
+	cpan/Test-Simple/t/dependents.t:1.1->1.2 
+	cpan/Test-Simple/t/extra.t:1.1->1.2 
+	cpan/Test-Simple/t/fail-more.t:1.1->1.2 
+	cpan/Test-Simple/t/is_deeply_fail.t:1.1->1.2 
+	cpan/Test-Simple/t/undef.t:1.1->1.2 
+	cpan/Test-Simple/t/use_ok.t:1.1->1.2 
+	cpan/Test-Simple/t/Builder/no_ending.t:1.1->1.2 
+	cpan/Test-Simple/t/Builder/no_plan_at_all.t:1.1->1.2 
+	cpan/Test-Simple/t/Builder/reset.t:1.1->1.2 
+	cpan/Test-Simple/t/Tester/tbt_01basic.t:1.1->1.2 
+	cpan/Test-Simple/t/Tester/tbt_06errormess.t:1.1->1.2 
+	cpan/Test-Simple/t/Tester/tbt_07args.t:1.1->1.2 
+	cpan/Test-Simple/t/subtest/basic.t:1.1->1.2 
+
+Index: src/gnu/usr.bin/perl/patchlevel.h
+diff -u src/gnu/usr.bin/perl/patchlevel.h:1.21 src/gnu/usr.bin/perl/patchlevel.h:1.22
+--- patchlevel.h:1.21	Thu Jan  6 21:23:16 2011
++++ patchlevel.h	Fri Jan  7 12:19:31 2011
+@@ -129,6 +129,7 @@
+ 	NULL
+ 	,"CVE-2010-0405"
+ 	,"Updated CGI to 3.51"
++	,"Updated Test::Simple to 0.96"
+ #ifdef PERL_GIT_UNCOMMITTED_CHANGES
+ 	,"uncommitted-changes"
+ #endif
+Index: src/gnu/usr.bin/perl/cpan/Test-Simple/Changes
+diff -u src/gnu/usr.bin/perl/cpan/Test-Simple/Changes:1.1 src/gnu/usr.bin/perl/cpan/Test-Simple/Changes:1.2
+--- cpan/Test-Simple/Changes:1.1	Fri Sep 24 14:49:05 2010
++++ cpan/Test-Simple/Changes	Fri Jan  7 12:19:31 2011
+@@ -1,3 +1,45 @@
++0.96  Tue Aug 10 21:13:04 PDT 2010
++    Bug Fixes
++    * You can call done_testing() again after reset() [googlecode 59]
++
++    Other
++    * Bug tracker moved to github
++
++
++0.95_02  Wed May 19 15:46:52 PDT 2010
++    Bug Fixes
++    * Correct various typos and spelling errors (Nick Cleaton)
++    * Fix alignment of indented multi-line diagnostics from subtests
++      (Nick Cleaton)
++    * Fix incorrect operation when subtest called from within a todo block
++      (Nick Cleaton)
++    * Avoid spurious output after a fork within a subtest
++      (Nick Cleaton)
++
++
++0.95_01  Wed Mar  3 15:36:59 PST 2010
++    Bug Fixes
++    * is_deeply() didn't see a difference in regexes [rt.cpan.org 53469]
++    * Test::Builder::Tester now sets $tb->todo_output to the output handle and
++      not the error handle (to be in accordance with the default behaviour of
++      Test::Builder and allow for testing TODO test behaviour).
++    * Fixed file/line in failing subtest() diagnostics. (Nick Cleaton)
++    * Protect against subtests setting $Level (Nick Cleaton)
++
++    New Features
++    * subtests without a 'plan' or 'no_plan' have an implicit 'done_testing()'
++      added to them.
++    * is_deeply() performance boost for large structures consisting of
++      mostly non-refs (Nick Cleaton)
++
++    Feature Changes
++    * is() and others will no longer stringify its arguments before
++      comparing.  Overloaded objects will make use of their eq
++      overload rather than their "" overload.  This can break tests of
++      impolitely string overloaded objects.  DateTime prior to 0.54 is
++      the biggest example.
++
++
+ 0.94  Wed Sep  2 11:17:47 PDT 2009
+     Releasing 0.93_01 as stable.
+ 
+@@ -127,7 +169,7 @@
+     - Fixed the file and line number reported by like when it gets a bad
+       regex.
+ 
+-    Features Changed
++    Feature Changes
+     - Now preserves the tests' exit code if it exits abnormally, rather than
+       setting it to 255.
+     - Changed the "Looks like your test died" message to
+@@ -147,7 +189,7 @@
+     * Added note() and explain() to both Test::More and Test::Builder.
+       [rt.cpan.org 14764] [test-more.googlecode.com 3]
+ 
+-    Features Changed
++    Feature Changes
+     * Changed the message for extra tests run to show the number of tests run rather than
+       the number extra to avoid the user having to do mental math.
+       [rt.cpan.org 7022]    
+@@ -410,7 +452,7 @@
+     - cmp_ok() will now throw warnings as if the comparison were run 
+       normally, for example cmp_ok(2, '==', 'foo') will warn about 'foo' 
+       not being numeric.  Previously all warnings in the comparison were
+-      supressed. [rt.cpan.org 13155]
++      suppressed. [rt.cpan.org 13155]
+     - Tests will now report *both* the number of tests failed and if the
+       wrong number of tests were run.  Previously if tests failed and the
+       wrong number were run it would only report the latter. 
+@@ -434,7 +476,7 @@
+     * Use of eq_* now officially discouraged.
+     - Removed eq_* from the SYNOPSIS.
+     - is_deeply(undef, $not_undef); now works. [rt.cpan.org 9441]
+-    - is_deeply() was mistakenly interpeting the same reference used twice
++    - is_deeply() was mistakenly interpreting the same reference used twice
+       in a data structure as being circular causing failures.
+       [rt.cpan.org 11623]
+     - Loading Test::Builder but not using it would interfere with the
+@@ -558,7 +600,7 @@
+     * Test::Builder is once again ithread safe.
+ 
+ 0.46  Sat Jul 20 19:57:40 EDT 2002
+-    - Noted eq_set() isn't really a set comparision.
++    - Noted eq_set() isn't really a set comparison.
+     - Test fix, exit codes are broken on MacPerl (bleadperl@16868)
+     - Make Test::Simple install itself into the core for >= 5.8
+     - Small fixes to Test::Tutorial and skip examples
+@@ -639,7 +681,7 @@
+     - Minor VMS test nit.
+ 
+ 0.32  Tue Oct 16 16:52:02 EDT 2001
+-    * Finally added a seperate plan() function
++    * Finally added a separate plan() function
+     * Adding a name field to isa_ok()
+       (Requested by Dave Rolsky)
+     - Test::More was using Carp.pm, causing the occasional false positive.
+@@ -685,7 +727,7 @@
+     * Added can_ok() and isa_ok() to Test::More
+ 
+ 0.16  Tue Aug 28 19:52:11 EDT 2001
+-    * vmsperl foiled my sensisble exit codes.  Reverting to a much more
++    * vmsperl foiled my sensible exit codes.  Reverting to a much more
+       coarse scheme.
+ 
+ 0.15  Tue Aug 28 06:18:35 EDT 2001  *UNRELEASED*
+Index: src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Builder.pm
+diff -u src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Builder.pm:1.1 src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Builder.pm:1.2
+--- cpan/Test-Simple/lib/Test/Builder.pm:1.1	Fri Sep 24 14:49:05 2010
++++ cpan/Test-Simple/lib/Test/Builder.pm	Fri Jan  7 12:19:31 2011
+@@ -4,7 +4,7 @@
+ use strict;
+ use warnings;
+ 
+-our $VERSION = '0.94';
++our $VERSION = '0.96';
+ $VERSION = eval $VERSION;    ## no critic (BuiltinFunctions::ProhibitStringyEval)
+ 
+ BEGIN {
+@@ -23,7 +23,7 @@
+         require threads::shared;
+ 
+         # Hack around YET ANOTHER threads::shared bug.  It would
+-        # occassionally forget the contents of the variable when sharing it.
++        # occasionally forget the contents of the variable when sharing it.
+         # So we first copy the data, then share, then put our copy back.
+         *share = sub (\[$@%]) {
+             my $type = ref $_[0];
+@@ -90,7 +90,7 @@
+ =head1 DESCRIPTION
+ 
+ Test::Simple and Test::More have proven to be popular testing modules,
+-but they're not always flexible enough.  Test::Builder provides the a
++but they're not always flexible enough.  Test::Builder provides a
+ building block upon which to write your own test libraries I<which can
+ work together>.
+ 
+@@ -156,7 +156,7 @@
+   $child->finalize;
+ 
+ Returns a new instance of C<Test::Builder>.  Any output from this child will
+-indented four spaces more than the parent's indentation.  When done, the
++be indented four spaces more than the parent's indentation.  When done, the
+ C<finalize> method I<must> be called explicitly.
+ 
+ Trying to create a new child with a previous child still active (i.e.,
+@@ -174,18 +174,28 @@
+         $self->croak("You already have a child named ($self->{Child_Name}) running");
+     }
+ 
++    my $parent_in_todo = $self->in_todo;
++
++    # Clear $TODO for the child.
++    my $orig_TODO = $self->find_TODO(undef, 1, undef);
++
+     my $child = bless {}, ref $self;
+     $child->reset;
+ 
+     # Add to our indentation
+     $child->_indent( $self->_indent . '    ' );
++    
+     $child->{$_} = $self->{$_} foreach qw{Out_FH Todo_FH Fail_FH};
++    if ($parent_in_todo) {
++        $child->{Fail_FH} = $self->{Todo_FH};
++    }
+ 
+     # This will be reset in finalize. We do this here lest one child failure
+     # cause all children to fail.
+     $child->{Child_Error} = $?;
+     $?                    = 0;
+     $child->{Parent}      = $self;
++    $child->{Parent_TODO} = $orig_TODO;
+     $child->{Name}        = $name || "Child of " . $self->name;
+     $self->{Child_Name}   = $child->name;
+     return $child;
+@@ -210,25 +220,71 @@
+ 
+     # Turn the child into the parent so anyone who has stored a copy of
+     # the Test::Builder singleton will get the child.
+-    my $child = $self->child($name);
+-    my %parent = %$self;
+-    %$self = %$child;
++    my($error, $child, %parent);
++    {
++        # child() calls reset() which sets $Level to 1, so we localize
++        # $Level first to limit the scope of the reset to the subtest.
++        local $Test::Builder::Level = $Test::Builder::Level + 1;
+ 
+-    my $error;
+-    if( !eval { $subtests->(); 1 } ) {
+-        $error = $@;
++        $child  = $self->child($name);
++        %parent = %$self;
++        %$self  = %$child;
++
++        my $run_the_subtests = sub {
++            $subtests->();
++            $self->done_testing unless $self->_plan_handled;
++            1;
++        };
++
++        if( !eval { $run_the_subtests->() } ) {
++            $error = $@;
++        }
+     }
+ 
+     # Restore the parent and the copied child.
+     %$child = %$self;
+     %$self = %parent;
+ 
++    # Restore the parent's $TODO
++    $self->find_TODO(undef, 1, $child->{Parent_TODO});
++
+     # Die *after* we restore the parent.
+     die $error if $error and !eval { $error->isa('Test::Builder::Exception') };
+ 
++    local $Test::Builder::Level = $Test::Builder::Level + 1;
+     return $child->finalize;
+ }
+ 
++=begin _private
++
++=item B<_plan_handled>
++
++    if ( $Test->_plan_handled ) { ... }
++
++Returns true if the developer has explicitly handled the plan via:
++
++=over 4
++
++=item * Explicitly setting the number of tests
++
++=item * Setting 'no_plan'
++
++=item * Set 'skip_all'.
++
++=back
++
++This is currently used in subtests when we implicitly call C<< $Test->done_testing >>
++if the developer has not set a plan.
++
++=end _private
++
++=cut
++
++sub _plan_handled {
++    my $self = shift;
++    return $self->{Have_Plan} || $self->{No_Plan} || $self->{Skip_All};
++}
++
+ 
+ =item B<finalize>
+ 
+@@ -261,6 +317,7 @@
+     # XXX This will only be necessary for TAP envelopes (we think)
+     #$self->_print( $self->is_passing ? "PASS\n" : "FAIL\n" );
+ 
++    local $Test::Builder::Level = $Test::Builder::Level + 1;
+     my $ok = 1;
+     $self->parent->{Child_Name} = undef;
+     if ( $self->{Skip_All} ) {
+@@ -315,7 +372,7 @@
+ 
+ sub DESTROY {
+     my $self = shift;
+-    if ( $self->parent ) {
++    if ( $self->parent and $$ == $self->{Original_Pid} ) {
+         my $name = $self->name;
+         $self->diag(<<"FAIL");
+ Child ($name) exited without calling finalize()
+@@ -350,6 +407,7 @@
+     $self->{Have_Plan}    = 0;
+     $self->{No_Plan}      = 0;
+     $self->{Have_Output_Plan} = 0;
++    $self->{Done_Testing} = 0;
+ 
+     $self->{Original_Pid} = $$;
+     $self->{Child_Name}   = undef;
+@@ -458,7 +516,6 @@
+     return;
+ }
+ 
+-
+ =item B<expected_tests>
+ 
+     my $max = $Test->expected_tests;
+@@ -504,7 +561,6 @@
+     return 1;
+ }
+ 
+-
+ =begin private
+ 
+ =item B<_output_plan>
+@@ -543,6 +599,7 @@
+     return;
+ }
+ 
++
+ =item B<done_testing>
+ 
+   $Test->done_testing();
+@@ -879,8 +936,6 @@
+     my( $self, $got, $expect, $name ) = @_;
+     local $Level = $Level + 1;
+ 
+-    $self->_unoverload_str( \$got, \$expect );
+-
+     if( !defined $got || !defined $expect ) {
+         # undef only matches undef and nothing else
+         my $test = !defined $got && !defined $expect;
+@@ -897,8 +952,6 @@
+     my( $self, $got, $expect, $name ) = @_;
+     local $Level = $Level + 1;
+ 
+-    $self->_unoverload_num( \$got, \$expect );
+-
+     if( !defined $got || !defined $expect ) {
+         # undef only matches undef and nothing else
+         my $test = !defined $got && !defined $expect;
+@@ -1059,8 +1112,9 @@
+ 
+         my($pack, $file, $line) = $self->caller();
+ 
++        # This is so that warnings come out at the caller's level
+         $test = eval qq[
+-#line 1 "cmp_ok [from $file line $line]"
++#line $line "(eval in cmp_ok) $file"
+ \$got $type \$expect;
+ ];
+         $error = $@;
+@@ -1685,17 +1739,18 @@
+     return if $^C;
+ 
+     my $msg = join '', @msgs;
++    my $indent = $self->_indent;
+ 
+     local( $\, $", $, ) = ( undef, ' ', '' );
+ 
+     # Escape each line after the first with a # so we don't
+     # confuse Test::Harness.
+-    $msg =~ s{\n(?!\z)}{\n# }sg;
++    $msg =~ s{\n(?!\z)}{\n$indent# }sg;
+ 
+     # Stick a newline on the end if it needs it.
+     $msg .= "\n" unless $msg =~ /\n\z/;
+ 
+-    return print $fh $self->_indent, $msg;
++    return print $fh $indent, $msg;
+ }
+ 
+ =item B<output>
+@@ -2091,21 +2146,28 @@
+ =item B<find_TODO>
+ 
+     my $todo_reason = $Test->find_TODO();
+-    my $todo_reason = $Test->find_TODO($pack):
++    my $todo_reason = $Test->find_TODO($pack);
+ 
+ Like C<todo()> but only returns the value of C<$TODO> ignoring
+ C<todo_start()>.
+ 
++Can also be used to set C<$TODO> to a new value while returning the
++old value:
++
++    my $old_reason = $Test->find_TODO($pack, 1, $new_reason);
++
+ =cut
+ 
+ sub find_TODO {
+-    my( $self, $pack ) = @_;
++    my( $self, $pack, $set, $new_value ) = @_;
+ 
+     $pack = $pack || $self->caller(1) || $self->exported_to;
+     return unless $pack;
+ 
+     no strict 'refs';    ## no critic
+-    return ${ $pack . '::TODO' };
++    my $old_value = ${ $pack . '::TODO' };
++    $set and ${ $pack . '::TODO' } = $new_value;
++    return $old_value;
+ }
+ 
+ =item B<in_todo>
+@@ -2458,7 +2520,7 @@
+ 
+ =head1 MEMORY
+ 
+-An informative hash, accessable via C<<details()>>, is stored for each
++An informative hash, accessible via C<<details()>>, is stored for each
+ test you perform.  So memory usage will scale linearly with each test
+ run. Although this is not a problem for most test suites, it can
+ become an issue if you do large (hundred thousands to million)
+Index: src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/More.pm
+diff -u src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/More.pm:1.1 src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/More.pm:1.2
+--- cpan/Test-Simple/lib/Test/More.pm:1.1	Fri Sep 24 14:49:05 2010
++++ cpan/Test-Simple/lib/Test/More.pm	Fri Jan  7 12:19:31 2011
+@@ -17,7 +17,7 @@
+     return warn @_, " at $file line $line\n";
+ }
+ 
+-our $VERSION = '0.94';
++our $VERSION = '0.96';
+ $VERSION = eval $VERSION;    ## no critic (BuiltinFunctions::ProhibitStringyEval)
+ 
+ use Test::Builder::Module;
+@@ -716,6 +716,23 @@
+ 
+ Returns true if the subtest passed, false otherwise.
+ 
++Due to how subtests work, you may omit a plan if you desire.  This adds an
++implicit C<done_testing()> to the end of your subtest.  The following two
++subtests are equivalent:
++
++  subtest 'subtest with implicit done_testing()', sub {
++      ok 1, 'subtests with an implicit done testing should work';
++      ok 1, '... and support more than one test';
++      ok 1, '... no matter how many tests are run';
++  };
++
++  subtest 'subtest with explicit done_testing()', sub {
++      ok 1, 'subtests with an explicit done testing should work';
++      ok 1, '... and support more than one test';
++      ok 1, '... no matter how many tests are run';
++      done_testing();
++  };
++
+ =cut
+ 
+ sub subtest($&) {
+@@ -880,7 +897,7 @@
+ 
+     my $pack = caller;
+ 
+-    # Try to deterine if we've been given a module name or file.
++    # Try to determine if we've been given a module name or file.
+     # Module names must be barewords, files not.
+     $module = qq['$module'] unless _is_module_name($module);
+ 
+@@ -1049,7 +1066,7 @@
+ 
+     return '' if !ref $thing;
+ 
+-    for my $type (qw(ARRAY HASH REF SCALAR GLOB CODE Regexp)) {
++    for my $type (qw(Regexp ARRAY HASH REF SCALAR GLOB CODE)) {
+         return $type if UNIVERSAL::isa( $thing, $type );
+     }
+ 
+@@ -1330,7 +1347,7 @@
+     BAIL_OUT($reason);
+ 
+ Indicates to the harness that things are going so badly all testing
+-should terminate.  This includes the running any additional test scripts.
++should terminate.  This includes the running of any additional test scripts.
+ 
+ This is typically used when testing cannot continue such as a critical
+ module failing to compile or a necessary external utility not being
+@@ -1403,6 +1420,8 @@
+         my $e1 = $_ > $#$a1 ? $DNE : $a1->[$_];
+         my $e2 = $_ > $#$a2 ? $DNE : $a2->[$_];
+ 
++        next if _equal_nonrefs($e1, $e2);
++
+         push @Data_Stack, { type => 'ARRAY', idx => $_, vals => [ $e1, $e2 ] };
+         $ok = _deep_check( $e1, $e2 );
+         pop @Data_Stack if $ok;
+@@ -1413,6 +1432,21 @@
+     return $ok;
+ }
+ 
++sub _equal_nonrefs {
++    my( $e1, $e2 ) = @_;
++
++    return if ref $e1 or ref $e2;
++
++    if ( defined $e1 ) {
++        return 1 if defined $e2 and $e1 eq $e2;
++    }
++    else {
++        return 1 if !defined $e2;
++    }
++
++    return;
++}
++
+ sub _deep_check {
+     my( $e1, $e2 ) = @_;
+     my $tb = Test::More->builder;
+@@ -1425,9 +1459,6 @@
+     local %Refs_Seen = %Refs_Seen;
+ 
+     {
+-        # Quiet uninitialized value warnings when comparing undefs.
+-        no warnings 'uninitialized';
+-
+         $tb->_unoverload_str( \$e1, \$e2 );
+ 
+         # Either they're both references or both not.
+@@ -1438,7 +1469,7 @@
+             $ok = 0;
+         }
+         elsif( !defined $e1 and !defined $e2 ) {
+-            # Shortcut if they're both defined.
++            # Shortcut if they're both undefined.
+             $ok = 1;
+         }
+         elsif( _dne($e1) xor _dne($e2) ) {
+@@ -1534,6 +1565,8 @@
+     foreach my $k ( keys %$bigger ) {
+         my $e1 = exists $a1->{$k} ? $a1->{$k} : $DNE;
+         my $e2 = exists $a2->{$k} ? $a2->{$k} : $DNE;
++
++        next if _equal_nonrefs($e1, $e2);
+ 
+         push @Data_Stack, { type => 'HASH', idx => $k, vals => [ $e1, $e2 ] };
+         $ok = _deep_check( $e1, $e2 );
+Index: src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Simple.pm
+diff -u src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Simple.pm:1.1 src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Simple.pm:1.2
+--- cpan/Test-Simple/lib/Test/Simple.pm:1.1	Fri Sep 24 14:49:05 2010
++++ cpan/Test-Simple/lib/Test/Simple.pm	Fri Jan  7 12:19:31 2011
+@@ -4,7 +4,7 @@
+ 
+ use strict;
+ 
+-our $VERSION = '0.94';
++our $VERSION = '0.96';
+ $VERSION = eval $VERSION;    ## no critic (BuiltinFunctions::ProhibitStringyEval)
+ 
+ use Test::Builder::Module;
+@@ -121,7 +121,7 @@
+                              Rating   => 'R',
+                              NumExplodingSheep => 1
+                            });
+-    ok( defined($btaste) && ref $btaste eq 'Film,     'new() works' );
++    ok( defined($btaste) && ref $btaste eq 'Film',     'new() works' );
+ 
+     ok( $btaste->Title      eq 'Bad Taste',     'Title() get'    );
+     ok( $btaste->Director   eq 'Peter Jackson', 'Director() get' );
+Index: src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Builder/Module.pm
+diff -u src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Builder/Module.pm:1.1 src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Builder/Module.pm:1.2
+--- cpan/Test-Simple/lib/Test/Builder/Module.pm:1.1	Fri Sep 24 14:49:05 2010
++++ cpan/Test-Simple/lib/Test/Builder/Module.pm	Fri Jan  7 12:19:31 2011
+@@ -7,7 +7,7 @@
+ require Exporter;
+ our @ISA = qw(Exporter);
+ 
+-our $VERSION = '0.94';
++our $VERSION = '0.96';
+ $VERSION = eval $VERSION;      ## no critic (BuiltinFunctions::ProhibitStringyEval)
+ 
+ 
+@@ -52,7 +52,7 @@
+ =head3 import
+ 
+ Test::Builder::Module provides an import() method which acts in the
+-same basic way as Test::More's, setting the plan and controling
++same basic way as Test::More's, setting the plan and controlling
+ exporting of functions and variables.  This allows your module to set
+ the plan independent of Test::More.
+ 
+Index: src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Builder/Tester.pm
+diff -u src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Builder/Tester.pm:1.1 src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Builder/Tester.pm:1.2
+--- cpan/Test-Simple/lib/Test/Builder/Tester.pm:1.1	Fri Sep 24 14:49:05 2010
++++ cpan/Test-Simple/lib/Test/Builder/Tester.pm	Fri Jan  7 12:19:31 2011
+@@ -1,7 +1,7 @@
+ package Test::Builder::Tester;
+ 
+ use strict;
+-our $VERSION = "1.18";
++our $VERSION = "1.20";
+ 
+ use Test::Builder;
+ use Symbol;
+@@ -124,13 +124,13 @@
+     # switch out to our own handles
+     $t->output($output_handle);
+     $t->failure_output($error_handle);
+-    $t->todo_output($error_handle);
++    $t->todo_output($output_handle);
+ 
+     # clear the expected list
+     $out->reset();
+     $err->reset();
+ 
+-    # remeber that we're testing
++    # remember that we're testing
+     $testing     = 1;
+     $testing_num = $t->current_test;
+     $t->current_test(0);
+@@ -165,8 +165,8 @@
+    test_out("ok 2");
+ 
+ Once C<test_out> or C<test_err> (or C<test_fail> or C<test_diag>) have
+-been called once all further output from B<Test::Builder> will be
+-captured by B<Test::Builder::Tester>.  This means that your will not
++been called, all further output from B<Test::Builder> will be
++captured by B<Test::Builder::Tester>.  This means that you will not
+ be able perform further tests to the normal output in the normal way
+ until you call C<test_test> (well, unless you manually meddle with the
+ output filehandles)
+@@ -191,7 +191,7 @@
+ 
+ Because the standard failure message that B<Test::Builder> produces
+ whenever a test fails will be a common occurrence in your test error
+-output, and because has changed between Test::Builder versions, rather
++output, and because it has changed between Test::Builder versions, rather
+ than forcing you to call C<test_err> with the string all the time like
+ so
+ 
+@@ -229,7 +229,7 @@
+ 
+ As most of the remaining expected output to the error stream will be
+ created by Test::Builder's C<diag> function, B<Test::Builder::Tester>
+-provides a convience function C<test_diag> that you can use instead of
++provides a convenience function C<test_diag> that you can use instead of
+ C<test_err>.
+ 
+ The C<test_diag> function prepends comment hashes and spacing to the
+@@ -293,7 +293,7 @@
+ 
+ =back
+ 
+-As a convience, if only one argument is passed then this argument
++As a convenience, if only one argument is passed then this argument
+ is assumed to be the name of the test (as in the above examples.)
+ 
+ Once C<test_test> has been run test output will be redirected back to
+@@ -304,7 +304,7 @@
+ =cut
+ 
+ sub test_test {
+-    # decode the arguements as described in the pod
++    # decode the arguments as described in the pod
+     my $mess;
+     my %args;
+     if( @_ == 1 ) {
+@@ -370,7 +370,7 @@
+ 
+ =back
+ 
+-In addition to the six exported functions there there exists one
++In addition to the six exported functions there exists one
+ function that can only be accessed with a fully qualified function
+ call.
+ 
+@@ -389,7 +389,7 @@
+ 
+ To assist you C<test_test> can colour the background of the debug
+ information to disambiguate the different types of output. The debug
+-output will have it's background coloured green and red.  The green
++output will have its background coloured green and red.  The green
+ part represents the text which is the same between the executed and
+ actual output, the red shows which part differs.
+ 
+Index: src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Builder/Tester/Color.pm
+diff -u src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Builder/Tester/Color.pm:1.1 src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Builder/Tester/Color.pm:1.2
+--- cpan/Test-Simple/lib/Test/Builder/Tester/Color.pm:1.1	Fri Sep 24 14:49:05 2010
++++ cpan/Test-Simple/lib/Test/Builder/Tester/Color.pm	Fri Jan  7 12:19:31 2011
+@@ -1,7 +1,7 @@
+ package Test::Builder::Tester::Color;
+ 
+ use strict;
+-our $VERSION = "1.18";
++our $VERSION = "1.20";
+ 
+ require Test::Builder::Tester;
+ 
+Index: src/gnu/usr.bin/perl/cpan/Test-Simple/t/More.t
+diff -u src/gnu/usr.bin/perl/cpan/Test-Simple/t/More.t:1.1 src/gnu/usr.bin/perl/cpan/Test-Simple/t/More.t:1.2
+--- cpan/Test-Simple/t/More.t:1.1	Fri Sep 24 14:49:05 2010
++++ cpan/Test-Simple/t/More.t	Fri Jan  7 12:19:31 2011
+@@ -8,7 +8,7 @@
+ }
+ 
+ use lib 't/lib';
+-use Test::More tests => 53;
++use Test::More tests => 54;
+ 
+ # Make sure we don't mess with $@ or $!.  Test at bottom.
+ my $Err   = "this should not be touched";
+@@ -173,6 +173,11 @@
+ is_deeply( { foo => $sub, bar => [1, $glob] },
+            { foo => $sub, bar => [1, $glob] }
+          );
++
++
++# rt.cpan.org 53469  is_deeply with regexes
++is_deeply( qr/a/, qr/a/, "same regex" );
++
+ 
+ # These two tests must remain at the end.
+ is( $@, $Err,               '$@ untouched' );
+Index: src/gnu/usr.bin/perl/cpan/Test-Simple/t/dependents.t
+diff -u src/gnu/usr.bin/perl/cpan/Test-Simple/t/dependents.t:1.1 src/gnu/usr.bin/perl/cpan/Test-Simple/t/dependents.t:1.2
+--- cpan/Test-Simple/t/dependents.t:1.1	Fri Sep 24 14:49:05 2010
++++ cpan/Test-Simple/t/dependents.t	Fri Jan  7 12:19:31 2011
+@@ -11,6 +11,7 @@
+     plan skip_all => "Dependents only tested when releasing" unless $ENV{PERL_RELEASING};
+ }
+ 
++require File::Spec;
+ use CPAN;
+ 
+ CPAN::HandleConfig->load;
+@@ -24,6 +25,7 @@
+     Test::Class
+     Test::Deep
+     Test::Differences
++    Test::NoWarnings
+ );
+ 
+ # Modules which are known to be broken
+@@ -34,6 +36,7 @@
+ TODO: for my $name (@ARGV ? @ARGV : @Modules) {
+     local $TODO = "$name known to be broken" if $Broken{$name};
+ 
++    local $ENV{PERL5LIB} = File::Spec->rel2abs("blib/lib");
+     my $module = CPAN::Shell->expand("Module", $name);
+     $module->test;
+     ok( !$module->distribution->{make_test}->failed, $name );
+Index: src/gnu/usr.bin/perl/cpan/Test-Simple/t/extra.t
+diff -u src/gnu/usr.bin/perl/cpan/Test-Simple/t/extra.t:1.1 src/gnu/usr.bin/perl/cpan/Test-Simple/t/extra.t:1.2
+--- cpan/Test-Simple/t/extra.t:1.1	Fri Sep 24 14:49:05 2010
++++ cpan/Test-Simple/t/extra.t	Fri Jan  7 12:19:31 2011
+@@ -5,55 +5,56 @@
+         chdir 't';
+         @INC = '../lib';
+     }
++    else {
++        unshift @INC, 't/lib';
++    }
+ }
+ 
+-# Can't use Test.pm, that's a 5.005 thing.
+-package My::Test;
++use strict;
+ 
+-# This has to be a require or else the END block below runs before
+-# Test::Builder's own and the ending diagnostics don't come out right.
+-require Test::Builder;
+-my $TB = Test::Builder->create;
+-$TB->plan(tests => 2);
++use Test::Builder;
++use Test::Builder::NoOutput;
++use Test::Simple;
++
++my $TB   = Test::Builder->new;
++my $test = Test::Builder::NoOutput->create;
++$test->plan( tests => 3 );
+ 
+-
+-package main;
+-
+-require Test::Simple;
+-
+-chdir 't';
+-push @INC, '../t/lib/';
+-require Test::Simple::Catch;
+-my($out, $err) = Test::Simple::Catch::caught();
+ local $ENV{HARNESS_ACTIVE} = 0;
+ 
+-Test::Simple->import(tests => 3);
+-
+-#line 30
+-ok(1, 'Foo');
+-ok(0, 'Bar');
+-ok(1, 'Yar');
+-ok(1, 'Car');
+-ok(0, 'Sar');
+-
+-END {
+-    $TB->is_eq($$out, <<OUT);
++$test->ok(1, 'Foo');
++$TB->is_eq($test->read(), <<END);
+ 1..3
+ ok 1 - Foo
++END
++
++#line 30
++$test->ok(0, 'Bar');
++$TB->is_eq($test->read(), <<END);
+ not ok 2 - Bar
++#   Failed test 'Bar'
++#   at $0 line 30.
++END
++
++$test->ok(1, 'Yar');
++$test->ok(1, 'Car');
++$TB->is_eq($test->read(), <<END);
+ ok 3 - Yar
+ ok 4 - Car
+-not ok 5 - Sar
+-OUT
++END
+ 
+-    $TB->is_eq($$err, <<ERR);
+-#   Failed test 'Bar'
+-#   at $0 line 31.
++#line 45
++$test->ok(0, 'Sar');
++$TB->is_eq($test->read(), <<END);
++not ok 5 - Sar
+ #   Failed test 'Sar'
+-#   at $0 line 34.
++#   at $0 line 45.
++END
++
++$test->_ending();
++$TB->is_eq($test->read(), <<END);
+ # Looks like you planned 3 tests but ran 5.
+ # Looks like you failed 2 tests of 5 run.
+-ERR
++END
+ 
+-    exit 0;
+-}
++$TB->done_testing(5);
+Index: src/gnu/usr.bin/perl/cpan/Test-Simple/t/fail-more.t
+diff -u src/gnu/usr.bin/perl/cpan/Test-Simple/t/fail-more.t:1.1 src/gnu/usr.bin/perl/cpan/Test-Simple/t/fail-more.t:1.2
+--- cpan/Test-Simple/t/fail-more.t:1.1	Fri Sep 24 14:49:05 2010
++++ cpan/Test-Simple/t/fail-more.t	Fri Jan  7 12:19:31 2011
+@@ -411,19 +411,19 @@
+     my $warnings = '';
+     local $SIG{__WARN__} = sub { $warnings .= join '', @_ };
+ 
+-# line 404
++# line 415
+     cmp_ok( 42,    '==', "foo", '       == with strings' );
+     out_ok( <<OUT, <<ERR );
+ not ok -        == with strings
+ OUT
+ #   Failed test '       == with strings'
+-#   at $0 line 404.
++#   at $0 line 415.
+ #          got: 42
+ #     expected: foo
+ ERR
+     My::Test::like(
+         $warnings,
+-        qr/^Argument "foo" isn't numeric in .* at cmp_ok \[from $Filename line 404\] line 1\.\n$/
++        qr/^Argument "foo" isn't numeric in .* at \(eval in cmp_ok\) $Filename line 415\.\n$/
+     );
+     $warnings = '';
+ }
+@@ -433,7 +433,7 @@
+     my $warnings = '';
+     local $SIG{__WARN__} = sub { $warnings .= join '', @_ };
+ 
+-#line 426
++#line 437
+     cmp_ok( undef, "ne", "", "undef ne empty string" );
+ 
+     $TB->is_eq( $out->read, <<OUT );
+@@ -445,7 +445,7 @@
+ 
+         $TB->is_eq( $err->read, <<ERR );
+ #   Failed test 'undef ne empty string'
+-#   at $0 line 426.
++#   at $0 line 437.
+ #          got: undef
+ #     expected: ''
+ ERR
+@@ -453,7 +453,7 @@
+ 
+     My::Test::like(
+         $warnings,
+-        qr/^Use of uninitialized value.* in string ne at cmp_ok \[from $Filename line 426\] line 1\.\n\z/
++        qr/^Use of uninitialized value.* in string ne at \(eval in cmp_ok\) $Filename line 437.\n\z/
+     );
+ }
+ 
+Index: src/gnu/usr.bin/perl/cpan/Test-Simple/t/is_deeply_fail.t
+diff -u src/gnu/usr.bin/perl/cpan/Test-Simple/t/is_deeply_fail.t:1.1 src/gnu/usr.bin/perl/cpan/Test-Simple/t/is_deeply_fail.t:1.2
+--- cpan/Test-Simple/t/is_deeply_fail.t:1.1	Fri Sep 24 14:49:05 2010
++++ cpan/Test-Simple/t/is_deeply_fail.t	Fri Jan  7 12:19:31 2011
+@@ -25,7 +25,7 @@
+ 
+ 
+ my $TB = Test::Builder->create;
+-$TB->plan(tests => 73);
++$TB->plan(tests => 100);
+ 
+ # Utility testing functions.
+ sub ok ($;$) {
+@@ -368,4 +368,51 @@
+ #     \\\$expected = GLOB\\(0x[0-9a-f]+\\)
+ ERR
+ 
++}
++
++
++# rt.cpan.org 53469
++{
++#line 377
++    ok !is_deeply( qr/a/, qr/b/, "different regexes" );
++    is( $out, "not ok 29 - different regexes\n" );
++    is( $err, <<ERR,          '  right diagnostic' );
++#   Failed test 'different regexes'
++#   at $0 line 377.
++#     Structures begin differing at:
++#          \$got = (?-xism:a)
++#     \$expected = (?-xism:b)
++ERR
++}
++
++
++# false values that should not compare equal
++{
++    ok !is_deeply( 0, '', "0 != ''" );
++    is( $out, "not ok 30 - 0 != ''\n" );
++    ok !is_deeply( 0, undef, "0 != undef" );
++    is( $out,    "not ok 31 - 0 != undef\n" );
++    ok !is_deeply( '', undef, "'' != undef" );
++    is( $out,     "not ok 32 - '' != undef\n" );
++
++    ok !is_deeply( [0], [''], "[0] != ['']" );
++    is( $out,     "not ok 33 - [0] != ['']\n" );
++    ok !is_deeply( [0], [undef], "[0] != [undef]" );
++    is( $out,        "not ok 34 - [0] != [undef]\n" );
++    ok !is_deeply( [''], [undef], "[''] != [undef]" );
++    is( $out,         "not ok 35 - [''] != [undef]\n" );
++
++    ok !is_deeply( [0], [], "[0] != []" );
++    is( $out,   "not ok 36 - [0] != []\n" );
++    ok !is_deeply( [undef], [], "[undef] != []" );
++    is( $out,       "not ok 37 - [undef] != []\n" );
++    ok !is_deeply( [''], [], "[''] != []" );
++    is( $out,    "not ok 38 - [''] != []\n" );
++
++    ok !is_deeply( {x => 0}, {x => ''}, "{x => 0} != {x => ''}" );
++    is( $out,               "not ok 39 - {x => 0} != {x => ''}\n" );
++    ok !is_deeply( {x => 0}, {x => undef}, "{x => 0} != {x => undef}" );
++    is( $out,                  "not ok 40 - {x => 0} != {x => undef}\n" );
++    ok !is_deeply( {x => ''}, {x => undef}, "{x => ''} != {x => undef}" );
++    is( $out,                   "not ok 41 - {x => ''} != {x => undef}\n" );
+ }
+Index: src/gnu/usr.bin/perl/cpan/Test-Simple/t/undef.t
+diff -u src/gnu/usr.bin/perl/cpan/Test-Simple/t/undef.t:1.1 src/gnu/usr.bin/perl/cpan/Test-Simple/t/undef.t:1.2
+--- cpan/Test-Simple/t/undef.t:1.1	Fri Sep 24 14:49:05 2010
++++ cpan/Test-Simple/t/undef.t	Fri Jan  7 12:19:31 2011
+@@ -70,9 +70,9 @@
+ no_warnings;
+ 
+ 
+-#line 64
++#line 74
+ cmp_ok( undef, '<=', 2, '  undef <= 2' );
+-warnings_like(qr/Use of uninitialized value.* at cmp_ok \[from $Filename line 64\] line 1\.\n/);
++warnings_like(qr/Use of uninitialized value.* at \(eval in cmp_ok\) $Filename line 74\.\n/);
+ 
+ 
+ 
+Index: src/gnu/usr.bin/perl/cpan/Test-Simple/t/use_ok.t
+diff -u src/gnu/usr.bin/perl/cpan/Test-Simple/t/use_ok.t:1.1 src/gnu/usr.bin/perl/cpan/Test-Simple/t/use_ok.t:1.2
+--- cpan/Test-Simple/t/use_ok.t:1.1	Fri Sep 24 14:49:05 2010
++++ cpan/Test-Simple/t/use_ok.t	Fri Jan  7 12:19:31 2011
+@@ -22,7 +22,7 @@
+ {
+     package Foo::two;
+     ::use_ok("Symbol", qw(qualify));
+-    ::ok( !defined &gensym,       '  one arg, defaults overriden' );
++    ::ok( !defined &gensym,       '  one arg, defaults overridden' );
+     ::ok( defined &qualify,       '  right function exported' );
+ }
+ 
+Index: src/gnu/usr.bin/perl/cpan/Test-Simple/t/Builder/no_ending.t
+diff -u src/gnu/usr.bin/perl/cpan/Test-Simple/t/Builder/no_ending.t:1.1 src/gnu/usr.bin/perl/cpan/Test-Simple/t/Builder/no_ending.t:1.2
+--- cpan/Test-Simple/t/Builder/no_ending.t:1.1	Fri Sep 24 14:49:05 2010
++++ cpan/Test-Simple/t/Builder/no_ending.t	Fri Jan  7 12:19:32 2011
+@@ -15,7 +15,7 @@
+ use Test::More tests => 3;
+ 
+ # Normally, Test::More would yell that we ran too few tests, but we
+-# supressed the ending diagnostics.
++# suppressed the ending diagnostics.
+ pass;
+ print "ok 2\n";
+ print "ok 3\n";
+Index: src/gnu/usr.bin/perl/cpan/Test-Simple/t/Builder/no_plan_at_all.t
+diff -u src/gnu/usr.bin/perl/cpan/Test-Simple/t/Builder/no_plan_at_all.t:1.1 src/gnu/usr.bin/perl/cpan/Test-Simple/t/Builder/no_plan_at_all.t:1.2
+--- cpan/Test-Simple/t/Builder/no_plan_at_all.t:1.1	Fri Sep 24 14:49:05 2010
++++ cpan/Test-Simple/t/Builder/no_plan_at_all.t	Fri Jan  7 12:19:32 2011
+@@ -1,6 +1,6 @@
+ #!/usr/bin/perl -w
+ 
+-# Test what happens when no plan is delcared and done_testing() is not seen
++# Test what happens when no plan is declared and done_testing() is not seen
+ 
+ use strict;
+ BEGIN {
+Index: src/gnu/usr.bin/perl/cpan/Test-Simple/t/Builder/reset.t
+diff -u src/gnu/usr.bin/perl/cpan/Test-Simple/t/Builder/reset.t:1.1 src/gnu/usr.bin/perl/cpan/Test-Simple/t/Builder/reset.t:1.2
+--- cpan/Test-Simple/t/Builder/reset.t:1.1	Fri Sep 24 14:49:05 2010
++++ cpan/Test-Simple/t/Builder/reset.t	Fri Jan  7 12:19:32 2011
+@@ -44,11 +44,13 @@
+ $tb->no_header(1);
+ $tb->no_ending(1);
+ 
++$tb->done_testing;  # make sure done_testing gets reset
+ 
+ # Now reset it.
+ $tb->reset;
+ 
+ 
++# Test the state of the reset builder
+ $Test->ok( !defined $tb->exported_to, 'exported_to' );
+ $Test->is_eq( $tb->expected_tests, 0, 'expected_tests' );
+ $Test->is_eq( $tb->level,          1, 'level' );
+@@ -65,9 +67,12 @@
+ $Test->is_eq( fileno $tb->todo_output,
+               fileno $Original_Output{todo_output},    'todo_output' );
+ 
+-$tb->current_test(12);
++# The reset Test::Builder will take over from here.
++$Test->no_ending(1);
++
++
++$tb->current_test($Test->current_test);
+ $tb->level(0);
+ $tb->ok(1, 'final test to make sure output was reset');
+ 
+-$Test->current_test(13);
+-$Test->done_testing(13);
++$tb->done_testing;
+Index: src/gnu/usr.bin/perl/cpan/Test-Simple/t/Tester/tbt_01basic.t
+diff -u src/gnu/usr.bin/perl/cpan/Test-Simple/t/Tester/tbt_01basic.t:1.1 src/gnu/usr.bin/perl/cpan/Test-Simple/t/Tester/tbt_01basic.t:1.2
+--- cpan/Test-Simple/t/Tester/tbt_01basic.t:1.1	Fri Sep 24 14:49:05 2010
++++ cpan/Test-Simple/t/Tester/tbt_01basic.t	Fri Jan  7 12:19:32 2011
+@@ -46,7 +46,7 @@
+ 
+ 
+ test_out("not ok 1 - name # TODO Something");
+-test_err("#     Failed (TODO) test ($0 at line 52)");
++test_out("#     Failed (TODO) test ($0 at line 52)");
+ TODO: { 
+     local $TODO = "Something";
+     fail("name");
+Index: src/gnu/usr.bin/perl/cpan/Test-Simple/t/Tester/tbt_06errormess.t
+diff -u src/gnu/usr.bin/perl/cpan/Test-Simple/t/Tester/tbt_06errormess.t:1.1 src/gnu/usr.bin/perl/cpan/Test-Simple/t/Tester/tbt_06errormess.t:1.2
+--- cpan/Test-Simple/t/Tester/tbt_06errormess.t:1.1	Fri Sep 24 14:49:05 2010
++++ cpan/Test-Simple/t/Tester/tbt_06errormess.t	Fri Jan  7 12:19:32 2011
+@@ -50,7 +50,7 @@
+     $out->reset();
+     $err->reset();
+ 
+-    # remeber that we're testing
++    # remember that we're testing
+     $testing_num = $t->current_test;
+     $t->current_test(0);
+ }
+Index: src/gnu/usr.bin/perl/cpan/Test-Simple/t/Tester/tbt_07args.t
+diff -u src/gnu/usr.bin/perl/cpan/Test-Simple/t/Tester/tbt_07args.t:1.1 src/gnu/usr.bin/perl/cpan/Test-Simple/t/Tester/tbt_07args.t:1.2
+--- cpan/Test-Simple/t/Tester/tbt_07args.t:1.1	Fri Sep 24 14:49:05 2010
++++ cpan/Test-Simple/t/Tester/tbt_07args.t	Fri Jan  7 12:19:32 2011
+@@ -50,7 +50,7 @@
+     $out->reset();
+     $err->reset();
+ 
+-    # remeber that we're testing
++    # remember that we're testing
+     $testing_num = $t->current_test;
+     $t->current_test(0);
+ }
+Index: src/gnu/usr.bin/perl/cpan/Test-Simple/t/subtest/basic.t
+diff -u src/gnu/usr.bin/perl/cpan/Test-Simple/t/subtest/basic.t:1.1 src/gnu/usr.bin/perl/cpan/Test-Simple/t/subtest/basic.t:1.2
+--- cpan/Test-Simple/t/subtest/basic.t:1.1	Fri Sep 24 14:49:05 2010
++++ cpan/Test-Simple/t/subtest/basic.t	Fri Jan  7 12:19:32 2011
+@@ -15,7 +15,7 @@
+ 
+ use Test::Builder::NoOutput;
+ 
+-use Test::More tests => 23;
++use Test::More tests => 19;
+ 
+ # Formatting may change if we're running under Test::Harness.
+ $ENV{HARNESS_ACTIVE} = 0;
+@@ -163,22 +163,6 @@
+     $child = $tb->child;
+     is $child->name, 'Child of '.$tb->name, '... or at least have a sensible default';
+     $child->finalize;
+-}
+-{
+-    ok defined &subtest, 'subtest() should be exported to our namespace';
+-    is prototype('subtest'), '$&', '... with the appropriate prototype';
+-
+-    subtest 'subtest with plan', sub {
+-        plan tests => 2;
+-        ok 1, 'planned subtests should work';
+-        ok 1, '... and support more than one test';
+-    };
+-    subtest 'subtest without plan', sub {
+-        plan 'no_plan';
+-        ok 1, 'no_plan subtests should work';
+-        ok 1, '... and support more than one test';
+-        ok 1, '... no matter how many tests are run';
+-    };
+ }
+ # Skip all subtests
+ {

@@ -1,0 +1,4 @@
+1..61
+ok 1 - Loaded
+ok 2 - Thread created - iter 1
+Segmentation fault (core dumped) 

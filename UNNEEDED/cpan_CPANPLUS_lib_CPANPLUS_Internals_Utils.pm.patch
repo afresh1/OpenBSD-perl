@@ -1,0 +1,12 @@
+diff -x CVS -Nru ../perl-5.12.2/cpan/CPANPLUS/lib/CPANPLUS/Internals/Utils.pm ./cpan/CPANPLUS/lib/CPANPLUS/Internals/Utils.pm
+--- ../perl-5.12.2/cpan/CPANPLUS/lib/CPANPLUS/Internals/Utils.pm	Mon Sep  6 16:30:32 2010
++++ ./cpan/CPANPLUS/lib/CPANPLUS/Internals/Utils.pm	Fri Sep 24 08:06:45 2010
+@@ -17,7 +17,7 @@
+ 
+ =head1 NAME
+ 
+-CPANPLUS::Internals::Utils
++CPANPLUS::Internals::Utils - convenience functions for CPANPLUS
+ 
+ =head1 SYNOPSIS
+ 

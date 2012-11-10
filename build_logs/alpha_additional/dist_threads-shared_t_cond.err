@@ -1,0 +1,12 @@
+1..32
+ok 1 - Loaded
+ok 2 - set first lock
+ok 3 - still got lock
+ok 4 - set lock in subthread
+ok 5 - set first lockref
+ok 6 - still got lockref
+ok 7 - set lockref in subthread
+ok 8 - set first recursive lock
+ok 9 - still got recursive lock
+ok 10 - set recursive lock in subthread
+Segmentation fault (core dumped) 

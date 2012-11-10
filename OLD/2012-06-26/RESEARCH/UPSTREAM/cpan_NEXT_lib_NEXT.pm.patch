@@ -1,0 +1,12 @@
+diff -Nrux *.orig ../perl-5.16.0.orig/cpan/NEXT/lib/NEXT.pm ./cpan/NEXT/lib/NEXT.pm
+--- ../perl-5.16.0.orig/cpan/NEXT/lib/NEXT.pm	Tue Feb 14 21:44:41 2012
++++ ./cpan/NEXT/lib/NEXT.pm	Sun Jun  3 19:50:50 2012
+@@ -190,7 +190,7 @@
+ 
+ =head1 NAME
+ 
+-NEXT.pm - Provide a pseudo-class NEXT (et al) that allows method redispatch
++NEXT - Provide a pseudo-class NEXT (et al) that allows method redispatch
+ 
+ 
+ =head1 SYNOPSIS

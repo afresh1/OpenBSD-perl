@@ -1,0 +1,15 @@
+diff -x CVS -Nru ../perl-5.12.2/hints/openbsd.sh ./hints/openbsd.sh
+--- ../perl-5.12.2/hints/openbsd.sh	Mon Sep  6 16:30:32 2010
++++ ./hints/openbsd.sh	Mon Oct 12 18:25:48 2009
+@@ -202,9 +205,9 @@
+ 	locincpth='/usr/local/include'
+ 	loclibpth='/usr/local/lib'
+ 	# Link perl with shared libperl
+-	if [ "$usedl" = "$define" -a -r shlib_version ]; then
++	if [ "$usedl" = "$define" -a -r $src/shlib_version ]; then
+ 		useshrplib=true
+-		libperl=`. ./shlib_version; echo libperl.so.${major}.${minor}`
++		libperl=`. $src/shlib_version; echo libperl.so.${major}.${minor}`
+ 	fi
+ 	;;
+ esac

@@ -1,0 +1,4 @@
+1..3
+ok 1 - New queue
+ok 2 - Thread dequeues under lock
+Segmentation fault (core dumped) 

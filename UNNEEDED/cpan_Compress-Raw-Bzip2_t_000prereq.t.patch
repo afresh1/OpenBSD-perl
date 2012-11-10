@@ -1,0 +1,12 @@
+diff -x CVS -Nru ../perl-5.12.2/cpan/Compress-Raw-Bzip2/t/000prereq.t ./cpan/Compress-Raw-Bzip2/t/000prereq.t
+--- ../perl-5.12.2/cpan/Compress-Raw-Bzip2/t/000prereq.t	Mon Sep  6 16:30:32 2010
++++ ./cpan/Compress-Raw-Bzip2/t/000prereq.t	Sat Sep 25 05:24:13 2010
+@@ -19,7 +19,7 @@
+         if eval { require Test::NoWarnings ;  import Test::NoWarnings; 1 };
+ 
+ 
+-    my $VERSION = '2.024';
++    my $VERSION = '2.031';
+     my @NAMES = qw(
+ 			
+ 			);

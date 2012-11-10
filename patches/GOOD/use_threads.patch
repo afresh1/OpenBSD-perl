@@ -1,0 +1,12 @@
+--- hints/openbsd.sh.orig	Sat Aug 18 09:08:50 2012
++++ hints/openbsd.sh	Sat Aug 18 09:09:51 2012
+@@ -8,6 +8,9 @@
+ #	./Configure -des -Dopenbsd_distribution=defined
+ #
+ 
++# OpenBSD likes threads by default
++usethreads="y"
++
+ # In OpenBSD > 3.7, use perl's malloc [perl #75742]
+ case "$osvers" in
+ 3.[89]*|[4-9]*)

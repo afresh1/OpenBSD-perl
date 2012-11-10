@@ -1,0 +1,7 @@
+1..12
+ok 1 - New Semaphore
+ok 2 - New Semaphore
+ok 3 - Semaphore unavailable to thread
+ok 4 - Main has semaphore
+ok 5 - Semaphore unavailable to main
+Segmentation fault (core dumped) 

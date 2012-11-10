@@ -1,0 +1,41 @@
+diff -x CVS -Nru ../perl-5.12.2/cpan/List-Util/lib/Scalar/Util/PP.pm ./cpan/List-Util/lib/Scalar/Util/PP.pm
+--- ../perl-5.12.2/cpan/List-Util/lib/Scalar/Util/PP.pm	Mon Sep  6 16:30:32 2010
++++ ./cpan/List-Util/lib/Scalar/Util/PP.pm	Mon Apr 18 01:27:57 2011
+@@ -16,7 +16,7 @@
+ 
+ @ISA     = qw(Exporter);
+ @EXPORT  = qw(blessed reftype tainted readonly refaddr looks_like_number);
+-$VERSION = "1.22";
++$VERSION = "1.23";
+ $VERSION = eval $VERSION;
+ 
+ sub blessed ($) {
+@@ -41,20 +41,19 @@
+ 
+   $addr =~ /0x(\w+)/;
+   local $^W;
++  no warnings 'portable';
+   hex($1);
+ }
+ 
+ {
+   my %tmap = qw(
+-    B::HV HASH
+-    B::AV ARRAY
+-    B::CV CODE
+-    B::IO IO
+-    B::NULL SCALAR
+-    B::NV SCALAR
+-    B::PV SCALAR
+-    B::GV GLOB
+-    B::RV REF
++    B::NULL   SCALAR
++
++    B::HV     HASH
++    B::AV     ARRAY
++    B::CV     CODE
++    B::IO     IO
++    B::GV     GLOB
+     B::REGEXP REGEXP
+   );
+ 

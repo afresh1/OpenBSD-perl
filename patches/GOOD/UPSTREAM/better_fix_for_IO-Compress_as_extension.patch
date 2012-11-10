@@ -1,0 +1,11 @@
+--- ./installperl.orig	Tue Apr 24 17:18:34 2012
++++ ./installperl	Wed Jun 27 13:44:30 2012
+@@ -150,7 +150,7 @@
+ }
+ 
+ # Exclude nonxs extensions that are not architecture dependent
+-my @nonxs = grep(!/^Errno$/, split(' ', $Config{'nonxs_ext'}));
++my @nonxs = grep(!/^(Errno|IO\/Compress)$/, split(' ', $Config{'nonxs_ext'}));
+ 
+ my @ext_dirs = qw(cpan dist ext);
+ foreach my $ext_dir (@ext_dirs) {

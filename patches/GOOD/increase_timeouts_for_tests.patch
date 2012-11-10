@@ -1,0 +1,22 @@
+--- t/op/threads.t.orig	Mon Aug 27 21:45:27 2012
++++ t/op/threads.t	Mon Aug 27 21:53:08 2012
+@@ -135,7 +135,7 @@
+ #
+ # run-time usage of newCONSTSUB (as done by the IO boot code) wasn't
+ # thread-safe - got occasional coredumps or malloc corruption
+-watchdog(60, "process");
++watchdog(600, "process");
+ {
+     local $SIG{__WARN__} = sub {};   # Ignore any thread creation failure warnings
+     my @t;
+--- dist/threads-shared/t/stress.t.orig	Mon Aug 27 21:43:56 2012
++++ dist/threads-shared/t/stress.t	Mon Aug 27 21:44:37 2012
+@@ -42,7 +42,7 @@
+ {
+     my $cnt = 50;
+ 
+-    my $TIMEOUT = 60;
++    my $TIMEOUT = 600;
+ 
+     my $mutex = 1;
+     share($mutex);

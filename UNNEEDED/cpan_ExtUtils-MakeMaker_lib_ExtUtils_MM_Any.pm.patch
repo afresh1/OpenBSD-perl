@@ -1,0 +1,14 @@
+diff -x CVS -Nru ../perl-5.12.2/cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Any.pm ./cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Any.pm
+--- ../perl-5.12.2/cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Any.pm	Mon Sep  6 16:30:32 2010
++++ ./cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Any.pm	Fri Sep 24 08:06:50 2010
+@@ -717,8 +717,9 @@
+     my @man_cmds;
+     foreach my $section (qw(1 3)) {
+         my $pods = $self->{"MAN${section}PODS"};
++	my $s = $section eq '3' ? '3p' : $section;
+         push @man_cmds, $self->split_command(<<CMD, %$pods);
+-	\$(NOECHO) \$(POD2MAN) --section=$section --perm_rw=\$(PERM_RW)
++	\$(NOECHO) \$(POD2MAN) --section=$s --perm_rw=\$(PERM_RW)
+ CMD
+     }
+ 

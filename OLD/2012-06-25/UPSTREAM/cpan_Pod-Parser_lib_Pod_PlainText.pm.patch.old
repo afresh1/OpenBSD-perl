@@ -1,0 +1,27 @@
+http://www.nntp.perl.org/group/perl.perl5.porters/2008/12/msg142776.html
+
+From: Russ Allbery
+Date: December 19, 2008 20:32
+Subject: Re: [perl #40899] pod2xxx requires Pod::* parsers to reset state
+Message ID: 87skojjwkc.fsf@windlord.stanford.edu
+"Steve Peters via RT" <perlbug-followup@perl.org> writes:
+
+I'm fairly sure this has been fixed.  Those variables aren't used any
+more.
+
+
+diff -x CVS -Nru ../perl-5.12.2/cpan/Pod-Parser/lib/Pod/PlainText.pm ./cpan/Pod-Parser/lib/Pod/PlainText.pm
+--- ../perl-5.12.2/cpan/Pod-Parser/lib/Pod/PlainText.pm	Sun Sep  5 08:14:32 2010
++++ ./cpan/Pod-Parser/lib/Pod/PlainText.pm	Fri Sep 24 08:06:54 2010
+@@ -592,6 +592,11 @@
+     }
+ }
+ 
++sub begin_pod {
++    my $self = shift;
++    $$self{EXCLUDE} = 0;
++    $$self{VERBATIM} = 0;
++}
+ 
+ ############################################################################
+ # Module return value and documentation

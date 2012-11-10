@@ -1,0 +1,12 @@
+diff -Nru perl-5.16.0.orig/pod/perlop.pod perl-5.16.0/pod/perlop.pod
+--- perl-5.16.0.orig/pod/perlop.pod	Tue Apr 24 19:22:54 2012
++++ pod/perlop.pod	Mon May 28 16:32:50 2012
+@@ -1539,7 +1539,7 @@
+ C<"\015">.  If you get in the habit of using C<"\n"> for networking,
+ you may be burned some day.
+ X<newline> X<line terminator> X<eol> X<end of line>
+-X<\n> X<\r> X<\r\n>
++X<\r>
+ 
+ For constructs that do interpolate, variables beginning with "C<$>"
+ or "C<@>" are interpolated.  Subscripted variables such as C<$a[3]> or

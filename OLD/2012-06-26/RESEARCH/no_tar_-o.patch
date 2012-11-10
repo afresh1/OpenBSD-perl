@@ -1,0 +1,32 @@
+diff -Nrux *.orig ../perl-5.16.0.orig/Porting/pumpkin.pod ./Porting/pumpkin.pod
+--- ../perl-5.16.0.orig/Porting/pumpkin.pod	Tue Apr 24 17:18:30 2012
++++ ./Porting/pumpkin.pod	Mon Jun  4 00:40:39 2012
+@@ -540,9 +540,9 @@
+ 5.004_07 to 5.004_08 patch as an example.
+ 
+ 	# unpack perl5.004_07/
+-	gzip -d -c perl5.004_07.tar.gz | tar -xof -
++	gzip -d -c perl5.004_07.tar.gz | tar -xf -
+ 	# unpack perl5.004_08/
+-	gzip -d -c perl5.004_08.tar.gz | tar -xof -
++	gzip -d -c perl5.004_08.tar.gz | tar -xf -
+ 	makepatch perl5.004_07 perl5.004_08 > perl5.004_08.pat
+ 
+ Makepatch will automatically generate appropriate B<rm> commands to remove
+diff -Nrux *.orig ../perl-5.16.0.orig/pod/perlmodinstall.pod ./pod/perlmodinstall.pod
+--- ../perl-5.16.0.orig/pod/perlmodinstall.pod	Tue Apr 24 17:18:35 2012
++++ ./pod/perlmodinstall.pod	Mon Jun  4 00:40:39 2012
+@@ -79,11 +79,11 @@
+ 
+ Or, you can combine this step with the next to save disk space:
+ 
+-     gzip -dc yourmodule.tar.gz | tar -xof -
++     gzip -dc yourmodule.tar.gz | tar -xf -
+ 
+ B. UNPACK
+ 
+-Unpack the result with C<tar -xof yourmodule.tar>
++Unpack the result with C<tar -xf yourmodule.tar>
+ 
+ C. BUILD
+ 

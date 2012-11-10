@@ -1,0 +1,4 @@
+1..10
+ok 1 - New Semaphore
+ok 2 - New Semaphore
+Abort trap (core dumped) 

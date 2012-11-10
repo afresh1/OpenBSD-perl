@@ -1,0 +1,12 @@
+diff -x CVS -Nru ../perl-5.12.2/cpan/Test-Simple/lib/Test/Builder/Tester/Color.pm ./cpan/Test-Simple/lib/Test/Builder/Tester/Color.pm
+--- ../perl-5.12.2/cpan/Test-Simple/lib/Test/Builder/Tester/Color.pm	Mon Sep  6 16:30:32 2010
++++ ./cpan/Test-Simple/lib/Test/Builder/Tester/Color.pm	Mon Apr 18 10:48:24 2011
+@@ -1,7 +1,7 @@
+ package Test::Builder::Tester::Color;
+ 
+ use strict;
+-our $VERSION = "1.18";
++our $VERSION = "1.22";
+ 
+ require Test::Builder::Tester;
+ 

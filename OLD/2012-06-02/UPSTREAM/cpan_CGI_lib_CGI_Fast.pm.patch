@@ -1,0 +1,12 @@
+diff -Nru perl-5.16.0.orig/cpan/CGI/lib/CGI/Fast.pm perl-5.16.0/cpan/CGI/lib/CGI/Fast.pm
+--- perl-5.16.0.orig/cpan/CGI/lib/CGI/Fast.pm	Tue Apr 24 17:18:30 2012
++++ cpan/CGI/lib/CGI/Fast.pm	Mon May 28 16:32:18 2012
+@@ -177,7 +177,7 @@
+ =item FCGI_SOCKET_PATH
+ 
+ The address (TCP/IP) or path (UNIX Domain) of the socket the external FastCGI
+-script to which bind an listen for incoming connections from the web server.
++script to which bind can listen for incoming connections from the web server.
+ 
+ =item FCGI_LISTEN_QUEUE
+ 

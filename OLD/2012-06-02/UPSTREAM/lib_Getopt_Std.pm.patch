@@ -1,0 +1,12 @@
+diff -Nru perl-5.16.0.orig/lib/Getopt/Std.pm perl-5.16.0/lib/Getopt/Std.pm
+--- perl-5.16.0.orig/lib/Getopt/Std.pm	Tue Apr 24 17:18:34 2012
++++ lib/Getopt/Std.pm	Mon May 28 16:32:50 2012
+@@ -4,7 +4,7 @@
+ 
+ =head1 NAME
+ 
+-getopt, getopts - Process single-character switches with switch clustering
++Getopt::Std, getopt, getopts - Process single-character switches with switch clustering
+ 
+ =head1 SYNOPSIS
+ 

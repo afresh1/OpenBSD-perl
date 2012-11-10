@@ -1,0 +1,1013 @@
+---------------------
+PatchSet 337 
+Date: 2011/04/18 10:48:24
+Author: jasper
+Branch: HEAD
+Tag: (none) 
+Log:
+Update Test::Simple to 0.98
+
+ok millert@
+
+Members: 
+	patchlevel.h:1.23->1.24 
+	cpan/Test-Simple/Changes:1.2->1.3 
+	cpan/Test-Simple/lib/Test/Builder.pm:1.2->1.3 
+	cpan/Test-Simple/lib/Test/More.pm:1.2->1.3 
+	cpan/Test-Simple/lib/Test/Simple.pm:1.2->1.3 
+	cpan/Test-Simple/lib/Test/Builder/Module.pm:1.2->1.3 
+	cpan/Test-Simple/lib/Test/Builder/Tester.pm:1.2->1.3 
+	cpan/Test-Simple/lib/Test/Builder/IO/Scalar.pm:INITIAL->1.1 
+	cpan/Test-Simple/lib/Test/Builder/Tester/Color.pm:1.2->1.3 
+	cpan/Test-Simple/t/00compile.t:INITIAL->1.1 
+	cpan/Test-Simple/t/pod-coverage.t:INITIAL->1.1 
+	cpan/Test-Simple/t/pod.t:INITIAL->1.1 
+	cpan/Test-Simple/t/Simple/load.t:INITIAL->1.1 
+
+Index: src/gnu/usr.bin/perl/patchlevel.h
+diff -u src/gnu/usr.bin/perl/patchlevel.h:1.23 src/gnu/usr.bin/perl/patchlevel.h:1.24
+--- patchlevel.h:1.23	Mon Apr 18 08:27:57 2011
++++ patchlevel.h	Mon Apr 18 17:48:24 2011
+@@ -129,7 +129,7 @@
+ 	NULL
+ 	,"CVE-2010-0405"
+ 	,"Updated CGI to 3.51"
+-	,"Updated Test::Simple to 0.96"
++	,"Updated Test::Simple to 0.98"
+ 	,"Updated List::Util to 1.23"
+ #ifdef PERL_GIT_UNCOMMITTED_CHANGES
+ 	,"uncommitted-changes"
+Index: src/gnu/usr.bin/perl/cpan/Test-Simple/Changes
+diff -u src/gnu/usr.bin/perl/cpan/Test-Simple/Changes:1.2 src/gnu/usr.bin/perl/cpan/Test-Simple/Changes:1.3
+--- cpan/Test-Simple/Changes:1.2	Fri Jan  7 12:19:31 2011
++++ cpan/Test-Simple/Changes	Mon Apr 18 17:48:24 2011
+@@ -1,3 +1,27 @@
++0.98  Wed, 23 Feb 2011 14:38:02 +1100
++    Bug Fixes
++    * subtest() should not fail if $? is non-zero. (Aaron Crane)
++
++    Docs
++    * The behavior of is() and undef has been documented. (Pedro Melo)
++
++
++0.97_01  Fri Aug 27 22:50:30 PDT 2010
++    Test Fixes
++    * Adapted the tests for the new Perl 5.14 regex stringification.
++      (Karl Williamson) [github 44]
++
++    Doc Fixes
++    * Document how to test "use Foo ()". (Todd Rinaldo) [github 41]
++
++    Feature Changes
++    * subtest() no longer has a prototype.  It was just getting in the way.
++      [rt.cpan.org 54239]
++    * The filehandles used by default will now inherit any filehandle
++      disciplines from STDOUT and STDERR IF AND ONLY IF they were applied
++      before Test::Builder is loaded.  More later. [rt.cpan.org 46542]
++
++
+ 0.96  Tue Aug 10 21:13:04 PDT 2010
+     Bug Fixes
+     * You can call done_testing() again after reset() [googlecode 59]
+Index: src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Builder.pm
+diff -u src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Builder.pm:1.2 src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Builder.pm:1.3
+--- cpan/Test-Simple/lib/Test/Builder.pm:1.2	Fri Jan  7 12:19:31 2011
++++ cpan/Test-Simple/lib/Test/Builder.pm	Mon Apr 18 17:48:24 2011
+@@ -4,7 +4,7 @@
+ use strict;
+ use warnings;
+ 
+-our $VERSION = '0.96';
++our $VERSION = '0.98';
+ $VERSION = eval $VERSION;    ## no critic (BuiltinFunctions::ProhibitStringyEval)
+ 
+ BEGIN {
+@@ -312,6 +312,8 @@
+     if( $self->{Child_Name} ) {
+         $self->croak("Can't call finalize() with child ($self->{Child_Name}) active");
+     }
++
++    local $? = 0;     # don't fail if $subtests happened to set $? nonzero
+     $self->_ending;
+ 
+     # XXX This will only be necessary for TAP envelopes (we think)
+@@ -923,6 +925,8 @@
+ Like Test::More's C<is()>.  Checks if C<$got eq $expected>.  This is the
+ string version.
+ 
++C<undef> only ever matches another C<undef>.
++
+ =item B<is_num>
+ 
+   $Test->is_num($got, $expected, $name);
+@@ -930,6 +934,8 @@
+ Like Test::More's C<is()>.  Checks if C<$got == $expected>.  This is the
+ numeric version.
+ 
++C<undef> only ever matches another C<undef>.
++
+ =cut
+ 
+ sub is_eq {
+@@ -1880,8 +1886,8 @@
+     open( $Testout, ">&STDOUT" ) or die "Can't dup STDOUT:  $!";
+     open( $Testerr, ">&STDERR" ) or die "Can't dup STDERR:  $!";
+ 
+-    #    $self->_copy_io_layers( \*STDOUT, $Testout );
+-    #    $self->_copy_io_layers( \*STDERR, $Testerr );
++    $self->_copy_io_layers( \*STDOUT, $Testout );
++    $self->_copy_io_layers( \*STDERR, $Testerr );
+ 
+     $self->{Opened_Testhandles} = 1;
+ 
+@@ -1896,12 +1902,20 @@
+             require PerlIO;
+             my @src_layers = PerlIO::get_layers($src);
+ 
+-            binmode $dst, join " ", map ":$_", @src_layers if @src_layers;
++            _apply_layers($dst, @src_layers) if @src_layers;
+         }
+     );
+ 
+     return;
+ }
++
++sub _apply_layers {
++    my ($fh, @layers) = @_;
++    my %seen;
++    my @unique = grep { $_ ne 'unix' and !$seen{$_}++ } @layers;
++    binmode($fh, join(":", "", "raw", @unique));
++}
++
+ 
+ =item reset_outputs
+ 
+Index: src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/More.pm
+diff -u src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/More.pm:1.2 src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/More.pm:1.3
+--- cpan/Test-Simple/lib/Test/More.pm:1.2	Fri Jan  7 12:19:31 2011
++++ cpan/Test-Simple/lib/Test/More.pm	Mon Apr 18 17:48:24 2011
+@@ -17,7 +17,7 @@
+     return warn @_, " at $file line $line\n";
+ }
+ 
+-our $VERSION = '0.96';
++our $VERSION = '0.98';
+ $VERSION = eval $VERSION;    ## no critic (BuiltinFunctions::ProhibitStringyEval)
+ 
+ use Test::Builder::Module;
+@@ -317,6 +317,11 @@
+     ok( ultimate_answer() eq 42,        "Meaning of Life" );
+     ok( $foo ne '',     "Got some foo" );
+ 
++C<undef> will only ever match C<undef>.  So you can test a value
++agains C<undef> like this:
++
++    is($not_defined, undef, "undefined as expected");
++
+ (Mnemonic:  "This is that."  "This isn't that.")
+ 
+ So why use these?  They produce better diagnostics on failure.  ok()
+@@ -735,7 +740,7 @@
+ 
+ =cut
+ 
+-sub subtest($&) {
++sub subtest {
+     my ($name, $subtests) = @_;
+ 
+     my $tb = Test::More->builder;
+@@ -818,6 +823,11 @@
+ 
+   BEGIN { use_ok('Some::Module') }
+   BEGIN { ...some code that depends on the use... }
++
++If you want the equivalent of C<use Foo ()>, use a module but not
++import anything, use C<require_ok>.
++
++  BEGIN { require_ok "Foo" }
+ 
+ 
+ =cut
+Index: src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Simple.pm
+diff -u src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Simple.pm:1.2 src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Simple.pm:1.3
+--- cpan/Test-Simple/lib/Test/Simple.pm:1.2	Fri Jan  7 12:19:31 2011
++++ cpan/Test-Simple/lib/Test/Simple.pm	Mon Apr 18 17:48:24 2011
+@@ -4,7 +4,7 @@
+ 
+ use strict;
+ 
+-our $VERSION = '0.96';
++our $VERSION = '0.98';
+ $VERSION = eval $VERSION;    ## no critic (BuiltinFunctions::ProhibitStringyEval)
+ 
+ use Test::Builder::Module;
+Index: src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Builder/Module.pm
+diff -u src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Builder/Module.pm:1.2 src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Builder/Module.pm:1.3
+--- cpan/Test-Simple/lib/Test/Builder/Module.pm:1.2	Fri Jan  7 12:19:31 2011
++++ cpan/Test-Simple/lib/Test/Builder/Module.pm	Mon Apr 18 17:48:24 2011
+@@ -7,7 +7,7 @@
+ require Exporter;
+ our @ISA = qw(Exporter);
+ 
+-our $VERSION = '0.96';
++our $VERSION = '0.98';
+ $VERSION = eval $VERSION;      ## no critic (BuiltinFunctions::ProhibitStringyEval)
+ 
+ 
+@@ -58,7 +58,7 @@
+ 
+ All arguments passed to import() are passed onto 
+ C<< Your::Module->builder->plan() >> with the exception of 
+-C<import =>[qw(things to import)]>.
++C<< import =>[qw(things to import)] >>.
+ 
+     use Your::Module import => [qw(this that)], tests => 23;
+ 
+Index: src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Builder/Tester.pm
+diff -u src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Builder/Tester.pm:1.2 src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Builder/Tester.pm:1.3
+--- cpan/Test-Simple/lib/Test/Builder/Tester.pm:1.2	Fri Jan  7 12:19:31 2011
++++ cpan/Test-Simple/lib/Test/Builder/Tester.pm	Mon Apr 18 17:48:24 2011
+@@ -1,7 +1,7 @@
+ package Test::Builder::Tester;
+ 
+ use strict;
+-our $VERSION = "1.20";
++our $VERSION = "1.22";
+ 
+ use Test::Builder;
+ use Symbol;
+--- /dev/null	Sun May 27 20:29:43 2012
++++ cpan/Test-Simple/lib/Test/Builder/IO/Scalar.pm	Sun May 27 20:29:46 2012
+@@ -0,0 +1,658 @@
++package Test::Builder::IO::Scalar;
++
++
++=head1 NAME
++
++Test::Builder::IO::Scalar - A copy of IO::Scalar for Test::Builder
++
++=head1 DESCRIPTION
++
++This is a copy of IO::Scalar which ships with Test::Builder to
++support scalar references as filehandles on Perl 5.6.  Newer
++versions of Perl simply use C<<open()>>'s built in support.
++
++Test::Builder can not have dependencies on other modules without
++careful consideration, so its simply been copied into the distribution.
++
++=head1 COPYRIGHT and LICENSE
++
++This file came from the "IO-stringy" Perl5 toolkit.
++
++Copyright (c) 1996 by Eryq.  All rights reserved.
++Copyright (c) 1999,2001 by ZeeGee Software Inc.  All rights reserved.
++
++This program is free software; you can redistribute it and/or
++modify it under the same terms as Perl itself.
++
++
++=cut
++
++# This is copied code, I don't care.
++##no critic
++
++use Carp;
++use strict;
++use vars qw($VERSION @ISA);
++use IO::Handle;
++
++use 5.005;
++
++### The package version, both in 1.23 style *and* usable by MakeMaker:
++$VERSION = "2.110";
++
++### Inheritance:
++@ISA = qw(IO::Handle);
++
++#==============================
++
++=head2 Construction
++
++=over 4
++
++=cut
++
++#------------------------------
++
++=item new [ARGS...]
++
++I<Class method.>
++Return a new, unattached scalar handle.
++If any arguments are given, they're sent to open().
++
++=cut
++
++sub new {
++    my $proto = shift;
++    my $class = ref($proto) || $proto;
++    my $self = bless \do { local *FH }, $class;
++    tie *$self, $class, $self;
++    $self->open(@_);   ### open on anonymous by default
++    $self;
++}
++sub DESTROY {
++    shift->close;
++}
++
++#------------------------------
++
++=item open [SCALARREF]
++
++I<Instance method.>
++Open the scalar handle on a new scalar, pointed to by SCALARREF.
++If no SCALARREF is given, a "private" scalar is created to hold
++the file data.
++
++Returns the self object on success, undefined on error.
++
++=cut
++
++sub open {
++    my ($self, $sref) = @_;
++
++    ### Sanity:
++    defined($sref) or do {my $s = ''; $sref = \$s};
++    (ref($sref) eq "SCALAR") or croak "open() needs a ref to a scalar";
++
++    ### Setup:
++    *$self->{Pos} = 0;          ### seek position
++    *$self->{SR}  = $sref;      ### scalar reference
++    $self;
++}
++
++#------------------------------
++
++=item opened
++
++I<Instance method.>
++Is the scalar handle opened on something?
++
++=cut
++
++sub opened {
++    *{shift()}->{SR};
++}
++
++#------------------------------
++
++=item close
++
++I<Instance method.>
++Disassociate the scalar handle from its underlying scalar.
++Done automatically on destroy.
++
++=cut
++
++sub close {
++    my $self = shift;
++    %{*$self} = ();
++    1;
++}
++
++=back
++
++=cut
++
++
++
++#==============================
++
++=head2 Input and output
++
++=over 4
++
++=cut
++
++
++#------------------------------
++
++=item flush
++
++I<Instance method.>
++No-op, provided for OO compatibility.
++
++=cut
++
++sub flush { "0 but true" }
++
++#------------------------------
++
++=item getc
++
++I<Instance method.>
++Return the next character, or undef if none remain.
++
++=cut
++
++sub getc {
++    my $self = shift;
++
++    ### Return undef right away if at EOF; else, move pos forward:
++    return undef if $self->eof;
++    substr(${*$self->{SR}}, *$self->{Pos}++, 1);
++}
++
++#------------------------------
++
++=item getline
++
++I<Instance method.>
++Return the next line, or undef on end of string.
++Can safely be called in an array context.
++Currently, lines are delimited by "\n".
++
++=cut
++
++sub getline {
++    my $self = shift;
++
++    ### Return undef right away if at EOF:
++    return undef if $self->eof;
++
++    ### Get next line:
++    my $sr = *$self->{SR};
++    my $i  = *$self->{Pos};	        ### Start matching at this point.
++
++    ### Minimal impact implementation!
++    ### We do the fast fast thing (no regexps) if using the
++    ### classic input record separator.
++
++    ### Case 1: $/ is undef: slurp all...
++    if    (!defined($/)) {
++	*$self->{Pos} = length $$sr;
++        return substr($$sr, $i);
++    }
++
++    ### Case 2: $/ is "\n": zoom zoom zoom...
++    elsif ($/ eq "\012") {
++
++        ### Seek ahead for "\n"... yes, this really is faster than regexps.
++        my $len = length($$sr);
++        for (; $i < $len; ++$i) {
++           last if ord (substr ($$sr, $i, 1)) == 10;
++        }
++
++        ### Extract the line:
++        my $line;
++        if ($i < $len) {                ### We found a "\n":
++            $line = substr ($$sr, *$self->{Pos}, $i - *$self->{Pos} + 1);
++            *$self->{Pos} = $i+1;            ### Remember where we finished up.
++        }
++        else {                          ### No "\n"; slurp the remainder:
++            $line = substr ($$sr, *$self->{Pos}, $i - *$self->{Pos});
++            *$self->{Pos} = $len;
++        }
++        return $line;
++    }
++
++    ### Case 3: $/ is ref to int. Do fixed-size records.
++    ###        (Thanks to Dominique Quatravaux.)
++    elsif (ref($/)) {
++        my $len = length($$sr);
++		my $i = ${$/} + 0;
++		my $line = substr ($$sr, *$self->{Pos}, $i);
++		*$self->{Pos} += $i;
++        *$self->{Pos} = $len if (*$self->{Pos} > $len);
++		return $line;
++    }
++
++    ### Case 4: $/ is either "" (paragraphs) or something weird...
++    ###         This is Graham's general-purpose stuff, which might be
++    ###         a tad slower than Case 2 for typical data, because
++    ###         of the regexps.
++    else {
++        pos($$sr) = $i;
++
++	### If in paragraph mode, skip leading lines (and update i!):
++        length($/) or
++	    (($$sr =~ m/\G\n*/g) and ($i = pos($$sr)));
++
++        ### If we see the separator in the buffer ahead...
++        if (length($/)
++	    ?  $$sr =~ m,\Q$/\E,g          ###   (ordinary sep) TBD: precomp!
++            :  $$sr =~ m,\n\n,g            ###   (a paragraph)
++            ) {
++            *$self->{Pos} = pos $$sr;
++            return substr($$sr, $i, *$self->{Pos}-$i);
++        }
++        ### Else if no separator remains, just slurp the rest:
++        else {
++            *$self->{Pos} = length $$sr;
++            return substr($$sr, $i);
++        }
++    }
++}
++
++#------------------------------
++
++=item getlines
++
++I<Instance method.>
++Get all remaining lines.
++It will croak() if accidentally called in a scalar context.
++
++=cut
++
++sub getlines {
++    my $self = shift;
++    wantarray or croak("can't call getlines in scalar context!");
++    my ($line, @lines);
++    push @lines, $line while (defined($line = $self->getline));
++    @lines;
++}
++
++#------------------------------
++
++=item print ARGS...
++
++I<Instance method.>
++Print ARGS to the underlying scalar.
++
++B<Warning:> this continues to always cause a seek to the end
++of the string, but if you perform seek()s and tell()s, it is
++still safer to explicitly seek-to-end before subsequent print()s.
++
++=cut
++
++sub print {
++    my $self = shift;
++    *$self->{Pos} = length(${*$self->{SR}} .= join('', @_) . (defined($\) ? $\ : ""));
++    1;
++}
++sub _unsafe_print {
++    my $self = shift;
++    my $append = join('', @_) . $\;
++    ${*$self->{SR}} .= $append;
++    *$self->{Pos}   += length($append);
++    1;
++}
++sub _old_print {
++    my $self = shift;
++    ${*$self->{SR}} .= join('', @_) . $\;
++    *$self->{Pos} = length(${*$self->{SR}});
++    1;
++}
++
++
++#------------------------------
++
++=item read BUF, NBYTES, [OFFSET]
++
++I<Instance method.>
++Read some bytes from the scalar.
++Returns the number of bytes actually read, 0 on end-of-file, undef on error.
++
++=cut
++
++sub read {
++    my $self = $_[0];
++    my $n    = $_[2];
++    my $off  = $_[3] || 0;
++
++    my $read = substr(${*$self->{SR}}, *$self->{Pos}, $n);
++    $n = length($read);
++    *$self->{Pos} += $n;
++    ($off ? substr($_[1], $off) : $_[1]) = $read;
++    return $n;
++}
++
++#------------------------------
++
++=item write BUF, NBYTES, [OFFSET]
++
++I<Instance method.>
++Write some bytes to the scalar.
++
++=cut
++
++sub write {
++    my $self = $_[0];
++    my $n    = $_[2];
++    my $off  = $_[3] || 0;
++
++    my $data = substr($_[1], $off, $n);
++    $n = length($data);
++    $self->print($data);
++    return $n;
++}
++
++#------------------------------
++
++=item sysread BUF, LEN, [OFFSET]
++
++I<Instance method.>
++Read some bytes from the scalar.
++Returns the number of bytes actually read, 0 on end-of-file, undef on error.
++
++=cut
++
++sub sysread {
++  my $self = shift;
++  $self->read(@_);
++}
++
++#------------------------------
++
++=item syswrite BUF, NBYTES, [OFFSET]
++
++I<Instance method.>
++Write some bytes to the scalar.
++
++=cut
++
++sub syswrite {
++  my $self = shift;
++  $self->write(@_);
++}
++
++=back
++
++=cut
++
++
++#==============================
++
++=head2 Seeking/telling and other attributes
++
++=over 4
++
++=cut
++
++
++#------------------------------
++
++=item autoflush
++
++I<Instance method.>
++No-op, provided for OO compatibility.
++
++=cut
++
++sub autoflush {}
++
++#------------------------------
++
++=item binmode
++
++I<Instance method.>
++No-op, provided for OO compatibility.
++
++=cut
++
++sub binmode {}
++
++#------------------------------
++
++=item clearerr
++
++I<Instance method.>  Clear the error and EOF flags.  A no-op.
++
++=cut
++
++sub clearerr { 1 }
++
++#------------------------------
++
++=item eof
++
++I<Instance method.>  Are we at end of file?
++
++=cut
++
++sub eof {
++    my $self = shift;
++    (*$self->{Pos} >= length(${*$self->{SR}}));
++}
++
++#------------------------------
++
++=item seek OFFSET, WHENCE
++
++I<Instance method.>  Seek to a given position in the stream.
++
++=cut
++
++sub seek {
++    my ($self, $pos, $whence) = @_;
++    my $eofpos = length(${*$self->{SR}});
++
++    ### Seek:
++    if    ($whence == 0) { *$self->{Pos} = $pos }             ### SEEK_SET
++    elsif ($whence == 1) { *$self->{Pos} += $pos }            ### SEEK_CUR
++    elsif ($whence == 2) { *$self->{Pos} = $eofpos + $pos}    ### SEEK_END
++    else                 { croak "bad seek whence ($whence)" }
++
++    ### Fixup:
++    if (*$self->{Pos} < 0)       { *$self->{Pos} = 0 }
++    if (*$self->{Pos} > $eofpos) { *$self->{Pos} = $eofpos }
++    return 1;
++}
++
++#------------------------------
++
++=item sysseek OFFSET, WHENCE
++
++I<Instance method.> Identical to C<seek OFFSET, WHENCE>, I<q.v.>
++
++=cut
++
++sub sysseek {
++    my $self = shift;
++    $self->seek (@_);
++}
++
++#------------------------------
++
++=item tell
++
++I<Instance method.>
++Return the current position in the stream, as a numeric offset.
++
++=cut
++
++sub tell { *{shift()}->{Pos} }
++
++#------------------------------
++
++=item  use_RS [YESNO]
++
++I<Instance method.>
++B<Deprecated and ignored.>
++Obey the current setting of $/, like IO::Handle does?
++Default is false in 1.x, but cold-welded true in 2.x and later.
++
++=cut
++
++sub use_RS {
++    my ($self, $yesno) = @_;
++    carp "use_RS is deprecated and ignored; \$/ is always consulted\n";
++ }
++
++#------------------------------
++
++=item setpos POS
++
++I<Instance method.>
++Set the current position, using the opaque value returned by C<getpos()>.
++
++=cut
++
++sub setpos { shift->seek($_[0],0) }
++
++#------------------------------
++
++=item getpos
++
++I<Instance method.>
++Return the current position in the string, as an opaque object.
++
++=cut
++
++*getpos = \&tell;
++
++
++#------------------------------
++
++=item sref
++
++I<Instance method.>
++Return a reference to the underlying scalar.
++
++=cut
++
++sub sref { *{shift()}->{SR} }
++
++
++#------------------------------
++# Tied handle methods...
++#------------------------------
++
++# Conventional tiehandle interface:
++sub TIEHANDLE {
++    ((defined($_[1]) && UNIVERSAL::isa($_[1], __PACKAGE__))
++     ? $_[1]
++     : shift->new(@_));
++}
++sub GETC      { shift->getc(@_) }
++sub PRINT     { shift->print(@_) }
++sub PRINTF    { shift->print(sprintf(shift, @_)) }
++sub READ      { shift->read(@_) }
++sub READLINE  { wantarray ? shift->getlines(@_) : shift->getline(@_) }
++sub WRITE     { shift->write(@_); }
++sub CLOSE     { shift->close(@_); }
++sub SEEK      { shift->seek(@_); }
++sub TELL      { shift->tell(@_); }
++sub EOF       { shift->eof(@_); }
++
++#------------------------------------------------------------
++
++1;
++
++__END__
++
++
++
++=back
++
++=cut
++
++
++=head1 WARNINGS
++
++Perl's TIEHANDLE spec was incomplete prior to 5.005_57;
++it was missing support for C<seek()>, C<tell()>, and C<eof()>.
++Attempting to use these functions with an IO::Scalar will not work
++prior to 5.005_57. IO::Scalar will not have the relevant methods
++invoked; and even worse, this kind of bug can lie dormant for a while.
++If you turn warnings on (via C<$^W> or C<perl -w>),
++and you see something like this...
++
++    attempt to seek on unopened filehandle
++
++...then you are probably trying to use one of these functions
++on an IO::Scalar with an old Perl.  The remedy is to simply
++use the OO version; e.g.:
++
++    $SH->seek(0,0);    ### GOOD: will work on any 5.005
++    seek($SH,0,0);     ### WARNING: will only work on 5.005_57 and beyond
++
++
++=head1 VERSION
++
++$Id: Scalar.pm,v 1.1 2011/04/18 17:48:24 jasper Exp $
++
++
++=head1 AUTHORS
++
++=head2 Primary Maintainer
++
++David F. Skoll (F<dfs@roaringpenguin.com>).
++
++=head2 Principal author
++
++Eryq (F<eryq@zeegee.com>).
++President, ZeeGee Software Inc (F<http://www.zeegee.com>).
++
++
++=head2 Other contributors
++
++The full set of contributors always includes the folks mentioned
++in L<IO::Stringy/"CHANGE LOG">.  But just the same, special
++thanks to the following individuals for their invaluable contributions
++(if I've forgotten or misspelled your name, please email me!):
++
++I<Andy Glew,>
++for contributing C<getc()>.
++
++I<Brandon Browning,>
++for suggesting C<opened()>.
++
++I<David Richter,>
++for finding and fixing the bug in C<PRINTF()>.
++
++I<Eric L. Brine,>
++for his offset-using read() and write() implementations.
++
++I<Richard Jones,>
++for his patches to massively improve the performance of C<getline()>
++and add C<sysread> and C<syswrite>.
++
++I<B. K. Oxley (binkley),>
++for stringification and inheritance improvements,
++and sundry good ideas.
++
++I<Doug Wilson,>
++for the IO::Handle inheritance and automatic tie-ing.
++
++
++=head1 SEE ALSO
++
++L<IO::String>, which is quite similar but which was designed
++more-recently and with an IO::Handle-like interface in mind,
++so you could mix OO- and native-filehandle usage without using tied().
++
++I<Note:> as of version 2.x, these classes all work like
++their IO::Handle counterparts, so we have comparable
++functionality to IO::String.
++
++=cut
++
+Index: src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Builder/Tester/Color.pm
+diff -u src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Builder/Tester/Color.pm:1.2 src/gnu/usr.bin/perl/cpan/Test-Simple/lib/Test/Builder/Tester/Color.pm:1.3
+--- cpan/Test-Simple/lib/Test/Builder/Tester/Color.pm:1.2	Fri Jan  7 12:19:31 2011
++++ cpan/Test-Simple/lib/Test/Builder/Tester/Color.pm	Mon Apr 18 17:48:24 2011
+@@ -1,7 +1,7 @@
+ package Test::Builder::Tester::Color;
+ 
+ use strict;
+-our $VERSION = "1.20";
++our $VERSION = "1.22";
+ 
+ require Test::Builder::Tester;
+ 
+--- /dev/null	Sun May 27 20:29:50 2012
++++ cpan/Test-Simple/t/00compile.t	Sun May 27 20:29:53 2012
+@@ -0,0 +1,43 @@
++#!/usr/bin/perl -w
++
++BEGIN {
++    if( $ENV{PERL_CORE} ) {
++        @INC = ('../lib', 'lib');
++    }
++    else {
++        unshift @INC, 't/lib';
++    }
++}
++chdir 't';
++
++use Test::More;
++
++my $Has_Test_Pod;
++BEGIN {
++    $Has_Test_Pod = eval 'use Test::Pod 0.95; 1';
++}
++
++chdir "..";
++my $manifest = "MANIFEST";
++open(my $manifest_fh, "<", $manifest) or die "Can't open $manifest: $!";
++my @modules = map  { m{^lib/(\S+)}; $1 } 
++              grep { m{^lib/Test/\S*\.pm} } 
++              grep { !m{/t/} } <$manifest_fh>;
++
++chomp @modules;
++close $manifest_fh;
++
++chdir 'lib';
++plan tests => scalar @modules * 2;
++foreach my $file (@modules) {
++    # Make sure we look at the local files and do not reload them if
++    # they're already loaded.  This avoids recompilation warnings.
++    local @INC = @INC;
++    unshift @INC, ".";
++    ok eval { require($file); 1 } or diag "require $file failed.\n$@";
++
++    SKIP: {
++        skip "Test::Pod not installed", 1 unless $Has_Test_Pod;
++        pod_file_ok($file);
++    }
++}
+--- /dev/null	Sun May 27 20:29:53 2012
++++ cpan/Test-Simple/t/pod-coverage.t	Sun May 27 20:29:56 2012
+@@ -0,0 +1,27 @@
++#!/usr/bin/perl -w
++
++use Test::More;
++
++# 1.08 added the coverage_class option.
++eval "use Test::Pod::Coverage 1.08";
++plan skip_all => "Test::Pod::Coverage 1.08 required for testing POD coverage" if $@;
++eval "use Pod::Coverage::CountParents";
++plan skip_all => "Pod::Coverage::CountParents required for testing POD coverage" if $@;
++
++my @modules = Test::Pod::Coverage::all_modules();
++plan tests => scalar @modules;
++
++my %coverage_params = (
++    "Test::Builder" => {
++        also_private => [ '^(share|lock|BAILOUT)$' ]
++    },
++    "Test::More" => {
++        trustme => [ '^(skip|todo)$' ]
++    },
++);
++
++for my $module (@modules) {
++    pod_coverage_ok( $module, { coverage_class => 'Pod::Coverage::CountParents',
++                                %{$coverage_params{$module} || {}} }
++                   );
++}
+--- /dev/null	Sun May 27 20:29:56 2012
++++ cpan/Test-Simple/t/pod.t	Sun May 27 20:30:00 2012
+@@ -0,0 +1,6 @@
++#!/usr/bin/perl -w
++
++use Test::More;
++eval "use Test::Pod 1.00";
++plan skip_all => "Test::Pod 1.00 required for testing POD" if $@;
++all_pod_files_ok();
+--- /dev/null	Sun May 27 20:30:00 2012
++++ cpan/Test-Simple/t/Simple/load.t	Sun May 27 20:30:03 2012
+@@ -0,0 +1,13 @@
++#!/usr/bin/perl
++
++# Because I broke "use Test::Simple", here's a test
++
++use strict;
++use warnings;
++
++use Test::Simple;
++
++print <<END;
++1..1
++ok 1 - use Test::Simple with no arguments
++END

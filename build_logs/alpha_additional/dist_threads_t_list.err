@@ -1,0 +1,16 @@
+1..15
+ok 1 - Loaded
+ok 2 - No threads yet
+ok 3 - Empty thread list after join
+ok 4 - Non-empty thread list
+ok 5 - Non-empty thread list
+ok 6 - Thread list empty again
+ok 7 - Thread list empty again
+ok 8 - Non-empty thread list in thread
+ok 9 - Self in thread list
+ok 10 - Thread count 1
+ok 11 - Thread count 1
+ok 12 - Thread count 1
+ok 13 - Thread in list
+ok 14 - Thread list empty
+ok 15 - Thread list empty

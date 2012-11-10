@@ -1,0 +1,14 @@
+--- ./cpan/Pod-Parser/lib/Pod/PlainText.pm.orig	Tue Apr 24 17:18:31 2012
++++ ./cpan/Pod-Parser/lib/Pod/PlainText.pm	Wed Jun 27 15:54:45 2012
+@@ -592,6 +592,11 @@
+     }
+ }
+ 
++sub begin_pod {
++    my $self = shift;
++    $$self{EXCLUDE} = 0;
++    $$self{VERBATIM} = 0;
++}
+ 
+ ############################################################################
+ # Module return value and documentation

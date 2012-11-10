@@ -1,0 +1,291 @@
+---------------------
+PatchSet 318 
+Date: 2010/09/25 05:24:13
+Author: millert
+Branch: HEAD
+Tag: (none) 
+Log:
+Update to Compress-Raw-Bzip2 2.031; no actual code changes since
+we fixed bzip2-src/decompress.c separately.
+
+Members: 
+	cpan/Compress-Raw-Bzip2/Changes:1.1->1.2 
+	cpan/Compress-Raw-Bzip2/README:1.1->1.2 
+	cpan/Compress-Raw-Bzip2/bzip2-src/LICENSE:1.1->1.2 
+	cpan/Compress-Raw-Bzip2/bzip2-src/blocksort.c:1.1->1.2 
+	cpan/Compress-Raw-Bzip2/bzip2-src/bzlib.c:1.1->1.2 
+	cpan/Compress-Raw-Bzip2/bzip2-src/bzlib.h:1.1->1.2 
+	cpan/Compress-Raw-Bzip2/bzip2-src/bzlib_private.h:1.1->1.2 
+	cpan/Compress-Raw-Bzip2/bzip2-src/compress.c:1.1->1.2 
+	cpan/Compress-Raw-Bzip2/bzip2-src/crctable.c:1.1->1.2 
+	cpan/Compress-Raw-Bzip2/bzip2-src/huffman.c:1.1->1.2 
+	cpan/Compress-Raw-Bzip2/bzip2-src/randtable.c:1.1->1.2 
+	cpan/Compress-Raw-Bzip2/lib/Compress/Raw/Bzip2.pm:1.1->1.2 
+	cpan/Compress-Raw-Bzip2/t/000prereq.t:1.1->1.2 
+
+Index: src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/Changes
+diff -u src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/Changes:1.1 src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/Changes:1.2
+--- cpan/Compress-Raw-Bzip2/Changes:1.1	Fri Sep 24 14:49:06 2010
++++ cpan/Compress-Raw-Bzip2/Changes	Sat Sep 25 12:24:13 2010
+@@ -1,5 +1,28 @@
+ CHANGES
+ -------
++
++  2.031 21 September 2010
++
++      * Updated to use bzip2 1.0.6
++
++  2.030 22 July 2010
++
++      * No Changes
++
++  2.027 24 April 2010
++
++      * No Changes
++
++  2.026 7 April 2010
++
++      * No Changes
++
++  2.025 27 March 2010
++
++      * Documented the unused "verbosity" option in
++        Compress::Raw::Bunzip2::new
++        [RT# 54425]
++
+   2.023 9 November 2009
+ 
+       * Removed redundant bzip2 source files from the bzip2-src directory.
+Index: src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/README
+diff -u src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/README:1.1 src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/README:1.2
+--- cpan/Compress-Raw-Bzip2/README:1.1	Fri Sep 24 14:49:06 2010
++++ cpan/Compress-Raw-Bzip2/README	Sat Sep 25 12:24:13 2010
+@@ -1,17 +1,17 @@
+ 
+                              Compress-Raw-Bzip2
+ 
+-                             Version 2.024
++                             Version 2.031
+ 
+-                             7th January 2010
++                               21st September 2010
+ 
+        Copyright (c) 2005-2010 Paul Marquess. All rights reserved.
+           This program is free software; you can redistribute it
+            and/or modify it under the same terms as Perl itself.
+ 
+              The directory bzip2-src contains a subset of the 
+-          source files copied directly from bzip2 version 1.0.5.
+-           These files are Copyright(C) 1996-2007 Julian Seward.
++          source files copied directly from bzip2 version 1.0.6.
++           These files are Copyright(C) 1996-2010 Julian Seward.
+     See the file bzip2-src/LICENSE for licence details for these files.
+              Full source for the bzip2 library is available at
+                            http://www.bzip.org/
+@@ -164,7 +164,7 @@
+         If you haven't installed Compress-Raw-Bzip2 then search Compress::Raw::Bzip2.pm
+         for a line like this:
+ 
+-          $VERSION = "2.024" ;
++          $VERSION = "2.031" ;
+ 
+      c. The version of bzip2 you have used.
+         If you have successfully installed Compress-Raw-Bzip2, this one-liner
+Index: src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/bzip2-src/LICENSE
+diff -u src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/bzip2-src/LICENSE:1.1 src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/bzip2-src/LICENSE:1.2
+--- cpan/Compress-Raw-Bzip2/bzip2-src/LICENSE:1.1	Fri Sep 24 14:49:06 2010
++++ cpan/Compress-Raw-Bzip2/bzip2-src/LICENSE	Sat Sep 25 12:24:13 2010
+@@ -2,7 +2,7 @@
+ --------------------------------------------------------------------------
+ 
+ This program, "bzip2", the associated library "libbzip2", and all
+-documentation, are copyright (C) 1996-2007 Julian R Seward.  All
++documentation, are copyright (C) 1996-2010 Julian R Seward.  All
+ rights reserved.
+ 
+ Redistribution and use in source and binary forms, with or without
+@@ -37,6 +37,6 @@
+ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ 
+ Julian Seward, jseward@bzip.org
+-bzip2/libbzip2 version 1.0.5 of 10 December 2007
++bzip2/libbzip2 version 1.0.6 of 6 September 2010
+ 
+ --------------------------------------------------------------------------
+Index: src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/bzip2-src/blocksort.c
+diff -u src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/bzip2-src/blocksort.c:1.1 src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/bzip2-src/blocksort.c:1.2
+--- cpan/Compress-Raw-Bzip2/bzip2-src/blocksort.c:1.1	Fri Sep 24 14:49:06 2010
++++ cpan/Compress-Raw-Bzip2/bzip2-src/blocksort.c	Sat Sep 25 12:24:13 2010
+@@ -8,8 +8,8 @@
+    This file is part of bzip2/libbzip2, a program and library for
+    lossless, block-sorting data compression.
+ 
+-   bzip2/libbzip2 version 1.0.5 of 10 December 2007
+-   Copyright (C) 1996-2007 Julian Seward <jseward@bzip.org>
++   bzip2/libbzip2 version 1.0.6 of 6 September 2010
++   Copyright (C) 1996-2010 Julian Seward <jseward@bzip.org>
+ 
+    Please read the WARNING, DISCLAIMER and PATENTS sections in the 
+    README file.
+Index: src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/bzip2-src/bzlib.c
+diff -u src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/bzip2-src/bzlib.c:1.1 src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/bzip2-src/bzlib.c:1.2
+--- cpan/Compress-Raw-Bzip2/bzip2-src/bzlib.c:1.1	Fri Sep 24 14:49:06 2010
++++ cpan/Compress-Raw-Bzip2/bzip2-src/bzlib.c	Sat Sep 25 12:24:13 2010
+@@ -8,8 +8,8 @@
+    This file is part of bzip2/libbzip2, a program and library for
+    lossless, block-sorting data compression.
+ 
+-   bzip2/libbzip2 version 1.0.5 of 10 December 2007
+-   Copyright (C) 1996-2007 Julian Seward <jseward@bzip.org>
++   bzip2/libbzip2 version 1.0.6 of 6 September 2010
++   Copyright (C) 1996-2010 Julian Seward <jseward@bzip.org>
+ 
+    Please read the WARNING, DISCLAIMER and PATENTS sections in the 
+    README file.
+Index: src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/bzip2-src/bzlib.h
+diff -u src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/bzip2-src/bzlib.h:1.1 src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/bzip2-src/bzlib.h:1.2
+--- cpan/Compress-Raw-Bzip2/bzip2-src/bzlib.h:1.1	Fri Sep 24 14:49:06 2010
++++ cpan/Compress-Raw-Bzip2/bzip2-src/bzlib.h	Sat Sep 25 12:24:13 2010
+@@ -8,8 +8,8 @@
+    This file is part of bzip2/libbzip2, a program and library for
+    lossless, block-sorting data compression.
+ 
+-   bzip2/libbzip2 version 1.0.5 of 10 December 2007
+-   Copyright (C) 1996-2007 Julian Seward <jseward@bzip.org>
++   bzip2/libbzip2 version 1.0.6 of 6 September 2010
++   Copyright (C) 1996-2010 Julian Seward <jseward@bzip.org>
+ 
+    Please read the WARNING, DISCLAIMER and PATENTS sections in the 
+    README file.
+Index: src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/bzip2-src/bzlib_private.h
+diff -u src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/bzip2-src/bzlib_private.h:1.1 src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/bzip2-src/bzlib_private.h:1.2
+--- cpan/Compress-Raw-Bzip2/bzip2-src/bzlib_private.h:1.1	Fri Sep 24 14:49:06 2010
++++ cpan/Compress-Raw-Bzip2/bzip2-src/bzlib_private.h	Sat Sep 25 12:24:13 2010
+@@ -8,8 +8,8 @@
+    This file is part of bzip2/libbzip2, a program and library for
+    lossless, block-sorting data compression.
+ 
+-   bzip2/libbzip2 version 1.0.5 of 10 December 2007
+-   Copyright (C) 1996-2007 Julian Seward <jseward@bzip.org>
++   bzip2/libbzip2 version 1.0.6 of 6 September 2010
++   Copyright (C) 1996-2010 Julian Seward <jseward@bzip.org>
+ 
+    Please read the WARNING, DISCLAIMER and PATENTS sections in the 
+    README file.
+@@ -36,7 +36,7 @@
+ 
+ /*-- General stuff. --*/
+ 
+-#define BZ_VERSION  "1.0.5, 10-Dec-2007"
++#define BZ_VERSION  "1.0.6, 6-Sept-2010"
+ 
+ typedef char            Char;
+ typedef unsigned char   Bool;
+Index: src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/bzip2-src/compress.c
+diff -u src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/bzip2-src/compress.c:1.1 src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/bzip2-src/compress.c:1.2
+--- cpan/Compress-Raw-Bzip2/bzip2-src/compress.c:1.1	Fri Sep 24 14:49:06 2010
++++ cpan/Compress-Raw-Bzip2/bzip2-src/compress.c	Sat Sep 25 12:24:13 2010
+@@ -8,8 +8,8 @@
+    This file is part of bzip2/libbzip2, a program and library for
+    lossless, block-sorting data compression.
+ 
+-   bzip2/libbzip2 version 1.0.5 of 10 December 2007
+-   Copyright (C) 1996-2007 Julian Seward <jseward@bzip.org>
++   bzip2/libbzip2 version 1.0.6 of 6 September 2010
++   Copyright (C) 1996-2010 Julian Seward <jseward@bzip.org>
+ 
+    Please read the WARNING, DISCLAIMER and PATENTS sections in the 
+    README file.
+Index: src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/bzip2-src/crctable.c
+diff -u src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/bzip2-src/crctable.c:1.1 src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/bzip2-src/crctable.c:1.2
+--- cpan/Compress-Raw-Bzip2/bzip2-src/crctable.c:1.1	Fri Sep 24 14:49:06 2010
++++ cpan/Compress-Raw-Bzip2/bzip2-src/crctable.c	Sat Sep 25 12:24:13 2010
+@@ -8,8 +8,8 @@
+    This file is part of bzip2/libbzip2, a program and library for
+    lossless, block-sorting data compression.
+ 
+-   bzip2/libbzip2 version 1.0.5 of 10 December 2007
+-   Copyright (C) 1996-2007 Julian Seward <jseward@bzip.org>
++   bzip2/libbzip2 version 1.0.6 of 6 September 2010
++   Copyright (C) 1996-2010 Julian Seward <jseward@bzip.org>
+ 
+    Please read the WARNING, DISCLAIMER and PATENTS sections in the 
+    README file.
+Index: src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/bzip2-src/huffman.c
+diff -u src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/bzip2-src/huffman.c:1.1 src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/bzip2-src/huffman.c:1.2
+--- cpan/Compress-Raw-Bzip2/bzip2-src/huffman.c:1.1	Fri Sep 24 14:49:06 2010
++++ cpan/Compress-Raw-Bzip2/bzip2-src/huffman.c	Sat Sep 25 12:24:13 2010
+@@ -8,8 +8,8 @@
+    This file is part of bzip2/libbzip2, a program and library for
+    lossless, block-sorting data compression.
+ 
+-   bzip2/libbzip2 version 1.0.5 of 10 December 2007
+-   Copyright (C) 1996-2007 Julian Seward <jseward@bzip.org>
++   bzip2/libbzip2 version 1.0.6 of 6 September 2010
++   Copyright (C) 1996-2010 Julian Seward <jseward@bzip.org>
+ 
+    Please read the WARNING, DISCLAIMER and PATENTS sections in the 
+    README file.
+Index: src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/bzip2-src/randtable.c
+diff -u src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/bzip2-src/randtable.c:1.1 src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/bzip2-src/randtable.c:1.2
+--- cpan/Compress-Raw-Bzip2/bzip2-src/randtable.c:1.1	Fri Sep 24 14:49:06 2010
++++ cpan/Compress-Raw-Bzip2/bzip2-src/randtable.c	Sat Sep 25 12:24:13 2010
+@@ -8,8 +8,8 @@
+    This file is part of bzip2/libbzip2, a program and library for
+    lossless, block-sorting data compression.
+ 
+-   bzip2/libbzip2 version 1.0.5 of 10 December 2007
+-   Copyright (C) 1996-2007 Julian Seward <jseward@bzip.org>
++   bzip2/libbzip2 version 1.0.6 of 6 September 2010
++   Copyright (C) 1996-2010 Julian Seward <jseward@bzip.org>
+ 
+    Please read the WARNING, DISCLAIMER and PATENTS sections in the 
+    README file.
+Index: src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/lib/Compress/Raw/Bzip2.pm
+diff -u src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/lib/Compress/Raw/Bzip2.pm:1.1 src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/lib/Compress/Raw/Bzip2.pm:1.2
+--- cpan/Compress-Raw-Bzip2/lib/Compress/Raw/Bzip2.pm:1.1	Fri Sep 24 14:49:06 2010
++++ cpan/Compress-Raw-Bzip2/lib/Compress/Raw/Bzip2.pm	Sat Sep 25 12:24:13 2010
+@@ -12,7 +12,7 @@
+ use bytes ;
+ our ($VERSION, $XS_VERSION, @ISA, @EXPORT, $AUTOLOAD);
+ 
+-$VERSION = '2.024';
++$VERSION = '2.031';
+ $XS_VERSION = $VERSION; 
+ $VERSION = eval $VERSION;
+ 
+@@ -220,7 +220,7 @@
+ 
+ =head1 Uncompression
+ 
+-=head2 ($z, $status) = new Compress::Raw::Bunzip2 $appendOutput, $consumeInput, $small, $limitOutput;
++=head2 ($z, $status) = new Compress::Raw::Bunzip2 $appendOutput, $consumeInput, $small, $verbosity, $limitOutput;
+ 
+ If successful, it will return the initialised uncompression object, C<$z>
+ and a C<$status> of C<BZ_OK> in a list context. In scalar context it
+@@ -272,6 +272,12 @@
+ enabled.
+ 
+ This option defaults to false.
++
++=item B<$verbosity>
++
++This parameter is ignored.
++
++Defaults to 0.
+ 
+ =back
+ 
+Index: src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/t/000prereq.t
+diff -u src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/t/000prereq.t:1.1 src/gnu/usr.bin/perl/cpan/Compress-Raw-Bzip2/t/000prereq.t:1.2
+--- cpan/Compress-Raw-Bzip2/t/000prereq.t:1.1	Fri Sep 24 14:49:06 2010
++++ cpan/Compress-Raw-Bzip2/t/000prereq.t	Sat Sep 25 12:24:13 2010
+@@ -19,7 +19,7 @@
+         if eval { require Test::NoWarnings ;  import Test::NoWarnings; 1 };
+ 
+ 
+-    my $VERSION = '2.024';
++    my $VERSION = '2.031';
+     my @NAMES = qw(
+ 			
+ 			);

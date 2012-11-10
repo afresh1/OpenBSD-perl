@@ -1,0 +1,14 @@
+diff -Nru perl-5.16.0.orig/cpan/Test-Harness/lib/TAP/Formatter/Console/ParallelSession.pm perl-5.16.0/cpan/Test-Harness/lib/TAP/Formatter/Console/ParallelSession.pm
+--- perl-5.16.0.orig/cpan/Test-Harness/lib/TAP/Formatter/Console/ParallelSession.pm	Tue Feb 14 21:44:41 2012
++++ cpan/Test-Harness/lib/TAP/Formatter/Console/ParallelSession.pm	Mon May 28 16:32:45 2012
+@@ -55,10 +55,6 @@
+ 
+ =head1 SYNOPSIS
+ 
+-=cut
+-
+-=head1 METHODS
+-
+ =head2 Class Methods
+ 
+ =head3 C<header>

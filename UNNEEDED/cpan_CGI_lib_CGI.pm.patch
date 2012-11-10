@@ -1,0 +1,425 @@
+diff -x CVS -Nru ../perl-5.12.2/cpan/CGI/lib/CGI.pm ./cpan/CGI/lib/CGI.pm
+--- ../perl-5.12.2/cpan/CGI/lib/CGI.pm	Sun Sep  5 08:14:32 2010
++++ ./cpan/CGI/lib/CGI.pm	Thu Jan  6 14:23:16 2011
+@@ -1,5 +1,5 @@
+ package CGI;
+-require 5.004;
++require 5.006;
+ use Carp 'croak';
+ 
+ # See the bottom of this file for the POD documentation.  Search for the
+@@ -16,10 +16,11 @@
+ # listing the modifications you have made.
+ 
+ # The most recent version and complete docs are available at:
+-#   http://stein.cshl.org/WWW/software/CGI/
++#   http://search.cpan.org/dist/CGI.pm
+ 
++# The revision is no longer being updated since moving to git. 
+ $CGI::revision = '$Id: CGI.pm,v 1.266 2009/07/30 16:32:34 lstein Exp $';
+-$CGI::VERSION='3.49';
++$CGI::VERSION='3.51';
+ 
+ # HARD-CODED LOCATION FOR FILE UPLOAD TEMPORARY FILES.
+ # UNCOMMENT THIS ONLY IF YOU KNOW WHAT YOU'RE DOING.
+@@ -1457,7 +1458,14 @@
+ sub multipart_init {
+     my($self,@p) = self_or_default(@_);
+     my($boundary,@other) = rearrange_header([BOUNDARY],@p);
+-    $boundary = $boundary || '------- =_aaaaaaaaaa0';
++    if (!$boundary) {
++        $boundary = '------- =_';
++        my @chrs = ('0'..'9', 'A'..'Z', 'a'..'z');
++        for (1..17) {
++            $boundary .= $chrs[rand(scalar @chrs)];
++        }
++    }
++
+     $self->{'separator'} = "$CRLF--$boundary$CRLF";
+     $self->{'final_separator'} = "$CRLF--$boundary--$CRLF";
+     $type = SERVER_PUSH($boundary);
+@@ -1545,23 +1553,26 @@
+     # CR escaping for values, per RFC 822
+     for my $header ($type,$status,$cookie,$target,$expires,$nph,$charset,$attachment,$p3p,@other) {
+         if (defined $header) {
+-            $header =~ s/
+-                (?<=\n)    # For any character proceeded by a newline
+-                (?=\S)     # ... that is not whitespace
+-            / /xg;         # ... inject a leading space in the new line
+-        }
+-    }
++            # From RFC 822:
++            # Unfolding  is  accomplished  by regarding   CRLF   immediately
++            # followed  by  a  LWSP-char  as equivalent to the LWSP-char.
++            $header =~ s/$CRLF(\s)/$1/g;
+ 
++            # All other uses of newlines are invalid input. 
++            if ($header =~ m/$CRLF|\015|\012/) {
++                # shorten very long values in the diagnostic
++                $header = substr($header,0,72).'...' if (length $header > 72);
++                die "Invalid header value contains a newline not followed by whitespace: $header";
++            }
++        } 
++   }
++
+     $nph     ||= $NPH;
+ 
+     $type ||= 'text/html' unless defined($type);
+ 
+-    if (defined $charset) {
+-      $self->charset($charset);
+-    } else {
+-      $charset = $self->charset if $type =~ /^text\//;
+-    }
+-   $charset ||= '';
++    # sets if $charset is given, gets if not
++    $charset = $self->charset( $charset );
+ 
+     # rearrange() was designed for the HTML portion, so we
+     # need to fix it up a little.
+@@ -1615,7 +1626,6 @@
+ }
+ END_OF_FUNC
+ 
+-
+ #### Method: cache
+ # Control whether header() will produce the no-cache
+ # Pragma directive.
+@@ -1847,20 +1857,20 @@
+ 
+     my (@scripts) = ref($script) eq 'ARRAY' ? @$script : ($script);
+     for $script (@scripts) {
+-	my($src,$code,$language);
+-	if (ref($script)) { # script is a hash
+-	    ($src,$code,$type) =
+-		rearrange(['SRC','CODE',['LANGUAGE','TYPE']],
+-				 '-foo'=>'bar',	# a trick to allow the '-' to be omitted
+-				 ref($script) eq 'ARRAY' ? @$script : %$script);
++    my($src,$code,$language,$charset);
++    if (ref($script)) { # script is a hash
++        ($src,$code,$type,$charset) =
++        rearrange(['SRC','CODE',['LANGUAGE','TYPE'],'CHARSET'],
++                 '-foo'=>'bar', # a trick to allow the '-' to be omitted
++                 ref($script) eq 'ARRAY' ? @$script : %$script);
+             $type ||= 'text/javascript';
+             unless ($type =~ m!\w+/\w+!) {
+                 $type =~ s/[\d.]+$//;
+                 $type = "text/$type";
+             }
+-	} else {
+-	    ($src,$code,$type) = ('',$script, 'text/javascript');
+-	}
++    } else {
++        ($src,$code,$type,$charset) = ('',$script, 'text/javascript', '');
++    }
+ 
+     my $comment = '//';  # javascript by default
+     $comment = '#' if $type=~/perl|tcl/i;
+@@ -1878,6 +1888,7 @@
+      my(@satts);
+      push(@satts,'src'=>$src) if $src;
+      push(@satts,'type'=>$type);
++     push(@satts,'charset'=>$charset) if ($src && $charset);
+      $code = $cdata_start . $code . $cdata_end if defined $code;
+      push(@result,$self->script({@satts},$code || ''));
+     }
+@@ -2947,6 +2958,8 @@
+ sub param_fetch {
+     my($self,@p) = self_or_default(@_);
+     my($name) = rearrange([NAME],@p);
++    return [] unless defined $name;
++
+     unless (exists($self->{param}{$name})) {
+ 	$self->add_parameter($name);
+ 	$self->{param}{$name} = [];
+@@ -3622,7 +3635,7 @@
+ 	    last if defined($filehandle = Fh->new($filename,$tmp,$PRIVATE_TEMPFILES));
+             $seqno += int rand(100);
+           }
+-          die "CGI open of tmpfile: $!\n" unless defined $filehandle;
++          die "CGI.pm open of tmpfile $tmp/$filename failed: $!\n" unless defined $filehandle;
+ 	  $CGI::DefaultClass->binmode($filehandle) if $CGI::needs_binmode 
+                      && defined fileno($filehandle);
+ 
+@@ -4257,7 +4270,10 @@
+ sub new {
+     my($package,$sequence) = @_;
+     my $filename;
+-    find_tempdir() unless -w $TMPDIRECTORY;
++    unless (-w $TMPDIRECTORY) {
++        $TMPDIRECTORY = undef;
++        find_tempdir();
++    }
+     for (my $i = 0; $i < $MAXTRIES; $i++) {
+ 	last if ! -f ($filename = sprintf("\%s${SL}CGItemp%d", $TMPDIRECTORY, $sequence++));
+     }
+@@ -4707,9 +4723,10 @@
+    unshift @{$q->param_fetch(-name=>'address')},'George Munster';
+ 
+ If you need access to the parameter list in a way that isn't covered
+-by the methods above, you can obtain a direct reference to it by
+-calling the B<param_fetch()> method with the name of the .  This
+-will return an array reference to the named parameters, which you then
++by the methods given in the previous sections, you can obtain a direct 
++reference to it by
++calling the B<param_fetch()> method with the name of the parameter.  This
++will return an array reference to the named parameter, which you then
+ can manipulate in any way you like.
+ 
+ You can also use a named argument style using the B<-name> argument.
+@@ -5114,8 +5131,7 @@
+ 
+ The temporary directory is selected using the following algorithm:
+ 
+-    1. if the current user (e.g. "nobody") has a directory named
+-    "tmp" in its home directory, use that (Unix systems only).
++    1. if $CGITempFile::TMPDIRECTORY is already set, use that
+ 
+     2. if the environment variable TMPDIR exists, use the location
+     indicated.
+@@ -5343,8 +5359,7 @@
+ 			    -style=>{'src'=>'/styles/style1.css'},
+ 			    -BGCOLOR=>'blue');
+ 
+-After creating the HTTP header, most CGI scripts will start writing
+-out an HTML document.  The start_html() routine creates the top of the
++The start_html() routine creates the top of the
+ page, along with a lot of optional information that controls the
+ page's appearance and behavior.
+ 
+@@ -5398,6 +5413,18 @@
+ The B<-encoding> argument can be used to specify the character set for
+ XHTML.  It defaults to iso-8859-1 if not specified.
+ 
++The B<-dtd> argument can be used to specify a public DTD identifier string. For example:
++
++    -dtd => '-//W3C//DTD HTML 4.01 Transitional//EN')
++
++Alternatively, it can take public and system DTD identifiers as an array:
++
++    dtd => [ '-//W3C//DTD HTML 4.01 Transitional//EN', 'http://www.w3.org/TR/html4/loose.dtd' ]
++
++For the public DTD identifier to be considered, it must be valid. Otherwise it
++will be replaced by the default DTD. If the public DTD contains 'XHTML', CGI.pm
++will emit XML.
++
+ The B<-declare_xml> argument, when used in conjunction with XHTML,
+ will put a <?xml> declaration at the top of the HTML header. The sole
+ purpose of this declaration is to declare the character set
+@@ -5406,11 +5433,11 @@
+ most validators.  The default for -declare_xml is false.
+ 
+ You can place other arbitrary HTML elements to the <head> section with the
+-B<-head> tag.  For example, to place the rarely-used <link> element in the
++B<-head> tag.  For example, to place a <link> element in the
+ head section, use this:
+ 
+-    print start_html(-head=>Link({-rel=>'next',
+-		                  -href=>'http://www.capricorn.com/s2.html'}));
++    print start_html(-head=>Link({-rel=>'shortcut icon',
++		                  -href=>'favicon.ico'}));
+ 
+ To incorporate multiple HTML elements into the <head> section, just pass an
+ array reference:
+@@ -5472,12 +5499,10 @@
+ browsers that do not have JavaScript (or browsers where JavaScript is turned
+ off).
+ 
+-The <script> tag, has several attributes including "type" and src.
+-The latter is particularly interesting, as it allows you to keep the
+-JavaScript code in a file or CGI script rather than cluttering up each
+-page with the source.  To use these attributes pass a HASH reference
+-in the B<-script> parameter containing one or more of -type, -src, or
+--code:
++The <script> tag, has several attributes including "type", "charset" and "src".
++"src" allows you to keep JavaScript code in an external file. To use these
++attributes pass a HASH reference in the B<-script> parameter containing one or
++more of -type, -src, or -code:
+ 
+     print $q->start_html(-title=>'The Riddle of the Sphinx',
+ 			 -script=>{-type=>'JAVASCRIPT',
+@@ -5513,7 +5538,7 @@
+                              );
+ 
+ The option "-language" is a synonym for -type, and is supported for
+-backwad compatibility.
++backwards compatibility.
+ 
+ The old-style positional parameters are as follows:
+ 
+@@ -5658,15 +5683,9 @@
+ 
+ =head1 CREATING STANDARD HTML ELEMENTS:
+ 
+-CGI.pm defines general HTML shortcut methods for most, if not all of
+-the HTML 3 and HTML 4 tags.  HTML shortcuts are named after a single
+-HTML element and return a fragment of HTML text that you can then
+-print or manipulate as you like.  Each shortcut returns a fragment of
+-HTML code that you can append to a string, save to a file, or, most
+-commonly, print out so that it displays in the browser window.
++CGI.pm defines general HTML shortcut methods for many HTML tags.  HTML shortcuts are named after a single
++HTML element and return a fragment of HTML text. Example:
+ 
+-This example shows how to use the HTML methods:
+-
+    print $q->blockquote(
+ 		     "Many years ago on the island of",
+ 		     $q->a({href=>"http://crete.org/"},"Crete"),
+@@ -5921,7 +5940,7 @@
+    $query->autoEscape(0);
+ 
+ Note that autoEscape() is exclusively used to effect the behavior of how some
+-CGI.pm HTML generation fuctions handle escaping. Calling escapeHTML()
++CGI.pm HTML generation functions handle escaping. Calling escapeHTML()
+ explicitly will always escape the HTML.
+ 
+ I<A Lurking Trap!> Some of the form-element generating methods return
+@@ -5971,7 +5990,7 @@
+     method: POST
+     action: this script
+     enctype: application/x-www-form-urlencoded for non-XHTML
+-             multipart/form-data for XHTML, see mulitpart/form-data below.
++             multipart/form-data for XHTML, see multipart/form-data below.
+ 
+ end_form() returns the closing </form> tag.  
+ 
+@@ -6214,7 +6233,7 @@
+ 
+ =head3 Basics
+ 
+-When the form is processed, you can retrieve an L<IO::Handle> compatibile
++When the form is processed, you can retrieve an L<IO::Handle> compatible
+ handle for a file upload field like this:
+ 
+   $lightweight_fh  = $q->upload('field_name');
+@@ -6302,7 +6321,7 @@
+ CGI.pm gives you low-level access to file upload management through
+ a file upload hook. You can use this feature to completely turn off
+ the temp file storage of file uploads, or potentially write your own
+-file upload progess meter.
++file upload progress meter.
+ 
+ This is much like the UPLOAD_HOOK facility available in L<Apache::Request>, with
+ the exception that the first argument to the callback is an L<Apache::Upload>
+@@ -6355,7 +6374,7 @@
+ To solve this problem the upload() method was added, which always returns a
+ lightweight filehandle. This generally works well, but will have trouble
+ interoperating with some other modules because the file handle is not derived
+-from L<IO::Handle>. So that brings us to current recommedation given above,
++from L<IO::Handle>. So that brings us to current recommendation given above,
+ which is to call the handle() method on the file handle returned by upload().
+ That upgrades the handle to an IO::Handle. It's a big win for compatibility for
+ a small penalty of loading IO::Handle the first time you call it.
+@@ -7594,7 +7613,7 @@
+ 127.0.0.1 if the address is unavailable.
+ 
+ =item B<script_name()>
+-Return the script name as a partial URL, for self-refering
++Return the script name as a partial URL, for self-referring
+ scripts.
+ 
+ =item B<referer()>
+@@ -7711,7 +7730,7 @@
+ 
+ =item In the B<use> statement 
+ 
+-Simply add the "-nph" pragmato the list of symbols to be imported into
++Simply add the "-nph" pragma to the list of symbols to be imported into
+ your script:
+ 
+       use CGI qw(:standard -nph)
+@@ -7897,11 +7916,13 @@
+ compatibility routine "ReadParse" is provided.  Porting is simple:
+ 
+ OLD VERSION
++
+     require "cgi-lib.pl";
+     &ReadParse;
+     print "The value of the antique is $in{antique}.\n";
+ 
+ NEW VERSION
++
+     use CGI;
+     CGI::ReadParse();
+     print "The value of the antique is $in{antique}.\n";
+@@ -7909,19 +7930,68 @@
+ CGI.pm's ReadParse() routine creates a tied variable named %in,
+ which can be accessed to obtain the query variables.  Like
+ ReadParse, you can also provide your own variable.  Infrequently
+-used features of ReadParse, such as the creation of @in and $in 
++used features of ReadParse, such as the creation of @in and $in
+ variables, are not supported.
+ 
+ Once you use ReadParse, you can retrieve the query object itself
+ this way:
+ 
+     $q = $in{CGI};
+-    print textfield(-name=>'wow',
+-			-value=>'does this really work?');
++    print $q->textfield(-name=>'wow',
++            -value=>'does this really work?');
+ 
+ This allows you to start using the more interesting features
+ of CGI.pm without rewriting your old scripts from scratch.
+ 
++An even simpler way to mix cgi-lib calls with CGI.pm calls is to import both the
++C<:cgi-lib> and C<:standard> method:
++
++ use CGI qw(:cgi-lib :standard);
++ &ReadParse;
++ print "The price of your purchase is $in{price}.\n";
++ print textfield(-name=>'price', -default=>'$1.99');
++
++=head2 Cgi-lib functions that are available in CGI.pm
++
++In compatability mode, the following cgi-lib.pl functions are
++available for your use:
++
++ ReadParse()
++ PrintHeader()
++ HtmlTop()
++ HtmlBot()
++ SplitParam()
++ MethGet()
++ MethPost()
++
++=head2 Cgi-lib functions that are not available in CGI.pm
++
++  * Extended form of ReadParse()
++    The extended form of ReadParse() that provides for file upload
++    spooling, is not available.
++
++  * MyBaseURL()
++    This function is not available.  Use CGI.pm's url() method instead.
++
++  * MyFullURL()
++    This function is not available.  Use CGI.pm's self_url() method
++    instead.
++
++  * CgiError(), CgiDie()
++    These functions are not supported.  Look at CGI::Carp for the way I
++    prefer to handle error messages.
++
++  * PrintVariables()
++    This function is not available.  To achieve the same effect,
++       just print out the CGI object:
++
++       use CGI qw(:standard);
++       $q = CGI->new;
++       print h1("The Variables Are"),$q;
++
++  * PrintEnv()
++    This function is not available. You'll have to roll your own if you really need it.
++
+ =head1 AUTHOR INFORMATION
+ 
+ The CGI.pm distribution is copyright 1995-2007, Lincoln D. Stein.  It is
+@@ -7932,7 +8002,7 @@
+ Perl, the name and version of your Web server, and the name and
+ version of the operating system you are using.  If the problem is even
+ remotely browser dependent, please provide information about the
+-affected browers as well.
++affected browsers as well.
+ 
+ =head1 CREDITS
+ 

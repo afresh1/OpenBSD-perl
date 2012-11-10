@@ -1,0 +1,41 @@
+diff -Nru perl-5.16.0.orig/utils/perlbug.PL perl-5.16.0/utils/perlbug.PL
+--- perl-5.16.0.orig/utils/perlbug.PL	Thu May 10 11:38:09 2012
++++ utils/perlbug.PL	Mon May 28 16:32:55 2012
+@@ -344,15 +344,14 @@
+ This program provides an easy way to send a thank-you message back to the
+ authors and maintainers of perl.
+ 
+-If you wish to submit a bug report, please run it without the -T flag
+-(or run the program perlbug rather than perlthanks)
++If you wish to submit a bug report, please run it without the -T flag.
+ EOF
+ 	} else {
+ 	    paraprint <<"EOF";
+ This program provides an easy way to create a message reporting a
+ bug in the core perl distribution (along with tests or patches)
+ to the volunteers who maintain perl at $address.  To send a thank-you
+-note to $thanksaddress instead of a bug report, please run 'perlthanks'.
++note to $thanksaddress instead of a bug report, please use the -T flag.
+ 
+ Please do not use $0 to send test messages, test whether perl
+ works, or to report bugs in perl modules from CPAN.
+@@ -1170,8 +1169,6 @@
+ B<perlbug> S<[ B<-v> ]> S<[ B<-r> I<returnaddress> ]>
+  S<[ B<-A> ]> S<[ B<-ok> | B<-okay> | B<-nok> | B<-nokay> ]>
+ 
+-B<perlthanks>
+-
+ =head1 DESCRIPTION
+ 
+ 
+@@ -1324,8 +1321,8 @@
+ 
+ =item Can you use C<perlbug> to submit a thank-you note?
+ 
+-Yes, you can do this by either using the C<-T> option, or by invoking
+-the program as C<perlthanks>. Thank-you notes are good. It makes people
++Yes, you can do this by either using the C<-T> option.
++Thank-you notes are good. It makes people
+ smile. 
+ 
+ =back

@@ -1,0 +1,12 @@
+diff -x CVS -Nru ../perl-5.12.2/cpan/Term-UI/lib/Term/UI/History.pm ./cpan/Term-UI/lib/Term/UI/History.pm
+--- ../perl-5.12.2/cpan/Term-UI/lib/Term/UI/History.pm	Sun Sep  5 08:14:32 2010
++++ ./cpan/Term-UI/lib/Term/UI/History.pm	Fri Sep 24 08:06:54 2010
+@@ -8,7 +8,7 @@
+ 
+ =head1 NAME
+ 
+-Term::UI::History
++Term::UI::History - history functionality for Term::UI
+ 
+ =head1 SYNOPSIS
+ 

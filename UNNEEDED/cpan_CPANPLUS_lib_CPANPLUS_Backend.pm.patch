@@ -1,0 +1,12 @@
+diff -x CVS -Nru ../perl-5.12.2/cpan/CPANPLUS/lib/CPANPLUS/Backend.pm ./cpan/CPANPLUS/lib/CPANPLUS/Backend.pm
+--- ../perl-5.12.2/cpan/CPANPLUS/lib/CPANPLUS/Backend.pm	Sun Sep  5 08:14:32 2010
++++ ./cpan/CPANPLUS/lib/CPANPLUS/Backend.pm	Fri Sep 24 08:06:44 2010
+@@ -36,7 +36,7 @@
+ 
+ =head1 NAME
+ 
+-CPANPLUS::Backend
++CPANPLUS::Backend - programmer's interface to the CPANPLUS module
+ 
+ =head1 SYNOPSIS
+ 

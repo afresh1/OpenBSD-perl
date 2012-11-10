@@ -1,0 +1,13 @@
+diff -Nru perl-5.16.0.orig/lib/perl5db.pl perl-5.16.0/lib/perl5db.pl
+--- perl-5.16.0.orig/lib/perl5db.pl	Thu May 10 11:38:09 2012
++++ lib/perl5db.pl	Mon May 28 16:32:50 2012
+@@ -2774,7 +2774,7 @@
+ =head4 C<$rc> - Recall command
+ 
+ Manages the commands in C<@hist> (which is created if C<Term::ReadLine> reports
+-that the terminal supports history). It find the the command required, puts it
++that the terminal supports history). It find the command required, puts it
+ into C<$cmd>, and redoes the loop to execute it.
+ 
+ =cut
+Binary files perl-5.16.0.orig/perl.c and perl-5.16.0/perl.c differ

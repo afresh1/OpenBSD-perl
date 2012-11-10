@@ -1,0 +1,12 @@
+diff -x CVS -Nru ../perl-5.12.2/dist/Pod-Perldoc/lib/Pod/Perldoc.pm ./dist/Pod-Perldoc/lib/Pod/Perldoc.pm
+--- ../perl-5.12.2/dist/Pod-Perldoc/lib/Pod/Perldoc.pm	Sun Sep  5 08:14:33 2010
++++ ./dist/Pod-Perldoc/lib/Pod/Perldoc.pm	Fri Sep 24 08:06:56 2010
+@@ -655,7 +655,7 @@
+ 
+     $self->options_sanity;
+ 
+-    $self->opt_n("nroff") unless $self->opt_n;
++    $self->opt_n("mandoc") unless $self->opt_n;
+     $self->add_formatter_option( '__nroffer' => $self->opt_n );
+ 
+     # Get language from PERLDOC_POD2 environment variable

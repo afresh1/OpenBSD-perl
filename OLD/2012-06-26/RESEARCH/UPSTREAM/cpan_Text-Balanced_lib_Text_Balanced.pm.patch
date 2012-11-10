@@ -1,0 +1,12 @@
+diff -Nrux *.orig ../perl-5.16.0.orig/cpan/Text-Balanced/lib/Text/Balanced.pm ./cpan/Text-Balanced/lib/Text/Balanced.pm
+--- ../perl-5.16.0.orig/cpan/Text-Balanced/lib/Text/Balanced.pm	Tue Feb 14 21:44:42 2012
++++ ./cpan/Text-Balanced/lib/Text/Balanced.pm	Sun Jun  3 20:42:46 2012
+@@ -1508,7 +1508,7 @@
+ If the string is "PARA", C<extract_tagged> returns only the first paragraph
+ after the tag (up to the first line that is either empty or contains
+ only whitespace characters).
+-If the string is "", the the default behaviour (i.e. failure) is reinstated.
++If the string is "", the default behaviour (i.e. failure) is reinstated.
+ 
+ For example, suppose the start tag "/para" introduces a paragraph, which then
+ continues until the next "/endpara" tag or until another "/para" tag is

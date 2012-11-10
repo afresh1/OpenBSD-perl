@@ -1,0 +1,12 @@
+diff -Nru perl-5.16.0.orig/ext/NDBM_File/Makefile.PL perl-5.16.0/ext/NDBM_File/Makefile.PL
+--- perl-5.16.0.orig/ext/NDBM_File/Makefile.PL	Sun May 20 06:00:56 2012
++++ ext/NDBM_File/Makefile.PL	Mon May 28 16:32:45 2012
+@@ -1,7 +1,7 @@
+ use ExtUtils::MakeMaker;
+ WriteMakefile(
+     NAME	=> 'NDBM_File',
+-    LIBS => ["-L/usr/local/lib -lndbm", "-ldbm -lucb"],
++    #LIBS => ["-L/usr/local/lib -lndbm", "-ldbm -lucb"],
+     XSPROTOARG => '-noprototypes', 		# XXX remove later?
+     VERSION_FROM => 'NDBM_File.pm',
+     INC => ($^O eq "MacOS" ? "-i ::::db:include" : "")

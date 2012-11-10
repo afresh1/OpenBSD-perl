@@ -1,0 +1,14 @@
+1..18
+ok 1 - Loaded
+ok 2 - Stack size set in import
+ok 3 - Set returns previous value
+ok 4 - Get stack size
+ok 5 - Get stack size in thread
+ok 6 - Thread gets own stack size
+ok 7 - Thread changes stack size
+ok 8 - Get stack size in thread
+ok 9 - Thread stack size unchanged
+ok 10 - Default thread sized changed in thread
+ok 11 - Get stack size in thread
+ok 12 - Thread gets own stack size
+Segmentation fault (core dumped) 

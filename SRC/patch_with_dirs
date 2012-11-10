@@ -1,0 +1,8 @@
+#!/bin/sh
+
+for p in *.patch; do
+	dir=`head -1 $p | sed -e 's/.* //' | xargs dirname`
+	echo "[$p] $dir";
+	mkdir -p $dir
+	patch -d $dir < $p
+done
