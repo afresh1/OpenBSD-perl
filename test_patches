@@ -3,7 +3,7 @@
 SRCDIR=`dirname $0 | xargs readlink -f`
 
 NAME=${1:-*.patch}
-PERL_BASE=perl-5.16.1
+PERL_BASE=perl-5.16.2
 
 if [ ! -e ${SRCDIR}/${PERL_BASE}.tar.gz ]; then
     echo Please put ${PERL_BASE}.tar.gz in $SRCDIR >&2
@@ -21,9 +21,9 @@ find ${SRCDIR}/patches/RESEARCH -name $NAME | {
         log=/tmp/buildlogs/`basename $patch`.log
 
         echo Extracting perl
-	if [ -e ${PERL_BASE} ]; then
+        if [ -e ${PERL_BASE} ]; then
             mv -f ${PERL_BASE} old; rm -rf old &
-	fi
+        fi
         tar xzf "${SRCDIR}/${PERL_BASE}.tar.gz"
         cd ${PERL_BASE}
 

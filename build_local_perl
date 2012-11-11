@@ -2,7 +2,7 @@
 
 SRCDIR=`dirname $0 | xargs readlink -f`
 
-PERL_BASE=perl-5.16.1
+PERL_BASE=perl-5.16.2
 
 if [ ! -e ${SRCDIR}/${PERL_BASE}.tar.gz ]; then
     echo Please put ${PERL_BASE}.tar.gz in $SRCDIR >&2
