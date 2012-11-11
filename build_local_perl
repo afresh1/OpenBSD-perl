@@ -40,10 +40,14 @@ sh ./Configure -de 2>&1 | tee -a $log
 make 2>&1 | tee -a $log
 make test 2>&1 | tee -a $log
 
+date >> $log
+
 # Did we win?
 status=`tail -2 $log | head -1`
 if [ "$status" == "All tests successful." ]; then
 	echo "I'm winning, I'm winning!"
+elif [ -z "$NO_LOCAL_PATCHES" ]; then
+    # re-run without patches
+    NO_LOCAL_PATCHES=1 $0
 fi
-date >> $log
 echo "Please send $log\n  to andrew@afresh1.com"
