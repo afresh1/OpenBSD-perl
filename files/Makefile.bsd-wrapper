@@ -10,8 +10,6 @@
 NOPROFILE=
 
 TARGET_MACHINE_ARCH?=	$(MACHINE_ARCH)
-# To build a threaded perl, uncomment this.  Not stable on all platforms...
-#THREADED_PERL=true
 
 # Perl builds with -fno-strict-aliasing, we want libperl to do the same
 CFLAGS+= -fno-strict-aliasing
@@ -20,11 +18,6 @@ CFLAGS+= -fno-delete-null-pointer-checks
 .endif
 
 CONFIGURE_ARGS= -dsE -Dopenbsd_distribution=defined -Dccflags='-DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE'
-.if defined(THREADED_PERL) && ($(THREADED_PERL) == true)
-CONFIGURE_ARGS+= -Dusethreads
-CFLAGS+= -pthread
-LDFLAGS+= -pthread
-.endif
 .if !exists(${.OBJDIR}/config.over)
 CONFIGURE_ARGS+= -Dmksymlinks
 .endif
