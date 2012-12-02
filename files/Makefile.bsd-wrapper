@@ -52,7 +52,7 @@ STRIPFLAGS='-s'
 .endif
 
 GEN_AFTER= 	bitcount.h config.h uudmap.h cflags makedepend \
-		myconfig writemain Makefile Policy.sh pod/Makefile \
+		myconfig Makefile Policy.sh pod/Makefile \
 		x2p/Makefile x2p/cflags
 
 GENERATED=	config.sh ${GEN_AFTER}
@@ -66,7 +66,7 @@ all:	perl.build man.build
 man.build: perl.build
 	cd ${.CURDIR} && exec ${MAKE} -f Makefile.bsd-wrapper1 mansrc.build
 
-beforedepend: config.sh config.h bitcount.h uudmap.h Makefile makedepend x2p/Makefile writemain 
+beforedepend: config.sh config.h bitcount.h uudmap.h Makefile makedepend x2p/Makefile
 	cd ${.OBJDIR} && exec ${MAKE} depend
 
 perl.build:	perl.lib
@@ -76,7 +76,7 @@ config.sh:	${.CURDIR}/config.over
 	cd ${.OBJDIR} && PATH="/bin:/usr/bin:/sbin:/usr/sbin" \
 	    exec /bin/sh ${.CURDIR}/Configure ${CONFIGURE_ARGS}
 
-Makefile cflags makedepend makedir myconfig writemain:
+Makefile cflags makedepend makedir myconfig:
 	cd ${.OBJDIR} && exec /bin/sh $@.SH
 
 Policy.sh:
