@@ -37,6 +37,8 @@ installsitelib="/usr/local/libdata/perl5/site_perl"
 sitelib="${installsitelib}:/usr/libdata/perl5/site_perl"
 sitelibexp="${sitelib}"
 
+installstyle="${privlib}"
+
 # We install the man pages ourselves until installman gets smarter
 man1dir='/usr/share/man/man1'
 man1direxp='/usr/share/man/man1'
