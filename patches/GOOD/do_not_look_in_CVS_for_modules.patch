@@ -1,0 +1,10 @@
+--- ./Configure.orig	Thu Oct 25 19:44:14 2012
++++ ./Configure	Mon Dec  3 06:58:37 2012
+@@ -22233,6 +22233,7 @@
+ find_extensions='
+     for xxx in *; do
+ 	case "$xxx" in
++	    CVS) ;;
+ 	    DynaLoader|dynaload) ;;
+ 	    *)
+ 	    this_ext=`echo $xxx | $sed -e s/-/\\\//g`;
