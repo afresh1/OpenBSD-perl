@@ -1,0 +1,13 @@
+--- ./MANIFEST.orig	Thu Oct 25 20:07:24 2012
++++ ./MANIFEST	Sun Dec  2 18:57:22 2012
+@@ -1851,6 +1851,10 @@
+ cpan/Object-Accessor/t/04_Object-Accessor-lvalue.t	Object::Accessor tests
+ cpan/Object-Accessor/t/05_Object-Accessor-callback.t	Object::Accessor tests
+ cpan/Object-Accessor/t/06_Object-Accessor-alias.t	Object::Accessor tests
++cpan/OpenBSD-MkTemp/lib/OpenBSD/MkTemp.pm	OpenBSD::MkTemp
++cpan/OpenBSD-MkTemp/MkTemp.xs	OpenBSD::MkTemp
++cpan/OpenBSD-MkTemp/README	OpenBSD::MkTemp Readme
++cpan/OpenBSD-MkTemp/t/OpenBSD-MkTemp.t	OpenBSD::MkTemp test file
+ cpan/Package-Constants/lib/Package/Constants.pm	Package::Constants
+ cpan/Package-Constants/t/01_list.t		Package::Constants tests
+ cpan/Params-Check/lib/Params/Check.pm	Params::Check
