@@ -8,7 +8,7 @@ TARGET_MACHINE_ARCH?=	$(MACHINE_ARCH)
 POD2MAN=	/usr/bin/pod2man
 .else
 POD2MAN=	LD_LIBRARY_PATH=${.OBJDIR} ${.OBJDIR}/perl -I ${.OBJDIR}/lib \
-		${.OBJDIR}/pod/pod2man
+		${.OBJDIR}/cpan/podlators/pod2man
 .endif
 
 MANLOCALBUILD=	yes
