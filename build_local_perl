@@ -49,6 +49,7 @@ status=`tail -2 $log | head -1`
 date >> $log
 if [ "$status" == "All tests successful." ]; then
 	echo "I'm winning, I'm winning!"
+	echo "To install system perl:\n  cd ${PERL_BASE} && sudo make -f Makefile.bsd-wrapper install"
 elif [ -z "$NO_LOCAL_PATCHES" ]; then
     # re-run without patches
     cd ..
