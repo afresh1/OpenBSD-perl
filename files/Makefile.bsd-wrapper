@@ -33,16 +33,6 @@ SRCS1=	gv.c toke.c perly.c pad.c regcomp.c dump.c util.c mg.c reentr.c \
 	pp_pack.c pp_sort.c
 SRCS=	${SRCS1} op.c perl.c
 
-# We must not try to mkdep DynaLoader.c as it requires miniperl
-OBJS+=	DynaLoader.o
-
-# For generating DynaLoader.c
-.if defined(NOPIC)
-DYNALOADER=ext/DynaLoader/dl_none.xs
-.else
-DYNALOADER=ext/DynaLoader/dl_dlopen.xs
-.endif
-
 # Arguments passed to Configure...
 
 CPPFLAGS+= -DPERL_CORE -DPERL_RANDOM_DEVICE=\"/dev/arandom\" -I.
@@ -59,7 +49,7 @@ GENERATED=	config.sh ${GEN_AFTER}
 
 ${GEN_AFTER}: config.sh
 
-CLEANFILES=	config.sh Policy.sh DynaLoader.c
+CLEANFILES=	config.sh Policy.sh
 
 all:	perl.build man.build
 
@@ -150,30 +140,6 @@ maninstall:
 .if ($(TARGET_MACHINE_ARCH) == sparc)
 PICFLAG=-fPIC
 .endif
-
-# The DynaLoader extension is now compiled statically into libperl
-miniperl: ${GENERATED} ${SRCS1:S/.c/.o/g} opmini.o miniperl.o miniperlmain.o
-	${CC} -o miniperl ${SRCS1:S/.c/.o/g} opmini.o miniperl.o miniperlmain.o ${LDFLAGS} -lm
-
-opmini.c: op.c
-	rm -f opmini.c
-	cp op.c opmini.c
-
-opmini.o: opmini.c
-	${CC} ${CPPFLAGS} ${CFLAGS} -DPERL_EXTERNAL_GLOB -c  $> -o $@
-
-miniperl.o: perl.c
-	${CC} ${CPPFLAGS} ${CFLAGS} -DPERL_EXTERNAL_GLOB -DPERL_IS_MINIPERL -c  $> -o $@
-
-lib/Config.pm: miniperl config.sh
-	cd ${.OBJDIR} && exec ${MAKE} preplibrary
-
-DynaLoader.c: miniperl ${DYNALOADER} lib/Config.pm
-	./miniperl -Ilib -Icpan/Cwd -Icpan/Cwd/lib -Icpan/ExtUtils-ParseXS/lib \
-	    -Icpan/Getopt-Long/lib -Idist/constant/lib \
-	    cpan/ExtUtils-ParseXS/lib/ExtUtils/xsubpp -noprototypes -typemap \
-	    ../../lib/ExtUtils/typemap ${DYNALOADER} | \
-	    sed -f ${.CURDIR}/DynaLoader.sed > $@
 
 perl.lib:	${GENERATED} ${_LIBS}
 
