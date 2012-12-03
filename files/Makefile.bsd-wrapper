@@ -1,6 +1,6 @@
 # $OpenBSD: Makefile.bsd-wrapper,v 1.85 2011/06/23 22:46:12 schwarze Exp $
 #
-# Build wrapper for Perl 5.10.0
+# Build wrapper for Perl 5.16.2
 #
 
 # For ``NOMAN'' and ``COMPILER_VERSION''
