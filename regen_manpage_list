@@ -1,0 +1,129 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+use File::Find;
+
+use 5.010;
+
+use Data::Dumper;
+
+my ($bsdwrapper) = grep { -e } 'Makefile.bsd-wrapper1',
+    '../Makefile.bsd-wrapper1';
+
+die "Couldn't find Makefile.bsd-wrapper1" unless $bsdwrapper;
+
+open my $fh, '<', $bsdwrapper or die "Couldn't open $bsdwrapper: $!";
+
+# Find the right section
+while (<$fh>) { last if /for page sect file in/ }
+
+my %old_pod;
+while (<$fh>) {
+    my ($page, $section, $file, $slash) = split;
+    $old_pod{ $page } = {
+        file    => $file,
+        section => $section,
+    };
+    last unless $slash;
+}
+close $fh;
+
+
+my %new_pod;
+find( sub {
+    if ($_ eq 'Porting') {
+        $File::Find::prune = 1;
+        return;
+    }
+
+    return unless -f $_;
+
+    return if /\.t(?:xt)$/; # skip txt files and tests
+    return if $File::Find::name =~ m{/t/}; # or files in test dirs
+
+    open my $fh, '<', $_ or die "Couldn't open $File::Find::name";
+    my $found_pod = 0;
+    my $page = '';
+    while (<$fh>) {
+        if (/^=head1\s+NAME/) {
+            $found_pod = 1;
+            next;
+        }
+
+        next unless $found_pod;
+        last if /^=\w+/;
+        
+        if (/^(\S+)/) {
+            $page = $1;
+            last;
+        }
+    }
+
+    $page =~ s/^\w\<//; # strip possible B<
+    $page =~ s/[^\w:]//g;
+    
+    return unless $found_pod;
+    return unless $page;
+
+    my $file = $File::Find::name;
+    $file =~ s{^\./}{};
+    $file =~ s{^.*/(lib|pod)/}{$1/};
+
+    my $section = $file =~ /\.pm$/ ? '3p' : '1';
+    $new_pod{$page} = {
+        file    => $file,
+        section => $section,
+    };
+}, '.');
+
+my $changed = 0;
+my @file_list;
+foreach my $page (sort { 
+    $new_pod{$a}{section} cmp $new_pod{$b}{section}
+        || $a cmp $b } keys %new_pod) {
+    unless ($old_pod{$page}) {
+        say "New page: $page [$new_pod{$page}{file}]";
+        $changed++;
+    }
+    push @file_list, sprintf "%-20s %-2s %s",
+        $page, @{ $new_pod{$page} }{qw( section file )};
+}
+
+foreach my $page (sort { 
+    $old_pod{$a}{section} cmp $old_pod{$b}{section}
+        || $a cmp $b } keys %old_pod) {
+    unless ($new_pod{$page}) {
+        say "Lost page: $page [$old_pod{$page}{file}]";
+        $changed++;
+    }
+}
+
+unless ($changed) {
+    say "No changes";
+    exit;
+}
+
+open my $ofh, '>', $bsdwrapper . '.new' or die $!;
+open my $ifh, '<', $bsdwrapper          or die $!;
+while (<$ifh>) {
+    if (/for page sect file in/) {
+        print $ofh $_;
+
+        foreach my $i ( 0 .. $#file_list ) {
+            if ($i == $#file_list) {
+                say $ofh $file_list[$i];
+            }
+            else {
+                printf $ofh "    %-70s \\\n", $file_list[$i];
+            }
+        }
+
+        while (<$ifh>) { last unless m{\\$} }
+        next;
+    }
+    print $ofh $_;
+}
+close $ifh;
+close $ofh;
+
+say "Print created $bsdwrapper.new";
