@@ -16,3 +16,21 @@
  	-@for x in $(DYNALOADER) $(dynamic_ext) $(static_ext) $(nonxs_ext) ; do \
  	$(MINIPERL) make_ext.pl --target=clean $$x MAKE=$(MAKE) ; \
  	done
+--- MANIFEST.orig	Mon Dec  3 19:30:22 2012
++++ MANIFEST	Mon Dec  3 19:35:01 2012
+@@ -10,6 +10,7 @@
+ Changes			Describe how to peruse changes between releases
+ charclass_invlists.h	Compiled-in inversion lists
+ config_h.SH		Produces config.h
++config.over		Site-specific overrides for Configure defaults
+ configpm		Produces lib/Config.pm
+ Configure		Portability tool
+ configure.com		Configure-equivalent for VMS
+@@ -4042,6 +4043,7 @@
+ form.h				Public declarations for formats
+ generate_uudmap.c		Generate uudmap.h, the uuencode decoding map
+ genpacksizetables.pl		Generate the size tables for pack/unpack
++git_version.h			Pre-generated git_version.h for OpenBSD
+ globals.c			File to declare global symbols (for shared library)
+ globvar.sym			Global variables that need hiding when embedded
+ gv.c				Glob value code
