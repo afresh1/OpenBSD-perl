@@ -1,0 +1,3875 @@
+OpenBSD vax.home.hewus.com 5.2 GENERIC#79 vax
+/home/andrew/OpenBSD-perl-master/patches/GOOD/BUT_WHY/no_docs_for_slash_n_escapes.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./pod/perlop.pod.orig	Tue Apr 24 19:22:54 2012
+|+++ ./pod/perlop.pod	Wed Jun 27 09:11:56 2012
+--------------------------
+Patching file ./pod/perlop.pod using Plan A...
+Hunk #1 succeeded at 1539.
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/BUT_WHY/utils_h2ph.PL.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./t/lib/h2ph.pht.orig	Tue Feb 14 21:44:51 2012
+|+++ ./t/lib/h2ph.pht	Wed Jun 27 09:38:01 2012
+--------------------------
+Patching file ./t/lib/h2ph.pht using Plan A...
+Hunk #1 succeeded at 90.
+Hmm...  The next patch looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./utils/h2ph.PL.orig	Tue Apr 24 17:18:36 2012
+|+++ ./utils/h2ph.PL	Wed Jun 27 09:38:01 2012
+--------------------------
+Patching file ./utils/h2ph.PL using Plan A...
+Hunk #1 succeeded at 571.
+Hunk #2 succeeded at 579.
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/UPSTREAM/better_fix_for_IO-Compress_as_extension.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./installperl.orig	Tue Apr 24 17:18:34 2012
+|+++ ./installperl	Wed Jun 27 13:44:30 2012
+--------------------------
+Patching file ./installperl using Plan A...
+Hunk #1 succeeded at 150.
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/UPSTREAM/better_handling_of_symlinks.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./Configure.orig	Tue Apr 24 17:18:30 2012
+|+++ ./Configure	Wed Jun 27 15:02:32 2012
+--------------------------
+Patching file ./Configure using Plan A...
+Hunk #1 succeeded at 2738.
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/UPSTREAM/better_install_in_installperl.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./installperl.orig	Tue Apr 24 17:18:34 2012
+|+++ ./installperl	Wed Jun 27 14:10:28 2012
+--------------------------
+Patching file ./installperl using Plan A...
+Hunk #1 succeeded at 278.
+Hunk #2 succeeded at 315.
+Hunk #3 succeeded at 675.
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/UPSTREAM/check_for_no-delete-null-pointer-checks_support.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./Configure.orig	Tue Apr 24 17:18:30 2012
+|+++ ./Configure	Wed Jun 27 16:46:57 2012
+--------------------------
+Patching file ./Configure using Plan A...
+Hunk #1 succeeded at 5087 (offset -7 lines).
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/UPSTREAM/correct_versions_in_hints.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./hints/openbsd.sh.orig	Tue Feb 14 21:44:48 2012
+|+++ ./hints/openbsd.sh	Wed Jun 27 12:52:24 2012
+--------------------------
+Patching file ./hints/openbsd.sh using Plan A...
+Hunk #1 succeeded at 44.
+Hunk #2 succeeded at 93.
+Hunk #3 succeeded at 122.
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/UPSTREAM/cpan_Digest-MD5_Changes.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./cpan/Digest-MD5/Changes.orig	Tue Feb 14 21:44:38 2012
+|+++ ./cpan/Digest-MD5/Changes	Wed Jun 27 15:28:38 2012
+--------------------------
+Patching file ./cpan/Digest-MD5/Changes using Plan A...
+Hunk #1 succeeded at 412.
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/UPSTREAM/cpan_NEXT_lib_NEXT.pm.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./cpan/NEXT/lib/NEXT.pm.orig	Tue Feb 14 21:44:41 2012
+|+++ ./cpan/NEXT/lib/NEXT.pm	Wed Jun 27 10:42:32 2012
+--------------------------
+Patching file ./cpan/NEXT/lib/NEXT.pm using Plan A...
+Hunk #1 succeeded at 190.
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/UPSTREAM/cpan_Pod-Parser_lib_Pod_PlainText.pm.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./cpan/Pod-Parser/lib/Pod/PlainText.pm.orig	Tue Apr 24 17:18:31 2012
+|+++ ./cpan/Pod-Parser/lib/Pod/PlainText.pm	Wed Jun 27 15:54:45 2012
+--------------------------
+Patching file ./cpan/Pod-Parser/lib/Pod/PlainText.pm using Plan A...
+Hunk #1 succeeded at 592.
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/UPSTREAM/cpan_Text-Balanced_lib_Text_Balanced.pm.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./cpan/Text-Balanced/lib/Text/Balanced.pm.orig	Tue Feb 14 21:44:42 2012
+|+++ ./cpan/Text-Balanced/lib/Text/Balanced.pm	Wed Jun 27 16:20:45 2012
+--------------------------
+Patching file ./cpan/Text-Balanced/lib/Text/Balanced.pm using Plan A...
+Hunk #1 succeeded at 1508.
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/UPSTREAM/cpan_podlators_lib_Pod_Man.pm.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./cpan/podlators/lib/Pod/Man.pm.orig	Tue Feb 14 21:44:44 2012
+|+++ ./cpan/podlators/lib/Pod/Man.pm	Wed Jun 27 11:08:27 2012
+--------------------------
+Patching file ./cpan/podlators/lib/Pod/Man.pm using Plan A...
+Hunk #1 succeeded at 832.
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/UPSTREAM/deb.c.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./deb.c.orig	Tue Feb 14 21:44:44 2012
+|+++ ./deb.c	Wed Jun 27 14:36:35 2012
+--------------------------
+Patching file ./deb.c using Plan A...
+Hunk #1 succeeded at 234.
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/UPSTREAM/ignore_other_scm.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./cpan/Compress-Raw-Bzip2/private/MakeUtil.pm.orig	Tue Feb 14 21:44:37 2012
+|+++ ./cpan/Compress-Raw-Bzip2/private/MakeUtil.pm	Wed Jun 27 13:18:23 2012
+--------------------------
+Patching file ./cpan/Compress-Raw-Bzip2/private/MakeUtil.pm using Plan A...
+Hunk #1 succeeded at 35.
+Hmm...  The next patch looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./cpan/Compress-Raw-Zlib/private/MakeUtil.pm.orig	Tue Feb 14 21:44:37 2012
+|+++ ./cpan/Compress-Raw-Zlib/private/MakeUtil.pm	Wed Jun 27 13:18:23 2012
+--------------------------
+Patching file ./cpan/Compress-Raw-Zlib/private/MakeUtil.pm using Plan A...
+Hunk #1 succeeded at 35.
+Hmm...  The next patch looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./cpan/IO-Compress/private/MakeUtil.pm.orig	Tue Feb 14 21:44:40 2012
+|+++ ./cpan/IO-Compress/private/MakeUtil.pm	Wed Jun 27 13:18:23 2012
+--------------------------
+Patching file ./cpan/IO-Compress/private/MakeUtil.pm using Plan A...
+Hunk #1 succeeded at 35.
+Hmm...  The next patch looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./Configure.orig	Tue Apr 24 17:18:30 2012
+|+++ ./Configure	Wed Jun 27 13:18:23 2012
+--------------------------
+Patching file ./Configure using Plan A...
+Hunk #1 succeeded at 22499 (offset 12 lines).
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/UPSTREAM/lib_Getopt_Std.pm.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./lib/Getopt/Std.pm.orig	Tue Apr 24 17:18:34 2012
+|+++ ./lib/Getopt/Std.pm	Wed Jun 27 11:34:23 2012
+--------------------------
+Patching file ./lib/Getopt/Std.pm using Plan A...
+Hunk #1 succeeded at 4.
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/UPSTREAM/lib_perl5db.pl.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./lib/perl5db.pl.orig	Thu May 10 11:38:09 2012
+|+++ ./lib/perl5db.pl	Wed Jun 27 12:00:28 2012
+--------------------------
+Patching file ./lib/perl5db.pl using Plan A...
+Hunk #1 succeeded at 2774.
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/UPSTREAM/no_ext_B_hints_openbsd_pl.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ext/B/hints/openbsd.pl.orig	Tue Feb 14 21:44:47 2012
+|+++ ext/B/hints/openbsd.pl	Tue/dev/null	Sat Aug 18 10:51:30 2012
+--------------------------
+Patching file ext/B/hints/openbsd.pl using Plan A...
+Hunk #1 succeeded at 0.
+Removing ext/B/hints/openbsd.pl (empty after patching).
+Hmm...  The next patch looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- MANIFEST.orig	Sat Aug 18 10:54:06 2012
+|+++ MANIFEST	Sat Aug 18 10:54:30 2012
+--------------------------
+Patching file MANIFEST using Plan A...
+Hunk #1 succeeded at 3626 (offset 1 line).
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/UPSTREAM/use_mallocwrap.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./hints/openbsd.sh.orig	Tue Feb 14 21:44:48 2012
+|+++ ./hints/openbsd.sh	Wed Jun 27 18:04:21 2012
+--------------------------
+Patching file ./hints/openbsd.sh using Plan A...
+Hunk #1 succeeded at 15.
+Hunk #2 succeeded at 78.
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/UPSTREAM/use_my_snprintf_in_x2p_str.c.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./x2p/str.c.orig	Tue Feb 14 21:44:53 2012
+|+++ ./x2p/str.c	Wed Jun 27 12:26:33 2012
+--------------------------
+Patching file ./x2p/str.c using Plan A...
+Hunk #1 succeeded at 29.
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/adjust_installed_corefiles.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./installperl.orig	Tue Apr 24 17:18:34 2012
+|+++ ./installperl	Wed Jun 27 08:40:20 2012
+--------------------------
+Patching file ./installperl using Plan A...
+Hunk #1 succeeded at 387 (offset 2 lines).
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/alias_646_as_ascii_for_Encode_Alias.pm.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./cpan/Encode/lib/Encode/Alias.pm.orig	Tue Apr 24 17:18:31 2012
+|+++ ./cpan/Encode/lib/Encode/Alias.pm	Wed Jun 27 19:23:56 2012
+--------------------------
+Patching file ./cpan/Encode/lib/Encode/Alias.pm using Plan A...
+Hunk #1 succeeded at 152.
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/do_not_look_in_CVS_for_modules.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./Configure.orig	Thu Oct 25 19:44:14 2012
+|+++ ./Configure	Mon Dec  3 06:58:37 2012
+--------------------------
+Patching file ./Configure using Plan A...
+Hunk #1 succeeded at 22245 (offset 12 lines).
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/dont_overwrite_or_cleanup_our_static_files.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./Makefile.SH.orig	Wed Jun 27 21:46:14 2012
+|+++ ./Makefile.SH	Wed Jun 27 21:46:14 2012
+--------------------------
+Patching file ./Makefile.SH using Plan A...
+Hunk #1 succeeded at 1263 (offset -1 lines).
+Hmm...  The next patch looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- MANIFEST.orig	Mon Dec  3 19:30:22 2012
+|+++ MANIFEST	Mon Dec  3 19:35:01 2012
+--------------------------
+Patching file MANIFEST using Plan A...
+Hunk #1 succeeded at 10.
+Hunk #2 succeeded at 4042 (offset -1 lines).
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/dont_support_DBM_not_in_base_system.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./ext/NDBM_File/Makefile.PL.orig	Sun May 20 06:00:56 2012
+|+++ ./ext/NDBM_File/Makefile.PL	Wed Jun 27 17:12:44 2012
+--------------------------
+Patching file ./ext/NDBM_File/Makefile.PL using Plan A...
+Hunk #1 succeeded at 1.
+Hmm...  The next patch looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./lib/AnyDBM_File.pm.orig	Tue Apr 24 17:18:34 2012
+|+++ ./lib/AnyDBM_File.pm	Wed Jun 27 17:12:44 2012
+--------------------------
+Patching file ./lib/AnyDBM_File.pm using Plan A...
+Hunk #1 succeeded at 22.
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/include_local_Libpath.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./lib/Config.t.orig	Tue Feb 14 21:44:48 2012
+|+++ ./lib/Config.t	Wed Jun 27 19:49:47 2012
+--------------------------
+Patching file ./lib/Config.t using Plan A...
+Hunk #1 succeeded at 271.
+Hmm...  The next patch looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./configpm.orig	Tue Apr 24 17:18:30 2012
+|+++ ./configpm	Wed Jun 27 19:49:47 2012
+--------------------------
+Patching file ./configpm using Plan A...
+Hunk #1 succeeded at 91.
+Hunk #2 succeeded at 338.
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/increase_timeouts_for_tests.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- t/op/threads.t.orig	Mon Aug 27 21:45:27 2012
+|+++ t/op/threads.t	Mon Aug 27 21:53:08 2012
+--------------------------
+Patching file t/op/threads.t using Plan A...
+Hunk #1 succeeded at 135.
+Hmm...  The next patch looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- dist/threads-shared/t/stress.t.orig	Mon Aug 27 21:43:56 2012
+|+++ dist/threads-shared/t/stress.t	Mon Aug 27 21:44:37 2012
+--------------------------
+Patching file dist/threads-shared/t/stress.t using Plan A...
+Hunk #1 succeeded at 42.
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/no_install_man1dir.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./installperl.orig	Tue Apr 24 17:18:34 2012
+|+++ ./installperl	Wed Jun 27 10:03:56 2012
+--------------------------
+Patching file ./installperl using Plan A...
+Hunk #1 succeeded at 196.
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/no_rantests_test.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./installperl.orig	Tue Apr 24 17:18:34 2012
+|+++ ./installperl	Wed Jun 27 07:39:43 2012
+--------------------------
+Patching file ./installperl using Plan A...
+Hunk #1 succeeded at 250.
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/no_tar_-o.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./pod/perlmodinstall.pod.orig	Tue Apr 24 17:18:35 2012
+|+++ ./pod/perlmodinstall.pod	Wed Jun 27 17:38:34 2012
+--------------------------
+Patching file ./pod/perlmodinstall.pod using Plan A...
+Hunk #1 succeeded at 79.
+Hmm...  The next patch looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./Porting/pumpkin.pod.orig	Tue Apr 24 17:18:30 2012
+|+++ ./Porting/pumpkin.pod	Wed Jun 27 17:38:34 2012
+--------------------------
+Patching file ./Porting/pumpkin.pod using Plan A...
+Hunk #1 succeeded at 540.
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/put_OpenBSD-MkTemp_in_MANIFEST.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./MANIFEST.orig	Thu Oct 25 20:07:24 2012
+|+++ ./MANIFEST	Sun Dec  2 18:57:22 2012
+--------------------------
+Patching file ./MANIFEST using Plan A...
+Hunk #1 succeeded at 1852 (offset 1 line).
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/remove_Bar.pm~_because_theo_doesnt_like_it.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./cpan/Module-Pluggable/t/lib/EditorJunk/Plugin/Bar.pm~.orig	Tue Feb 14 21:44:41 2012
+|+++ ./cpan/Module-Pluggable/t/lib/EditorJunk/Plugin/Bar.pm~	Wed Jun 27 06:48:04 2012
+--------------------------
+Patching file ./cpan/Module-Pluggable/t/lib/EditorJunk/Plugin/Bar.pm~ using Plan A...
+Hunk #1 succeeded at 0.
+Removing ./cpan/Module-Pluggable/t/lib/EditorJunk/Plugin/Bar.pm~ (empty after patching).
+Hmm...  The next patch looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- MANIFEST.orig	Fri Aug  3 10:35:26 2012
+|+++ MANIFEST	Sat Aug 18 10:57:55 2012
+--------------------------
+Patching file MANIFEST using Plan A...
+Hunk #1 succeeded at 1817 (offset 1 line).
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/use_our_MD5.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- cpan/Digest-MD5/MD5.xs.orig	Fri Aug  3 10:35:26 2012
+|+++ cpan/Digest-MD5/MD5.xs	Sat Aug 18 08:30:43 2012
+--------------------------
+Patching file cpan/Digest-MD5/MD5.xs using Plan A...
+Hunk #1 succeeded at 39.
+Hunk #2 succeeded at 78.
+Hunk #3 succeeded at 257.
+Hmm...  The next patch looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- cpan/Digest-MD5/t/files.t.orig	Sat Aug 18 08:52:27 2012
+|+++ cpan/Digest-MD5/t/files.t	Sat Aug 18 08:52:37 2012
+--------------------------
+Patching file cpan/Digest-MD5/t/files.t using Plan A...
+Hunk #1 succeeded at 21.
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/use_our_shlib_version.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./hints/openbsd.sh.orig	Tue Feb 14 21:44:48 2012
+|+++ ./hints/openbsd.sh	Wed Jun 27 18:30:10 2012
+--------------------------
+Patching file ./hints/openbsd.sh using Plan A...
+Hunk #1 succeeded at 209 (offset 3 lines).
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/use_threads.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- hints/openbsd.sh.orig	Thu Oct 11 11:20:45 2012
+|+++ hints/openbsd.sh	Mon Dec  3 19:48:12 2012
+--------------------------
+Patching file hints/openbsd.sh using Plan A...
+Hunk #1 succeeded at 8.
+done
+/home/andrew/OpenBSD-perl-master/patches/GOOD/we_dont_want_these_files.patch
+Hmm...  Looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./t/porting/dual-life.t.orig	Tue Apr 24 17:18:36 2012
+|+++ ./t/porting/dual-life.t	Wed Jun 27 08:10:39 2012
+--------------------------
+Patching file ./t/porting/dual-life.t using Plan A...
+Hunk #1 succeeded at 21.
+Hmm...  The next patch looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./utils/Makefile.SH.orig	Tue Apr 24 17:18:36 2012
+|+++ ./utils/Makefile.SH	Wed Jun 27 08:10:39 2012
+--------------------------
+Patching file ./utils/Makefile.SH using Plan A...
+Hunk #1 succeeded at 48.
+Hunk #2 succeeded at 80.
+Hmm...  The next patch looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./utils/perlbug.PL.orig	Thu May 10 11:38:09 2012
+|+++ ./utils/perlbug.PL	Wed Jun 27 08:10:39 2012
+--------------------------
+Patching file ./utils/perlbug.PL using Plan A...
+Hunk #1 succeeded at 344.
+Hunk #2 succeeded at 1169.
+Hunk #3 succeeded at 1321.
+Hmm...  The next patch looks like a unified diff to me...
+The text leading up to this was:
+--------------------------
+|--- ./utils.lst.orig	Tue Apr 24 17:18:36 2012
+|+++ ./utils.lst	Wed Jun 27 08:10:39 2012
+--------------------------
+Patching file ./utils.lst using Plan A...
+Hunk #1 succeeded at 14.
+done
+making /home/andrew/perl-5.16.2/obj
+cd /home/andrew/perl-5.16.2/obj && PATH="/bin:/usr/bin:/sbin:/usr/sbin"  exec /bin/sh /home/andrew/perl-5.16.2/Configure -dsE -Dopenbsd_distribution=defined -Dmksymlinks
+(I see you are using the Korn shell.  Some ksh's blow up on Configure,
+mainly on older exotic systems.  If yours does, try the Bourne shell instead.)
+Sources for perl5 found in "/home/andrew/perl-5.16.2".
+First let's make sure your kit is complete.  Checking...
+Locating common programs...
+Checking compatibility between /bin/echo and builtin echo (if any)...
+Symbolic links are supported.
+Checking how to test for symbolic links...
+You can test for symbolic links with 'test -h'.
+Creating the symbolic links...
+Good, your tr supports [:lower:] and [:upper:] to convert case.
+Using [:upper:] and [:lower:] to convert case.
+3b1             dragonfly       irix_6_0        opus            super-ux   
+aix             dynix           irix_6_1        os2             svr4   
+aix_3           dynixptx        isc             os390           svr5   
+aix_4           epix            isc_2           os400           ti1500   
+altos486        esix4           linux           posix-bc        titanos   
+amigaos         fps             lynxos          powerux         ultrix_4   
+atheos          freebsd         midnightbsd     qnx             umips   
+aux_3           genix           mips            rhapsody        unicos   
+beos            gnu             mirbsd          riscos          unicosmk   
+bsdos           gnukfreebsd     mpc             sco             unisysdynix   
+catamount       gnuknetbsd      mpeix           sco_2_3_0       utekv   
+convexos        greenhills      ncr_tower       sco_2_3_1       uts   
+cxux            haiku           netbsd          sco_2_3_2       uwin   
+cygwin          hpux            newsos4         sco_2_3_3       vmesa   
+darwin          i386            next_3          sco_2_3_4       vos   
+dcosx           interix         next_3_0        solaris_2   
+dec_osf         irix_4          next_4          stellar   
+dgux            irix_5          nonstopux       sunos_4_0   
+dos_djgpp       irix_6          openbsd         sunos_4_1   
+Which of these apply, if any? [openbsd]  
+Operating system name? [openbsd]  
+Operating system version? [5.2]  
+Installation prefix to use? (~name ok) [/usr]  
+AFS does not seem to be running...
+What installation prefix should I use for installing files? (~name ok)
+[/usr]  
+Getting the current patchlevel...
+Build a threading Perl? [y]  
+Use which C compiler? [cc]  
+Checking for GNU cc in disguise and/or its version number...
+Now, how can we feed standard input to your C preprocessor...
+Directories to use for library searches? [/usr/lib]  
+What is the file extension used for shared libraries? [so]  
+Build Perl for SOCKS? [n]  
+Try to use long doubles if available? [n]  
+Checking for optional libraries...
+What libraries to use? [-lm -lutil -lc]  
+What optimizer/debugger flag should be used? [-O2]  
+Any additional cc flags?
+[-pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include]  
+Let me guess what the preprocessor flags are...
+Any additional ld flags (NOT including libraries)?
+[-pthread  -fstack-protector]  
+Checking your choice of C compiler and flags for coherency...
+Computing filename position in cpp output for #include directives...
+<stdlib.h> found.
+Checking to see how big your integers are...
+Checking to see if you have long long...
+Checking to see how big your long longs are...
+<inttypes.h> found.
+Checking to see if you have int64_t...
+Checking which 64-bit integer type we could use...
+We could use 'long long' for 64-bit integers.
+Try to use 64-bit integers, if available? [n]  
+Try to use maximal 64-bit support, if available? [n]  
+Checking to see how big your double precision numbers are...
+Checking to see if you have long double...
+Checking to see how big your long doubles are...
+What is your architecture name [OpenBSD.vax-openbsd]  
+Threads selected.
+...setting architecture name to OpenBSD.vax-openbsd-thread.
+Multiplicity selected.
+...setting architecture name to OpenBSD.vax-openbsd-thread-multi.
+Pathname where the public executables will reside? (~name ok) [/usr/bin]  
+Use relocatable @INC? [n]  
+Pathname where the private library files will reside? (~name ok)
+[/usr/lib/perl5/5.16.2]  
+Where do you want to put the public architecture-dependent libraries? (~name ok)
+[/usr/lib/perl5/5.16.2/OpenBSD.vax-openbsd-thread-multi]  
+Congratulations, your kernel has secure setuid scripts!
+Installation prefix to use for add-on modules and utilities? (~name ok)
+[/usr/local]  
+Pathname for the site-specific library files? (~name ok)
+[/usr/local/lib/perl5/site_perl/5.16.2]  
+List of earlier versions to include in @INC? [none]  
+<malloc/malloc.h> NOT found.
+<malloc.h> found.
+Checking to see how well your C compiler groks the void type...
+Good.  It appears to support void to the level perl5 wants.
+Checking to see how big your pointers are...
+Do you wish to wrap malloc calls to protect against potential overflows? [y]  
+Do you wish to attempt to use the malloc that comes with perl5? [y]  
+Your system wants malloc to return 'void *', it would seem.
+Your system uses void free(), it would seem.
+Pathname for the site-specific architecture-dependent library files? (~name ok)
+[/usr/local/lib/perl5/site_perl/5.16.2/OpenBSD.vax-openbsd-thread-multi]  
+Do you want to configure vendor-specific add-on directories? [n]  
+Colon-separated list of additional directories for perl to search? [none]  
+Checking out function prototypes...
+Support DTrace if available? [n]  
+Install any extra modules (y or n)? [n]  
+Directory for the main Perl5 html pages? (~name ok) [none]  
+Directory for the Perl5 module html pages? (~name ok) [none]  
+Checking for GNU C Library...
+Shall I use /usr/bin/nm to extract C symbols from the libraries? [y]  
+Where is your C library? [/usr/lib/libc.a]  
+Extracting names from the following files for later perusal:
+	/usr/lib/libc.a
+	/usr/lib/libm.a
+	/usr/lib/libutil.a
+This may take a while..................done.
+<dld.h> NOT found.
+Checking for C++...
+dlopen() NOT found.
+<unistd.h> found.
+Do you wish to use dynamic loading? [n]  
+System manual is in /usr/share/man/man1.
+Where do the main Perl5 manual pages (source) go? (~name ok) [none]  
+You can have filenames longer than 14 characters.
+Where do the perl5 library man pages (source) go? (~name ok) [none]  
+Figuring out host name...
+Your host name appears to be "vax.home.hewus.com". Right? [y]  
+What is your domain name? [.home.hewus.com]  
+What is your e-mail address? [andrew@vax.home.hewus.com]  
+Perl administrator e-mail address [andrew@vax.home.hewus.com]  
+Do you want to install only the version-specific parts of perl? [n]  
+What shall I put after the #! to start up perl ("none" to not use #!)?
+[/usr/bin/perl]  
+Where do you keep publicly executable scripts? (~name ok) [/usr/bin]  
+Pathname where the add-on public executables should be installed? (~name ok)
+[/usr/local/bin]  
+Pathname where the site-specific html pages should be installed? (~name ok)
+[none]  
+Pathname where the site-specific library html pages should be installed? (~name ok)
+[none]  
+Pathname where the site-specific manual pages should be installed? (~name ok)
+[none]  
+Pathname where the site-specific library manual pages should be installed? (~name ok)
+[none]  
+Pathname where add-on public executable scripts should be installed? (~name ok)
+[/usr/local/bin]  
+Use the "fast stdio" if available? [n]  
+off_t found.
+Checking to see how big your file offsets are...
+fpos_t found.
+Checking the size of fpos_t...
+Using <string.h> instead of <strings.h>.
+qgcvt() NOT found.
+Checking how to print long doubles...
+gconvert NOT found.
+gcvt() found.
+I'll use gcvt to convert floats into a string.
+fwalk() found.
+access() found.
+<sys/file.h> defines the *_OK access constants.
+accessx() NOT found.
+aintl() NOT found.
+alarm() found.
+ctime64() NOT found.
+localtime64() NOT found.
+gmtime64() NOT found.
+mktime64() NOT found.
+difftime64() NOT found.
+asctime64() NOT found.
+<pthread.h> found.
+<sys/types.h> found.
+<sys/select.h> found.
+Testing to see if we should include <time.h>, <sys/time.h> or both.
+We'll include <sys/time.h>.
+Checking to see if your struct tm has tm_zone field...
+Checking to see if your struct tm has tm_gmtoff field...
+asctime_r() found.
+atolf() NOT found.
+atoll() found.
+Checking whether your compiler can handle __attribute__((format)) ...
+Checking whether your compiler allows __printf__ format to be null ...
+Checking whether your compiler can handle __attribute__((malloc)) ...
+Checking whether your compiler can handle __attribute__((nonnull(1))) ...
+Checking whether your compiler can handle __attribute__((noreturn)) ...
+Checking whether your compiler can handle __attribute__((pure)) ...
+Checking whether your compiler can handle __attribute__((unused)) ...
+Checking whether your compiler can handle __attribute__((deprecated)) ...
+Checking whether your compiler can handle __attribute__((warn_unused_result)) ...
+bcmp() found.
+bcopy() found.
+getpgrp() found.
+You have to use getpgrp() instead of getpgrp(pid).
+setpgrp() found.
+You have to use setpgrp(pid,pgrp) instead of setpgrp().
+Checking whether your compiler can handle __builtin_choose_expr ...
+Checking whether your compiler can handle __builtin_expect ...
+bzero() found.
+<stdarg.h> found.
+<varargs.h> found.
+We'll include <stdarg.h> to get va_dcl definition.
+You have <stdarg.h> and <stdlib.h>, so checking for C99 variadic macros.
+You have C99 variadic macros.
+You have void (*signal())().
+Checking whether your C compiler can cast large floats to int32.
+/tmp//ccBF33oz.o: warning: sprintf() is often misused, please use snprintf()
+/tmp//ccBF33oz.o: warning: sprintf() is often misused, please use snprintf()
+Checking whether your C compiler can cast negative float to unsigned.
+/tmp//ccdf5DMD.o: warning: sprintf() is often misused, please use snprintf()
+/tmp//ccdf5DMD.o: warning: sprintf() is often misused, please use snprintf()
+vprintf() found.
+/tmp//ccjyrtiX.o: warning: vsprintf() is often misused, please use vsnprintf()
+/tmp//ccjyrtiX.o: warning: vsprintf() is often misused, please use vsnprintf()
+Your vsprintf() returns (char*).
+chown() found.
+chroot() found.
+chsize() NOT found.
+class() NOT found.
+clearenv() NOT found.
+Hmm... Looks like you have Berkeley networking support.
+socketpair() found.
+Checking the availability sa_len in the sock struct ...
+Checking the availability struct sockaddr_in6 ...
+Checking the availability sin6_scope_id in struct sockaddr_in6 ...
+Checking the availability struct ipv6_mreq ...
+Checking the availability of certain socket constants...
+<sys/uio.h> found.
+Checking to see if your system supports struct cmsghdr...
+Checking to see if your C compiler knows about "const"...
+copysignl() found.
+crypt() found.
+<crypt.h> NOT found.
+crypt_r() NOT found.
+ctermid() found.
+ctermid_r() NOT found.
+ctime_r() found.
+cuserid() NOT found.
+<limits.h> found.
+<float.h> found.
+DBL_DIG found.
+dbmclose() found.
+<dbm.h> found.
+difftime() found.
+<dirent.h> found.
+Your directory entries are struct dirent.
+Good, your directory entry keeps length information in d_namlen.
+Checking to see if DIR has a dd_fd member variable
+<sys/dir.h> found.
+<sys/ndir.h> NOT found.
+dirfd() found.
+dlerror() NOT found.
+<dlfcn.h> found.
+drand48_r() NOT found.
+dup2() found.
+eaccess() NOT found.
+endgrent() found.
+<grp.h> found.
+endgrent_r() NOT found.
+endhostent() found.
+<netdb.h> found.
+endhostent_r() NOT found.
+endnetent() found.
+endnetent_r() NOT found.
+endprotoent() found.
+endprotoent_r() found.
+endpwent() found.
+<pwd.h> found.
+endpwent_r() NOT found.
+endservent() found.
+endservent_r() found.
+<sys/file.h> defines the O_* constants...
+and you have the 3 argument form of open().
+<sys/file.h> found.
+We'll be including <sys/file.h>.
+<fcntl.h> found.
+We don't need to include <fcntl.h> if we include <sys/file.h>.
+fork() found.
+pipe() found.
+Figuring out the flag used by open() for non-blocking I/O...
+Let's see what value errno gets from read() on a O_NONBLOCK file...
+/tmp//ccHTigQx.o: warning: sprintf() is often misused, please use snprintf()
+/tmp//ccHTigQx.o: warning: sprintf() is often misused, please use snprintf()
+Checking how std your stdio is...
+Checking to see what happens if we set the stdio ptr...
+Increasing ptr in your stdio leaves cnt unchanged.  Good.
+You seem to have 'fast stdio' to directly manipulate the stdio buffers.
+fchdir() found.
+fchmod() found.
+fchown() found.
+fcntl() found.
+Well, your system knows about the normal fd_set typedef...
+and you have the normal fd_set macros (just as I'd expect).
+fgetpos() found.
+finite() found.
+finitel() NOT found.
+flock() found.
+fp_class() NOT found.
+pathconf() found.
+fpathconf() found.
+fpclass() NOT found.
+fpclassify() found.
+fpclassl() NOT found.
+Checking to see if you have fpos64_t...
+frexpl() found.
+<sys/param.h> found.
+<sys/mount.h> found.
+Checking to see if your system supports struct fs_data...
+fseeko() found.
+fsetpos() found.
+fstatfs() found.
+statvfs() found.
+fstatvfs() found.
+fsync() found.
+ftello() found.
+Checking if you have a working futimes()
+Yes, you have
+<ndbm.h> found.
+<gdbm/ndbm.h> NOT found.
+<gdbm-ndbm.h> NOT found.
+dbm_open() found.
+Checking if your <ndbm.h> uses prototypes...
+getaddrinfo() found.
+getcwd() found.
+getespwnam() NOT found.
+getfsstat() found.
+getgrent() found.
+getgrent_r() NOT found.
+getgrgid_r() found.
+getgrnam_r() found.
+gethostbyaddr() found.
+gethostbyname() found.
+gethostent() found.
+gethostname() found.
+uname() found.
+Shall I ignore gethostname() from now on? [n]  
+gethostbyaddr_r() NOT found.
+gethostbyname_r() NOT found.
+gethostent_r() NOT found.
+getitimer() found.
+getlogin() found.
+getlogin_r() found.
+getmnt() NOT found.
+getmntent() NOT found.
+getnameinfo() found.
+getnetbyaddr() found.
+getnetbyname() found.
+getnetent() found.
+getnetbyaddr_r() NOT found.
+getnetbyname_r() NOT found.
+getnetent_r() NOT found.
+getpagesize() found.
+getprotobyname() found.
+getprotobynumber() found.
+getprotoent() found.
+getpgid() found.
+getpgrp2() NOT found.
+getppid() found.
+getpriority() found.
+getprotobyname_r() found.
+getprotobynumber_r() found.
+getprotoent_r() found.
+getprpwnam() NOT found.
+getpwent() found.
+getpwent_r() NOT found.
+getpwnam_r() found.
+getpwuid_r() found.
+getservbyname() found.
+getservbyport() found.
+getservent() found.
+getservbyname_r() found.
+getservbyport_r() found.
+getservent_r() found.
+getspnam() NOT found.
+<shadow.h> NOT found.
+getspnam_r() NOT found.
+gettimeofday() found.
+gmtime_r() found.
+hasmntopt() NOT found.
+<netinet/in.h> found.
+<arpa/inet.h> found.
+htonl() found.
+ilogbl() NOT found.
+strchr() found.
+inet_aton() found.
+inet_ntop() found.
+inet_pton() found.
+isascii() found.
+isblank() found.
+isfinite() found.
+isinf() found.
+isnan() found.
+isnanl() found.
+killpg() found.
+lchown() found.
+LDBL_DIG found.
+<math.h> found.
+Checking to see if your libm supports _LIB_VERSION...
+No, it does not (probably harmless)
+link() found.
+localtime_r() found.
+localeconv() found.
+lockf() found.
+lstat() found.
+madvise() found.
+malloc_size() NOT found.
+malloc_good_size() NOT found.
+mblen() found.
+mbstowcs() found.
+mbtowc() found.
+memchr() found.
+memcmp() found.
+memcpy() found.
+memmove() found.
+memset() found.
+mkdir() found.
+mkdtemp() found.
+mkfifo() found.
+mkstemp() found.
+mkstemps() found.
+mktime() found.
+<sys/mman.h> found.
+mmap() found.
+and it returns (void *).
+sqrtl() found.
+scalbnl() found.
+modfl() NOT found.
+mprotect() found.
+msgctl() found.
+msgget() found.
+msgsnd() found.
+msgrcv() found.
+You have the full msg*(2) library.
+Checking to see if your system supports struct msghdr...
+msync() found.
+munmap() found.
+nice() found.
+<langinfo.h> found.
+nl_langinfo() found.
+Checking to see if your C compiler knows about "volatile"...
+Choosing the C types to be used for Perl's internal types...
+Checking how many bits of your UVs your NVs can preserve...
+Checking to find the largest integer value your NVs can hold...
+The largest integer your NVs can preserve is equal to 256.0*256.0*256.0*256.0*256.0*256.0*2.0*2.0*2.0*2.0*2.0*2.0*2.0*2.0
+Checking whether NV 0.0 is all bits zero in memory...
+0.0 is represented as all bits zero in memory
+Checking to see if you have off64_t...
+Checking what constant to use for creating joinable pthreads...
+You seem to use PTHREAD_CREATE_JOINABLE.
+pause() found.
+poll() found.
+prctl() NOT found.
+readlink() found.
+vfork() found.
+Do you still want to use vfork()? [y]  
+pthread_atfork found.
+pthread_attr_setscope() NOT found.
+sched_yield() found.
+pthread_yield() found.
+random_r() NOT found.
+readdir() found.
+seekdir() found.
+telldir() found.
+rewinddir() found.
+readdir64_r() NOT found.
+readdir_r() found.
+readv() found.
+recvmsg() found.
+rename() found.
+rmdir() found.
+<memory.h> found.
+Checking if your memcmp() can compare relative magnitude...
+select() found.
+semctl() found.
+semget() found.
+semop() found.
+You have the full sem*(2) library.
+You have union semun in <sys/sem.h>.
+You can use union semun for semctl IPC_STAT.
+You can also use struct semid_ds* for semctl IPC_STAT.
+sendmsg() found.
+setegid() found.
+seteuid() found.
+setgrent() found.
+setgrent_r() NOT found.
+sethostent() found.
+sethostent_r() NOT found.
+setitimer() found.
+setlinebuf() found.
+setlocale() found.
+<locale.h> found.
+setlocale_r() NOT found.
+setnetent() found.
+setnetent_r() NOT found.
+setprotoent() found.
+setpgid() found.
+setpgrp2() NOT found.
+setpriority() found.
+setproctitle() found.
+setprotoent_r() found.
+setpwent() found.
+setpwent_r() NOT found.
+setregid() found.
+setresgid() found.
+setreuid() found.
+setresuid() found.
+setrgid() NOT found.
+setruid() NOT found.
+setservent() found.
+setservent_r() found.
+setsid() found.
+setvbuf() found.
+<sfio.h> NOT found.
+shmctl() found.
+shmget() found.
+shmat() found.
+and it returns (char *).
+shmdt() found.
+You have the full shm*(2) library.
+sigaction() found.
+<sunmath.h> NOT found.
+Checking to see if you have signbit() available to work on double... I won't use it.
+sigprocmask() found.
+POSIX sigsetjmp found.
+snprintf() found.
+vsnprintf() found.
+sockatmark() NOT found.
+socks5_init() NOT found.
+Checking whether sprintf returns the length of the string...
+sprintf returns the length of the string (as ANSI says it should)
+srand48_r() NOT found.
+srandom_r() NOT found.
+<sys/stat.h> found.
+Checking to see if your struct stat has st_blocks field...
+<sys/vfs.h> NOT found.
+<sys/statfs.h> NOT found.
+Checking to see if your system supports struct statfs...
+Checking to see if your struct statfs has f_flags field...
+Your compiler supports static __inline__.
+Checking how to access stdio streams by file descriptor number...
+You can access stdio streams by file descriptor number by the __sF array.
+strcoll() found.
+Checking to see if your C compiler can copy structs...
+strerror() found.
+strerror_r() found.
+strftime() found.
+strlcat() found.
+strlcpy() found.
+strtod() found.
+strtol() found.
+strtold() found.
+strtoll() found.
+strtoq() found.
+strtoul() found.
+strtoull() found.
+strtouq() found.
+strxfrm() found.
+symlink() found.
+syscall() found.
+sysconf() found.
+system() found.
+tcgetpgrp() found.
+tcsetpgrp() found.
+time() found.
+time_t found.
+timegm() found.
+<sys/times.h> found.
+times() found.
+clock_t found.
+tmpnam_r() NOT found.
+truncate() found.
+ttyname_r() found.
+tzname[] found.
+(Testing for character data alignment may crash the test.  That's okay.)
+You can access character data pretty unalignedly.
+ualarm() found.
+umask() found.
+unordered() NOT found.
+unsetenv() found.
+usleep() found.
+ustat() NOT found.
+closedir() found.
+Checking whether closedir() returns a status...
+wait4() found.
+waitpid() found.
+wcstombs() found.
+wctomb() found.
+writev() found.
+Checking alignment constraints...
+Doubles must be aligned on a how-many-byte boundary? [4]  
+Checking how long a character is (in bits)...
+What is the length of a character (in bits)? [8]  
+Checking to see how your cpp does stuff like concatenate tokens...
+Oh!  Smells like ANSI's been here.
+<db.h> found.
+Checking Berkeley DB version ...
+Looks OK.
+Checking return type needed for hash for Berkeley DB ...
+Checking return type needed for prefix for Berkeley DB ...
+Looking for a random number function...
+Good, found drand48().
+Use which function to generate random numbers? [drand48]  
+Determining whether or not we are on an EBCDIC system...
+Nope, no EBCDIC, probably ASCII or some ISO Latin. Or UTF-8.
+Checking how to flush all pending stdio output...
+Your fflush(NULL) works okay for output streams.
+Let's see if it clobbers input pipes...
+fflush(NULL) seems to behave okay with input streams.
+Checking the size of gid_t...
+Checking the sign of gid_t...
+Checking how to print 64-bit integers...
+Checking the format strings to be used for Perl's internal types...
+Checking the format string to be used for gids...
+getgroups() found.
+setgroups() found.
+What type pointer is the second argument to getgroups() and setgroups()?
+[gid_t]  
+Build Perl with MAD? [n]  
+Checking if your /usr/bin/make program sets $(MAKE)...
+mode_t found.
+It seems that you don't need va_copy().
+size_t found.
+What is the type for the 1st argument to gethostbyaddr? [char *]  
+What is the type for the 2nd argument to gethostbyaddr? [size_t]  
+What pager is used on your system? [/usr/bin/less -R]  
+File /usr/bin/less -R doesn't exist.  Use that name anyway? [y]  
+pid_t found.
+Checking how to generate random libraries on your machine...
+<values.h> NOT found.
+Sizeof time_t = 4
+Your select() operates on 32 bits at a time.
+Generating a list of signal names and numbers...
+Checking the size of size_t...
+Checking to see if you have socklen_t...
+<socks.h> NOT found.
+I'll be using ssize_t for functions returning a byte count.
+Checking the size of st_ino...
+Checking the sign of st_ino...
+Your stdio uses signed chars.
+Checking the size of uid_t...
+Checking the sign of uid_t...
+Checking the format string to be used for uids...
+Determining whether we can use sysctl with KERN_PROC_PATHNAME to find executing program...
+In file included from /usr/include/sys/sysctl.h:42,
+                 from try.c:6:
+/usr/include/sys/proc.h:65: `MAXLOGNAME' undeclared here (not in a function)
+/usr/include/sys/proc.h:92: syntax error before `int'
+/usr/include/sys/proc.h:309: syntax error before `sigset_t'
+/usr/include/sys/proc.h:321: `MAXCOMLEN' undeclared here (not in a function)
+/usr/include/sys/proc.h:321: size of array `p_comm' has non-integer type
+/usr/include/sys/proc.h:330: field `p_sigstk' has incomplete type
+/usr/include/sys/proc.h:342: syntax error before `sigset_t'
+/usr/include/sys/proc.h:343: field `p_sigval' has incomplete type
+try.c: In function `main':
+try.c:23: `KERN_PROC_PATHNAME' undeclared (first use in this function)
+try.c:23: (Each undeclared identifier is reported only once
+try.c:23: for each function it appears in.)
+I'm unable to compile the test program.
+I'll assume no sysctl with KERN_PROC_PATHNAME here.
+Determining whether we can use _NSGetExecutablePath to find executing program...
+try.c:4: mach-o/dyld.h: No such file or directory
+I'm unable to compile the test program.
+I'll assume no _NSGetExecutablePath here.
+It appears we'll be able to prototype varargs functions.
+Which compiler compiler (yacc) shall I use? [yacc]  
+<assert.h> found.
+<fp.h> NOT found.
+<fp_class.h> NOT found.
+<gdbm.h> NOT found.
+<ieeefp.h> NOT found.
+<libutil.h> NOT found.
+<mach/cthreads.h> NOT found.
+<mntent.h> NOT found.
+<net/errno.h> NOT found.
+<netinet/tcp.h> found.
+<poll.h> found.
+<prot.h> NOT found.
+Guessing which symbols your C compiler and preprocessor define...
+tcsetattr() found.
+You have POSIX termios.h... good!
+<stdbool.h> found.
+<stddef.h> found.
+<sys/access.h> NOT found.
+<sys/filio.h> found.
+<sys/ioctl.h> found.
+You have socket ioctls defined in <sys/sockio.h>.
+<syslog.h> found.
+<sys/mode.h> NOT found.
+<sys/poll.h> found.
+<sys/resource.h> found.
+<sys/security.h> NOT found.
+<sys/statvfs.h> found.
+<sys/un.h> found.
+<sys/utsname.h> found.
+<sys/wait.h> found.
+<ustat.h> NOT found.
+<utime.h> found.
+<vfork.h> NOT found.
+Looking for extensions...
+What extensions do you wish to include?
+[B Compress/Raw/Bzip2 Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/Glob Filter/Util/Call Hash/Util Hash/Util/FieldHash I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc NDBM_File ODBM_File Opcode OpenBSD/MkTemp POSIX PerlIO/encoding PerlIO/mmap PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Text/Soundex Tie/Hash/NamedCapture Time/HiRes Time/Piece Unicode/Collate Unicode/Normalize arybase attributes mro re threads threads/shared]  
+I see a config.over file.  Do you wish to load it? [y]  
+Stripping down executable paths...
+Creating config.sh...
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/generate_uudmap.c -o generate_uudmap.o
+cc -o generate_uudmap generate_uudmap.o
+./generate_uudmap uudmap.h bitcount.h mg_data.h
+cd /home/andrew/perl-5.16.2/obj && exec /bin/sh config_h.SH
+Extracting config.h (with variable substitutions)
+cd /home/andrew/perl-5.16.2/obj && exec /bin/sh cflags.SH
+Extracting cflags (with variable substitutions)
+cd /home/andrew/perl-5.16.2/obj && exec /bin/sh makedepend.SH
+Extracting makedepend (with variable substitutions)
+cd /home/andrew/perl-5.16.2/obj && exec /bin/sh myconfig.SH
+Extracting myconfig (with variable substitutions)
+cd /home/andrew/perl-5.16.2/obj && exec /bin/sh Makefile.SH
+Extracting Makefile (with variable substitutions)
+cd /home/andrew/perl-5.16.2/obj && exec /bin/sh Policy_sh.SH
+Extracting Policy.sh (with variable substitutions)
+cd /home/andrew/perl-5.16.2/obj/pod && exec /bin/sh Makefile.SH
+Extracting pod/Makefile (with variable substitutions)
+cd /home/andrew/perl-5.16.2/obj/x2p && exec /bin/sh Makefile.SH
+Extracting x2p/Makefile (with variable substitutions)
+cd /home/andrew/perl-5.16.2/obj/x2p && exec /bin/sh cflags.SH
+Extracting x2p/cflags (with variable substitutions)
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/gv.c -o gv.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/toke.c -o toke.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c perly.c -o perly.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/pad.c -o pad.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/regcomp.c -o regcomp.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/dump.c -o dump.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/util.c -o util.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/mg.c -o mg.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/reentr.c -o reentr.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/mro.c -o mro.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/hv.c -o hv.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/av.c -o av.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/run.c -o run.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/pp_hot.c -o pp_hot.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/sv.c -o sv.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/pp.c -o pp.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/scope.c -o scope.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/pp_ctl.c -o pp_ctl.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/pp_sys.c -o pp_sys.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/doop.c -o doop.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/doio.c -o doio.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/regexec.c -o regexec.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/utf8.c -o utf8.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/taint.c -o taint.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/deb.c -o deb.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/universal.c -o universal.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/globals.c -o globals.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/perlio.c -o perlio.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/perlapi.c -o perlapi.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/numeric.c -o numeric.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/mathoms.c -o mathoms.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/locale.c -o locale.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/pp_pack.c -o pp_pack.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/pp_sort.c -o pp_sort.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/op.c -o op.o
+cc -O2 -pipe -g -fno-strict-aliasing   -DPERL_CORE -DPERL_RANDOM_DEVICE="/dev/arandom" -I. -c /home/andrew/perl-5.16.2/perl.c -o perl.o
+building standard perl library
+ranlib libperl.a
+cd /home/andrew/perl-5.16.2/obj && exec make
+make depend MAKEDEPEND=
+sh ./makedepend MAKE=make
+rm -f opmini.c
+cp op.c opmini.c
+rm -f perlmini.c
+cp perl.c perlmini.c
+echo av.c scope.c op.c doop.c doio.c dump.c gv.c hv.c mg.c reentr.c mro.c perl.c perly.c pp.c pp_hot.c pp_ctl.c pp_sys.c regcomp.c regexec.c utf8.c sv.c taint.c toke.c util.c deb.c run.c universal.c pad.c globals.c keywords.c perlio.c perlapi.c numeric.c mathoms.c locale.c pp_pack.c pp_sort.c  malloc.c miniperlmain.c opmini.c perlmini.c | tr ' ' '\n' >.clist
+Finding dependencies for av.o.
+Finding dependencies for scope.o.
+Finding dependencies for op.o.
+Finding dependencies for doop.o.
+Finding dependencies for doio.o.
+Finding dependencies for dump.o.
+Finding dependencies for gv.o.
+Finding dependencies for hv.o.
+Finding dependencies for mg.o.
+Finding dependencies for reentr.o.
+Finding dependencies for mro.o.
+Finding dependencies for perl.o.
+Finding dependencies for perly.o.
+Finding dependencies for pp.o.
+Finding dependencies for pp_hot.o.
+Finding dependencies for pp_ctl.o.
+Finding dependencies for pp_sys.o.
+Finding dependencies for regcomp.o.
+Finding dependencies for regexec.o.
+Finding dependencies for utf8.o.
+Finding dependencies for sv.o.
+Finding dependencies for taint.o.
+Finding dependencies for toke.o.
+Finding dependencies for util.o.
+Finding dependencies for deb.o.
+Finding dependencies for run.o.
+Finding dependencies for universal.o.
+Finding dependencies for pad.o.
+Finding dependencies for globals.o.
+Finding dependencies for keywords.o.
+Finding dependencies for perlio.o.
+Finding dependencies for perlapi.o.
+Finding dependencies for numeric.o.
+Finding dependencies for mathoms.o.
+Finding dependencies for locale.o.
+Finding dependencies for pp_pack.o.
+Finding dependencies for pp_sort.o.
+Finding dependencies for malloc.o.
+Finding dependencies for miniperlmain.o.
+Finding dependencies for opmini.o.
+Finding dependencies for perlmini.o.
+echo Makefile.SH cflags.SH config_h.SH makedepend.SH myconfig.SH pod/Makefile.SH | tr ' ' '\n' >.shlist
+Updating makefile...
+cd x2p; make depend
+sh ../makedepend MAKE=make
+echo hash.c str.c util.c walk.c | tr ' ' '\n' >.clist
+Finding dependencies for hash.o.
+Finding dependencies for str.o.
+Finding dependencies for util.o.
+Finding dependencies for walk.o.
+echo Makefile.SH cflags.SH | tr ' ' '\n' >.shlist
+Updating makefile...
+`sh  cflags "optimize='-O2'" perlmini.o`  -DPERL_IS_MINIPERL -DPERL_EXTERNAL_GLOB perlmini.c
+	  CCCMD =  cc -DPERL_CORE -c -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include  -O2 -Wall 
+`sh  cflags "optimize='-O2'" opmini.o`  -DPERL_IS_MINIPERL -DPERL_EXTERNAL_GLOB opmini.c
+	  CCCMD =  cc -DPERL_CORE -c -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include  -O2 -Wall 
+`sh  cflags "optimize='-O2'" miniperlmain.o`  miniperlmain.c
+	  CCCMD =  cc -DPERL_CORE -c -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include  -O2 -Wall 
+`sh  cflags "optimize='-O2'" malloc.o`  malloc.c
+	  CCCMD =  cc -DPERL_CORE -c -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include  -O2 -Wall 
+`sh  cflags "optimize='-O2'" keywords.o`  keywords.c
+	  CCCMD =  cc -DPERL_CORE -c -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include  -O2 -Wall 
+cc -pthread  -fstack-protector -o miniperl  perlmini.o opmini.o miniperlmain.o  malloc.o gv.o toke.o perly.o pad.o regcomp.o dump.o util.o mg.o reentr.o mro.o keywords.o hv.o av.o run.o pp_hot.o sv.o pp.o scope.o pp_ctl.o pp_sys.o doop.o doio.o regexec.o utf8.o taint.o deb.o universal.o globals.o perlio.o perlapi.o numeric.o mathoms.o locale.o pp_pack.o pp_sort.o   -lm -lutil -lc
+/home/andrew/perl-5.16.2/regcomp.c:10653: warning: sprintf() is often misused, please use snprintf()
+/home/andrew/perl-5.16.2/regcomp.c:10653: warning: sprintf() is often misused, please use snprintf()
+./miniperl -w -Ilib -MExporter -e '<?>' || make minitest
+/bin/ln -s perldelta.pod pod/perl5162delta.pod
+./miniperl -Ilib autodoc.pl
+./miniperl -Ilib -Idist/Cwd -Idist/Cwd/lib -Idist/Carp/lib pod/perlmodlib.PL -q
+./miniperl -Ilib make_patchnum.pl
+Updating 'git_version.h' and 'lib/Config_git.pl'
+./miniperl -Ilib configpm
+written lib/Config.pod
+updated lib/Config.pm
+updated lib/Config_heavy.pl
+./miniperl -Ilib write_buildcustomize.pl >lib/buildcustomize.pl
+./miniperl -Ilib make_ext.pl cpan/Archive-Extract/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Archive::Extract (all)
+
+Creating Makefile.PL in cpan/Archive-Extract for Archive::Extract
+
+Running Makefile.PL in cpan/Archive-Extract
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Archive::Extract
+Making all in cpan/Archive-Extract
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Archive/Extract.pm ../../lib/Archive/Extract.pm
+./miniperl -Ilib make_ext.pl cpan/Archive-Tar/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Archive::Tar (all)
+
+Creating Makefile.PL in cpan/Archive-Tar for Archive::Tar
+
+Running Makefile.PL in cpan/Archive-Tar
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Archive::Tar
+Making all in cpan/Archive-Tar
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Archive/Tar/Constant.pm ../../lib/Archive/Tar/Constant.pm
+cp lib/Archive/Tar.pm ../../lib/Archive/Tar.pm
+cp lib/Archive/Tar/File.pm ../../lib/Archive/Tar/File.pm
+./miniperl -Ilib make_ext.pl dist/Attribute-Handlers/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Attribute::Handlers (all)
+
+Creating Makefile.PL in dist/Attribute-Handlers for Attribute::Handlers
+
+Running Makefile.PL in dist/Attribute-Handlers
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Attribute::Handlers
+Making all in dist/Attribute-Handlers
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Attribute/Handlers.pm ../../lib/Attribute/Handlers.pm
+./miniperl -Ilib make_ext.pl cpan/AutoLoader/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making AutoLoader (all)
+
+Creating Makefile.PL in cpan/AutoLoader for AutoLoader
+
+Running Makefile.PL in cpan/AutoLoader
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for AutoLoader
+Making all in cpan/AutoLoader
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/AutoLoader.pm ../../lib/AutoLoader.pm
+cp lib/AutoSplit.pm ../../lib/AutoSplit.pm
+./miniperl -Ilib make_ext.pl cpan/B-Debug/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making B::Debug (all)
+
+Creating Makefile.PL in cpan/B-Debug for B::Debug
+
+Running Makefile.PL in cpan/B-Debug
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for B::Debug
+Making all in cpan/B-Debug
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp Debug.pm ../../lib/B/Debug.pm
+./miniperl -Ilib make_ext.pl dist/B-Deparse/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making B::Deparse (all)
+
+Creating Makefile.PL in dist/B-Deparse for B::Deparse
+
+Running Makefile.PL in dist/B-Deparse
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for B::Deparse
+Making all in dist/B-Deparse
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp Deparse.pm ../../lib/B/Deparse.pm
+./miniperl -Ilib make_ext.pl dist/B-Lint/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making B::Lint (all)
+
+Creating Makefile.PL in dist/B-Lint for B::Lint
+
+Running Makefile.PL in dist/B-Lint
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for B::Lint
+Making all in dist/B-Lint
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/B/Lint/Debug.pm ../../lib/B/Lint/Debug.pm
+cp lib/B/Lint.pm ../../lib/B/Lint.pm
+./miniperl -Ilib make_ext.pl cpan/CGI/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making CGI (all)
+
+Creating Makefile.PL in cpan/CGI for CGI
+
+Running Makefile.PL in cpan/CGI
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for CGI
+Making all in cpan/CGI
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/CGI/Switch.pm ../../lib/CGI/Switch.pm
+cp lib/CGI/Cookie.pm ../../lib/CGI/Cookie.pm
+cp lib/CGI/Pretty.pm ../../lib/CGI/Pretty.pm
+cp lib/CGI.pm ../../lib/CGI.pm
+cp lib/CGI/Carp.pm ../../lib/CGI/Carp.pm
+cp lib/CGI/Apache.pm ../../lib/CGI/Apache.pm
+cp lib/CGI/Util.pm ../../lib/CGI/Util.pm
+cp lib/CGI/Push.pm ../../lib/CGI/Push.pm
+cp lib/CGI/Fast.pm ../../lib/CGI/Fast.pm
+./miniperl -Ilib make_ext.pl cpan/CPAN/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making CPAN (all)
+
+Creating Makefile.PL in cpan/CPAN for CPAN
+
+Running Makefile.PL in cpan/CPAN
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for CPAN
+Making all in cpan/CPAN
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/CPAN.pm ../../lib/CPAN.pm
+cp lib/CPAN/CacheMgr.pm ../../lib/CPAN/CacheMgr.pm
+cp lib/CPAN/FTP/netrc.pm ../../lib/CPAN/FTP/netrc.pm
+cp lib/CPAN/LWP/UserAgent.pm ../../lib/CPAN/LWP/UserAgent.pm
+cp lib/CPAN/FTP.pm ../../lib/CPAN/FTP.pm
+cp lib/CPAN/Queue.pm ../../lib/CPAN/Queue.pm
+cp lib/CPAN/Distroprefs.pm ../../lib/CPAN/Distroprefs.pm
+cp lib/CPAN/Kwalify/distroprefs.yml ../../lib/CPAN/Kwalify/distroprefs.yml
+cp lib/App/Cpan.pm ../../lib/App/Cpan.pm
+cp lib/CPAN/Kwalify.pm ../../lib/CPAN/Kwalify.pm
+cp lib/CPAN/Module.pm ../../lib/CPAN/Module.pm
+cp lib/CPAN/Author.pm ../../lib/CPAN/Author.pm
+cp lib/CPAN/Debug.pm ../../lib/CPAN/Debug.pm
+cp lib/CPAN/HTTP/Credentials.pm ../../lib/CPAN/HTTP/Credentials.pm
+cp lib/CPAN/API/HOWTO.pod ../../lib/CPAN/API/HOWTO.pod
+cp lib/CPAN/HTTP/Client.pm ../../lib/CPAN/HTTP/Client.pm
+cp lib/CPAN/Complete.pm ../../lib/CPAN/Complete.pm
+cp lib/CPAN/FirstTime.pm ../../lib/CPAN/FirstTime.pm
+cp lib/CPAN/Distrostatus.pm ../../lib/CPAN/Distrostatus.pm
+cp lib/CPAN/Exception/blocked_urllist.pm ../../lib/CPAN/Exception/blocked_urllist.pm
+cp lib/CPAN/Prompt.pm ../../lib/CPAN/Prompt.pm
+cp lib/CPAN/Tarzip.pm ../../lib/CPAN/Tarzip.pm
+cp lib/CPAN/URL.pm ../../lib/CPAN/URL.pm
+cp lib/CPAN/Version.pm ../../lib/CPAN/Version.pm
+cp lib/CPAN/DeferredCode.pm ../../lib/CPAN/DeferredCode.pm
+cp lib/CPAN/Distribution.pm ../../lib/CPAN/Distribution.pm
+cp lib/CPAN/Nox.pm ../../lib/CPAN/Nox.pm
+cp lib/CPAN/Bundle.pm ../../lib/CPAN/Bundle.pm
+cp lib/CPAN/Exception/RecursiveDependency.pm ../../lib/CPAN/Exception/RecursiveDependency.pm
+cp lib/CPAN/Shell.pm ../../lib/CPAN/Shell.pm
+cp lib/CPAN/InfoObj.pm ../../lib/CPAN/InfoObj.pm
+cp lib/CPAN/HandleConfig.pm ../../lib/CPAN/HandleConfig.pm
+cp lib/CPAN/Exception/yaml_process_error.pm ../../lib/CPAN/Exception/yaml_process_error.pm
+cp lib/CPAN/Exception/yaml_not_installed.pm ../../lib/CPAN/Exception/yaml_not_installed.pm
+cp lib/CPAN/Index.pm ../../lib/CPAN/Index.pm
+cp lib/CPAN/Kwalify/distroprefs.dd ../../lib/CPAN/Kwalify/distroprefs.dd
+cp lib/CPAN/Mirrors.pm ../../lib/CPAN/Mirrors.pm
+./miniperl -Ilib make_ext.pl cpan/CPAN-Meta/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making CPAN::Meta (all)
+
+Creating Makefile.PL in cpan/CPAN-Meta for CPAN::Meta
+
+Running Makefile.PL in cpan/CPAN-Meta
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for CPAN::Meta
+Making all in cpan/CPAN-Meta
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/CPAN/Meta.pm ../../lib/CPAN/Meta.pm
+cp lib/CPAN/Meta/Prereqs.pm ../../lib/CPAN/Meta/Prereqs.pm
+cp lib/CPAN/Meta/History.pm ../../lib/CPAN/Meta/History.pm
+cp lib/CPAN/Meta/Validator.pm ../../lib/CPAN/Meta/Validator.pm
+cp lib/CPAN/Meta/Converter.pm ../../lib/CPAN/Meta/Converter.pm
+cp lib/CPAN/Meta/Feature.pm ../../lib/CPAN/Meta/Feature.pm
+cp lib/CPAN/Meta/Spec.pm ../../lib/CPAN/Meta/Spec.pm
+cp lib/CPAN/Meta/Requirements.pm ../../lib/CPAN/Meta/Requirements.pm
+./miniperl -Ilib make_ext.pl cpan/CPAN-Meta-YAML/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making CPAN::Meta::YAML (all)
+
+Creating Makefile.PL in cpan/CPAN-Meta-YAML for CPAN::Meta::YAML
+
+Running Makefile.PL in cpan/CPAN-Meta-YAML
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for CPAN::Meta::YAML
+Making all in cpan/CPAN-Meta-YAML
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/CPAN/Meta/YAML.pm ../../lib/CPAN/Meta/YAML.pm
+./miniperl -Ilib make_ext.pl cpan/CPANPLUS/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making CPANPLUS (all)
+
+Running Makefile.PL in cpan/CPANPLUS
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for CPANPLUS
+Making all in cpan/CPANPLUS
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/CPANPLUS/Backend/RV.pm ../../lib/CPANPLUS/Backend/RV.pm
+cp lib/CPANPLUS/Shell/Default.pm ../../lib/CPANPLUS/Shell/Default.pm
+cp lib/CPANPLUS/Module.pm ../../lib/CPANPLUS/Module.pm
+cp lib/CPANPLUS/Module/Author.pm ../../lib/CPANPLUS/Module/Author.pm
+cp lib/CPANPLUS/Dist/MM.pm ../../lib/CPANPLUS/Dist/MM.pm
+cp lib/CPANPLUS/Module/Checksums.pm ../../lib/CPANPLUS/Module/Checksums.pm
+cp lib/CPANPLUS/Internals.pm ../../lib/CPANPLUS/Internals.pm
+cp lib/CPANPLUS/Module/Signature.pm ../../lib/CPANPLUS/Module/Signature.pm
+cp lib/CPANPLUS/Hacking.pod ../../lib/CPANPLUS/Hacking.pod
+cp lib/CPANPLUS.pm ../../lib/CPANPLUS.pm
+cp lib/CPANPLUS/Shell/Default/Plugins/Remote.pm ../../lib/CPANPLUS/Shell/Default/Plugins/Remote.pm
+cp lib/CPANPLUS/Backend.pm ../../lib/CPANPLUS/Backend.pm
+cp lib/CPANPLUS/Internals/Report.pm ../../lib/CPANPLUS/Internals/Report.pm
+cp lib/CPANPLUS/Module/Author/Fake.pm ../../lib/CPANPLUS/Module/Author/Fake.pm
+cp lib/CPANPLUS/FAQ.pod ../../lib/CPANPLUS/FAQ.pod
+cp lib/CPANPLUS/Config.pm ../../lib/CPANPLUS/Config.pm
+cp lib/CPANPLUS/Internals/Utils.pm ../../lib/CPANPLUS/Internals/Utils.pm
+cp lib/CPANPLUS/Shell/Default/Plugins/Source.pm ../../lib/CPANPLUS/Shell/Default/Plugins/Source.pm
+cp lib/CPANPLUS/Internals/Constants/Report.pm ../../lib/CPANPLUS/Internals/Constants/Report.pm
+cp lib/CPANPLUS/Shell.pm ../../lib/CPANPLUS/Shell.pm
+cp lib/CPANPLUS/Internals/Source.pm ../../lib/CPANPLUS/Internals/Source.pm
+cp lib/CPANPLUS/Configure/Setup.pm ../../lib/CPANPLUS/Configure/Setup.pm
+cp lib/CPANPLUS/Internals/Fetch.pm ../../lib/CPANPLUS/Internals/Fetch.pm
+cp lib/CPANPLUS/Dist.pm ../../lib/CPANPLUS/Dist.pm
+cp lib/CPANPLUS/Shell/Classic.pm ../../lib/CPANPLUS/Shell/Classic.pm
+cp lib/CPANPLUS/Configure.pm ../../lib/CPANPLUS/Configure.pm
+cp lib/CPANPLUS/Selfupdate.pm ../../lib/CPANPLUS/Selfupdate.pm
+cp lib/CPANPLUS/Internals/Search.pm ../../lib/CPANPLUS/Internals/Search.pm
+cp lib/CPANPLUS/Internals/Extract.pm ../../lib/CPANPLUS/Internals/Extract.pm
+cp lib/CPANPLUS/Internals/Source/SQLite/Tie.pm ../../lib/CPANPLUS/Internals/Source/SQLite/Tie.pm
+cp lib/CPANPLUS/Internals/Utils/Autoflush.pm ../../lib/CPANPLUS/Internals/Utils/Autoflush.pm
+cp lib/CPANPLUS/Dist/Sample.pm ../../lib/CPANPLUS/Dist/Sample.pm
+cp lib/CPANPLUS/Shell/Default/Plugins/CustomSource.pm ../../lib/CPANPLUS/Shell/Default/Plugins/CustomSource.pm
+cp lib/CPANPLUS/Module/Fake.pm ../../lib/CPANPLUS/Module/Fake.pm
+cp lib/CPANPLUS/Error.pm ../../lib/CPANPLUS/Error.pm
+cp lib/CPANPLUS/Internals/Source/SQLite.pm ../../lib/CPANPLUS/Internals/Source/SQLite.pm
+cp lib/CPANPLUS/Internals/Source/Memory.pm ../../lib/CPANPLUS/Internals/Source/Memory.pm
+cp lib/CPANPLUS/Dist/Autobundle.pm ../../lib/CPANPLUS/Dist/Autobundle.pm
+cp lib/CPANPLUS/Internals/Constants.pm ../../lib/CPANPLUS/Internals/Constants.pm
+cp lib/CPANPLUS/Shell/Default/Plugins/HOWTO.pod ../../lib/CPANPLUS/Shell/Default/Plugins/HOWTO.pod
+cp lib/CPANPLUS/Dist/Base.pm ../../lib/CPANPLUS/Dist/Base.pm
+cp bin/cpanp-run-perl blib/script/cpanp-run-perl
+/home/andrew/perl-5.16.2/obj/cpan/CPANPLUS/../../miniperl "-I../../lib" "-I../../lib" -MExtUtils::MY -e 'MY->fixin(shift)' -- blib/script/cpanp-run-perl
+cp bin/cpan2dist blib/script/cpan2dist
+/home/andrew/perl-5.16.2/obj/cpan/CPANPLUS/../../miniperl "-I../../lib" "-I../../lib" -MExtUtils::MY -e 'MY->fixin(shift)' -- blib/script/cpan2dist
+cp bin/cpanp blib/script/cpanp
+/home/andrew/perl-5.16.2/obj/cpan/CPANPLUS/../../miniperl "-I../../lib" "-I../../lib" -MExtUtils::MY -e 'MY->fixin(shift)' -- blib/script/cpanp
+./miniperl -Ilib make_ext.pl cpan/CPANPLUS-Dist-Build/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making CPANPLUS::Dist::Build (all)
+
+Creating Makefile.PL in cpan/CPANPLUS-Dist-Build for CPANPLUS::Dist::Build
+
+Running Makefile.PL in cpan/CPANPLUS-Dist-Build
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for CPANPLUS::Dist::Build
+Making all in cpan/CPANPLUS-Dist-Build
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/CPANPLUS/Dist/Build.pm ../../lib/CPANPLUS/Dist/Build.pm
+cp lib/CPANPLUS/Dist/Build/Constants.pm ../../lib/CPANPLUS/Dist/Build/Constants.pm
+./miniperl -Ilib make_ext.pl dist/Carp/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Carp (all)
+
+Running Makefile.PL in dist/Carp
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Carp
+Making all in dist/Carp
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Carp.pm ../../lib/Carp.pm
+cp lib/Carp/Heavy.pm ../../lib/Carp/Heavy.pm
+./miniperl -Ilib make_ext.pl dist/Devel-SelfStubber/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Devel::SelfStubber (all)
+
+Creating Makefile.PL in dist/Devel-SelfStubber for Devel::SelfStubber
+
+Running Makefile.PL in dist/Devel-SelfStubber
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Devel::SelfStubber
+Making all in dist/Devel-SelfStubber
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Devel/SelfStubber.pm ../../lib/Devel/SelfStubber.pm
+./miniperl -Ilib make_ext.pl cpan/Digest/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Digest (all)
+
+Creating Makefile.PL in cpan/Digest for Digest
+
+Running Makefile.PL in cpan/Digest
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Digest
+Making all in cpan/Digest
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp Digest.pm ../../lib/Digest.pm
+cp Digest/file.pm ../../lib/Digest/file.pm
+cp Digest/base.pm ../../lib/Digest/base.pm
+./miniperl -Ilib make_ext.pl dist/Dumpvalue/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Dumpvalue (all)
+
+Creating Makefile.PL in dist/Dumpvalue for Dumpvalue
+
+Running Makefile.PL in dist/Dumpvalue
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Dumpvalue
+Making all in dist/Dumpvalue
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Dumpvalue.pm ../../lib/Dumpvalue.pm
+./miniperl -Ilib make_ext.pl dist/Env/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Env (all)
+
+Creating Makefile.PL in dist/Env for Env
+
+Running Makefile.PL in dist/Env
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Env
+Making all in dist/Env
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Env.pm ../../lib/Env.pm
+./miniperl -Ilib make_ext.pl ext/Errno/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Errno (all)
+
+Running Makefile.PL in ext/Errno
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Errno
+Making all in ext/Errno
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+../../miniperl "-I../../lib" "-I../../lib" Errno_pm.PL Errno.pm
+cp Errno.pm ../../lib/Errno.pm
+./miniperl -Ilib make_ext.pl dist/ExtUtils-CBuilder/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making ExtUtils::CBuilder (all)
+
+Running Makefile.PL in dist/ExtUtils-CBuilder
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for ExtUtils::CBuilder
+Making all in dist/ExtUtils-CBuilder
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/ExtUtils/CBuilder.pm ../../lib/ExtUtils/CBuilder.pm
+cp lib/ExtUtils/CBuilder/Platform/Windows.pm ../../lib/ExtUtils/CBuilder/Platform/Windows.pm
+cp lib/ExtUtils/CBuilder/Platform/aix.pm ../../lib/ExtUtils/CBuilder/Platform/aix.pm
+cp lib/ExtUtils/CBuilder/Platform/cygwin.pm ../../lib/ExtUtils/CBuilder/Platform/cygwin.pm
+cp lib/ExtUtils/CBuilder/Platform/Windows/GCC.pm ../../lib/ExtUtils/CBuilder/Platform/Windows/GCC.pm
+cp lib/ExtUtils/CBuilder/Platform/VMS.pm ../../lib/ExtUtils/CBuilder/Platform/VMS.pm
+cp lib/ExtUtils/CBuilder/Platform/Unix.pm ../../lib/ExtUtils/CBuilder/Platform/Unix.pm
+cp lib/ExtUtils/CBuilder/Platform/Windows/BCC.pm ../../lib/ExtUtils/CBuilder/Platform/Windows/BCC.pm
+cp lib/ExtUtils/CBuilder/Platform/Windows/MSVC.pm ../../lib/ExtUtils/CBuilder/Platform/Windows/MSVC.pm
+cp lib/ExtUtils/CBuilder/Platform/darwin.pm ../../lib/ExtUtils/CBuilder/Platform/darwin.pm
+cp lib/ExtUtils/CBuilder/Platform/os2.pm ../../lib/ExtUtils/CBuilder/Platform/os2.pm
+cp lib/ExtUtils/CBuilder/Platform/dec_osf.pm ../../lib/ExtUtils/CBuilder/Platform/dec_osf.pm
+cp lib/ExtUtils/CBuilder/Base.pm ../../lib/ExtUtils/CBuilder/Base.pm
+./miniperl -Ilib make_ext.pl dist/ExtUtils-Command/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making ExtUtils::Command (all)
+
+Creating Makefile.PL in dist/ExtUtils-Command for ExtUtils::Command
+
+Running Makefile.PL in dist/ExtUtils-Command
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for ExtUtils::Command
+Making all in dist/ExtUtils-Command
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/ExtUtils/Command.pm ../../lib/ExtUtils/Command.pm
+./miniperl -Ilib make_ext.pl cpan/ExtUtils-Constant/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making ExtUtils::Constant (all)
+
+Creating Makefile.PL in cpan/ExtUtils-Constant for ExtUtils::Constant
+
+Running Makefile.PL in cpan/ExtUtils-Constant
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for ExtUtils::Constant
+Making all in cpan/ExtUtils-Constant
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/ExtUtils/Constant/ProxySubs.pm ../../lib/ExtUtils/Constant/ProxySubs.pm
+cp lib/ExtUtils/Constant/XS.pm ../../lib/ExtUtils/Constant/XS.pm
+cp lib/ExtUtils/Constant/Utils.pm ../../lib/ExtUtils/Constant/Utils.pm
+cp lib/ExtUtils/Constant/Base.pm ../../lib/ExtUtils/Constant/Base.pm
+cp lib/ExtUtils/Constant.pm ../../lib/ExtUtils/Constant.pm
+./miniperl -Ilib make_ext.pl dist/ExtUtils-Install/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making ExtUtils::Install (all)
+
+Creating Makefile.PL in dist/ExtUtils-Install for ExtUtils::Install
+
+Running Makefile.PL in dist/ExtUtils-Install
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for ExtUtils::Install
+Making all in dist/ExtUtils-Install
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/ExtUtils/Installed.pm ../../lib/ExtUtils/Installed.pm
+cp lib/ExtUtils/Install.pm ../../lib/ExtUtils/Install.pm
+cp lib/ExtUtils/Packlist.pm ../../lib/ExtUtils/Packlist.pm
+./miniperl -Ilib make_ext.pl cpan/ExtUtils-MakeMaker/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making ExtUtils::MakeMaker (all)
+
+Creating Makefile.PL in cpan/ExtUtils-MakeMaker for ExtUtils::MakeMaker
+
+Running Makefile.PL in cpan/ExtUtils-MakeMaker
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for ExtUtils::MakeMaker
+Making all in cpan/ExtUtils-MakeMaker
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/ExtUtils/MakeMaker.pm ../../lib/ExtUtils/MakeMaker.pm
+cp lib/ExtUtils/MM_OS2.pm ../../lib/ExtUtils/MM_OS2.pm
+cp lib/ExtUtils/MM_VOS.pm ../../lib/ExtUtils/MM_VOS.pm
+cp lib/ExtUtils/MM_Unix.pm ../../lib/ExtUtils/MM_Unix.pm
+cp lib/ExtUtils/Mksymlists.pm ../../lib/ExtUtils/Mksymlists.pm
+cp lib/ExtUtils/MM.pm ../../lib/ExtUtils/MM.pm
+cp lib/ExtUtils/MM_Win32.pm ../../lib/ExtUtils/MM_Win32.pm
+cp lib/ExtUtils/MM_UWIN.pm ../../lib/ExtUtils/MM_UWIN.pm
+cp lib/ExtUtils/testlib.pm ../../lib/ExtUtils/testlib.pm
+cp lib/ExtUtils/MM_Cygwin.pm ../../lib/ExtUtils/MM_Cygwin.pm
+cp lib/ExtUtils/MM_DOS.pm ../../lib/ExtUtils/MM_DOS.pm
+cp lib/ExtUtils/MY.pm ../../lib/ExtUtils/MY.pm
+cp lib/ExtUtils/MM_MacOS.pm ../../lib/ExtUtils/MM_MacOS.pm
+cp lib/ExtUtils/MM_Win95.pm ../../lib/ExtUtils/MM_Win95.pm
+cp lib/ExtUtils/MM_VMS.pm ../../lib/ExtUtils/MM_VMS.pm
+cp lib/ExtUtils/MM_BeOS.pm ../../lib/ExtUtils/MM_BeOS.pm
+cp lib/ExtUtils/Liblist.pm ../../lib/ExtUtils/Liblist.pm
+cp lib/ExtUtils/MM_Darwin.pm ../../lib/ExtUtils/MM_Darwin.pm
+cp lib/ExtUtils/MM_AIX.pm ../../lib/ExtUtils/MM_AIX.pm
+cp lib/ExtUtils/MakeMaker/Tutorial.pod ../../lib/ExtUtils/MakeMaker/Tutorial.pod
+cp lib/ExtUtils/Mkbootstrap.pm ../../lib/ExtUtils/Mkbootstrap.pm
+cp lib/ExtUtils/Liblist/Kid.pm ../../lib/ExtUtils/Liblist/Kid.pm
+cp lib/ExtUtils/MM_QNX.pm ../../lib/ExtUtils/MM_QNX.pm
+cp lib/ExtUtils/MakeMaker/FAQ.pod ../../lib/ExtUtils/MakeMaker/FAQ.pod
+cp lib/ExtUtils/Command/MM.pm ../../lib/ExtUtils/Command/MM.pm
+cp lib/ExtUtils/MakeMaker/Config.pm ../../lib/ExtUtils/MakeMaker/Config.pm
+cp lib/ExtUtils/MM_NW5.pm ../../lib/ExtUtils/MM_NW5.pm
+cp lib/ExtUtils/MM_Any.pm ../../lib/ExtUtils/MM_Any.pm
+./miniperl -Ilib make_ext.pl dist/ExtUtils-Manifest/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making ExtUtils::Manifest (all)
+
+Creating Makefile.PL in dist/ExtUtils-Manifest for ExtUtils::Manifest
+
+Running Makefile.PL in dist/ExtUtils-Manifest
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for ExtUtils::Manifest
+Making all in dist/ExtUtils-Manifest
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/ExtUtils/MANIFEST.SKIP ../../lib/ExtUtils/MANIFEST.SKIP
+cp lib/ExtUtils/Manifest.pm ../../lib/ExtUtils/Manifest.pm
+./miniperl -Ilib make_ext.pl dist/ExtUtils-ParseXS/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making ExtUtils::ParseXS (all)
+
+Creating Makefile.PL in dist/ExtUtils-ParseXS for ExtUtils::ParseXS
+
+Running Makefile.PL in dist/ExtUtils-ParseXS
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for ExtUtils::ParseXS
+Making all in dist/ExtUtils-ParseXS
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/ExtUtils/Typemaps/InputMap.pm ../../lib/ExtUtils/Typemaps/InputMap.pm
+cp lib/perlxs.pod ../../lib/perlxs.pod
+cp lib/perlxstypemap.pod ../../lib/perlxstypemap.pod
+cp lib/ExtUtils/ParseXS.pod ../../lib/ExtUtils/ParseXS.pod
+cp lib/ExtUtils/ParseXS/Utilities.pm ../../lib/ExtUtils/ParseXS/Utilities.pm
+cp lib/ExtUtils/Typemaps/Type.pm ../../lib/ExtUtils/Typemaps/Type.pm
+cp lib/ExtUtils/ParseXS/Constants.pm ../../lib/ExtUtils/ParseXS/Constants.pm
+cp lib/ExtUtils/Typemaps/OutputMap.pm ../../lib/ExtUtils/Typemaps/OutputMap.pm
+cp lib/ExtUtils/xsubpp ../../lib/ExtUtils/xsubpp
+cp lib/ExtUtils/ParseXS.pm ../../lib/ExtUtils/ParseXS.pm
+cp lib/ExtUtils/Typemaps/Cmd.pm ../../lib/ExtUtils/Typemaps/Cmd.pm
+cp lib/ExtUtils/ParseXS/CountLines.pm ../../lib/ExtUtils/ParseXS/CountLines.pm
+cp lib/ExtUtils/Typemaps.pm ../../lib/ExtUtils/Typemaps.pm
+cp lib/perlxstut.pod ../../lib/perlxstut.pod
+./miniperl -Ilib make_ext.pl dist/File-CheckTree/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making File::CheckTree (all)
+
+Creating Makefile.PL in dist/File-CheckTree for File::CheckTree
+
+Running Makefile.PL in dist/File-CheckTree
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for File::CheckTree
+Making all in dist/File-CheckTree
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/File/CheckTree.pm ../../lib/File/CheckTree.pm
+./miniperl -Ilib make_ext.pl cpan/File-Fetch/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making File::Fetch (all)
+
+Creating Makefile.PL in cpan/File-Fetch for File::Fetch
+
+Running Makefile.PL in cpan/File-Fetch
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for File::Fetch
+Making all in cpan/File-Fetch
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/File/Fetch.pm ../../lib/File/Fetch.pm
+./miniperl -Ilib make_ext.pl cpan/File-Path/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making File::Path (all)
+
+Creating Makefile.PL in cpan/File-Path for File::Path
+
+Running Makefile.PL in cpan/File-Path
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for File::Path
+Making all in cpan/File-Path
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/File/Path.pm ../../lib/File/Path.pm
+./miniperl -Ilib make_ext.pl cpan/File-Temp/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making File::Temp (all)
+
+Creating Makefile.PL in cpan/File-Temp for File::Temp
+
+Running Makefile.PL in cpan/File-Temp
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for File::Temp
+Making all in cpan/File-Temp
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp Temp.pm ../../lib/File/Temp.pm
+./miniperl -Ilib make_ext.pl ext/FileCache/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making FileCache (all)
+
+Creating Makefile.PL in ext/FileCache for FileCache
+
+Running Makefile.PL in ext/FileCache
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for FileCache
+Making all in ext/FileCache
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/FileCache.pm ../../lib/FileCache.pm
+./miniperl -Ilib make_ext.pl dist/Filter-Simple/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Filter::Simple (all)
+
+Creating Makefile.PL in dist/Filter-Simple for Filter::Simple
+
+Running Makefile.PL in dist/Filter-Simple
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Filter::Simple
+Making all in dist/Filter-Simple
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Filter/Simple.pm ../../lib/Filter/Simple.pm
+./miniperl -Ilib make_ext.pl cpan/Getopt-Long/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Getopt::Long (all)
+
+Creating Makefile.PL in cpan/Getopt-Long for Getopt::Long
+
+Running Makefile.PL in cpan/Getopt-Long
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Getopt::Long
+Making all in cpan/Getopt-Long
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Getopt/Long.pm ../../lib/Getopt/Long.pm
+./miniperl -Ilib make_ext.pl cpan/HTTP-Tiny/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making HTTP::Tiny (all)
+
+Creating Makefile.PL in cpan/HTTP-Tiny for HTTP::Tiny
+
+Running Makefile.PL in cpan/HTTP-Tiny
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for HTTP::Tiny
+Making all in cpan/HTTP-Tiny
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/HTTP/Tiny.pm ../../lib/HTTP/Tiny.pm
+./miniperl -Ilib make_ext.pl dist/I18N-Collate/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making I18N::Collate (all)
+
+Creating Makefile.PL in dist/I18N-Collate for I18N::Collate
+
+Running Makefile.PL in dist/I18N-Collate
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for I18N::Collate
+Making all in dist/I18N-Collate
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/I18N/Collate.pm ../../lib/I18N/Collate.pm
+./miniperl -Ilib make_ext.pl dist/I18N-LangTags/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making I18N::LangTags (all)
+
+Creating Makefile.PL in dist/I18N-LangTags for I18N::LangTags
+
+Running Makefile.PL in dist/I18N-LangTags
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for I18N::LangTags
+Making all in dist/I18N-LangTags
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/I18N/LangTags/List.pm ../../lib/I18N/LangTags/List.pm
+cp lib/I18N/LangTags.pm ../../lib/I18N/LangTags.pm
+cp lib/I18N/LangTags/Detect.pm ../../lib/I18N/LangTags/Detect.pm
+./miniperl -Ilib make_ext.pl cpan/IO-Compress/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making IO::Compress (all)
+
+Running Makefile.PL in cpan/IO-Compress
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for IO::Compress
+Making all in cpan/IO-Compress
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/IO/Uncompress/Adapter/Bunzip2.pm ../../lib/IO/Uncompress/Adapter/Bunzip2.pm
+cp lib/IO/Uncompress/RawInflate.pm ../../lib/IO/Uncompress/RawInflate.pm
+cp lib/Compress/Zlib.pm ../../lib/Compress/Zlib.pm
+cp lib/IO/Uncompress/Inflate.pm ../../lib/IO/Uncompress/Inflate.pm
+cp lib/IO/Compress/Deflate.pm ../../lib/IO/Compress/Deflate.pm
+cp lib/IO/Compress/Adapter/Deflate.pm ../../lib/IO/Compress/Adapter/Deflate.pm
+cp lib/IO/Uncompress/Adapter/Identity.pm ../../lib/IO/Uncompress/Adapter/Identity.pm
+cp lib/IO/Compress/Zip.pm ../../lib/IO/Compress/Zip.pm
+cp lib/IO/Uncompress/Base.pm ../../lib/IO/Uncompress/Base.pm
+cp lib/IO/Compress/Gzip/Constants.pm ../../lib/IO/Compress/Gzip/Constants.pm
+cp lib/IO/Compress/Zlib/Extra.pm ../../lib/IO/Compress/Zlib/Extra.pm
+cp lib/IO/Compress/Base.pm ../../lib/IO/Compress/Base.pm
+cp lib/IO/Compress/Zip/Constants.pm ../../lib/IO/Compress/Zip/Constants.pm
+cp lib/File/GlobMapper.pm ../../lib/File/GlobMapper.pm
+cp lib/IO/Compress/Zlib/Constants.pm ../../lib/IO/Compress/Zlib/Constants.pm
+cp lib/IO/Compress/Adapter/Identity.pm ../../lib/IO/Compress/Adapter/Identity.pm
+cp lib/IO/Uncompress/Adapter/Inflate.pm ../../lib/IO/Uncompress/Adapter/Inflate.pm
+cp lib/IO/Uncompress/Unzip.pm ../../lib/IO/Uncompress/Unzip.pm
+cp lib/IO/Compress/Base/Common.pm ../../lib/IO/Compress/Base/Common.pm
+cp lib/IO/Uncompress/Bunzip2.pm ../../lib/IO/Uncompress/Bunzip2.pm
+cp lib/IO/Uncompress/Gunzip.pm ../../lib/IO/Uncompress/Gunzip.pm
+cp lib/IO/Uncompress/AnyUncompress.pm ../../lib/IO/Uncompress/AnyUncompress.pm
+cp lib/IO/Compress/Adapter/Bzip2.pm ../../lib/IO/Compress/Adapter/Bzip2.pm
+cp lib/IO/Compress/RawDeflate.pm ../../lib/IO/Compress/RawDeflate.pm
+cp lib/IO/Compress/FAQ.pod ../../lib/IO/Compress/FAQ.pod
+cp lib/IO/Uncompress/AnyInflate.pm ../../lib/IO/Uncompress/AnyInflate.pm
+cp lib/IO/Compress/Gzip.pm ../../lib/IO/Compress/Gzip.pm
+cp lib/IO/Compress/Bzip2.pm ../../lib/IO/Compress/Bzip2.pm
+cp bin/zipdetails blib/script/zipdetails
+/home/andrew/perl-5.16.2/obj/cpan/IO-Compress/../../miniperl "-I../../lib" "-I../../lib" -MExtUtils::MY -e 'MY->fixin(shift)' -- blib/script/zipdetails
+./miniperl -Ilib make_ext.pl cpan/IO-Zlib/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making IO::Zlib (all)
+
+Creating Makefile.PL in cpan/IO-Zlib for IO::Zlib
+
+Running Makefile.PL in cpan/IO-Zlib
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for IO::Zlib
+Making all in cpan/IO-Zlib
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp Zlib.pm ../../lib/IO/Zlib.pm
+./miniperl -Ilib make_ext.pl cpan/IPC-Cmd/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making IPC::Cmd (all)
+
+Creating Makefile.PL in cpan/IPC-Cmd for IPC::Cmd
+
+Running Makefile.PL in cpan/IPC-Cmd
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for IPC::Cmd
+Making all in cpan/IPC-Cmd
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/IPC/Cmd.pm ../../lib/IPC/Cmd.pm
+./miniperl -Ilib make_ext.pl ext/IPC-Open3/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making IPC::Open3 (all)
+
+Creating Makefile.PL in ext/IPC-Open3 for IPC::Open3
+
+Running Makefile.PL in ext/IPC-Open3
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for IPC::Open3
+Making all in ext/IPC-Open3
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/IPC/Open2.pm ../../lib/IPC/Open2.pm
+cp lib/IPC/Open3.pm ../../lib/IPC/Open3.pm
+./miniperl -Ilib make_ext.pl cpan/JSON-PP/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making JSON::PP (all)
+
+Creating Makefile.PL in cpan/JSON-PP for JSON::PP
+
+Running Makefile.PL in cpan/JSON-PP
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for JSON::PP
+Making all in cpan/JSON-PP
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/JSON/PP.pm ../../lib/JSON/PP.pm
+cp lib/JSON/PP/Boolean.pm ../../lib/JSON/PP/Boolean.pm
+./miniperl -Ilib make_ext.pl cpan/Locale-Codes/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Locale::Codes (all)
+
+Creating Makefile.PL in cpan/Locale-Codes for Locale::Codes
+
+Running Makefile.PL in cpan/Locale-Codes
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Locale::Codes
+Making all in cpan/Locale-Codes
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Locale/Codes/LangExt.pod ../../lib/Locale/Codes/LangExt.pod
+cp lib/Locale/Codes/Language_Retired.pm ../../lib/Locale/Codes/Language_Retired.pm
+cp lib/Locale/Codes/Script_Codes.pm ../../lib/Locale/Codes/Script_Codes.pm
+cp lib/Locale/Codes/Script.pod ../../lib/Locale/Codes/Script.pod
+cp lib/Locale/Currency.pod ../../lib/Locale/Currency.pod
+cp lib/Locale/Codes/LangExt.pm ../../lib/Locale/Codes/LangExt.pm
+cp lib/Locale/Codes/Currency.pod ../../lib/Locale/Codes/Currency.pod
+cp lib/Locale/Codes/LangVar_Retired.pm ../../lib/Locale/Codes/LangVar_Retired.pm
+cp lib/Locale/Codes/Country_Codes.pm ../../lib/Locale/Codes/Country_Codes.pm
+cp lib/Locale/Currency.pm ../../lib/Locale/Currency.pm
+cp lib/Locale/Codes/Country.pod ../../lib/Locale/Codes/Country.pod
+cp lib/Locale/Codes/LangVar.pod ../../lib/Locale/Codes/LangVar.pod
+cp lib/Locale/Codes/LangExt_Codes.pm ../../lib/Locale/Codes/LangExt_Codes.pm
+cp lib/Locale/Codes/Language_Codes.pm ../../lib/Locale/Codes/Language_Codes.pm
+cp lib/Locale/Codes/LangFam.pod ../../lib/Locale/Codes/LangFam.pod
+cp lib/Locale/Codes/LangFam.pm ../../lib/Locale/Codes/LangFam.pm
+cp lib/Locale/Codes/Constants.pm ../../lib/Locale/Codes/Constants.pm
+cp lib/Locale/Codes/Script_Retired.pm ../../lib/Locale/Codes/Script_Retired.pm
+cp lib/Locale/Country.pod ../../lib/Locale/Country.pod
+cp lib/Locale/Codes/Currency_Codes.pm ../../lib/Locale/Codes/Currency_Codes.pm
+cp lib/Locale/Language.pod ../../lib/Locale/Language.pod
+cp lib/Locale/Country.pm ../../lib/Locale/Country.pm
+cp lib/Locale/Codes/LangExt_Retired.pm ../../lib/Locale/Codes/LangExt_Retired.pm
+cp lib/Locale/Codes/Country.pm ../../lib/Locale/Codes/Country.pm
+cp lib/Locale/Codes/LangFam_Codes.pm ../../lib/Locale/Codes/LangFam_Codes.pm
+cp lib/Locale/Codes/LangVar_Codes.pm ../../lib/Locale/Codes/LangVar_Codes.pm
+cp lib/Locale/Codes/Script.pm ../../lib/Locale/Codes/Script.pm
+cp lib/Locale/Codes.pod ../../lib/Locale/Codes.pod
+cp lib/Locale/Codes/LangVar.pm ../../lib/Locale/Codes/LangVar.pm
+cp lib/Locale/Codes/Country_Retired.pm ../../lib/Locale/Codes/Country_Retired.pm
+cp lib/Locale/Codes/LangFam_Retired.pm ../../lib/Locale/Codes/LangFam_Retired.pm
+cp lib/Locale/Codes/Language.pm ../../lib/Locale/Codes/Language.pm
+cp lib/Locale/Codes/Constants.pod ../../lib/Locale/Codes/Constants.pod
+cp lib/Locale/Script.pod ../../lib/Locale/Script.pod
+cp lib/Locale/Codes/Changes.pod ../../lib/Locale/Codes/Changes.pod
+cp lib/Locale/Codes/Language.pod ../../lib/Locale/Codes/Language.pod
+cp lib/Locale/Language.pm ../../lib/Locale/Language.pm
+cp lib/Locale/Codes/Currency.pm ../../lib/Locale/Codes/Currency.pm
+cp lib/Locale/Codes/API.pod ../../lib/Locale/Codes/API.pod
+cp lib/Locale/Script.pm ../../lib/Locale/Script.pm
+cp lib/Locale/Codes/Currency_Retired.pm ../../lib/Locale/Codes/Currency_Retired.pm
+cp lib/Locale/Codes.pm ../../lib/Locale/Codes.pm
+./miniperl -Ilib make_ext.pl dist/Locale-Maketext/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Locale::Maketext (all)
+
+Creating Makefile.PL in dist/Locale-Maketext for Locale::Maketext
+
+Running Makefile.PL in dist/Locale-Maketext
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Locale::Maketext
+Making all in dist/Locale-Maketext
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Locale/Maketext/GutsLoader.pm ../../lib/Locale/Maketext/GutsLoader.pm
+cp lib/Locale/Maketext/Guts.pm ../../lib/Locale/Maketext/Guts.pm
+cp lib/Locale/Maketext/TPJ13.pod ../../lib/Locale/Maketext/TPJ13.pod
+cp lib/Locale/Maketext/Cookbook.pod ../../lib/Locale/Maketext/Cookbook.pod
+cp lib/Locale/Maketext.pod ../../lib/Locale/Maketext.pod
+cp lib/Locale/Maketext.pm ../../lib/Locale/Maketext.pm
+./miniperl -Ilib make_ext.pl cpan/Locale-Maketext-Simple/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Locale::Maketext::Simple (all)
+
+Creating Makefile.PL in cpan/Locale-Maketext-Simple for Locale::Maketext::Simple
+
+Running Makefile.PL in cpan/Locale-Maketext-Simple
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Locale::Maketext::Simple
+Making all in cpan/Locale-Maketext-Simple
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Locale/Maketext/Simple.pm ../../lib/Locale/Maketext/Simple.pm
+./miniperl -Ilib make_ext.pl cpan/Log-Message/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Log::Message (all)
+
+Creating Makefile.PL in cpan/Log-Message for Log::Message
+
+Running Makefile.PL in cpan/Log-Message
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Log::Message
+Making all in cpan/Log-Message
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Log/Message/Config.pm ../../lib/Log/Message/Config.pm
+cp lib/Log/Message/Handlers.pm ../../lib/Log/Message/Handlers.pm
+cp lib/Log/Message.pm ../../lib/Log/Message.pm
+cp lib/Log/Message/Item.pm ../../lib/Log/Message/Item.pm
+./miniperl -Ilib make_ext.pl cpan/Log-Message-Simple/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Log::Message::Simple (all)
+
+Creating Makefile.PL in cpan/Log-Message-Simple for Log::Message::Simple
+
+Running Makefile.PL in cpan/Log-Message-Simple
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Log::Message::Simple
+Making all in cpan/Log-Message-Simple
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Log/Message/Simple.pm ../../lib/Log/Message/Simple.pm
+./miniperl -Ilib make_ext.pl dist/Math-BigInt/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Math::BigInt (all)
+
+Creating Makefile.PL in dist/Math-BigInt for Math::BigInt
+
+Running Makefile.PL in dist/Math-BigInt
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Math::BigInt
+Making all in dist/Math-BigInt
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Math/BigInt.pm ../../lib/Math/BigInt.pm
+cp lib/Math/BigInt/CalcEmu.pm ../../lib/Math/BigInt/CalcEmu.pm
+cp lib/Math/BigFloat.pm ../../lib/Math/BigFloat.pm
+cp lib/Math/BigInt/Calc.pm ../../lib/Math/BigInt/Calc.pm
+./miniperl -Ilib make_ext.pl dist/Math-BigRat/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Math::BigRat (all)
+
+Creating Makefile.PL in dist/Math-BigRat for Math::BigRat
+
+Running Makefile.PL in dist/Math-BigRat
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Math::BigRat
+Making all in dist/Math-BigRat
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Math/BigRat.pm ../../lib/Math/BigRat.pm
+./miniperl -Ilib make_ext.pl cpan/Math-Complex/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Math::Complex (all)
+
+Running Makefile.PL in cpan/Math-Complex
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Math::Complex
+Making all in cpan/Math-Complex
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Math/Complex.pm ../../lib/Math/Complex.pm
+cp lib/Math/Trig.pm ../../lib/Math/Trig.pm
+./miniperl -Ilib make_ext.pl cpan/Memoize/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Memoize (all)
+
+Creating Makefile.PL in cpan/Memoize for Memoize
+
+Running Makefile.PL in cpan/Memoize
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Memoize
+Making all in cpan/Memoize
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp Memoize.pm ../../lib/Memoize.pm
+cp Memoize/ExpireFile.pm ../../lib/Memoize/ExpireFile.pm
+cp Memoize/ExpireTest.pm ../../lib/Memoize/ExpireTest.pm
+cp Memoize/NDBM_File.pm ../../lib/Memoize/NDBM_File.pm
+cp Memoize/AnyDBM_File.pm ../../lib/Memoize/AnyDBM_File.pm
+cp Memoize/Expire.pm ../../lib/Memoize/Expire.pm
+cp Memoize/Storable.pm ../../lib/Memoize/Storable.pm
+cp Memoize/SDBM_File.pm ../../lib/Memoize/SDBM_File.pm
+./miniperl -Ilib make_ext.pl cpan/Module-Build/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Module::Build (all)
+
+Creating Makefile.PL in cpan/Module-Build for Module::Build
+
+Running Makefile.PL in cpan/Module-Build
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Module::Build
+Making all in cpan/Module-Build
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Module/Build/Version.pm ../../lib/Module/Build/Version.pm
+cp lib/Module/Build/Platform/darwin.pm ../../lib/Module/Build/Platform/darwin.pm
+cp lib/Module/Build/Platform/MacOS.pm ../../lib/Module/Build/Platform/MacOS.pm
+cp lib/Module/Build/Notes.pm ../../lib/Module/Build/Notes.pm
+cp lib/Module/Build/Dumper.pm ../../lib/Module/Build/Dumper.pm
+cp lib/Module/Build/Compat.pm ../../lib/Module/Build/Compat.pm
+cp lib/Module/Build/Platform/RiscOS.pm ../../lib/Module/Build/Platform/RiscOS.pm
+cp lib/Module/Build/ConfigData.pm ../../lib/Module/Build/ConfigData.pm
+cp lib/Module/Build/PodParser.pm ../../lib/Module/Build/PodParser.pm
+cp lib/Module/Build/Platform/VOS.pm ../../lib/Module/Build/Platform/VOS.pm
+cp lib/Module/Build/Platform/Windows.pm ../../lib/Module/Build/Platform/Windows.pm
+cp lib/inc/latest.pm ../../lib/inc/latest.pm
+cp lib/Module/Build/Bundling.pod ../../lib/Module/Build/Bundling.pod
+cp lib/Module/Build/Platform/Unix.pm ../../lib/Module/Build/Platform/Unix.pm
+cp lib/Module/Build/ModuleInfo.pm ../../lib/Module/Build/ModuleInfo.pm
+cp lib/Module/Build/Platform/Amiga.pm ../../lib/Module/Build/Platform/Amiga.pm
+cp lib/Module/Build/Config.pm ../../lib/Module/Build/Config.pm
+cp lib/Module/Build/Platform/os2.pm ../../lib/Module/Build/Platform/os2.pm
+cp lib/Module/Build/Base.pm ../../lib/Module/Build/Base.pm
+cp lib/Module/Build/Platform/MPEiX.pm ../../lib/Module/Build/Platform/MPEiX.pm
+cp lib/Module/Build/Platform/VMS.pm ../../lib/Module/Build/Platform/VMS.pm
+cp lib/Module/Build/Platform/EBCDIC.pm ../../lib/Module/Build/Platform/EBCDIC.pm
+cp lib/Module/Build/Platform/cygwin.pm ../../lib/Module/Build/Platform/cygwin.pm
+cp lib/Module/Build.pm ../../lib/Module/Build.pm
+cp lib/Module/Build/PPMMaker.pm ../../lib/Module/Build/PPMMaker.pm
+cp lib/Module/Build/Platform/aix.pm ../../lib/Module/Build/Platform/aix.pm
+cp lib/Module/Build/Cookbook.pm ../../lib/Module/Build/Cookbook.pm
+cp lib/Module/Build/Authoring.pod ../../lib/Module/Build/Authoring.pod
+cp lib/inc/latest/private.pm ../../lib/inc/latest/private.pm
+cp lib/Module/Build/Platform/Default.pm ../../lib/Module/Build/Platform/Default.pm
+cp lib/Module/Build/YAML.pm ../../lib/Module/Build/YAML.pm
+cp lib/Module/Build/API.pod ../../lib/Module/Build/API.pod
+./miniperl -Ilib make_ext.pl dist/Module-CoreList/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Module::CoreList (all)
+
+Running Makefile.PL in dist/Module-CoreList
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Module::CoreList
+Making all in dist/Module-CoreList
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Module/CoreList.pm ../../lib/Module/CoreList.pm
+cp lib/Module/CoreList/TieHashDelta.pm ../../lib/Module/CoreList/TieHashDelta.pm
+cp lib/Module/CoreList.pod ../../lib/Module/CoreList.pod
+cp corelist blib/script/corelist
+/home/andrew/perl-5.16.2/obj/dist/Module-CoreList/../../miniperl "-I../../lib" "-I../../lib" -MExtUtils::MY -e 'MY->fixin(shift)' -- blib/script/corelist
+./miniperl -Ilib make_ext.pl cpan/Module-Load/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Module::Load (all)
+
+Creating Makefile.PL in cpan/Module-Load for Module::Load
+
+Running Makefile.PL in cpan/Module-Load
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Module::Load
+Making all in cpan/Module-Load
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Module/Load.pm ../../lib/Module/Load.pm
+./miniperl -Ilib make_ext.pl cpan/Module-Load-Conditional/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Module::Load::Conditional (all)
+
+Creating Makefile.PL in cpan/Module-Load-Conditional for Module::Load::Conditional
+
+Running Makefile.PL in cpan/Module-Load-Conditional
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Module::Load::Conditional
+Making all in cpan/Module-Load-Conditional
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Module/Load/Conditional.pm ../../lib/Module/Load/Conditional.pm
+./miniperl -Ilib make_ext.pl cpan/Module-Loaded/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Module::Loaded (all)
+
+Creating Makefile.PL in cpan/Module-Loaded for Module::Loaded
+
+Running Makefile.PL in cpan/Module-Loaded
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Module::Loaded
+Making all in cpan/Module-Loaded
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Module/Loaded.pm ../../lib/Module/Loaded.pm
+./miniperl -Ilib make_ext.pl cpan/Module-Metadata/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Module::Metadata (all)
+
+Creating Makefile.PL in cpan/Module-Metadata for Module::Metadata
+
+Running Makefile.PL in cpan/Module-Metadata
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Module::Metadata
+Making all in cpan/Module-Metadata
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Module/Metadata.pm ../../lib/Module/Metadata.pm
+./miniperl -Ilib make_ext.pl cpan/Module-Pluggable/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Module::Pluggable (all)
+
+Running Makefile.PL in cpan/Module-Pluggable
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Module::Pluggable
+Making all in cpan/Module-Pluggable
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Module/Pluggable/Object.pm ../../lib/Module/Pluggable/Object.pm
+cp lib/Module/Pluggable.pm ../../lib/Module/Pluggable.pm
+cp lib/Devel/InnerPackage.pm ../../lib/Devel/InnerPackage.pm
+./miniperl -Ilib make_ext.pl cpan/NEXT/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making NEXT (all)
+
+Creating Makefile.PL in cpan/NEXT for NEXT
+
+Running Makefile.PL in cpan/NEXT
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for NEXT
+Making all in cpan/NEXT
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/NEXT.pm ../../lib/NEXT.pm
+./miniperl -Ilib make_ext.pl dist/Net-Ping/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Net::Ping (all)
+
+Creating Makefile.PL in dist/Net-Ping for Net::Ping
+
+Running Makefile.PL in dist/Net-Ping
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Net::Ping
+Making all in dist/Net-Ping
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Net/Ping.pm ../../lib/Net/Ping.pm
+./miniperl -Ilib make_ext.pl cpan/Object-Accessor/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Object::Accessor (all)
+
+Creating Makefile.PL in cpan/Object-Accessor for Object::Accessor
+
+Running Makefile.PL in cpan/Object-Accessor
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Object::Accessor
+Making all in cpan/Object-Accessor
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Object/Accessor.pm ../../lib/Object/Accessor.pm
+./miniperl -Ilib make_ext.pl cpan/Package-Constants/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Package::Constants (all)
+
+Creating Makefile.PL in cpan/Package-Constants for Package::Constants
+
+Running Makefile.PL in cpan/Package-Constants
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Package::Constants
+Making all in cpan/Package-Constants
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Package/Constants.pm ../../lib/Package/Constants.pm
+./miniperl -Ilib make_ext.pl cpan/Params-Check/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Params::Check (all)
+
+Creating Makefile.PL in cpan/Params-Check for Params::Check
+
+Running Makefile.PL in cpan/Params-Check
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Params::Check
+Making all in cpan/Params-Check
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Params/Check.pm ../../lib/Params/Check.pm
+./miniperl -Ilib make_ext.pl cpan/Parse-CPAN-Meta/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Parse::CPAN::Meta (all)
+
+Creating Makefile.PL in cpan/Parse-CPAN-Meta for Parse::CPAN::Meta
+
+Running Makefile.PL in cpan/Parse-CPAN-Meta
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Parse::CPAN::Meta
+Making all in cpan/Parse-CPAN-Meta
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Parse/CPAN/Meta.pm ../../lib/Parse/CPAN/Meta.pm
+./miniperl -Ilib make_ext.pl cpan/Perl-OSType/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Perl::OSType (all)
+
+Creating Makefile.PL in cpan/Perl-OSType for Perl::OSType
+
+Running Makefile.PL in cpan/Perl-OSType
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Perl::OSType
+Making all in cpan/Perl-OSType
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Perl/OSType.pm ../../lib/Perl/OSType.pm
+./miniperl -Ilib make_ext.pl cpan/PerlIO-via-QuotedPrint/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making PerlIO::via::QuotedPrint (all)
+
+Creating Makefile.PL in cpan/PerlIO-via-QuotedPrint for PerlIO::via::QuotedPrint
+
+Running Makefile.PL in cpan/PerlIO-via-QuotedPrint
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for PerlIO::via::QuotedPrint
+Making all in cpan/PerlIO-via-QuotedPrint
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/PerlIO/via/QuotedPrint.pm ../../lib/PerlIO/via/QuotedPrint.pm
+./miniperl -Ilib make_ext.pl cpan/Pod-Escapes/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Pod::Escapes (all)
+
+Creating Makefile.PL in cpan/Pod-Escapes for Pod::Escapes
+
+Running Makefile.PL in cpan/Pod-Escapes
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Pod::Escapes
+Making all in cpan/Pod-Escapes
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Pod/Escapes.pm ../../lib/Pod/Escapes.pm
+./miniperl -Ilib make_ext.pl cpan/Pod-Simple/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Pod::Simple (all)
+
+Creating Makefile.PL in cpan/Pod-Simple for Pod::Simple
+
+Running Makefile.PL in cpan/Pod-Simple
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Pod::Simple
+Making all in cpan/Pod-Simple
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Pod/Simple/DumpAsText.pm ../../lib/Pod/Simple/DumpAsText.pm
+cp lib/Pod/Simple/LinkSection.pm ../../lib/Pod/Simple/LinkSection.pm
+cp lib/Pod/Simple/Progress.pm ../../lib/Pod/Simple/Progress.pm
+cp lib/Pod/Simple/XMLOutStream.pm ../../lib/Pod/Simple/XMLOutStream.pm
+cp lib/Pod/Simple/TextContent.pm ../../lib/Pod/Simple/TextContent.pm
+cp lib/Pod/Simple/Search.pm ../../lib/Pod/Simple/Search.pm
+cp lib/Pod/Simple/Text.pm ../../lib/Pod/Simple/Text.pm
+cp lib/Pod/Simple/TranscodeSmart.pm ../../lib/Pod/Simple/TranscodeSmart.pm
+cp lib/Pod/Simple/Debug.pm ../../lib/Pod/Simple/Debug.pm
+cp lib/Pod/Simple/PullParserStartToken.pm ../../lib/Pod/Simple/PullParserStartToken.pm
+cp lib/Pod/Simple/Methody.pm ../../lib/Pod/Simple/Methody.pm
+cp lib/Pod/Simple/PullParserEndToken.pm ../../lib/Pod/Simple/PullParserEndToken.pm
+cp lib/Pod/Simple/PullParserTextToken.pm ../../lib/Pod/Simple/PullParserTextToken.pm
+cp lib/Pod/Simple.pm ../../lib/Pod/Simple.pm
+cp lib/Pod/Simple/HTMLBatch.pm ../../lib/Pod/Simple/HTMLBatch.pm
+cp lib/Pod/Simple/TranscodeDumb.pm ../../lib/Pod/Simple/TranscodeDumb.pm
+cp lib/Pod/Simple/RTF.pm ../../lib/Pod/Simple/RTF.pm
+cp lib/Pod/Simple/Checker.pm ../../lib/Pod/Simple/Checker.pm
+cp lib/Pod/Simple/PullParser.pm ../../lib/Pod/Simple/PullParser.pm
+cp lib/Pod/Simple/PullParserToken.pm ../../lib/Pod/Simple/PullParserToken.pm
+cp lib/Pod/Simple/SimpleTree.pm ../../lib/Pod/Simple/SimpleTree.pm
+cp lib/Pod/Simple/TiedOutFH.pm ../../lib/Pod/Simple/TiedOutFH.pm
+cp lib/Pod/Simple/XHTML.pm ../../lib/Pod/Simple/XHTML.pm
+cp lib/Pod/Simple/HTML.pm ../../lib/Pod/Simple/HTML.pm
+cp lib/Pod/Simple.pod ../../lib/Pod/Simple.pod
+cp lib/Pod/Simple/Subclassing.pod ../../lib/Pod/Simple/Subclassing.pod
+cp lib/Pod/Simple/BlackBox.pm ../../lib/Pod/Simple/BlackBox.pm
+cp lib/Pod/Simple/DumpAsXML.pm ../../lib/Pod/Simple/DumpAsXML.pm
+cp lib/Pod/Simple/HTMLLegacy.pm ../../lib/Pod/Simple/HTMLLegacy.pm
+cp lib/Pod/Simple/Transcode.pm ../../lib/Pod/Simple/Transcode.pm
+./miniperl -Ilib make_ext.pl ext/Pod-Functions/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Pod::Functions (all)
+
+Running Makefile.PL in ext/Pod-Functions
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Pod::Functions
+Making all in ext/Pod-Functions
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+../../miniperl "-I../../lib" "-I../../lib" Functions_pm.PL ../../pod/perlfunc.pod
+cp Functions.pm ../../lib/Pod/Functions.pm
+./miniperl -Ilib make_ext.pl ext/Pod-Html/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Pod::Html (all)
+
+Creating Makefile.PL in ext/Pod-Html for Pod::Html
+
+Running Makefile.PL in ext/Pod-Html
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Pod::Html
+Making all in ext/Pod-Html
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Pod/Html.pm ../../lib/Pod/Html.pm
+./miniperl -Ilib make_ext.pl cpan/Pod-LaTeX/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Pod::LaTeX (all)
+
+Creating Makefile.PL in cpan/Pod-LaTeX for Pod::LaTeX
+
+Running Makefile.PL in cpan/Pod-LaTeX
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Pod::LaTeX
+Making all in cpan/Pod-LaTeX
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Pod/LaTeX.pm ../../lib/Pod/LaTeX.pm
+../../miniperl "-I../../lib" "-I../../lib" "-I../../lib" "-I../../lib" pod2latex.PL pod2latex
+Extracting pod2latex (with variable substitutions)
+cp pod2latex blib/script/pod2latex
+/home/andrew/perl-5.16.2/obj/cpan/Pod-LaTeX/../../miniperl "-I../../lib" "-I../../lib" -MExtUtils::MY -e 'MY->fixin(shift)' -- blib/script/pod2latex
+./miniperl -Ilib make_ext.pl cpan/Pod-Parser/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Pod::Parser (all)
+
+Creating Makefile.PL in cpan/Pod-Parser for Pod::Parser
+
+Running Makefile.PL in cpan/Pod-Parser
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Pod::Parser
+Making all in cpan/Pod-Parser
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Pod/InputObjects.pm ../../lib/Pod/InputObjects.pm
+cp lib/Pod/Select.pm ../../lib/Pod/Select.pm
+cp lib/Pod/Checker.pm ../../lib/Pod/Checker.pm
+cp lib/Pod/PlainText.pm ../../lib/Pod/PlainText.pm
+cp lib/Pod/Find.pm ../../lib/Pod/Find.pm
+cp lib/Pod/ParseUtils.pm ../../lib/Pod/ParseUtils.pm
+cp lib/Pod/Usage.pm ../../lib/Pod/Usage.pm
+cp lib/Pod/Parser.pm ../../lib/Pod/Parser.pm
+../../miniperl "-I../../lib" "-I../../lib" "-I../../lib" "-I../../lib" podchecker.PL podchecker
+Extracting podchecker (with variable substitutions)
+cp podchecker blib/script/podchecker
+/home/andrew/perl-5.16.2/obj/cpan/Pod-Parser/../../miniperl "-I../../lib" "-I../../lib" -MExtUtils::MY -e 'MY->fixin(shift)' -- blib/script/podchecker
+../../miniperl "-I../../lib" "-I../../lib" "-I../../lib" "-I../../lib" pod2usage.PL pod2usage
+Extracting pod2usage (with variable substitutions)
+cp pod2usage blib/script/pod2usage
+/home/andrew/perl-5.16.2/obj/cpan/Pod-Parser/../../miniperl "-I../../lib" "-I../../lib" -MExtUtils::MY -e 'MY->fixin(shift)' -- blib/script/pod2usage
+../../miniperl "-I../../lib" "-I../../lib" "-I../../lib" "-I../../lib" podselect.PL podselect
+Extracting podselect (with variable substitutions)
+cp podselect blib/script/podselect
+/home/andrew/perl-5.16.2/obj/cpan/Pod-Parser/../../miniperl "-I../../lib" "-I../../lib" -MExtUtils::MY -e 'MY->fixin(shift)' -- blib/script/podselect
+./miniperl -Ilib make_ext.pl cpan/Pod-Perldoc/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Pod::Perldoc (all)
+
+Creating Makefile.PL in cpan/Pod-Perldoc for Pod::Perldoc
+
+Running Makefile.PL in cpan/Pod-Perldoc
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Pod::Perldoc
+Making all in cpan/Pod-Perldoc
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Pod/Perldoc/ToNroff.pm ../../lib/Pod/Perldoc/ToNroff.pm
+cp lib/Pod/Perldoc/ToTk.pm ../../lib/Pod/Perldoc/ToTk.pm
+cp lib/Pod/Perldoc/ToANSI.pm ../../lib/Pod/Perldoc/ToANSI.pm
+cp lib/perldoc.pod ../../lib/perldoc.pod
+cp lib/Pod/Perldoc/ToText.pm ../../lib/Pod/Perldoc/ToText.pm
+cp lib/Pod/Perldoc.pm ../../lib/Pod/Perldoc.pm
+cp lib/Pod/Perldoc/ToTerm.pm ../../lib/Pod/Perldoc/ToTerm.pm
+cp lib/Pod/Perldoc/BaseTo.pm ../../lib/Pod/Perldoc/BaseTo.pm
+cp lib/Pod/Perldoc/ToRtf.pm ../../lib/Pod/Perldoc/ToRtf.pm
+cp lib/Pod/Perldoc/ToMan.pm ../../lib/Pod/Perldoc/ToMan.pm
+cp lib/Pod/Perldoc/GetOptsOO.pm ../../lib/Pod/Perldoc/GetOptsOO.pm
+cp lib/Pod/Perldoc/ToChecker.pm ../../lib/Pod/Perldoc/ToChecker.pm
+cp lib/Pod/Perldoc/ToPod.pm ../../lib/Pod/Perldoc/ToPod.pm
+cp lib/Pod/Perldoc/ToXml.pm ../../lib/Pod/Perldoc/ToXml.pm
+./miniperl -Ilib make_ext.pl dist/Safe/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Safe (all)
+
+Running Makefile.PL in dist/Safe
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Safe
+Making all in dist/Safe
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp Safe.pm ../../lib/Safe.pm
+./miniperl -Ilib make_ext.pl dist/Search-Dict/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Search::Dict (all)
+
+Creating Makefile.PL in dist/Search-Dict for Search::Dict
+
+Running Makefile.PL in dist/Search-Dict
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Search::Dict
+Making all in dist/Search-Dict
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Search/Dict.pm ../../lib/Search/Dict.pm
+./miniperl -Ilib make_ext.pl dist/SelfLoader/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making SelfLoader (all)
+
+Creating Makefile.PL in dist/SelfLoader for SelfLoader
+
+Running Makefile.PL in dist/SelfLoader
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for SelfLoader
+Making all in dist/SelfLoader
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/SelfLoader.pm ../../lib/SelfLoader.pm
+./miniperl -Ilib make_ext.pl cpan/Term-ANSIColor/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Term::ANSIColor (all)
+
+Creating Makefile.PL in cpan/Term-ANSIColor for Term::ANSIColor
+
+Running Makefile.PL in cpan/Term-ANSIColor
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Term::ANSIColor
+Making all in cpan/Term-ANSIColor
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp ANSIColor.pm ../../lib/Term/ANSIColor.pm
+./miniperl -Ilib make_ext.pl cpan/Term-Cap/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Term::Cap (all)
+
+Creating Makefile.PL in cpan/Term-Cap for Term::Cap
+
+Running Makefile.PL in cpan/Term-Cap
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Term::Cap
+Making all in cpan/Term-Cap
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp Cap.pm ../../lib/Term/Cap.pm
+./miniperl -Ilib make_ext.pl dist/Term-Complete/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Term::Complete (all)
+
+Creating Makefile.PL in dist/Term-Complete for Term::Complete
+
+Running Makefile.PL in dist/Term-Complete
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Term::Complete
+Making all in dist/Term-Complete
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Term/Complete.pm ../../lib/Term/Complete.pm
+./miniperl -Ilib make_ext.pl dist/Term-ReadLine/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Term::ReadLine (all)
+
+Creating Makefile.PL in dist/Term-ReadLine for Term::ReadLine
+
+Running Makefile.PL in dist/Term-ReadLine
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Term::ReadLine
+Making all in dist/Term-ReadLine
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Term/ReadLine.pm ../../lib/Term/ReadLine.pm
+./miniperl -Ilib make_ext.pl cpan/Term-UI/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Term::UI (all)
+
+Creating Makefile.PL in cpan/Term-UI for Term::UI
+
+Running Makefile.PL in cpan/Term-UI
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Term::UI
+Making all in cpan/Term-UI
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Term/UI/History.pm ../../lib/Term/UI/History.pm
+cp lib/Term/UI.pm ../../lib/Term/UI.pm
+./miniperl -Ilib make_ext.pl cpan/Test/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Test (all)
+
+Creating Makefile.PL in cpan/Test for Test
+
+Running Makefile.PL in cpan/Test
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Test
+Making all in cpan/Test
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Test.pm ../../lib/Test.pm
+./miniperl -Ilib make_ext.pl cpan/Test-Harness/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Test::Harness (all)
+
+Creating Makefile.PL in cpan/Test-Harness for Test::Harness
+
+Running Makefile.PL in cpan/Test-Harness
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Test::Harness
+Making all in cpan/Test-Harness
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/TAP/Parser/Result/Pragma.pm ../../lib/TAP/Parser/Result/Pragma.pm
+cp lib/TAP/Parser/Iterator/Array.pm ../../lib/TAP/Parser/Iterator/Array.pm
+cp lib/App/Prove/State/Result.pm ../../lib/App/Prove/State/Result.pm
+cp lib/TAP/Base.pm ../../lib/TAP/Base.pm
+cp lib/TAP/Formatter/Console/ParallelSession.pm ../../lib/TAP/Formatter/Console/ParallelSession.pm
+cp lib/TAP/Parser/Result.pm ../../lib/TAP/Parser/Result.pm
+cp lib/TAP/Formatter/Console/Session.pm ../../lib/TAP/Formatter/Console/Session.pm
+cp lib/TAP/Parser/Result/YAML.pm ../../lib/TAP/Parser/Result/YAML.pm
+cp lib/TAP/Parser/Scheduler/Job.pm ../../lib/TAP/Parser/Scheduler/Job.pm
+cp lib/TAP/Parser.pm ../../lib/TAP/Parser.pm
+cp lib/TAP/Parser/SourceHandler/Handle.pm ../../lib/TAP/Parser/SourceHandler/Handle.pm
+cp lib/TAP/Parser/IteratorFactory.pm ../../lib/TAP/Parser/IteratorFactory.pm
+cp lib/TAP/Parser/Iterator.pm ../../lib/TAP/Parser/Iterator.pm
+cp lib/TAP/Formatter/Color.pm ../../lib/TAP/Formatter/Color.pm
+cp lib/TAP/Parser/Iterator/Process.pm ../../lib/TAP/Parser/Iterator/Process.pm
+cp lib/TAP/Parser/Grammar.pm ../../lib/TAP/Parser/Grammar.pm
+cp lib/Test/Harness.pm ../../lib/Test/Harness.pm
+cp lib/TAP/Formatter/Base.pm ../../lib/TAP/Formatter/Base.pm
+cp lib/TAP/Formatter/File/Session.pm ../../lib/TAP/Formatter/File/Session.pm
+cp lib/TAP/Parser/Utils.pm ../../lib/TAP/Parser/Utils.pm
+cp lib/TAP/Parser/ResultFactory.pm ../../lib/TAP/Parser/ResultFactory.pm
+cp lib/TAP/Parser/Result/Bailout.pm ../../lib/TAP/Parser/Result/Bailout.pm
+cp lib/TAP/Parser/Multiplexer.pm ../../lib/TAP/Parser/Multiplexer.pm
+cp lib/TAP/Object.pm ../../lib/TAP/Object.pm
+cp lib/TAP/Parser/SourceHandler/Perl.pm ../../lib/TAP/Parser/SourceHandler/Perl.pm
+cp lib/TAP/Parser/Result/Version.pm ../../lib/TAP/Parser/Result/Version.pm
+cp lib/TAP/Parser/YAMLish/Writer.pm ../../lib/TAP/Parser/YAMLish/Writer.pm
+cp lib/TAP/Parser/Result/Unknown.pm ../../lib/TAP/Parser/Result/Unknown.pm
+cp lib/TAP/Parser/YAMLish/Reader.pm ../../lib/TAP/Parser/YAMLish/Reader.pm
+cp lib/TAP/Parser/Scheduler.pm ../../lib/TAP/Parser/Scheduler.pm
+cp lib/TAP/Parser/Result/Plan.pm ../../lib/TAP/Parser/Result/Plan.pm
+cp lib/TAP/Parser/SourceHandler.pm ../../lib/TAP/Parser/SourceHandler.pm
+cp lib/TAP/Parser/SourceHandler/Executable.pm ../../lib/TAP/Parser/SourceHandler/Executable.pm
+cp lib/TAP/Parser/Result/Test.pm ../../lib/TAP/Parser/Result/Test.pm
+cp lib/App/Prove/State/Result/Test.pm ../../lib/App/Prove/State/Result/Test.pm
+cp lib/TAP/Parser/SourceHandler/RawTAP.pm ../../lib/TAP/Parser/SourceHandler/RawTAP.pm
+cp lib/TAP/Parser/Source.pm ../../lib/TAP/Parser/Source.pm
+cp lib/TAP/Formatter/Console.pm ../../lib/TAP/Formatter/Console.pm
+cp lib/TAP/Parser/Iterator/Stream.pm ../../lib/TAP/Parser/Iterator/Stream.pm
+cp lib/TAP/Parser/SourceHandler/File.pm ../../lib/TAP/Parser/SourceHandler/File.pm
+cp lib/TAP/Harness/Beyond.pod ../../lib/TAP/Harness/Beyond.pod
+cp lib/TAP/Formatter/Session.pm ../../lib/TAP/Formatter/Session.pm
+cp lib/App/Prove.pm ../../lib/App/Prove.pm
+cp lib/App/Prove/State.pm ../../lib/App/Prove/State.pm
+cp lib/TAP/Harness.pm ../../lib/TAP/Harness.pm
+cp lib/TAP/Formatter/File.pm ../../lib/TAP/Formatter/File.pm
+cp lib/TAP/Parser/Aggregator.pm ../../lib/TAP/Parser/Aggregator.pm
+cp lib/TAP/Parser/Scheduler/Spinner.pm ../../lib/TAP/Parser/Scheduler/Spinner.pm
+cp lib/TAP/Parser/Result/Comment.pm ../../lib/TAP/Parser/Result/Comment.pm
+./miniperl -Ilib make_ext.pl cpan/Test-Simple/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Test::Simple (all)
+
+Creating Makefile.PL in cpan/Test-Simple for Test::Simple
+
+Running Makefile.PL in cpan/Test-Simple
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Test::Simple
+Making all in cpan/Test-Simple
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Test/Builder/Tester/Color.pm ../../lib/Test/Builder/Tester/Color.pm
+cp lib/Test/Builder.pm ../../lib/Test/Builder.pm
+cp lib/Test/Simple.pm ../../lib/Test/Simple.pm
+cp lib/Test/More.pm ../../lib/Test/More.pm
+cp lib/Test/Builder/Module.pm ../../lib/Test/Builder/Module.pm
+cp lib/Test/Builder/Tester.pm ../../lib/Test/Builder/Tester.pm
+cp lib/Test/Tutorial.pod ../../lib/Test/Tutorial.pod
+./miniperl -Ilib make_ext.pl dist/Text-Abbrev/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Text::Abbrev (all)
+
+Creating Makefile.PL in dist/Text-Abbrev for Text::Abbrev
+
+Running Makefile.PL in dist/Text-Abbrev
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Text::Abbrev
+Making all in dist/Text-Abbrev
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Text/Abbrev.pm ../../lib/Text/Abbrev.pm
+./miniperl -Ilib make_ext.pl cpan/Text-Balanced/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Text::Balanced (all)
+
+Creating Makefile.PL in cpan/Text-Balanced for Text::Balanced
+
+Running Makefile.PL in cpan/Text-Balanced
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Text::Balanced
+Making all in cpan/Text-Balanced
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Text/Balanced.pm ../../lib/Text/Balanced.pm
+./miniperl -Ilib make_ext.pl cpan/Text-ParseWords/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Text::ParseWords (all)
+
+Creating Makefile.PL in cpan/Text-ParseWords for Text::ParseWords
+
+Running Makefile.PL in cpan/Text-ParseWords
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Text::ParseWords
+Making all in cpan/Text-ParseWords
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Text/ParseWords.pm ../../lib/Text/ParseWords.pm
+./miniperl -Ilib make_ext.pl cpan/Text-Tabs/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Text::Tabs (all)
+
+Creating Makefile.PL in cpan/Text-Tabs for Text::Tabs
+
+Running Makefile.PL in cpan/Text-Tabs
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Text::Tabs
+Making all in cpan/Text-Tabs
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Text/Tabs.pm ../../lib/Text/Tabs.pm
+cp lib/Text/Wrap.pm ../../lib/Text/Wrap.pm
+./miniperl -Ilib make_ext.pl dist/Thread-Queue/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Thread::Queue (all)
+
+Creating Makefile.PL in dist/Thread-Queue for Thread::Queue
+
+Running Makefile.PL in dist/Thread-Queue
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Thread::Queue
+Making all in dist/Thread-Queue
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Thread/Queue.pm ../../lib/Thread/Queue.pm
+./miniperl -Ilib make_ext.pl dist/Thread-Semaphore/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Thread::Semaphore (all)
+
+Creating Makefile.PL in dist/Thread-Semaphore for Thread::Semaphore
+
+Running Makefile.PL in dist/Thread-Semaphore
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Thread::Semaphore
+Making all in dist/Thread-Semaphore
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Thread/Semaphore.pm ../../lib/Thread/Semaphore.pm
+./miniperl -Ilib make_ext.pl dist/Tie-File/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Tie::File (all)
+
+Creating Makefile.PL in dist/Tie-File for Tie::File
+
+Running Makefile.PL in dist/Tie-File
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Tie::File
+Making all in dist/Tie-File
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Tie/File.pm ../../lib/Tie/File.pm
+./miniperl -Ilib make_ext.pl ext/Tie-Memoize/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Tie::Memoize (all)
+
+Creating Makefile.PL in ext/Tie-Memoize for Tie::Memoize
+
+Running Makefile.PL in ext/Tie-Memoize
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Tie::Memoize
+Making all in ext/Tie-Memoize
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Tie/Memoize.pm ../../lib/Tie/Memoize.pm
+./miniperl -Ilib make_ext.pl cpan/Tie-RefHash/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Tie::RefHash (all)
+
+Creating Makefile.PL in cpan/Tie-RefHash for Tie::RefHash
+
+Running Makefile.PL in cpan/Tie-RefHash
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Tie::RefHash
+Making all in cpan/Tie-RefHash
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Tie/RefHash.pm ../../lib/Tie/RefHash.pm
+./miniperl -Ilib make_ext.pl cpan/Time-Local/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Time::Local (all)
+
+Creating Makefile.PL in cpan/Time-Local for Time::Local
+
+Running Makefile.PL in cpan/Time-Local
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Time::Local
+Making all in cpan/Time-Local
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Time/Local.pm ../../lib/Time/Local.pm
+./miniperl -Ilib make_ext.pl cpan/Version-Requirements/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Version::Requirements (all)
+
+Creating Makefile.PL in cpan/Version-Requirements for Version::Requirements
+
+Running Makefile.PL in cpan/Version-Requirements
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Version::Requirements
+Making all in cpan/Version-Requirements
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Version/Requirements.pm ../../lib/Version/Requirements.pm
+./miniperl -Ilib make_ext.pl dist/XSLoader/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making XSLoader (all)
+
+Running Makefile.PL in dist/XSLoader
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for XSLoader
+Making all in dist/XSLoader
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+../../miniperl "-I../../lib" "-I../../lib" XSLoader_pm.PL XSLoader.pm
+cp XSLoader.pm ../../lib/XSLoader.pm
+./miniperl -Ilib make_ext.pl cpan/autodie/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making autodie (all)
+
+Creating Makefile.PL in cpan/autodie for autodie
+
+Running Makefile.PL in cpan/autodie
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for autodie
+Making all in cpan/autodie
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Fatal.pm ../../lib/Fatal.pm
+cp lib/autodie/exception.pm ../../lib/autodie/exception.pm
+cp lib/autodie/hints.pm ../../lib/autodie/hints.pm
+cp lib/autodie.pm ../../lib/autodie.pm
+cp lib/autodie/exception/system.pm ../../lib/autodie/exception/system.pm
+./miniperl -Ilib make_ext.pl dist/autouse/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making autouse (all)
+
+Creating Makefile.PL in dist/autouse for autouse
+
+Running Makefile.PL in dist/autouse
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for autouse
+Making all in dist/autouse
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/autouse.pm ../../lib/autouse.pm
+./miniperl -Ilib make_ext.pl dist/base/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making base (all)
+
+Creating Makefile.PL in dist/base for base
+
+Running Makefile.PL in dist/base
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for base
+Making all in dist/base
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/base.pm ../../lib/base.pm
+cp lib/fields.pm ../../lib/fields.pm
+./miniperl -Ilib make_ext.pl dist/bignum/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making bignum (all)
+
+Creating Makefile.PL in dist/bignum for bignum
+
+Running Makefile.PL in dist/bignum
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for bignum
+Making all in dist/bignum
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/bignum.pm ../../lib/bignum.pm
+cp lib/bigrat.pm ../../lib/bigrat.pm
+cp lib/Math/BigFloat/Trace.pm ../../lib/Math/BigFloat/Trace.pm
+cp lib/bigint.pm ../../lib/bigint.pm
+cp lib/Math/BigInt/Trace.pm ../../lib/Math/BigInt/Trace.pm
+./miniperl -Ilib make_ext.pl dist/constant/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making constant (all)
+
+Creating Makefile.PL in dist/constant for constant
+
+Running Makefile.PL in dist/constant
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for constant
+Making all in dist/constant
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/constant.pm ../../lib/constant.pm
+./miniperl -Ilib make_ext.pl cpan/encoding-warnings/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making encoding::warnings (all)
+
+Creating Makefile.PL in cpan/encoding-warnings for encoding::warnings
+
+Running Makefile.PL in cpan/encoding-warnings
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for encoding::warnings
+Making all in cpan/encoding-warnings
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/encoding/warnings.pm ../../lib/encoding/warnings.pm
+./miniperl -Ilib make_ext.pl dist/if/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making if (all)
+
+Creating Makefile.PL in dist/if for if
+
+Running Makefile.PL in dist/if
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for if
+Making all in dist/if
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp if.pm ../../lib/if.pm
+./miniperl -Ilib make_ext.pl dist/lib/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making lib (all)
+
+Running Makefile.PL in dist/lib
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for lib
+Making all in dist/lib
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+../../miniperl "-I../../lib" "-I../../lib" lib_pm.PL lib.pm
+Extracting lib.pm (with variable substitutions)
+cp lib.pm ../../lib/lib.pm
+./miniperl -Ilib make_ext.pl cpan/libnet/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making libnet (all)
+
+Running Makefile.PL in cpan/libnet
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Net
+Making all in cpan/libnet
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp Net/POP3.pm ../../lib/Net/POP3.pm
+cp Net/Config.pm ../../lib/Net/Config.pm
+cp Net/SMTP.pm ../../lib/Net/SMTP.pm
+cp Net/FTP/dataconn.pm ../../lib/Net/FTP/dataconn.pm
+cp Net/libnetFAQ.pod ../../lib/Net/libnetFAQ.pod
+cp Net/Domain.pm ../../lib/Net/Domain.pm
+cp Net/FTP/E.pm ../../lib/Net/FTP/E.pm
+cp Net/Cmd.pm ../../lib/Net/Cmd.pm
+cp Net/FTP.pm ../../lib/Net/FTP.pm
+cp Net/Netrc.pm ../../lib/Net/Netrc.pm
+cp Net/FTP/A.pm ../../lib/Net/FTP/A.pm
+cp Net/FTP/L.pm ../../lib/Net/FTP/L.pm
+cp Net/NNTP.pm ../../lib/Net/NNTP.pm
+cp Net/Time.pm ../../lib/Net/Time.pm
+cp Net/FTP/I.pm ../../lib/Net/FTP/I.pm
+./miniperl -Ilib make_ext.pl cpan/parent/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making parent (all)
+
+Creating Makefile.PL in cpan/parent for parent
+
+Running Makefile.PL in cpan/parent
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for parent
+Making all in cpan/parent
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/parent.pm ../../lib/parent.pm
+./miniperl -Ilib make_ext.pl cpan/perlfaq/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making perlfaq (all)
+
+Creating Makefile.PL in cpan/perlfaq for perlfaq
+
+Running Makefile.PL in cpan/perlfaq
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for perlfaq
+Making all in cpan/perlfaq
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/perlglossary.pod ../../lib/perlglossary.pod
+cp lib/perlfaq3.pod ../../lib/perlfaq3.pod
+cp lib/perlfaq.pm ../../lib/perlfaq.pm
+cp lib/perlfaq6.pod ../../lib/perlfaq6.pod
+cp lib/perlfaq1.pod ../../lib/perlfaq1.pod
+cp lib/perlfaq4.pod ../../lib/perlfaq4.pod
+cp lib/perlfaq5.pod ../../lib/perlfaq5.pod
+cp lib/perlfaq2.pod ../../lib/perlfaq2.pod
+cp lib/perlfaq9.pod ../../lib/perlfaq9.pod
+cp lib/perlfaq7.pod ../../lib/perlfaq7.pod
+cp lib/perlfaq.pod ../../lib/perlfaq.pod
+cp lib/perlfaq8.pod ../../lib/perlfaq8.pod
+./miniperl -Ilib make_ext.pl cpan/podlators/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making podlators (all)
+
+Creating Makefile.PL in cpan/podlators for podlators
+
+Running Makefile.PL in cpan/podlators
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a
+Writing Makefile for Pod
+Making all in cpan/podlators
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+cp lib/Pod/ParseLink.pm ../../lib/Pod/ParseLink.pm
+cp lib/Pod/Text/Termcap.pm ../../lib/Pod/Text/Termcap.pm
+cp lib/Pod/Text.pm ../../lib/Pod/Text.pm
+cp lib/Pod/Text/Color.pm ../../lib/Pod/Text/Color.pm
+cp lib/Pod/Text/Overstrike.pm ../../lib/Pod/Text/Overstrike.pm
+cp lib/Pod/Man.pm ../../lib/Pod/Man.pm
+../../miniperl "-I../../lib" "-I../../lib" "-I../../lib" "-I../../lib" pod2text.PL pod2text
+Extracting pod2text (with variable substitutions)
+cp pod2text blib/script/pod2text
+/home/andrew/perl-5.16.2/obj/cpan/podlators/../../miniperl "-I../../lib" "-I../../lib" -MExtUtils::MY -e 'MY->fixin(shift)' -- blib/script/pod2text
+../../miniperl "-I../../lib" "-I../../lib" "-I../../lib" "-I../../lib" pod2man.PL pod2man
+Extracting pod2man (with variable substitutions)
+cp pod2man blib/script/pod2man
+/home/andrew/perl-5.16.2/obj/cpan/podlators/../../miniperl "-I../../lib" "-I../../lib" -MExtUtils::MY -e 'MY->fixin(shift)' -- blib/script/pod2man
+./miniperl -Ilib -Idist/Cwd -Idist/Cwd/lib -Idist/Carp/lib lib/unicore/mktables -C lib/unicore -P pod -maketest -makelist -p
+Processing PropertyAliases.txt
+Finishing property setup
+Processing PropValueAliases.txt
+Processing DAge.txt
+Processing extracted/DGeneralCategory.txt
+Processing extracted/DCombiningClass.txt
+Processing extracted/DNumType.txt
+Processing extracted/DEastAsianWidth.txt
+Processing extracted/DLineBreak.txt
+Processing extracted/DBidiClass.txt
+Processing extracted/DDecompositionType.txt
+Out of memory during "large" request for 135168 bytes, total sbrk() is 8237992 bytes at lib/unicore/mktables line 2384, <$file_handle> line 344.
+*** Error code 12
+
+Stop in /home/andrew/perl-5.16.2/obj (line 481 of Makefile).
+*** Error code 1
+
+Stop in /home/andrew/perl-5.16.2 (line 63 of /home/andrew/perl-5.16.2/Makefile.bsd-wrapper).
+./miniperl -Ilib minimod.pl > lib/ExtUtils/Miniperl.pm
+./miniperl -Ilib -Ilib -MExtUtils::Miniperl -e 'writemain(@ARGV)' DynaLoader lib/auto/B/B.a lib/auto/Compress/Raw/Bzip2/Bzip2.a lib/auto/Compress/Raw/Zlib/Zlib.a lib/auto/Cwd/Cwd.a lib/auto/DB_File/DB_File.a lib/auto/Data/Dumper/Dumper.a lib/auto/Devel/PPPort/PPPort.a lib/auto/Devel/Peek/Peek.a lib/auto/Digest/MD5/MD5.a lib/auto/Digest/SHA/SHA.a lib/auto/Encode/Encode.a lib/auto/Fcntl/Fcntl.a lib/auto/File/Glob/Glob.a lib/auto/Filter/Util/Call/Call.a lib/auto/Hash/Util/Util.a lib/auto/Hash/Util/FieldHash/FieldHash.a lib/auto/I18N/Langinfo/Langinfo.a lib/auto/IO/IO.a lib/auto/IPC/SysV/SysV.a lib/auto/List/Util/Util.a lib/auto/MIME/Base64/Base64.a lib/auto/Math/BigInt/FastCalc/FastCalc.a lib/auto/NDBM_File/NDBM_File.a lib/auto/ODBM_File/ODBM_File.a lib/auto/Opcode/Opcode.a lib/auto/OpenBSD/MkTemp/MkTemp.a lib/auto/POSIX/POSIX.a lib/auto/PerlIO/encoding/encoding.a lib/auto/PerlIO/mmap/mmap.a lib/auto/PerlIO/scalar/scalar.a lib/auto/PerlIO/via/via.a lib/auto/SDBM_File/SDBM_File.a lib/auto/Socket/Socket.a lib/auto/Storable/Storable.a lib/auto/Sys/Hostname/Hostname.a lib/auto/Sys/Syslog/Syslog.a lib/auto/Text/Soundex/Soundex.a lib/auto/Tie/Hash/NamedCapture/NamedCapture.a lib/auto/Time/HiRes/HiRes.a lib/auto/Time/Piece/Piece.a lib/auto/Unicode/Collate/Collate.a lib/auto/Unicode/Normalize/Normalize.a lib/auto/arybase/arybase.a lib/auto/attributes/attributes.a lib/auto/mro/mro.a lib/auto/re/re.a lib/auto/threads/threads.a lib/auto/threads/shared/shared.a lib/auto/Encode/Byte/Byte.a lib/auto/Encode/CN/CN.a lib/auto/Encode/EBCDIC/EBCDIC.a lib/auto/Encode/JP/JP.a lib/auto/Encode/KR/KR.a lib/auto/Encode/Symbol/Symbol.a lib/auto/Encode/TW/TW.a lib/auto/Encode/Unicode/Unicode.a > perlmain.c
+`sh  cflags "optimize='-O2'" perlmain.o`  perlmain.c
+	  CCCMD =  cc -DPERL_CORE -c -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include  -O2 -Wall 
+`sh  cflags "optimize='-O2'" perl.o`  perl.c
+	  CCCMD =  cc -DPERL_CORE -c -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include  -O2 -Wall 
+./miniperl -Ilib make_ext.pl cpan/Archive-Extract/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Archive::Extract (all)
+Making all in cpan/Archive-Extract
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Archive-Tar/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Archive::Tar (all)
+Making all in cpan/Archive-Tar
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/Attribute-Handlers/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Attribute::Handlers (all)
+Making all in dist/Attribute-Handlers
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/AutoLoader/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making AutoLoader (all)
+Making all in cpan/AutoLoader
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/B-Debug/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making B::Debug (all)
+Making all in cpan/B-Debug
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/B-Deparse/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making B::Deparse (all)
+Making all in dist/B-Deparse
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/B-Lint/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making B::Lint (all)
+Making all in dist/B-Lint
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/CGI/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making CGI (all)
+Making all in cpan/CGI
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/CPAN/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making CPAN (all)
+Making all in cpan/CPAN
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/CPAN-Meta/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making CPAN::Meta (all)
+Making all in cpan/CPAN-Meta
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/CPAN-Meta-YAML/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making CPAN::Meta::YAML (all)
+Making all in cpan/CPAN-Meta-YAML
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/CPANPLUS/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making CPANPLUS (all)
+Making all in cpan/CPANPLUS
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/CPANPLUS-Dist-Build/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making CPANPLUS::Dist::Build (all)
+Making all in cpan/CPANPLUS-Dist-Build
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/Carp/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Carp (all)
+Making all in dist/Carp
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/Devel-SelfStubber/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Devel::SelfStubber (all)
+Making all in dist/Devel-SelfStubber
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Digest/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Digest (all)
+Making all in cpan/Digest
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/Dumpvalue/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Dumpvalue (all)
+Making all in dist/Dumpvalue
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/Env/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Env (all)
+Making all in dist/Env
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl ext/Errno/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Errno (all)
+Making all in ext/Errno
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/ExtUtils-CBuilder/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making ExtUtils::CBuilder (all)
+Making all in dist/ExtUtils-CBuilder
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/ExtUtils-Command/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making ExtUtils::Command (all)
+Making all in dist/ExtUtils-Command
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/ExtUtils-Constant/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making ExtUtils::Constant (all)
+Making all in cpan/ExtUtils-Constant
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/ExtUtils-Install/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making ExtUtils::Install (all)
+Making all in dist/ExtUtils-Install
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/ExtUtils-MakeMaker/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making ExtUtils::MakeMaker (all)
+Making all in cpan/ExtUtils-MakeMaker
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/ExtUtils-Manifest/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making ExtUtils::Manifest (all)
+Making all in dist/ExtUtils-Manifest
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/ExtUtils-ParseXS/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making ExtUtils::ParseXS (all)
+Making all in dist/ExtUtils-ParseXS
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/File-CheckTree/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making File::CheckTree (all)
+Making all in dist/File-CheckTree
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/File-Fetch/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making File::Fetch (all)
+Making all in cpan/File-Fetch
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/File-Path/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making File::Path (all)
+Making all in cpan/File-Path
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/File-Temp/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making File::Temp (all)
+Making all in cpan/File-Temp
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl ext/FileCache/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making FileCache (all)
+Making all in ext/FileCache
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/Filter-Simple/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Filter::Simple (all)
+Making all in dist/Filter-Simple
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Getopt-Long/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Getopt::Long (all)
+Making all in cpan/Getopt-Long
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/HTTP-Tiny/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making HTTP::Tiny (all)
+Making all in cpan/HTTP-Tiny
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/I18N-Collate/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making I18N::Collate (all)
+Making all in dist/I18N-Collate
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/I18N-LangTags/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making I18N::LangTags (all)
+Making all in dist/I18N-LangTags
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/IO-Compress/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making IO::Compress (all)
+Making all in cpan/IO-Compress
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/IO-Zlib/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making IO::Zlib (all)
+Making all in cpan/IO-Zlib
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/IPC-Cmd/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making IPC::Cmd (all)
+Making all in cpan/IPC-Cmd
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl ext/IPC-Open3/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making IPC::Open3 (all)
+Making all in ext/IPC-Open3
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/JSON-PP/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making JSON::PP (all)
+Making all in cpan/JSON-PP
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Locale-Codes/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Locale::Codes (all)
+Making all in cpan/Locale-Codes
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/Locale-Maketext/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Locale::Maketext (all)
+Making all in dist/Locale-Maketext
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Locale-Maketext-Simple/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Locale::Maketext::Simple (all)
+Making all in cpan/Locale-Maketext-Simple
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Log-Message/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Log::Message (all)
+Making all in cpan/Log-Message
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Log-Message-Simple/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Log::Message::Simple (all)
+Making all in cpan/Log-Message-Simple
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/Math-BigInt/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Math::BigInt (all)
+Making all in dist/Math-BigInt
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/Math-BigRat/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Math::BigRat (all)
+Making all in dist/Math-BigRat
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Math-Complex/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Math::Complex (all)
+Making all in cpan/Math-Complex
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Memoize/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Memoize (all)
+Making all in cpan/Memoize
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Module-Build/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Module::Build (all)
+Making all in cpan/Module-Build
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/Module-CoreList/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Module::CoreList (all)
+Making all in dist/Module-CoreList
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Module-Load/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Module::Load (all)
+Making all in cpan/Module-Load
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Module-Load-Conditional/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Module::Load::Conditional (all)
+Making all in cpan/Module-Load-Conditional
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Module-Loaded/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Module::Loaded (all)
+Making all in cpan/Module-Loaded
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Module-Metadata/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Module::Metadata (all)
+Making all in cpan/Module-Metadata
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Module-Pluggable/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Module::Pluggable (all)
+Making all in cpan/Module-Pluggable
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/NEXT/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making NEXT (all)
+Making all in cpan/NEXT
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/Net-Ping/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Net::Ping (all)
+Making all in dist/Net-Ping
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Object-Accessor/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Object::Accessor (all)
+Making all in cpan/Object-Accessor
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Package-Constants/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Package::Constants (all)
+Making all in cpan/Package-Constants
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Params-Check/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Params::Check (all)
+Making all in cpan/Params-Check
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Parse-CPAN-Meta/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Parse::CPAN::Meta (all)
+Making all in cpan/Parse-CPAN-Meta
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Perl-OSType/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Perl::OSType (all)
+Making all in cpan/Perl-OSType
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/PerlIO-via-QuotedPrint/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making PerlIO::via::QuotedPrint (all)
+Making all in cpan/PerlIO-via-QuotedPrint
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Pod-Escapes/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Pod::Escapes (all)
+Making all in cpan/Pod-Escapes
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Pod-Simple/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Pod::Simple (all)
+Making all in cpan/Pod-Simple
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl ext/Pod-Functions/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Pod::Functions (all)
+Making all in ext/Pod-Functions
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl ext/Pod-Html/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Pod::Html (all)
+Making all in ext/Pod-Html
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Pod-LaTeX/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Pod::LaTeX (all)
+Making all in cpan/Pod-LaTeX
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Pod-Parser/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Pod::Parser (all)
+Making all in cpan/Pod-Parser
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Pod-Perldoc/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Pod::Perldoc (all)
+Making all in cpan/Pod-Perldoc
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/Safe/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Safe (all)
+Making all in dist/Safe
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/Search-Dict/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Search::Dict (all)
+Making all in dist/Search-Dict
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/SelfLoader/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making SelfLoader (all)
+Making all in dist/SelfLoader
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Term-ANSIColor/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Term::ANSIColor (all)
+Making all in cpan/Term-ANSIColor
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Term-Cap/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Term::Cap (all)
+Making all in cpan/Term-Cap
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/Term-Complete/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Term::Complete (all)
+Making all in dist/Term-Complete
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/Term-ReadLine/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Term::ReadLine (all)
+Making all in dist/Term-ReadLine
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Term-UI/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Term::UI (all)
+Making all in cpan/Term-UI
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Test/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Test (all)
+Making all in cpan/Test
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Test-Harness/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Test::Harness (all)
+Making all in cpan/Test-Harness
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Test-Simple/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Test::Simple (all)
+Making all in cpan/Test-Simple
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/Text-Abbrev/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Text::Abbrev (all)
+Making all in dist/Text-Abbrev
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Text-Balanced/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Text::Balanced (all)
+Making all in cpan/Text-Balanced
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Text-ParseWords/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Text::ParseWords (all)
+Making all in cpan/Text-ParseWords
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Text-Tabs/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Text::Tabs (all)
+Making all in cpan/Text-Tabs
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/Thread-Queue/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Thread::Queue (all)
+Making all in dist/Thread-Queue
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/Thread-Semaphore/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Thread::Semaphore (all)
+Making all in dist/Thread-Semaphore
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/Tie-File/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Tie::File (all)
+Making all in dist/Tie-File
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl ext/Tie-Memoize/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Tie::Memoize (all)
+Making all in ext/Tie-Memoize
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Tie-RefHash/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Tie::RefHash (all)
+Making all in cpan/Tie-RefHash
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Time-Local/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Time::Local (all)
+Making all in cpan/Time-Local
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/Version-Requirements/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making Version::Requirements (all)
+Making all in cpan/Version-Requirements
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/XSLoader/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making XSLoader (all)
+Making all in dist/XSLoader
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/autodie/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making autodie (all)
+Making all in cpan/autodie
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/autouse/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making autouse (all)
+Making all in dist/autouse
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/base/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making base (all)
+Making all in dist/base
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/bignum/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making bignum (all)
+Making all in dist/bignum
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/constant/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making constant (all)
+Making all in dist/constant
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/encoding-warnings/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making encoding::warnings (all)
+Making all in cpan/encoding-warnings
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/if/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making if (all)
+Making all in dist/if
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl dist/lib/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making lib (all)
+Making all in dist/lib
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/libnet/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making libnet (all)
+Making all in cpan/libnet
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/parent/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making parent (all)
+Making all in cpan/parent
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/perlfaq/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making perlfaq (all)
+Making all in cpan/perlfaq
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl cpan/podlators/pm_to_blib MAKE=make LIBPERL_A=libperl.a
+	Making podlators (all)
+Making all in cpan/podlators
+ make all PERL_CORE=1 LIBPERL_A=libperl.a
+./miniperl -Ilib make_ext.pl DynaLoader.o MAKE=make LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+	Making DynaLoader (all)
+
+Running Makefile.PL in ext/DynaLoader
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+Processing hints file hints/openbsd.pl
+Writing Makefile for DynaLoader
+Making all in ext/DynaLoader
+ make all PERL_CORE=1 LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+../../miniperl "-I../../lib" "-I../../lib" DynaLoader_pm.PL DynaLoader.pm
+cp DynaLoader.pm ../../lib/DynaLoader.pm
+rm -f DynaLoader.xs
+cp dl_none.xs DynaLoader.xs
+../../miniperl "-I../../lib" "-I../../lib" ../../lib/ExtUtils/xsubpp -noprototypes -typemap ../../lib/ExtUtils/typemap DynaLoader.xs > DynaLoader.xsc && mv DynaLoader.xsc DynaLoader.c
+cc -c    -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -DDLOPEN_WONT_DO_RELATIVE_PATHS -O2    -DVERSION=\"1.14\"  -DXS_VERSION=\"1.14\"  "-I../.."  -DLIBC="/usr/lib/libc.a" DynaLoader.c
+rm -rf ../../DynaLoader.o
+cp DynaLoader.o ../../DynaLoader.o
+rm -f libperl.a
+/usr/bin/ar rcu libperl.a op.o perl.o  malloc.o gv.o toke.o perly.o pad.o regcomp.o dump.o util.o mg.o reentr.o mro.o keywords.o hv.o av.o run.o pp_hot.o sv.o pp.o scope.o pp_ctl.o pp_sys.o doop.o doio.o regexec.o utf8.o taint.o deb.o universal.o globals.o perlio.o perlapi.o numeric.o mathoms.o locale.o pp_pack.o pp_sort.o   DynaLoader.o
+./miniperl -Ilib -Idist/Cwd -Idist/Cwd/lib -Idist/Carp/lib mkppport
+running /home/andrew/perl-5.16.2/obj/miniperl -I../../lib PPPort_pm.PL
+mysterious name [PL_parser-E<gt>bufend] in parts/apidoc.fnc, line 347
+mysterious name [PL_parser-E<gt>bufptr] in parts/apidoc.fnc, line 348
+mysterious name [PL_parser-E<gt>linestart] in parts/apidoc.fnc, line 349
+mysterious name [PL_parser-E<gt>linestr] in parts/apidoc.fnc, line 350
+parts/inc/variables provides PL_parser, which is still marked todo for 5.9.5
+including ppphdoc
+including ppphbin
+including version
+including threads
+including limits
+including uv
+including memory
+including misc
+including variables
+including mPUSH
+including call
+including newRV
+including newCONSTSUB
+including MY_CXT
+including format
+including SvREFCNT
+including newSV_type
+including newSVpv
+including SvPV
+including Sv_set
+including sv_xpvf
+including shared_pv
+including HvNAME
+including gv
+including warn
+including pvs
+including magic
+including cop
+including grok
+including snprintf
+including sprintf
+including exception
+including strlfuncs
+including pv_tools
+running /home/andrew/perl-5.16.2/obj/miniperl -I../../lib ppport_h.PL
+installing ppport.h for cpan/DB_File
+installing ppport.h for cpan/IPC-SysV
+installing ppport.h for cpan/List-Util
+installing ppport.h for cpan/Time-HiRes
+installing ppport.h for cpan/Win32API-File
+installing ppport.h for dist/Cwd
+removing temporary file PPPort.pm
+removing temporary file ppport.h
+./miniperl -Ilib make_ext.pl lib/auto/B/B.a MAKE=make LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+	Making B (all)
+
+Running Makefile.PL in ext/B
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+Writing Makefile for B
+Making all in ext/B
+ make all PERL_CORE=1 LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+cp B/Showlex.pm ../../lib/B/Showlex.pm
+cp B.pm ../../lib/B.pm
+cp B/Concise.pm ../../lib/B/Concise.pm
+cp B/Terse.pm ../../lib/B/Terse.pm
+cp B/Xref.pm ../../lib/B/Xref.pm
+cp O.pm ../../lib/O.pm
+../../miniperl "-I../../lib" "-I../../lib" ../../lib/ExtUtils/xsubpp  -typemap ../../lib/ExtUtils/typemap -typemap typemap  B.xs > B.xsc && mv B.xsc B.c
+cc -c    -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"1.35\"  -DXS_VERSION=\"1.35\"  "-I../.."   B.c
+rm -rf ../../lib/auto/B/B.a
+/usr/bin/ar cr ../../lib/auto/B/B.a B.o && ranlib ../../lib/auto/B/B.a
+chmod 755 ../../lib/auto/B/B.a
+./miniperl -Ilib make_ext.pl lib/auto/Compress/Raw/Bzip2/Bzip2.a MAKE=make LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+	Making Compress::Raw::Bzip2 (all)
+
+Running Makefile.PL in cpan/Compress-Raw-Bzip2
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+Writing Makefile for Compress::Raw::Bzip2
+Making all in cpan/Compress-Raw-Bzip2
+ make all PERL_CORE=1 LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+cp lib/Compress/Raw/Bzip2.pm ../../lib/Compress/Raw/Bzip2.pm
+AutoSplitting ../../lib/Compress/Raw/Bzip2.pm (../../lib/auto/Compress/Raw/Bzip2)
+cc -c  -I.  -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"2.048\"  -DXS_VERSION=\"2.048\"  "-I../.."  -DBZ_NO_STDIO blocksort.c
+cc -c  -I.  -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"2.048\"  -DXS_VERSION=\"2.048\"  "-I../.."  -DBZ_NO_STDIO huffman.c
+cc -c  -I.  -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"2.048\"  -DXS_VERSION=\"2.048\"  "-I../.."  -DBZ_NO_STDIO crctable.c
+cc -c  -I.  -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"2.048\"  -DXS_VERSION=\"2.048\"  "-I../.."  -DBZ_NO_STDIO randtable.c
+cc -c  -I.  -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"2.048\"  -DXS_VERSION=\"2.048\"  "-I../.."  -DBZ_NO_STDIO compress.c
+cc -c  -I.  -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"2.048\"  -DXS_VERSION=\"2.048\"  "-I../.."  -DBZ_NO_STDIO decompress.c
+cc -c  -I.  -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"2.048\"  -DXS_VERSION=\"2.048\"  "-I../.."  -DBZ_NO_STDIO bzlib.c
+../../miniperl "-I../../lib" "-I../../lib" ../../lib/ExtUtils/xsubpp  -typemap ../../lib/ExtUtils/typemap -typemap typemap  Bzip2.xs > Bzip2.xsc && mv Bzip2.xsc Bzip2.c
+cc -c  -I.  -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"2.048\"  -DXS_VERSION=\"2.048\"  "-I../.."  -DBZ_NO_STDIO Bzip2.c
+rm -rf ../../lib/auto/Compress/Raw/Bzip2/Bzip2.a
+/usr/bin/ar cr ../../lib/auto/Compress/Raw/Bzip2/Bzip2.a blocksort.o  huffman.o  crctable.o  randtable.o  compress.o  decompress.o  bzlib.o  Bzip2.o && ranlib ../../lib/auto/Compress/Raw/Bzip2/Bzip2.a
+chmod 755 ../../lib/auto/Compress/Raw/Bzip2/Bzip2.a
+./miniperl -Ilib make_ext.pl lib/auto/Compress/Raw/Zlib/Zlib.a MAKE=make LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+	Making Compress::Raw::Zlib (all)
+
+Running Makefile.PL in cpan/Compress-Raw-Zlib
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+Parsing config.in...
+Building Zlib enabled
+Auto Detect Gzip OS Code..
+Setting Gzip OS Code to 3 [Unix/Default]
+Looks Good.
+Writing Makefile for Compress::Raw::Zlib
+Making all in cpan/Compress-Raw-Zlib
+ make all PERL_CORE=1 LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+cp lib/Compress/Raw/Zlib.pm ../../lib/Compress/Raw/Zlib.pm
+AutoSplitting ../../lib/Compress/Raw/Zlib.pm (../../lib/auto/Compress/Raw/Zlib)
+../../miniperl "-I../../lib" "-I../../lib" ../../lib/ExtUtils/xsubpp  -typemap ../../lib/ExtUtils/typemap -typemap typemap  Zlib.xs > Zlib.xsc && mv Zlib.xsc Zlib.c
+cc -c  -I./zlib-src  -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"2.048\"  -DXS_VERSION=\"2.048\"  "-I../.."  -DNO_VIZ -DZ_SOLO   -DGZIP_OS_CODE=3 Zlib.c
+cc -c  -I./zlib-src  -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"2.048\"  -DXS_VERSION=\"2.048\"  "-I../.."  -DNO_VIZ -DZ_SOLO   -DGZIP_OS_CODE=3 adler32.c
+cc -c  -I./zlib-src  -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"2.048\"  -DXS_VERSION=\"2.048\"  "-I../.."  -DNO_VIZ -DZ_SOLO   -DGZIP_OS_CODE=3 crc32.c
+cc -c  -I./zlib-src  -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"2.048\"  -DXS_VERSION=\"2.048\"  "-I../.."  -DNO_VIZ -DZ_SOLO   -DGZIP_OS_CODE=3 infback.c
+cc -c  -I./zlib-src  -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"2.048\"  -DXS_VERSION=\"2.048\"  "-I../.."  -DNO_VIZ -DZ_SOLO   -DGZIP_OS_CODE=3 inflate.c
+cc -c  -I./zlib-src  -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"2.048\"  -DXS_VERSION=\"2.048\"  "-I../.."  -DNO_VIZ -DZ_SOLO   -DGZIP_OS_CODE=3 uncompr.c
+cc -c  -I./zlib-src  -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"2.048\"  -DXS_VERSION=\"2.048\"  "-I../.."  -DNO_VIZ -DZ_SOLO   -DGZIP_OS_CODE=3 compress.c
+cc -c  -I./zlib-src  -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"2.048\"  -DXS_VERSION=\"2.048\"  "-I../.."  -DNO_VIZ -DZ_SOLO   -DGZIP_OS_CODE=3 deflate.c
+cc -c  -I./zlib-src  -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"2.048\"  -DXS_VERSION=\"2.048\"  "-I../.."  -DNO_VIZ -DZ_SOLO   -DGZIP_OS_CODE=3 inffast.c
+cc -c  -I./zlib-src  -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"2.048\"  -DXS_VERSION=\"2.048\"  "-I../.."  -DNO_VIZ -DZ_SOLO   -DGZIP_OS_CODE=3 inftrees.c
+cc -c  -I./zlib-src  -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"2.048\"  -DXS_VERSION=\"2.048\"  "-I../.."  -DNO_VIZ -DZ_SOLO   -DGZIP_OS_CODE=3 trees.c
+cc -c  -I./zlib-src  -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"2.048\"  -DXS_VERSION=\"2.048\"  "-I../.."  -DNO_VIZ -DZ_SOLO   -DGZIP_OS_CODE=3 zutil.c
+rm -rf ../../lib/auto/Compress/Raw/Zlib/Zlib.a
+/usr/bin/ar cr ../../lib/auto/Compress/Raw/Zlib/Zlib.a Zlib.o  adler32.o  crc32.o  infback.o  inflate.o  uncompr.o  compress.o  deflate.o  inffast.o  inftrees.o  trees.o  zutil.o && ranlib ../../lib/auto/Compress/Raw/Zlib/Zlib.a
+chmod 755 ../../lib/auto/Compress/Raw/Zlib/Zlib.a
+./miniperl -Ilib make_ext.pl lib/auto/Cwd/Cwd.a MAKE=make LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+	Making Cwd (all)
+
+Creating Makefile.PL in dist/Cwd for Cwd
+
+Running Makefile.PL in dist/Cwd
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+Writing Makefile for Cwd
+Making all in dist/Cwd
+ make all PERL_CORE=1 LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+cp lib/File/Spec/Mac.pm ../../lib/File/Spec/Mac.pm
+cp lib/File/Spec/OS2.pm ../../lib/File/Spec/OS2.pm
+cp lib/File/Spec/VMS.pm ../../lib/File/Spec/VMS.pm
+cp lib/File/Spec/Cygwin.pm ../../lib/File/Spec/Cygwin.pm
+cp lib/File/Spec/Epoc.pm ../../lib/File/Spec/Epoc.pm
+cp lib/File/Spec/Functions.pm ../../lib/File/Spec/Functions.pm
+cp lib/File/Spec.pm ../../lib/File/Spec.pm
+cp Cwd.pm ../../lib/Cwd.pm
+cp lib/File/Spec/Unix.pm ../../lib/File/Spec/Unix.pm
+cp lib/File/Spec/Win32.pm ../../lib/File/Spec/Win32.pm
+../../miniperl "-I../../lib" "-I../../lib" ../../lib/ExtUtils/xsubpp  -typemap ../../lib/ExtUtils/typemap  Cwd.xs > Cwd.xsc && mv Cwd.xsc Cwd.c
+cc -c    -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"3.39_02\"  -DXS_VERSION=\"3.39_02\"  "-I../.."   Cwd.c
+rm -rf ../../lib/auto/Cwd/Cwd.a
+/usr/bin/ar cr ../../lib/auto/Cwd/Cwd.a Cwd.o && ranlib ../../lib/auto/Cwd/Cwd.a
+chmod 755 ../../lib/auto/Cwd/Cwd.a
+./miniperl -Ilib make_ext.pl lib/auto/DB_File/DB_File.a MAKE=make LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+	Making DB_File (all)
+
+Running Makefile.PL in cpan/DB_File
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+Parsing config.in...
+Looks Good.
+Note (probably harmless): No library found for -ldb
+Writing Makefile for DB_File
+Making all in cpan/DB_File
+ make all PERL_CORE=1 LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+cp DB_File.pm ../../lib/DB_File.pm
+AutoSplitting ../../lib/DB_File.pm (../../lib/auto/DB_File)
+cc -c  -I/usr/local/BerkeleyDB/include  -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"1.826\"  -DXS_VERSION=\"1.826\"  "-I../.."  -D_NOT_CORE  -DmDB_Prefix_t=size_t -DmDB_Hash_t=u_int32_t version.c
+../../miniperl "-I../../lib" "-I../../lib" ../../lib/ExtUtils/xsubpp -noprototypes -typemap ../../lib/ExtUtils/typemap -typemap typemap  DB_File.xs > DB_File.xsc && mv DB_File.xsc DB_File.c
+cc -c  -I/usr/local/BerkeleyDB/include  -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"1.826\"  -DXS_VERSION=\"1.826\"  "-I../.."  -D_NOT_CORE  -DmDB_Prefix_t=size_t -DmDB_Hash_t=u_int32_t DB_File.c
+rm -rf ../../lib/auto/DB_File/DB_File.a
+/usr/bin/ar cr ../../lib/auto/DB_File/DB_File.a version.o DB_File.o && ranlib ../../lib/auto/DB_File/DB_File.a
+chmod 755 ../../lib/auto/DB_File/DB_File.a
+./miniperl -Ilib make_ext.pl lib/auto/Data/Dumper/Dumper.a MAKE=make LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+	Making Data::Dumper (all)
+
+Creating Makefile.PL in dist/Data-Dumper for Data::Dumper
+
+Running Makefile.PL in dist/Data-Dumper
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+Writing Makefile for Data::Dumper
+Making all in dist/Data-Dumper
+ make all PERL_CORE=1 LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+cp Dumper.pm ../../lib/Data/Dumper.pm
+../../miniperl "-I../../lib" "-I../../lib" ../../lib/ExtUtils/xsubpp  -typemap ../../lib/ExtUtils/typemap  Dumper.xs > Dumper.xsc && mv Dumper.xsc Dumper.c
+cc -c    -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"2.135_06\"  -DXS_VERSION=\"2.135_06\"  "-I../.."   Dumper.c
+rm -rf ../../lib/auto/Data/Dumper/Dumper.a
+/usr/bin/ar cr ../../lib/auto/Data/Dumper/Dumper.a Dumper.o && ranlib ../../lib/auto/Data/Dumper/Dumper.a
+chmod 755 ../../lib/auto/Data/Dumper/Dumper.a
+./miniperl -Ilib make_ext.pl lib/auto/Devel/PPPort/PPPort.a MAKE=make LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+	Making Devel::PPPort (all)
+
+Running Makefile.PL in cpan/Devel-PPPort
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+Setting license tag...
+Writing Makefile for Devel::PPPort
+Making all in cpan/Devel-PPPort
+ make all PERL_CORE=1 LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+../../miniperl "-I../../lib" "-I../../lib" PPPort_pm.PL PPPort.pm
+mysterious name [PL_parser-E<gt>bufend] in parts/apidoc.fnc, line 347
+mysterious name [PL_parser-E<gt>bufptr] in parts/apidoc.fnc, line 348
+mysterious name [PL_parser-E<gt>linestart] in parts/apidoc.fnc, line 349
+mysterious name [PL_parser-E<gt>linestr] in parts/apidoc.fnc, line 350
+parts/inc/variables provides PL_parser, which is still marked todo for 5.9.5
+including ppphdoc
+including ppphbin
+including version
+including threads
+including limits
+including uv
+including memory
+including misc
+including variables
+including mPUSH
+including call
+including newRV
+including newCONSTSUB
+including MY_CXT
+including format
+including SvREFCNT
+including newSV_type
+including newSVpv
+including SvPV
+including Sv_set
+including sv_xpvf
+including shared_pv
+including HvNAME
+including gv
+including warn
+including pvs
+including magic
+including cop
+including grok
+including snprintf
+including sprintf
+including exception
+including strlfuncs
+including pv_tools
+cp PPPort.pm ../../lib/Devel/PPPort.pm
+../../miniperl "-I../../lib" "-I../../lib" "-I../../lib" "-I../../lib" ppport_h.PL ppport.h
+../../miniperl "-I../../lib" "-I../../lib" "-I../../lib" "-I../../lib" PPPort_xs.PL RealPPPort.xs
+adding XS code from parts/inc/call
+adding XS code from parts/inc/cop
+adding XS code from parts/inc/exception
+adding XS code from parts/inc/format
+adding XS code from parts/inc/grok
+adding XS code from parts/inc/gv
+adding XS code from parts/inc/HvNAME
+adding XS code from parts/inc/limits
+adding XS code from parts/inc/magic
+adding XS code from parts/inc/memory
+adding XS code from parts/inc/misc
+adding XS code from parts/inc/mPUSH
+adding XS code from parts/inc/MY_CXT
+adding XS code from parts/inc/newCONSTSUB
+adding XS code from parts/inc/newRV
+adding XS code from parts/inc/newSVpv
+adding XS code from parts/inc/newSV_type
+adding XS code from parts/inc/pvs
+adding XS code from parts/inc/pv_tools
+adding XS code from parts/inc/shared_pv
+adding XS code from parts/inc/snprintf
+adding XS code from parts/inc/sprintf
+adding XS code from parts/inc/strlfuncs
+adding XS code from parts/inc/SvPV
+adding XS code from parts/inc/SvREFCNT
+adding XS code from parts/inc/Sv_set
+adding XS code from parts/inc/sv_xpvf
+adding XS code from parts/inc/threads
+adding XS code from parts/inc/uv
+adding XS code from parts/inc/variables
+adding XS code from parts/inc/warn
+../../miniperl "-I../../lib" "-I../../lib" ../../lib/ExtUtils/xsubpp -noprototypes -typemap ../../lib/ExtUtils/typemap -typemap typemap  RealPPPort.xs > RealPPPort.xsc && mv RealPPPort.xsc RealPPPort.c
+cc -c    -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"3.20\"  -DXS_VERSION=\"3.20\"  "-I../.."   RealPPPort.c
+cc -c    -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"3.20\"  -DXS_VERSION=\"3.20\"  "-I../.."   module2.c
+cc -c    -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"3.20\"  -DXS_VERSION=\"3.20\"  "-I../.."   module3.c
+rm -rf ../../lib/auto/Devel/PPPort/PPPort.a
+/usr/bin/ar cr ../../lib/auto/Devel/PPPort/PPPort.a RealPPPort.o module2.o  module3.o && ranlib ../../lib/auto/Devel/PPPort/PPPort.a
+chmod 755 ../../lib/auto/Devel/PPPort/PPPort.a
+./miniperl -Ilib make_ext.pl lib/auto/Devel/Peek/Peek.a MAKE=make LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+	Making Devel::Peek (all)
+
+Running Makefile.PL in ext/Devel-Peek
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+Writing Makefile for Devel::Peek
+Making all in ext/Devel-Peek
+ make all PERL_CORE=1 LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+cp Peek.pm ../../lib/Devel/Peek.pm
+../../miniperl "-I../../lib" "-I../../lib" ../../lib/ExtUtils/xsubpp -noprototypes -typemap ../../lib/ExtUtils/typemap  Peek.xs > Peek.xsc && mv Peek.xsc Peek.c
+cc -c    -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"1.08\"  -DXS_VERSION=\"1.08\"  "-I../.."   Peek.c
+rm -rf ../../lib/auto/Devel/Peek/Peek.a
+/usr/bin/ar cr ../../lib/auto/Devel/Peek/Peek.a Peek.o && ranlib ../../lib/auto/Devel/Peek/Peek.a
+chmod 755 ../../lib/auto/Devel/Peek/Peek.a
+./miniperl -Ilib make_ext.pl lib/auto/Digest/MD5/MD5.a MAKE=make LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+	Making Digest::MD5 (all)
+
+Running Makefile.PL in cpan/Digest-MD5
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+Perl's config says that U32 access must not be aligned.
+Writing Makefile for Digest::MD5
+Making all in cpan/Digest-MD5
+ make all PERL_CORE=1 LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+cp MD5.pm ../../lib/Digest/MD5.pm
+../../miniperl "-I../../lib" "-I../../lib" ../../lib/ExtUtils/xsubpp  -typemap ../../lib/ExtUtils/typemap -typemap typemap  MD5.xs > MD5.xsc && mv MD5.xsc MD5.c
+cc -c    -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"2.51\"  -DXS_VERSION=\"2.51\"  "-I../.."   MD5.c
+rm -rf ../../lib/auto/Digest/MD5/MD5.a
+/usr/bin/ar cr ../../lib/auto/Digest/MD5/MD5.a MD5.o && ranlib ../../lib/auto/Digest/MD5/MD5.a
+chmod 755 ../../lib/auto/Digest/MD5/MD5.a
+./miniperl -Ilib make_ext.pl lib/auto/Digest/SHA/SHA.a MAKE=make LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+	Making Digest::SHA (all)
+
+Running Makefile.PL in cpan/Digest-SHA
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+Writing Makefile for Digest::SHA
+Making all in cpan/Digest-SHA
+ make all PERL_CORE=1 LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+cp lib/Digest/SHA.pm ../../lib/Digest/SHA.pm
+../../miniperl "-I../../lib" "-I../../lib" ../../lib/ExtUtils/xsubpp  -typemap ../../lib/ExtUtils/typemap -typemap typemap  SHA.xs > SHA.xsc && mv SHA.xsc SHA.c
+cc -c  -I.  -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"5.71\"  -DXS_VERSION=\"5.71\"  "-I../.."  -DSHA_PERL_MODULE SHA.c
+rm -rf ../../lib/auto/Digest/SHA/SHA.a
+/usr/bin/ar cr ../../lib/auto/Digest/SHA/SHA.a SHA.o && ranlib ../../lib/auto/Digest/SHA/SHA.a
+chmod 755 ../../lib/auto/Digest/SHA/SHA.a
+cp shasum blib/script/shasum
+/home/andrew/perl-5.16.2/obj/cpan/Digest-SHA/../../miniperl "-I../../lib" "-I../../lib" -MExtUtils::MY -e 'MY->fixin(shift)' -- blib/script/shasum
+./miniperl -Ilib make_ext.pl lib/auto/Encode/Encode.a MAKE=make LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+	Making Encode (all)
+
+Running Makefile.PL in cpan/Encode
+../../miniperl -I../../lib Makefile.PL INSTALLDIRS=perl INSTALLMAN1DIR=none INSTALLMAN3DIR=none PERL_CORE=1 LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+Writing Makefile for Encode::Byte
+Writing Makefile for Encode::CN
+Writing Makefile for Encode::EBCDIC
+Writing Makefile for Encode::JP
+Writing Makefile for Encode::KR
+Writing Makefile for Encode::Symbol
+Writing Makefile for Encode::TW
+Writing Makefile for Encode::Unicode
+Writing Makefile for Encode
+Making all in cpan/Encode
+ make all PERL_CORE=1 LIBPERL_A=libperl.a LINKTYPE=static CCCDLFLAGS=
+cp lib/Encode/JP/H2Z.pm ../../lib/Encode/JP/H2Z.pm
+cp lib/Encode/JP/JIS7.pm ../../lib/Encode/JP/JIS7.pm
+cp lib/Encode/Alias.pm ../../lib/Encode/Alias.pm
+cp Encode/README.e2x ../../lib/Encode/README.e2x
+cp lib/Encode/MIME/Header/ISO_2022_JP.pm ../../lib/Encode/MIME/Header/ISO_2022_JP.pm
+cp lib/Encode/Unicode/UTF7.pm ../../lib/Encode/Unicode/UTF7.pm
+cp lib/Encode/PerlIO.pod ../../lib/Encode/PerlIO.pod
+cp lib/Encode/GSM0338.pm ../../lib/Encode/GSM0338.pm
+cp Encode.pm ../../lib/Encode.pm
+cp Encode/Makefile_PL.e2x ../../lib/Encode/Makefile_PL.e2x
+cp Encode/Changes.e2x ../../lib/Encode/Changes.e2x
+cp lib/Encode/Encoding.pm ../../lib/Encode/Encoding.pm
+cp Encode/encode.h ../../lib/Encode/encode.h
+cp Encode/ConfigLocal_PM.e2x ../../lib/Encode/ConfigLocal_PM.e2x
+cp lib/Encode/KR/2022_KR.pm ../../lib/Encode/KR/2022_KR.pm
+cp encoding.pm ../../lib/encoding.pm
+cp lib/Encode/Guess.pm ../../lib/Encode/Guess.pm
+cp lib/Encode/MIME/Name.pm ../../lib/Encode/MIME/Name.pm
+cp Encode/_T.e2x ../../lib/Encode/_T.e2x
+cp lib/Encode/Supported.pod ../../lib/Encode/Supported.pod
+cp lib/Encode/Config.pm ../../lib/Encode/Config.pm
+cp lib/Encode/Encoder.pm ../../lib/Encode/Encoder.pm
+cp lib/Encode/MIME/Header.pm ../../lib/Encode/MIME/Header.pm
+cp lib/Encode/CN/HZ.pm ../../lib/Encode/CN/HZ.pm
+cp Encode/_PM.e2x ../../lib/Encode/_PM.e2x
+cp lib/Encode/CJKConstants.pm ../../lib/Encode/CJKConstants.pm
+../../miniperl "-I../../lib" "-I../../lib" ../../lib/ExtUtils/xsubpp  -typemap ../../lib/ExtUtils/typemap  Encode.xs > Encode.xsc && mv Encode.xsc Encode.c
+../../miniperl "-I../../lib" bin/enc2xs -"Q" -"O" -o def_t.c -f def_t.fnm
+Writing compiled form
+512 bytes in string tables
+32 bytes (5.88%) saved spotting duplicates
+Reading iso-8859-1 (iso-8859-1)
+Reading ascii (ascii)
+Reading ascii-ctrl (ascii-ctrl)
+Reading null (null)
+cc -c  -I./Encode  -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"2.44\"  -DXS_VERSION=\"2.44\"  "-I../.."   Encode.c
+cc -c  -I./Encode  -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"2.44\"  -DXS_VERSION=\"2.44\"  "-I../.."   def_t.c
+cc -c  -I./Encode  -pthread -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -O2    -DVERSION=\"2.44\"  -DXS_VERSION=\"2.44\"  "-I../.."   encengine.c
+rm -rf ../../lib/auto/Encode/Encode.a
+/usr/bin/ar cr ../../lib/auto/Encode/Encode.a Encode.o  def_t.o  encengine.o && ranlib ../../lib/auto/Encode/Encode.a
+chmod 755 ../../lib/auto/Encode/Encode.a
+cp Byte.pm ../../../lib/Encode/Byte.pm
+../../../miniperl "-I../../../lib" ../bin/enc2xs -"Q" -"O" -o byte_t.c -f byte_t.fnm
+Writing compiled form
+Out of memory during request for 1028 bytes, total sbrk() is 8254376 bytes!
+Reading iso-8859-2 (iso-8859-2)
+Reading iso-8859-3 (iso-8859-3)
+Reading iso-8859-4 (iso-8859-4)
+Reading iso-8859-5 (iso-8859-5)
+Reading iso-8859-6 (iso-8859-6)
+Reading iso-8859-7 (iso-8859-7)
+Reading iso-8859-8 (iso-8859-8)
+Reading iso-8859-9 (iso-8859-9)
+Reading iso-8859-10 (iso-8859-10)
+Reading iso-8859-11 (iso-8859-11)
+Reading iso-8859-13 (iso-8859-13)
+Reading iso-8859-14 (iso-8859-14)
+Reading iso-8859-15 (iso-8859-15)
+Reading iso-8859-16 (iso-8859-16)
+Reading AdobeStandardEncoding (AdobeStandardEncoding)
+Reading cp1006 (cp1006)
+Reading cp1250 (cp1250)
+Reading cp1251 (cp1251)
+Reading cp1252 (cp1252)
+Reading cp1253 (cp1253)
+Reading cp1254 (cp1254)
+Reading cp1255 (cp1255)
+Reading cp1256 (cp1256)
+Reading cp1257 (cp1257)
+Reading cp1258 (cp1258)
+Reading cp424 (cp424)
+Reading cp437 (cp437)
+Reading cp737 (cp737)
+Reading cp775 (cp775)
+Reading cp850 (cp850)
+Reading cp852 (cp852)
+Reading cp855 (cp855)
+Reading cp856 (cp856)
+Reading cp857 (cp857)
+Reading cp858 (cp858)
+Reading cp860 (cp860)
+Reading cp861 (cp861)
+Reading cp862 (cp862)
+Reading cp863 (cp863)
+Reading cp864 (cp864)
+Reading cp865 (cp865)
+Reading cp866 (cp866)
+Reading cp869 (cp869)
+Reading cp874 (cp874)
+Reading hp-roman8 (hp-roman8)
+Reading koi8-f (koi8-f)
+Reading koi8-r (koi8-r)
+Reading koi8-u (koi8-u)
+Reading MacArabic (MacArabic)
+Reading MacCentralEurRoman (MacCentralEurRoman)
+Reading MacCroatian (MacCroatian)
+Reading MacCyrillic (MacCyrillic)
+Reading MacFarsi (MacFarsi)
+Reading MacGreek (MacGreek)
+Reading MacHebrew (MacHebrew)
+Reading MacIcelandic (MacIcelandic)
+Reading MacRomanian (MacRomanian)
+Reading MacRumanian (MacRumanian)
+Reading MacRoman (MacRoman)
+Reading MacSami (MacSami)
+Reading MacThai (MacThai)
+Reading MacTurkish (MacTurkish)
+Reading MacUkrainian (MacUkrainian)
+Reading nextstep (nextstep)
+Reading viscii (viscii)
+*** Error code 1
+
+Stop in /home/andrew/perl-5.16.2/obj/cpan/Encode/Byte (line 763 of Makefile).
+*** Error code 1
+
+Stop in /home/andrew/perl-5.16.2/obj/cpan/Encode (line 622 of Makefile).
+Unsuccessful make(cpan/Encode): code=256 at make_ext.pl line 466.
+*** Error code 25
+
+Stop in /home/andrew/perl-5.16.2/obj (line 653 of makefile).
+*** Error code 1 (ignored)
+Fri Dec  7 16:48:05 MST 2012
