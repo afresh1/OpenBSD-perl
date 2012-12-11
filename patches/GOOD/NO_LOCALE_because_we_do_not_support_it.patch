@@ -1,0 +1,12 @@
+--- hints/openbsd.sh.orig	Mon Dec 10 22:58:05 2012
++++ hints/openbsd.sh	Mon Dec 10 23:03:11 2012
+@@ -8,6 +8,9 @@
+ #	./Configure -des -Dopenbsd_distribution=defined
+ #
+ 
++# We don't have LOCALE stuff needed for this
++ccflags="-DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE $ccflags"
++
+ # In OpenBSD > 3.7, use perl's malloc [perl #75742]
+ case "$osvers" in
+ 3.[89]*|[4-9]*)

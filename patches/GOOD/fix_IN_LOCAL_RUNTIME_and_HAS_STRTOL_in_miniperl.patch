@@ -1,0 +1,80 @@
+From d40eae8f110fb9900e82648a2c44710def9f117d Mon Sep 17 00:00:00 2001
+From: Nicholas Clark <nick@ccl4.org>
+Date: Fri, 27 Jul 2012 17:36:40 +0200
+Subject: [PATCH] Restore microperl, which has been unable to build since January.
+
+microperl was broken by commit 82ad65bb0613be64 on 2012-01-16, which used
+IN_LOCALE_COMPILETIME for the first time in the C code. Unlike
+IN_LOCALE_RUNTIME, it had no fallback definition for microperl.
+
+Commit f90a9a0230170cc0 on 2012-01-28 added the first use of Strtol(),
+which means that microperl now needs to assume that the system has strtol().
+(Which is not unreasonable, as it's part of C89).
+---
+ perl.h       |    1 +
+ uconfig.h    |    4 ++--
+ uconfig.sh   |    2 +-
+ uconfig64.sh |    2 +-
+ 4 files changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/perl.h b/perl.h
+index a7cd37a..c33c191 100644
+--- a/perl.h
++++ b/perl.h
+@@ -5319,6 +5319,7 @@ typedef struct am_table_short AMTS;
+ #define RESTORE_NUMERIC_STANDARD()	/**/
+ #define Atof				my_atof
+ #define IN_LOCALE_RUNTIME		0
++#define IN_LOCALE_COMPILETIME		0
+ 
+ #endif /* !USE_LOCALE_NUMERIC */
+ 
+diff --git a/uconfig.h b/uconfig.h
+index 967ba2c..f21c9bd 100644
+--- a/uconfig.h
++++ b/uconfig.h
+@@ -527,7 +527,7 @@
+  *	This symbol, if defined, indicates that the strtol routine is available
+  *	to provide better numeric string conversion than atoi() and friends.
+  */
+-/*#define HAS_STRTOL	/ **/
++#define HAS_STRTOL	/**/
+ 
+ /* HAS_STRXFRM:
+  *	This symbol, if defined, indicates that the strxfrm() routine is
+@@ -4740,5 +4740,5 @@
+ 
+ /* Generated from:
+  * 450f87b8e0de509bd7e72485185b4060363119bedef2b8aff868354f42708a78 config_h.SH
+- * e3a05060ae46f0ca7ea3a4fd9a4c2dcd60caf070529116479a74830d923d1ca3 uconfig.sh
++ * 136e00f109103fdebadeec53d77fbc8f8c1bf3eb82ce970c966f362584f4b7f2 uconfig.sh
+  * ex: set ro: */
+diff --git a/uconfig.sh b/uconfig.sh
+index 5bf0575..32f6aa5 100644
+--- a/uconfig.sh
++++ b/uconfig.sh
+@@ -425,7 +425,7 @@ d_strftime='undef'
+ d_strlcat='undef'
+ d_strlcpy='undef'
+ d_strtod='undef'
+-d_strtol='undef'
++d_strtol='define'
+ d_strtold='undef'
+ d_strtoll='undef'
+ d_strtoq='undef'
+diff --git a/uconfig64.sh b/uconfig64.sh
+index 96e0fd3..3d3ca5a 100644
+--- a/uconfig64.sh
++++ b/uconfig64.sh
+@@ -426,7 +426,7 @@ d_strftime='undef'
+ d_strlcat='undef'
+ d_strlcpy='undef'
+ d_strtod='undef'
+-d_strtol='undef'
++d_strtol='define'
+ d_strtold='undef'
+ d_strtoll='undef'
+ d_strtoq='undef'
+-- 
+1.7.4.1
+
