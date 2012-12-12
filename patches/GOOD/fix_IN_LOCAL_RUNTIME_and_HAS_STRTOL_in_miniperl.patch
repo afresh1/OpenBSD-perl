@@ -42,12 +42,12 @@ index 967ba2c..f21c9bd 100644
  
  /* HAS_STRXFRM:
   *	This symbol, if defined, indicates that the strxfrm() routine is
-@@ -4740,5 +4740,5 @@
+@@ -4735,5 +4735,5 @@
  
  /* Generated from:
-  * 450f87b8e0de509bd7e72485185b4060363119bedef2b8aff868354f42708a78 config_h.SH
-- * e3a05060ae46f0ca7ea3a4fd9a4c2dcd60caf070529116479a74830d923d1ca3 uconfig.sh
-+ * 136e00f109103fdebadeec53d77fbc8f8c1bf3eb82ce970c966f362584f4b7f2 uconfig.sh
+  * d9b6a68b192c72c0695b560fae6e4916b381f55df5fdf7911b0ef434840f092e config_h.SH
+- * 2678333a6d6676f8aa39b7011bf5133dce5be453df10a8d04cb3187103a10caf uconfig.sh
++ * 2a7f58d271710106d7cb7ac1d0ea33a1caefa9ad74033041bb9996626786941b uconfig.sh
   * ex: set ro: */
 diff --git a/uconfig.sh b/uconfig.sh
 index 5bf0575..32f6aa5 100644
