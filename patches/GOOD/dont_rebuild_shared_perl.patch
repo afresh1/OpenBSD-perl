@@ -11,9 +11,9 @@
  
  static :: $object
  ";
---- ./Makefile.SH.orig	Mon May 14 12:49:21 2012
-+++ ./Makefile.SH	Wed Jun 27 21:41:09 2012
-@@ -701,9 +701,9 @@
+--- Makefile.SH.orig	Thu Oct 25 19:44:15 2012
++++ Makefile.SH	Thu Dec 13 22:00:21 2012
+@@ -701,11 +701,11 @@
  LIBPERL_NONSHR		= libperl_nonshr$(LIB_EXT)
  MINIPERL_NONSHR		= miniperl_nonshr$(EXE_EXT)
  
@@ -24,8 +24,11 @@
 +#	$(RMS) $(LIBPERL_NONSHR)
 +#	$(AR) rcu $(LIBPERL_NONSHR) $(obj)
  
- $(MINIPERL_NONSHR): $(LIBPERL_NONSHR) miniperlmain$(OBJ_EXT) opmini$(OBJ_EXT)  perlmini$(OBJ_EXT)
+-$(MINIPERL_NONSHR): $(LIBPERL_NONSHR) miniperlmain$(OBJ_EXT) opmini$(OBJ_EXT)  perlmini$(OBJ_EXT)
++$(MINIPERL_NONSHR): miniperlmain$(OBJ_EXT) opmini$(OBJ_EXT)  perlmini$(OBJ_EXT)
  	$(CC) $(LDFLAGS) -o $(MINIPERL_NONSHR) miniperlmain$(OBJ_EXT) \
+ 	    opmini$(OBJ_EXT) perlmini$(OBJ_EXT) $(LIBPERL_NONSHR) $(LIBS)
+ 
 @@ -789,33 +789,33 @@
  		;;
      esac
@@ -87,3 +90,27 @@
  
  # How to build executables.
  
+@@ -878,19 +878,19 @@
+ 
+ 	$spitshell >>$Makefile <<'!NO!SUBS!'
+ 
+-$(PERL_EXE): $& perlmain$(OBJ_EXT) $(LIBPERL) $(static_ext) ext.libs $(PERLEXPORT)
++$(PERL_EXE): $& perlmain$(OBJ_EXT) $(static_ext) ext.libs $(PERLEXPORT)
+ 	-@rm -f miniperl.xok
+ 	$(SHRPENV) $(LDLIBPTH) $(CC) -o perl$(PERL_SUFFIX) $(PERL_PROFILE_LDFLAGS) $(CLDFLAGS) $(CCDLFLAGS) perlmain$(OBJ_EXT) $(static_ext) $(LLIBPERL) `cat ext.libs` $(libs)
+ 
+ # Purify/Quantify Perls.
+ 
+-pure$(PERL_EXE): $& perlmain$(OBJ_EXT) $(LIBPERL) $(static_ext) ext.libs $(PERLEXPORT)
++pure$(PERL_EXE): $& perlmain$(OBJ_EXT) $(static_ext) ext.libs $(PERLEXPORT)
+ 	$(SHRPENV) $(LDLIBPTH) purify $(CC) -o pureperl $(CLDFLAGS) $(CCDLFLAGS) perlmain$(OBJ_EXT) $(static_ext) $(LLIBPERL) `cat ext.libs` $(libs)
+ 
+-purecov$(PERL_EXE): $& perlmain$(OBJ_EXT) $(LIBPERL) $(static_ext) ext.libs $(PERLEXPORT)
++purecov$(PERL_EXE): $& perlmain$(OBJ_EXT) $(static_ext) ext.libs $(PERLEXPORT)
+ 	$(SHRPENV) $(LDLIBPTH) purecov $(CC) -o purecovperl $(CLDFLAGS) $(CCDLFLAGS) perlmain$(OBJ_EXT) $(static_ext) $(LLIBPERL) `cat ext.libs` $(libs)
+ 
+-quant$(PERL_EXE): $& perlmain$(OBJ_EXT) $(LIBPERL) $(static_ext) ext.libs $(PERLEXPORT)
++quant$(PERL_EXE): $& perlmain$(OBJ_EXT) $(static_ext) ext.libs $(PERLEXPORT)
+ 	$(SHRPENV) $(LDLIBPTH) quantify $(CC) -o quantperl $(CLDFLAGS) $(CCDLFLAGS) perlmain$(OBJ_EXT) $(static_ext) $(LLIBPERL) `cat ext.libs` $(libs)
+ 
+ !NO!SUBS!
