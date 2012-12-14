@@ -1,3 +1,4 @@
-regenerate MANIFEST
-Generate unicore files
-regenerate MANIFEST (again)
+Once we have something working, for vax, we need to have pre-built unicore
+* regenerate MANIFEST
+* Generate unicore files
+* regenerate MANIFEST (again)
