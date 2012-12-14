@@ -27,11 +27,21 @@ H2PH=		/usr/bin/h2ph
 LIB=	perl
 
 SRCS1=	gv.c toke.c perly.c pad.c regcomp.c dump.c util.c mg.c reentr.c \
-	mro.c hv.c av.c run.c pp_hot.c sv.c pp.c scope.c pp_ctl.c \
+	mro.c keywords.c hv.c av.c run.c pp_hot.c sv.c pp.c scope.c pp_ctl.c \
 	pp_sys.c doop.c doio.c regexec.c utf8.c taint.c deb.c universal.c \
 	globals.c perlio.c perlapi.c numeric.c mathoms.c locale.c \
 	pp_pack.c pp_sort.c
 SRCS=	${SRCS1} op.c perl.c
+
+# We must not try to mkdep DynaLoader.c as it requires miniperl
+OBJS+= DynaLoader.o
+
+# For generating DynaLoader.c
+.if defined(NOPIC)
+DYNALOADER=ext/DynaLoader/dl_none.xs
+.else
+DYNALOADER=ext/DynaLoader/dl_dlopen.xs
+.endif
 
 # Arguments passed to Configure...
 
@@ -49,7 +59,7 @@ GENERATED=	config.sh ${GEN_AFTER}
 
 ${GEN_AFTER}: config.sh
 
-CLEANFILES=	config.sh Policy.sh
+CLEANFILES=	config.sh Policy.sh DynaLoader.c
 
 all:	perl.build man.build
 
@@ -72,7 +82,7 @@ Makefile cflags makedepend makedir myconfig:
 Policy.sh:
 	cd ${.OBJDIR} && exec /bin/sh Policy_sh.SH
 
-config.h: 
+config.h:
 	cd ${.OBJDIR} && exec /bin/sh config_h.SH
 
 uudmap.h: bitcount.h
@@ -140,6 +150,30 @@ maninstall:
 .if ($(TARGET_MACHINE_ARCH) == sparc)
 PICFLAG=-fPIC
 .endif
+
+# The DynaLoader extension is now compiled statically into libperl
+miniperl: ${GENERATED} ${SRCS1:S/.c/.o/g} opmini.o miniperl.o miniperlmain.o
+	${CC} -o miniperl ${SRCS1:S/.c/.o/g} opmini.o miniperl.o miniperlmain.o ${LDFLAGS} -lm -lpthread
+
+opmini.c: op.c
+	rm -f opmini.c
+	cp op.c opmini.c
+
+opmini.o: opmini.c
+	${CC} ${CPPFLAGS} ${CFLAGS} -DPERL_EXTERNAL_GLOB -c  $> -o $@
+
+miniperl.o: perl.c
+	${CC} ${CPPFLAGS} ${CFLAGS} -DPERL_EXTERNAL_GLOB -DPERL_IS_MINIPERL -c  $> -o $@
+
+lib/Config.pm: miniperl config.sh
+	cd ${.OBJDIR} && exec ${MAKE} preplibrary
+
+DynaLoader.c: miniperl ${DYNALOADER} lib/Config.pm
+	./miniperl -Ilib -Idist/Cwd -Idist/Cwd/lib -Idist/ExtUtils-ParseXS/lib \
+	    -Icpan/Getopt-Long/lib -Idist/constant/lib -Iext/re \
+	    -mExtUtils::Typemaps dist/ExtUtils-ParseXS/lib/ExtUtils/xsubpp \
+	    -noprototypes -typemap ../../lib/ExtUtils/typemap ${DYNALOADER} | \
+	    sed -f ${.CURDIR}/DynaLoader.sed > $@; test -s $@ || rm -f $@
 
 perl.lib:	${GENERATED} ${_LIBS}
 
