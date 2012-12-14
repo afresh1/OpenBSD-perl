@@ -17,7 +17,8 @@ CFLAGS+= -fno-strict-aliasing
 CFLAGS+= -fno-delete-null-pointer-checks
 .endif
 
-CONFIGURE_ARGS= -dsE -Dopenbsd_distribution=defined
+CONFIGURE_ARGS= -dsE -Dopenbsd_distribution=defined -Dccflags='-DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE'
+
 .if !exists(${.OBJDIR}/config.over)
 CONFIGURE_ARGS+= -Dmksymlinks
 .endif
@@ -45,7 +46,7 @@ DYNALOADER=ext/DynaLoader/dl_dlopen.xs
 
 # Arguments passed to Configure...
 
-CPPFLAGS+= -DPERL_CORE -DPERL_RANDOM_DEVICE=\"/dev/arandom\" -I.
+CPPFLAGS+= -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DPERL_RANDOM_DEVICE=\"/dev/arandom\" -I.
 
 .if defined (INSTALL_STRIP) && ${INSTALL_STRIP} == "-s"
 STRIPFLAGS='-s'
