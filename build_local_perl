@@ -53,6 +53,6 @@ if [ "$status" == "All tests successful." ]; then
 elif [ -z "$NO_LOCAL_PATCHES" ]; then
     # re-run without patches
     cd ..
-    NO_LOCAL_PATCHES=1 $0
+    #NO_LOCAL_PATCHES=1 $0
 fi
 echo "Please send $log\n  to andrew@afresh1.com"
