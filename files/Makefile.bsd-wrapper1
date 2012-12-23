@@ -76,7 +76,6 @@ _quick3p=
     Module::CoreList     1  lib/Module/CoreList.pod                        \
     POD                  1  pod/perlpod.pod                                \
     POSIX                1  lib/POSIX.pod                                  \
-    PerlUtil             1  symbian/PerlUtil.pod                           \
     Pod::Simple          1  lib/Pod/Simple.pod                             \
     Pod::Simple::Subclassing 1  lib/Pod/Simple/Subclassing.pod             \
     READMEhints          1  hints/README.hints                             \
