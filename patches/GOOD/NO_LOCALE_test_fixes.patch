@@ -1,0 +1,248 @@
+This makes these tests pass.  Truthfully this should be looked at in more
+detail by someone who knows more about unicode than I do.
+
+--- ext/re/t/reflags.t.orig	Sat Dec 22 16:46:16 2012
++++ ext/re/t/reflags.t	Sat Dec 22 16:46:21 2012
+@@ -47,7 +47,7 @@
+ SKIP: {
+   if (
+       !$Config::Config{d_setlocale}
+-   || $Config::Config{ccflags} =~ /\bD?NO_LOCALE\b/
++   || $Config::Config{ccflags} =~ /\bD?NO_LOCALE(_|\b)/
+   ) {
+     skip "no locale support", 7
+   }
+--- lib/locale.t.orig	Sat Dec 22 16:47:49 2012
++++ lib/locale.t	Sat Dec 22 16:48:02 2012
+@@ -13,7 +13,7 @@
+     @INC = '../lib';
+     unshift @INC, '.';
+     require Config; import Config;
+-    if (!$Config{d_setlocale} || $Config{ccflags} =~ /\bD?NO_LOCALE\b/) {
++    if (!$Config{d_setlocale} || $Config{ccflags} =~ /\bD?NO_LOCALE(_|\b)/) {
+ 	print "1..0\n";
+ 	exit;
+     }
+--- t/op/quotemeta.t.orig	Sat Dec 22 16:49:15 2012
++++ t/op/quotemeta.t	Sat Dec 22 16:51:17 2012
+@@ -119,10 +119,18 @@
+     is(quotemeta($char), "\\$char", "quotemeta '\\N{U+D7}' locale in UTF-8");
+     is(length(quotemeta($char)), 2, "quotemeta '\\N{U+D7}' locale in UTF-8 length");
+ 
+-    $char = "\N{U+D8}";  # Every non-ASCII Latin1 is quoted in locale.
+-    utf8::upgrade($char);
+-    is(quotemeta($char), "\\$char", "quotemeta '\\N{U+D8}' locale in UTF-8");
+-    is(length(quotemeta($char)), 2, "quotemeta '\\N{U+D8}' locale in UTF-8 length");
++    SKIP: {
++    if (
++        !$Config::Config{d_setlocale}
++    || $Config::Config{ccflags} =~ /\bD?NO_LOCALE(_|\b)/
++    ) {
++        skip "no locale support", 2
++    }
++        $char = "\N{U+D8}";  # Every non-ASCII Latin1 is quoted in locale.
++        utf8::upgrade($char);
++        is(quotemeta($char), "\\$char", "quotemeta '\\N{U+D8}' locale in UTF-8");
++        is(length(quotemeta($char)), 2, "quotemeta '\\N{U+D8}' locale in UTF-8 length");
++    }
+ 
+     is(quotemeta("\x{263a}"), "\\\x{263a}", "quotemeta locale Unicode quoted");
+     is(length(quotemeta("\x{263a}")), 2, "quotemeta locale Unicode quoted length");
+--- t/op/taint.t.orig	Sat Dec 22 16:52:52 2012
++++ t/op/taint.t	Sat Dec 22 17:02:09 2012
+@@ -296,6 +296,13 @@
+     is($res, 1,        "$desc: res value");
+     is($one, 'a',      "$desc: \$1 value");
+ 
++    SKIP: {
++    if (
++        !$Config::Config{d_setlocale}
++    || $Config::Config{ccflags} =~ /\bD?NO_LOCALE(_|\b)/
++    ) {
++        skip "no locale support", 10
++    }
+     $desc = "match with pattern tainted via locale";
+ 
+     $s = 'abcd';
+@@ -315,6 +322,7 @@
+     is_tainted($one,   "$desc: \$1 tainted");
+     is($res, 1,        "$desc: res value");
+     is($one, 'a',      "$desc: \$1 value");
++    }
+ 
+     $desc = "match with pattern tainted, list cxt";
+ 
+@@ -339,6 +347,13 @@
+     is($res2,'b',      "$desc: res2 value");
+     is($one, 'd',      "$desc: \$1 value");
+ 
++    SKIP: {
++    if (
++        !$Config::Config{d_setlocale}
++    || $Config::Config{ccflags} =~ /\bD?NO_LOCALE(_|\b)/
++    ) {
++        skip "no locale support", 12
++    }
+     $desc = "match with pattern tainted via locale, list cxt";
+ 
+     $s = 'abcd';
+@@ -360,6 +375,7 @@
+     is($res, 'a',      "$desc: res value");
+     is($res2,'b',      "$desc: res2 value");
+     is($one, 'd',      "$desc: \$1 value");
++    }
+ 
+     $desc = "substitution with string tainted";
+ 
+@@ -481,6 +497,13 @@
+     is($res, 'xyz',    "$desc: res value");
+     is($one, 'abcd',   "$desc: \$1 value");
+ 
++    SKIP: {
++    if (
++        !$Config::Config{d_setlocale}
++    || $Config::Config{ccflags} =~ /\bD?NO_LOCALE(_|\b)/
++    ) {
++        skip "no locale support", 18
++    }
+     $desc = "substitution with pattern tainted via locale";
+ 
+     $s = 'abcd';
+@@ -513,6 +536,7 @@
+     is($s,  'abcd',    "$desc: s value");
+     is($res, 'xyz',    "$desc: res value");
+     is($one, 'abcd',   "$desc: \$1 value");
++    }
+ 
+     $desc = "substitution with replacement tainted";
+ 
+@@ -652,6 +676,13 @@
+ 	is($res, 1,        "$desc: res value");
+ 	is($one, 'a',      "$desc: \$1 value");
+ 
++    SKIP: {
++    if (
++        !$Config::Config{d_setlocale}
++    || $Config::Config{ccflags} =~ /\bD?NO_LOCALE(_|\b)/
++    ) {
++        skip "no locale support", 10
++    }
+ 	$desc = "use re 'taint': match with pattern tainted via locale";
+ 
+ 	$s = 'abcd';
+@@ -671,6 +702,7 @@
+ 	is_tainted($one,   "$desc: \$1 tainted");
+ 	is($res, 1,        "$desc: res value");
+ 	is($one, 'a',      "$desc: \$1 value");
++    }
+ 
+ 	$desc = "use re 'taint': match with pattern tainted, list cxt";
+ 
+@@ -695,6 +727,13 @@
+ 	is($res2,'b',      "$desc: res2 value");
+ 	is($one, 'd',      "$desc: \$1 value");
+ 
++    SKIP: {
++    if (
++        !$Config::Config{d_setlocale}
++    || $Config::Config{ccflags} =~ /\bD?NO_LOCALE(_|\b)/
++    ) {
++        skip "no locale support", 12
++    }
+ 	$desc = "use re 'taint': match with pattern tainted via locale, list cxt";
+ 
+ 	$s = 'abcd';
+@@ -716,6 +755,7 @@
+ 	is($res, 'a',      "$desc: res value");
+ 	is($res2,'b',      "$desc: res2 value");
+ 	is($one, 'd',      "$desc: \$1 value");
++    }
+ 
+ 	$desc = "use re 'taint': substitution with string tainted";
+ 
+@@ -838,6 +878,13 @@
+ 	is($res, 'xyz',    "$desc: res value");
+ 	is($one, 'abcd',   "$desc: \$1 value");
+ 
++    SKIP: {
++    if (
++        !$Config::Config{d_setlocale}
++    || $Config::Config{ccflags} =~ /\bD?NO_LOCALE(_|\b)/
++    ) {
++        skip "no locale support", 18
++    }
+ 	$desc = "use re 'taint': substitution with pattern tainted via locale";
+ 
+ 	$s = 'abcd';
+@@ -870,6 +917,7 @@
+ 	is($s,  'abcd',    "$desc: s value");
+ 	is($res, 'xyz',    "$desc: res value");
+ 	is($one, 'abcd',   "$desc: \$1 value");
++    }
+ 
+ 	$desc = "use re 'taint': substitution with replacement tainted";
+ 
+@@ -2183,7 +2231,13 @@
+     isnt_tainted $$, "PID not tainted when read in tainted expression";
+ }
+ 
+-{
++SKIP: {
++    if (
++        !$Config::Config{d_setlocale}
++    || $Config::Config{ccflags} =~ /\bD?NO_LOCALE(_|\b)/
++    ) {
++        skip "no locale support", 4
++    }
+     use feature 'fc';
+     use locale;
+     my ($latin1, $utf8) = ("\xDF") x 2;
+--- t/re/pat.t.orig	Sat Dec 22 17:06:11 2012
++++ t/re/pat.t	Sat Dec 22 17:07:53 2012
+@@ -508,7 +508,13 @@
+         is(qr/\b\v$/,     '(?^:\b\v$)', 'qr/\b\v$/');
+     }
+ 
+-    {   # Test that charset modifier work, and are interpolated
++    SKIP: {   # Test that charset modifier work, and are interpolated
++        if (
++            !$Config::Config{d_setlocale}
++        || $Config::Config{ccflags} =~ /\bD?NO_LOCALE(_|\b)/
++        ) {
++            skip "no locale support", 13
++        }
+         is(qr/\b\v$/, '(?^:\b\v$)', 'Verify no locale, no unicode_strings gives default modifier');
+         is(qr/(?l:\b\v$)/, '(?^:(?l:\b\v$))', 'Verify infix l modifier compiles');
+         is(qr/(?u:\b\v$)/, '(?^:(?u:\b\v$))', 'Verify infix u modifier compiles');
+--- t/uni/fold.t.orig	Sat Dec 22 17:09:52 2012
++++ t/uni/fold.t	Sat Dec 22 17:10:33 2012
+@@ -424,7 +424,13 @@
+         utf8::downgrade($latin1); #No-op, but doesn't hurt
+         utf8::upgrade($utf8);
+         is(fc($latin1), fc($utf8), "fc() gives the same results for \\x{$_} in Latin-1 and UTF-8 under unicode_strings");
+-        {
++        SKIP: {
++            if (
++                !$Config::Config{d_setlocale}
++            || $Config::Config{ccflags} =~ /\bD?NO_LOCALE(_|\b)/
++            ) {
++                skip "no locale support", 2
++            }
+             use locale;
+             is(fc($latin1), lc($latin1), "use locale; fc(qq{\\x{$_}}), lc(qq{\\x{$_}}) when qq{\\x{$_}} is in latin-1");
+             is(fc($utf8), lc($utf8), "use locale; fc(qq{\\x{$_}}), lc(qq{\\x{$_}}) when qq{\\x{$_}} is in latin-1");
+--- t/uni/overload.t.orig	Sat Dec 22 17:11:32 2012
++++ t/uni/overload.t	Sat Dec 22 17:12:36 2012
+@@ -98,6 +98,12 @@
+     import POSIX ':locale_h';
+     $have_setlocale++;
+ };
++if (
++    !$Config::Config{d_setlocale}
++  || $Config::Config{ccflags} =~ /\bD?NO_LOCALE(_|\b)/
++) {
++    $have_setlocale = 0;
++}
+ 
+ SKIP: {
+     if (!$have_setlocale) {
