@@ -19,8 +19,8 @@ which means that microperl now needs to assume that the system has strtol().
 
 diff --git a/perl.h b/perl.h
 index a7cd37a..c33c191 100644
---- a/perl.h
-+++ b/perl.h
+--- ./perl.h.orig
++++ ./perl.h
 @@ -5319,6 +5319,7 @@ typedef struct am_table_short AMTS;
  #define RESTORE_NUMERIC_STANDARD()	/**/
  #define Atof				my_atof
@@ -31,8 +31,8 @@ index a7cd37a..c33c191 100644
  
 diff --git a/uconfig.h b/uconfig.h
 index 967ba2c..f21c9bd 100644
---- a/uconfig.h
-+++ b/uconfig.h
+--- ./uconfig.h.orig
++++ ./uconfig.h
 @@ -527,7 +527,7 @@
   *	This symbol, if defined, indicates that the strtol routine is available
   *	to provide better numeric string conversion than atoi() and friends.
@@ -51,8 +51,8 @@ index 967ba2c..f21c9bd 100644
   * ex: set ro: */
 diff --git a/uconfig.sh b/uconfig.sh
 index 5bf0575..32f6aa5 100644
---- a/uconfig.sh
-+++ b/uconfig.sh
+--- ./uconfig.sh.orig
++++ ./uconfig.sh
 @@ -425,7 +425,7 @@ d_strftime='undef'
  d_strlcat='undef'
  d_strlcpy='undef'
@@ -64,8 +64,8 @@ index 5bf0575..32f6aa5 100644
  d_strtoq='undef'
 diff --git a/uconfig64.sh b/uconfig64.sh
 index 96e0fd3..3d3ca5a 100644
---- a/uconfig64.sh
-+++ b/uconfig64.sh
+--- ./uconfig64.sh.orig
++++ ./uconfig64.sh
 @@ -426,7 +426,7 @@ d_strftime='undef'
  d_strlcat='undef'
  d_strlcpy='undef'
