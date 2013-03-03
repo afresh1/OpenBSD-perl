@@ -1,0 +1,57 @@
+#!/bin/sh
+
+SRCDIR=`dirname $0 | xargs readlink -f`
+WRKDIR=$PWD
+
+mv -f $SRCDIR/patches/GOOD/pre_built_unicore.patch{,.old}
+
+PERL_BASE=perl-5.16.2
+# imports PERL_BASE
+#. $SRCDIR/build_local_perl
+
+#cd $WRKDIR
+#mkdir -p unicore/.old
+#mv       unicore/* unicore/.old
+#rm -rf   unicore/.old &
+
+#mkdir -p unicore/{lib,pod}
+#cp -r $PERL_BASE/obj/lib/unicore          unicore/lib/
+#cp    $PERL_BASE/obj/pod/perluniprops.pod unicore/pod/
+
+$SRCDIR/make_patched_perl
+rm -rf ${PERL_BASE}.orig
+cp -r  ${PERL_BASE}{,.orig}
+
+mkdir -p $SRCDIR/patches/RESEARCH/
+
+cd $PERL_BASE
+chmod -R +w .
+cp -r $WRKDIR/unicore/* ./
+
+cp MANIFEST{,.orig}
+
+# Should maybe do some of this with the newly built perl above ...
+sed -e '/flag =g/s/ perluniprops//' pod/perl.pod > pod/perl.pod.new
+mv  -f pod/perl.pod.new pod/perl.pod
+
+# Would be nice to figure out how to get pod_rules to pick these up
+find lib/unicore -type f |
+    awk '{ print $0"\t\t\tUnicode character database" }' >> MANIFEST
+
+perl Porting/pod_rules.pl
+
+# Somehow we get duplicates, boo
+perl -i.old -naE 'print unless $SEEN{$F[0]}++' MANIFEST
+
+# Apply the patch not to rebuild them
+patch -Ep0 < $SRCDIR/patches/APPLIES/dont_build_unicore.patch
+
+# Cleanup cruft
+find ./ $WRKDIR/${PERL_BASE}.orig \
+    \( -name '*.old' -o -name '*.rej' -o -name '*.orig' \) -exec rm -f {} \;
+
+diff -ruN $WRKDIR/${PERL_BASE}.orig/ ./ \
+    > $SRCDIR/patches/RESEARCH/pre_built_unicore.patch
+
+cd $WRKDIR
+$SRCDIR/test_patches
