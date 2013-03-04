@@ -48,14 +48,17 @@ find ${SRCDIR}/patches/RESEARCH -name $NAME | {
         find ${SRCDIR}/patches/GOOD -name '*.patch' -print \
             -exec patch -Ep0 -i {} \; | tee -a $log
 
-        echo Configuring
-        sh ./Configure -de 2>&1 | tee -a $log
+        echo make obj
+        make -f Makefile.bsd-wrapper obj  2>&1 | tee -a $log
+
+        echo Configure
+        make -f Makefile.bsd-wrapper config.sh 2>&1 | tee -a $log
 
         echo Building
-        make 2>&1 | tee -a $log
+        make -f Makefile.bsd-wrapper all  2>&1 | tee -a $log
 
         echo Testing
-        make test 2>&1 | tee -a $log
+        make -f Makefile.bsd-wrapper test 2>&1 | tee -a $log
 
         echo Renaming patches
         mv -f "$patch" "$patch.old"
