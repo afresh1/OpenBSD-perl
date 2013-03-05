@@ -7,16 +7,16 @@ mv -f $SRCDIR/patches/GOOD/pre_built_unicore.patch{,.old}
 
 PERL_BASE=perl-5.16.2
 # imports PERL_BASE
-#. $SRCDIR/build_local_perl
+. $SRCDIR/build_local_perl
 
-#cd $WRKDIR
-#mkdir -p unicore/.old
-#mv       unicore/* unicore/.old
-#rm -rf   unicore/.old &
+cd $WRKDIR
+mkdir -p unicore/.old
+mv       unicore/* unicore/.old
+rm -rf   unicore/.old &
 
-#mkdir -p unicore/{lib,pod}
-#cp -r $PERL_BASE/obj/lib/unicore          unicore/lib/
-#cp    $PERL_BASE/obj/pod/perluniprops.pod unicore/pod/
+mkdir -p unicore/{lib,pod}
+cp -r $PERL_BASE/obj/lib/unicore          unicore/lib/
+cp    $PERL_BASE/obj/pod/perluniprops.pod unicore/pod/
 
 $SRCDIR/make_patched_perl
 rm -rf ${PERL_BASE}.orig
