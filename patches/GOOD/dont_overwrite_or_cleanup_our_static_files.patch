@@ -1,6 +1,6 @@
---- ./Makefile.SH.orig	Wed Jun 27 21:46:14 2012
-+++ ./Makefile.SH	Wed Jun 27 21:46:14 2012
-@@ -1264,14 +1264,13 @@
+--- ./Makefile.SH.orig	Mon Mar  4 08:16:21 2013
++++ ./Makefile.SH	Wed Mar 13 11:57:36 2013
+@@ -1263,14 +1263,13 @@
  	-rm -f perl.Addrs perl.Counts t/perl.Addrs t/perl.Counts *perl.xok
  	-rm -f cygwin.c libperl*.def libperl*.dll cygperl*.dll *.exe.stackdump
  	-rm -f $(PERL_EXE) $(MINIPERL_EXE) $(LIBPERL) libperl.* microperl
@@ -16,8 +16,8 @@
  	-@for x in $(DYNALOADER) $(dynamic_ext) $(static_ext) $(nonxs_ext) ; do \
  	$(MINIPERL) make_ext.pl --target=clean $$x MAKE=$(MAKE) ; \
  	done
---- MANIFEST.orig	Mon Dec  3 19:30:22 2012
-+++ MANIFEST	Mon Dec  3 19:35:01 2012
+--- ./MANIFEST.orig	Mon Mar  4 08:16:21 2013
++++ ./MANIFEST	Wed Mar 13 11:57:36 2013
 @@ -10,6 +10,7 @@
  Changes			Describe how to peruse changes between releases
  charclass_invlists.h	Compiled-in inversion lists

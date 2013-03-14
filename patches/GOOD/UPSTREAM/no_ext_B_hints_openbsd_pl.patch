@@ -1,11 +1,6 @@
---- ext/B/hints/openbsd.pl.orig	Tue Feb 14 21:44:47 2012
-+++ ext/B/hints/openbsd.pl	Tue/dev/null	Sat Aug 18 10:51:30 2012
-@@ -1,2 +0,0 @@
--# gcc -O3 (and -O2) get overly excited over B.c in OpenBSD 3.3/sparc 64
--$self->{OPTIMIZE} = '-O1' if $Config{ARCH} eq 'sparc64';
---- MANIFEST.orig	Sat Aug 18 10:54:06 2012
-+++ MANIFEST	Sat Aug 18 10:54:30 2012
-@@ -3625,7 +3625,6 @@
+--- ./MANIFEST.orig	Mon Mar  4 08:16:21 2013
++++ ./MANIFEST	Wed Mar 13 11:57:33 2013
+@@ -3626,7 +3626,6 @@
  ext/B/B/Xref.pm		Compiler Xref backend
  ext/B/B.xs		Compiler backend external subroutines
  ext/B/hints/darwin.pl	Hints for named architecture

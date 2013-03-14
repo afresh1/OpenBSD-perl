@@ -1,5 +1,16 @@
---- cpan/Digest-MD5/MD5.xs.orig	Fri Aug  3 10:35:26 2012
-+++ cpan/Digest-MD5/MD5.xs	Sat Aug 18 08:30:43 2012
+--- ./cpan/Digest-MD5/t/files.t.orig	Mon Mar  4 08:16:21 2013
++++ ./cpan/Digest-MD5/t/files.t	Wed Mar 13 11:57:42 2013
+@@ -21,7 +21,7 @@
+     # This is the output of: 'md5sum README MD5.xs rfc1321.txt'
+     $EXPECT = <<EOT;
+ c8d3f8457a2d6983253d771ffddb9f4c  README
+-14b929c388c5a9bd8eca3d37160e1b8a  MD5.xs
++572735e45b7299f68b2e3615be97b267  MD5.xs
+ 754b9db19f79dbc4992f7166eb0f37ce  rfc1321.txt
+ EOT
+ }
+--- ./cpan/Digest-MD5/MD5.xs.orig	Mon Mar  4 08:16:21 2013
++++ ./cpan/Digest-MD5/MD5.xs	Wed Mar 13 11:57:42 2013
 @@ -39,65 +39,12 @@
  #include "EXTERN.h"
  #include "perl.h"
@@ -403,14 +414,3 @@
  #ifdef USE_HEAP_INSTEAD_OF_STACK
  	unsigned char* buffer;
  #else
---- cpan/Digest-MD5/t/files.t.orig	Sat Aug 18 08:52:27 2012
-+++ cpan/Digest-MD5/t/files.t	Sat Aug 18 08:52:37 2012
-@@ -21,7 +21,7 @@
-     # This is the output of: 'md5sum README MD5.xs rfc1321.txt'
-     $EXPECT = <<EOT;
- c8d3f8457a2d6983253d771ffddb9f4c  README
--14b929c388c5a9bd8eca3d37160e1b8a  MD5.xs
-+572735e45b7299f68b2e3615be97b267  MD5.xs
- 754b9db19f79dbc4992f7166eb0f37ce  rfc1321.txt
- EOT
- }
