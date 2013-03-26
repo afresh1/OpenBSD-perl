@@ -12,6 +12,10 @@ my ($bsdwrapper) = grep { -e } 'Makefile.bsd-wrapper1',
 
 die "Couldn't find Makefile.bsd-wrapper1" unless $bsdwrapper;
 
+my %proper_page = (
+    'utils/splain' => 'splain',
+);
+
 open my $fh, '<', $bsdwrapper or die "Couldn't open $bsdwrapper: $!";
 
 # Find the right section
@@ -44,9 +48,15 @@ find( sub {
     return if $file =~ m{/t/}; # or files in test dirs
     return if $file =~ m{/ext/}; # or in an ext dir
 
+    $file =~ s{^\./(?:obj/)?}{};
+    $file =~ s{^.*/(lib|pod)/}{$1/};
+
     my $page;
 
-    if ($file =~ m{pod/(perl\w+).pod}) {
+    if ($proper_page{$file}) {
+        $page = $proper_page{$file};
+    }
+    elsif ($file =~ m{pod/(perl\w+).pod}) {
         $page = $1;
     }
     else {
@@ -75,9 +85,6 @@ find( sub {
     }
 
     return unless $page;
-
-    $file =~ s{^\./(?:obj/)?}{};
-    $file =~ s{^.*/(lib|pod)/}{$1/};
 
     my $section = exists $old_pod{$page} ? $old_pod{$page}{section}
                 : /\.pm$/                ? '3p'
