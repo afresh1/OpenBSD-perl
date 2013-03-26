@@ -130,12 +130,9 @@ while (<$ifh>) {
         print $ofh $_;
 
         foreach my $i ( 0 .. $#file_list ) {
-            if ($i == $#file_list) {
-                say $ofh $file_list[$i];
-            }
-            else {
-                printf $ofh "    %-70s \\\n", $file_list[$i];
-            }
+            my $fmt = "    %-70s";
+            $fmt .= $i == $#file_list ? "\n" : " \\\n";
+            printf $ofh $fmt, $file_list[$i];
         }
 
         while (<$ifh>) { last unless m{\\$} }
@@ -146,4 +143,4 @@ while (<$ifh>) {
 close $ifh;
 close $ofh;
 
-say "Print created $bsdwrapper.new";
+say "Created $bsdwrapper.new";
