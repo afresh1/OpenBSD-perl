@@ -37,36 +37,46 @@ find( sub {
     }
 
     return unless -f $_;
+    my $file = $File::Find::name;
 
     return if /\.t(?:xt)$/; # skip txt files and tests
-    return if $File::Find::name =~ m{/t/}; # or files in test dirs
+    return if /\.orig$/;    # skip patch files
+    return if $file =~ m{/t/}; # or files in test dirs
+    return if $file =~ m{/ext/}; # or in an ext dir
 
-    open my $fh, '<', $_ or die "Couldn't open $File::Find::name";
-    my $found_pod = 0;
-    my $page = '';
-    while (<$fh>) {
-        if (/^=head1\s+NAME/) {
-            $found_pod = 1;
-            next;
+    my $page;
+
+    if ($file =~ m{pod/(perl\w+).pod}) {
+        $page = $1;
+    }
+    else {
+        open my $fh, '<', $_ or die "Couldn't open $File::Find::name";
+        my $found_pod = 0;
+
+        while (<$fh>) {
+            if (/^=head1\s+NAME/) {
+                $found_pod = 1;
+                next;
+            }
+
+            next unless $found_pod;
+            last if /^=\w+/;
+
+            if (/^(\S+)/) {
+                $page = $1;
+                last;
+            }
         }
 
-        next unless $found_pod;
-        last if /^=\w+/;
-        
-        if (/^(\S+)/) {
-            $page = $1;
-            last;
-        }
+        return unless $found_pod;
+
+        $page =~ s/^\w\<//;    # strip possible B<
+        $page =~ s/[^\w:]//g;
     }
 
-    $page =~ s/^\w\<//; # strip possible B<
-    $page =~ s/[^\w:]//g;
-    
-    return unless $found_pod;
     return unless $page;
 
-    my $file = $File::Find::name;
-    $file =~ s{^\./}{};
+    $file =~ s{^\./(?:obj/)?}{};
     $file =~ s{^.*/(lib|pod)/}{$1/};
 
     my $section = exists $old_pod{$page} ? $old_pod{$page}{section}
