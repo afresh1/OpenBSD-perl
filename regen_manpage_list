@@ -69,7 +69,10 @@ find( sub {
     $file =~ s{^\./}{};
     $file =~ s{^.*/(lib|pod)/}{$1/};
 
-    my $section = $file =~ /\.pm$/ ? '3p' : '1';
+    my $section = exists $old_pod{$page} ? $old_pod{$page}{section}
+                : /\.pm$/                ? '3p'
+                :                          '1';
+
     $new_pod{$page} = {
         file    => $file,
         section => $section,
