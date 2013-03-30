@@ -1,0 +1,11 @@
+--- Makefile.SH	2013/03/25 21:20:35	1.22
++++ Makefile.SH	2013/03/29 21:59:46	1.23
+@@ -178,7 +178,7 @@ done
+ dynamic_list=' '
+ dynamic_ext_re="lib/auto/re/re.$dlext"
+ extra_dep='
+-ext/Pod-Functions/pm_to_blib: cpan/Pod-Simple/pm_to_blib pod/perlfunc.pod
++ext/Pod-Functions/pm_to_blib: cpan/Pod-Escapes/pm_to_blib cpan/Pod-Simple/pm_to_blib pod/perlfunc.pod
+ '
+ for f in $dynamic_ext; do
+     : the dependency named here will never exist
