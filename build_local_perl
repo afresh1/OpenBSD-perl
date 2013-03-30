@@ -9,6 +9,8 @@ if [ ! -e ${SRCDIR}/${PERL_BASE}.tar.gz ]; then
     exit 255
 fi
 
+#J='-j4'
+
 log=`pwd`/${PERL_BASE}-build
 if [ -n "$NO_LOCAL_PATCHES" ]; then
     log=${log}-NO-PATCHES
@@ -34,10 +36,10 @@ if [ -z "$NO_LOCAL_PATCHES" ]; then
     find ${SRCDIR}/patches/GOOD -name '*.patch' -print \
         -exec patch -Ep0 -i {} 2>&1 \; | tee -a $log
 
-    make -f Makefile.bsd-wrapper obj    2>&1 | tee -a $log
-    make -f Makefile.bsd-wrapper depend 2>&1 | tee -a $log
-    make -f Makefile.bsd-wrapper all    2>&1 | tee -a $log
-    make -f Makefile.bsd-wrapper test   2>&1 | tee -a $log
+    make $J -f Makefile.bsd-wrapper obj    2>&1 | tee -a $log
+    make $J -f Makefile.bsd-wrapper depend 2>&1 | tee -a $log
+    make $J -f Makefile.bsd-wrapper all    2>&1 | tee -a $log
+    make $J -f Makefile.bsd-wrapper test   2>&1 | tee -a $log
 else
     sh ./Configure -de 2>&1 | tee -a $log
     make 2>&1 | tee -a $log
