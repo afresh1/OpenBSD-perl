@@ -44,7 +44,17 @@ find ${SRCDIR}/patches/RESEARCH -name $NAME | {
             done
         ) > "${new_patch}.new"
 
-        if [ -z $REGEN_PATCHES ]; then
+        if [ -n $NO_BSD_WRAPPER ]; then
+            echo Configuring
+            sh ./Configure -de 2>&1 | tee -a $log
+
+            echo Building
+            make 2>&1 | tee -a $log
+
+            echo Testing
+            make test 2>&1 | tee -a $log
+
+        elif [ -z $REGEN_PATCHES ]; then
             echo Copying local files
             cp -Rf ${SRCDIR}/files/* ./
 
