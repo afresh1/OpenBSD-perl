@@ -1,16 +1,16 @@
---- ./dist/threads-shared/t/stress.t.orig	Mon Mar  4 08:16:22 2013
-+++ ./dist/threads-shared/t/stress.t	Wed Mar 13 11:57:39 2013
-@@ -42,7 +42,7 @@
- {
-     my $cnt = 50;
+--- ./dist/threads-shared/t/stress.t.orig	Sun Aug 11 19:44:48 2013
++++ ./dist/threads-shared/t/stress.t	Sun Sep 29 18:24:31 2013
+@@ -83,7 +83,7 @@
+         print "# Looping for $busycount iterations should take about 0.025s\n";
+     }
  
 -    my $TIMEOUT = 60;
 +    my $TIMEOUT = 600;
  
      my $mutex = 1;
      share($mutex);
---- ./t/op/threads.t.orig	Mon Mar  4 08:16:22 2013
-+++ ./t/op/threads.t	Wed Mar 13 11:57:39 2013
+--- ./t/op/threads.t.orig	Sun Aug 11 19:44:49 2013
++++ ./t/op/threads.t	Sun Sep 29 18:24:31 2013
 @@ -135,7 +135,7 @@
  #
  # run-time usage of newCONSTSUB (as done by the IO boot code) wasn't

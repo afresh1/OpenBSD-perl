@@ -1,5 +1,5 @@
---- ./cpan/Encode/lib/Encode/Alias.pm.orig	Tue Apr 24 17:18:31 2012
-+++ ./cpan/Encode/lib/Encode/Alias.pm	Wed Jun 27 19:23:56 2012
+--- ./cpan/Encode/lib/Encode/Alias.pm.orig	Sun Aug 11 19:44:47 2013
++++ ./cpan/Encode/lib/Encode/Alias.pm	Sun Sep 29 17:42:10 2013
 @@ -152,6 +152,7 @@
      define_alias( qr/^(?:US-?)ascii$/i       => '"ascii"' );
      define_alias( 'C'                        => 'ascii' );

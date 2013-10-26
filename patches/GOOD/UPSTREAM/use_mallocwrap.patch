@@ -1,5 +1,5 @@
---- ./hints/openbsd.sh.orig	Tue Feb 14 21:44:48 2012
-+++ ./hints/openbsd.sh	Wed Jun 27 18:04:21 2012
+--- ./hints/openbsd.sh.orig	Tue Apr 30 19:52:55 2013
++++ ./hints/openbsd.sh	Sun Sep 29 16:28:45 2013
 @@ -15,11 +15,6 @@
      ;;
  esac

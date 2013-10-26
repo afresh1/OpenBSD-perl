@@ -1,6 +1,6 @@
---- ./MANIFEST.orig	Thu Oct 25 20:07:24 2012
-+++ ./MANIFEST	Sun Dec  2 18:57:22 2012
-@@ -1851,6 +1851,10 @@
+--- ./MANIFEST.orig	Sun Aug 11 19:44:51 2013
++++ ./MANIFEST	Fri Oct 25 20:22:18 2013
+@@ -1882,6 +1882,10 @@
  cpan/Object-Accessor/t/04_Object-Accessor-lvalue.t	Object::Accessor tests
  cpan/Object-Accessor/t/05_Object-Accessor-callback.t	Object::Accessor tests
  cpan/Object-Accessor/t/06_Object-Accessor-alias.t	Object::Accessor tests

@@ -1,6 +1,6 @@
---- ./Configure.orig	Tue Apr 24 17:18:30 2012
-+++ ./Configure	Wed Jun 27 16:46:57 2012
-@@ -5094,6 +5094,25 @@
+--- ./Configure.orig	Sun Aug 11 19:44:47 2013
++++ ./Configure	Sun Sep 29 14:19:18 2013
+@@ -5103,6 +5103,25 @@
  		eval $checkccflag
  		;;
  	esac

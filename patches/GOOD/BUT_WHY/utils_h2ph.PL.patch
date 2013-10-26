@@ -1,5 +1,5 @@
---- ./t/lib/h2ph.pht.orig	Tue Feb 14 21:44:51 2012
-+++ ./t/lib/h2ph.pht	Wed Jun 27 09:38:01 2012
+--- ./t/lib/h2ph.pht.orig	Tue Apr 30 19:52:56 2013
++++ ./t/lib/h2ph.pht	Sun Sep 29 12:55:09 2013
 @@ -90,10 +90,6 @@
      }
      eval("sub flim () { 0; }") unless defined(&flim);
@@ -11,8 +11,8 @@
      eval 'sub multiline () {"multilinestring";}' unless defined(&multiline);
  }
  1;
---- ./utils/h2ph.PL.orig	Tue Apr 24 17:18:36 2012
-+++ ./utils/h2ph.PL	Wed Jun 27 09:38:01 2012
+--- ./utils/h2ph.PL.orig	Sun Aug 11 19:21:51 2013
++++ ./utils/h2ph.PL	Sun Sep 29 12:55:09 2013
 @@ -571,7 +571,7 @@
                  $in =~ s/\?\?</{/g;                         # | ??<|  {|
                  $in =~ s/\?\?>/}/g;                         # | ??>|  }|

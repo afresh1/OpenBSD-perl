@@ -1,6 +1,6 @@
---- ./Makefile.SH.orig	Mon May 14 12:49:21 2012
-+++ ./Makefile.SH	Wed Jun 27 21:34:15 2012
-@@ -1039,10 +1039,8 @@
+--- ./Makefile.SH.orig	Sun Aug 11 19:44:47 2013
++++ ./Makefile.SH	Sat Oct 26 13:41:53 2013
+@@ -1049,10 +1049,8 @@
  unidatafiles $(unidatafiles) pod/perluniprops.pod: uni.data
  
  uni.data: $(MINIPERL_EXE) $(CONFIGPM) lib/unicore/mktables $(nonxs_ext)

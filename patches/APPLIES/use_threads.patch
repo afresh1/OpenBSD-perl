@@ -1,5 +1,5 @@
---- hints/openbsd.sh.orig	Thu Oct 11 11:20:45 2012
-+++ hints/openbsd.sh	Mon Dec  3 19:48:12 2012
+--- ./hints/openbsd.sh.orig	Tue Apr 30 19:52:55 2013
++++ ./hints/openbsd.sh	Sat Oct 26 07:43:21 2013
 @@ -8,6 +8,12 @@
  #	./Configure -des -Dopenbsd_distribution=defined
  #

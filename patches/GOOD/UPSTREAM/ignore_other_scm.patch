@@ -1,5 +1,5 @@
---- ./cpan/Compress-Raw-Bzip2/private/MakeUtil.pm.orig	Tue Feb 14 21:44:37 2012
-+++ ./cpan/Compress-Raw-Bzip2/private/MakeUtil.pm	Wed Jun 27 13:18:23 2012
+--- ./cpan/Compress-Raw-Bzip2/private/MakeUtil.pm.orig	Tue Apr 30 19:52:54 2013
++++ ./cpan/Compress-Raw-Bzip2/private/MakeUtil.pm	Sun Sep 29 15:30:10 2013
 @@ -35,7 +35,8 @@
      my $path = shift;
  
@@ -10,8 +10,8 @@
             $path =~ /\..*\.sw(o|p)$/  ||
             $path =~ /\B\.svn\b/;
  
---- ./cpan/Compress-Raw-Zlib/private/MakeUtil.pm.orig	Tue Feb 14 21:44:37 2012
-+++ ./cpan/Compress-Raw-Zlib/private/MakeUtil.pm	Wed Jun 27 13:18:23 2012
+--- ./cpan/Compress-Raw-Zlib/private/MakeUtil.pm.orig	Tue Apr 30 19:52:54 2013
++++ ./cpan/Compress-Raw-Zlib/private/MakeUtil.pm	Sun Sep 29 15:30:10 2013
 @@ -35,7 +35,8 @@
      my $path = shift;
  
@@ -22,8 +22,8 @@
             $path =~ /\..*\.sw(o|p)$/  ||
             $path =~ /\B\.svn\b/;
  
---- ./cpan/IO-Compress/private/MakeUtil.pm.orig	Tue Feb 14 21:44:40 2012
-+++ ./cpan/IO-Compress/private/MakeUtil.pm	Wed Jun 27 13:18:23 2012
+--- ./cpan/IO-Compress/private/MakeUtil.pm.orig	Tue Apr 30 19:52:55 2013
++++ ./cpan/IO-Compress/private/MakeUtil.pm	Sun Sep 29 15:30:10 2013
 @@ -35,7 +35,8 @@
      my $path = shift;
  
@@ -34,9 +34,9 @@
             $path =~ /\..*\.sw(o|p)$/  ||
             $path =~ /\B\.svn\b/;
  
---- ./Configure.orig	Tue Apr 24 17:18:30 2012
-+++ ./Configure	Wed Jun 27 13:18:23 2012
-@@ -22487,6 +22487,8 @@
+--- ./Configure.orig	Sun Aug 11 19:44:47 2013
++++ ./Configure	Sun Sep 29 15:30:11 2013
+@@ -22617,6 +22617,8 @@
  nonxs_ext=''
  for xxx in $nonxs_extensions ; do
  	case "$xxx" in

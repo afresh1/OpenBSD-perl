@@ -1,5 +1,5 @@
---- ./lib/Config.t.orig	Tue Feb 14 21:44:48 2012
-+++ ./lib/Config.t	Wed Jun 27 19:49:47 2012
+--- ./lib/Config.t.orig	Tue Apr 30 19:52:55 2013
++++ ./lib/Config.t	Sun Sep 29 18:10:27 2013
 @@ -271,8 +271,8 @@
      }
      # So we expect to find it in @INC
@@ -11,8 +11,8 @@
    }
  }
  _diag ('@INC is:', @orig_inc) if $failed;
---- ./configpm.orig	Tue Apr 24 17:18:30 2012
-+++ ./configpm	Wed Jun 27 19:49:47 2012
+--- ./configpm.orig	Sun Aug 11 19:44:47 2013
++++ ./configpm	Sun Sep 29 18:10:27 2013
 @@ -91,6 +91,11 @@
  		   (.{1,64})\  # Split at the last convenient space
  		  /$1\n              /gx;
@@ -25,7 +25,7 @@
  # allowed opts as well as specifies default and initial values
  my %Allowed_Opts = (
      'cross'    => '', # --cross=PLATFORM - crosscompiling for PLATFORM
-@@ -333,6 +338,9 @@
+@@ -336,6 +341,9 @@
      }
      $in_v = $val !~ /$quote\n/;
      next if $in_v;

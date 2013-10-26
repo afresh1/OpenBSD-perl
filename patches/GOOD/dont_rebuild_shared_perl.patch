@@ -1,5 +1,5 @@
---- ./ext/DynaLoader/Makefile.PL.orig	Sun May 20 06:00:24 2012
-+++ ./ext/DynaLoader/Makefile.PL	Wed Jun 27 21:41:09 2012
+--- ./ext/DynaLoader/Makefile.PL.orig	Sun Aug 11 19:35:42 2013
++++ ./ext/DynaLoader/Makefile.PL	Fri Oct 25 22:41:40 2013
 @@ -64,8 +64,8 @@
  
      return "
@@ -11,9 +11,9 @@
  
  static :: $object
  ";
---- Makefile.SH.orig	Thu Oct 25 19:44:15 2012
-+++ Makefile.SH	Thu Dec 13 22:00:21 2012
-@@ -701,11 +701,11 @@
+--- ./Makefile.SH.orig	Sun Aug 11 19:44:47 2013
++++ ./Makefile.SH	Fri Oct 25 22:41:40 2013
+@@ -711,11 +711,11 @@
  LIBPERL_NONSHR		= libperl_nonshr$(LIB_EXT)
  MINIPERL_NONSHR		= miniperl_nonshr$(EXE_EXT)
  
@@ -29,7 +29,7 @@
  	$(CC) $(LDFLAGS) -o $(MINIPERL_NONSHR) miniperlmain$(OBJ_EXT) \
  	    opmini$(OBJ_EXT) perlmini$(OBJ_EXT) $(LIBPERL_NONSHR) $(LIBS)
  
-@@ -789,33 +789,33 @@
+@@ -799,33 +799,33 @@
  		;;
      esac
  	$spitshell >>$Makefile <<'!NO!SUBS!'
@@ -90,7 +90,7 @@
  
  # How to build executables.
  
-@@ -878,19 +878,19 @@
+@@ -888,19 +888,19 @@
  
  	$spitshell >>$Makefile <<'!NO!SUBS!'
  

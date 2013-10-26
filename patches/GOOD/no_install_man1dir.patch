@@ -1,5 +1,5 @@
---- ./installperl.orig	Tue Apr 24 17:18:34 2012
-+++ ./installperl	Wed Jun 27 10:03:56 2012
+--- ./installperl.orig	Sun Aug 11 19:44:48 2013
++++ ./installperl	Sun Sep 29 18:41:25 2013
 @@ -196,7 +196,7 @@
  my $installarchlib = "$opts{destdir}$Config{installarchlib}";
  my $installsitelib = "$opts{destdir}$Config{installsitelib}";

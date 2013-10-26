@@ -1,17 +1,17 @@
---- ./cpan/Digest-MD5/t/files.t.orig	Mon Mar  4 08:16:21 2013
-+++ ./cpan/Digest-MD5/t/files.t	Wed Mar 13 11:57:42 2013
+--- ./cpan/Digest-MD5/t/files.t.orig	Sun Aug 11 19:44:47 2013
++++ ./cpan/Digest-MD5/t/files.t	Sat Oct 26 11:02:13 2013
 @@ -21,7 +21,7 @@
      # This is the output of: 'md5sum README MD5.xs rfc1321.txt'
      $EXPECT = <<EOT;
- c8d3f8457a2d6983253d771ffddb9f4c  README
--14b929c388c5a9bd8eca3d37160e1b8a  MD5.xs
-+572735e45b7299f68b2e3615be97b267  MD5.xs
+ 2f93400875dbb56f36691d5f69f3eba5  README
+-f908acbcf6bd32042f282b0deed61264  MD5.xs
++1d2a7c4f7a6180a7f3369d703ffe7cd0  MD5.xs
  754b9db19f79dbc4992f7166eb0f37ce  rfc1321.txt
  EOT
  }
---- ./cpan/Digest-MD5/MD5.xs.orig	Mon Mar  4 08:16:21 2013
-+++ ./cpan/Digest-MD5/MD5.xs	Wed Mar 13 11:57:42 2013
-@@ -39,65 +39,12 @@
+--- ./cpan/Digest-MD5/MD5.xs.orig	Sun Aug 11 19:44:47 2013
++++ ./cpan/Digest-MD5/MD5.xs	Sat Oct 26 11:02:13 2013
+@@ -39,6 +39,8 @@
  #include "EXTERN.h"
  #include "perl.h"
  #include "XSUB.h"
@@ -19,6 +19,9 @@
 +#include <md5.h>
  #ifdef __cplusplus
  }
+ #endif
+@@ -88,61 +90,6 @@
+ # define SvPVbyte(sv, lp) (sv_utf8_downgrade((sv), 0), SvPV((sv), (lp)))
  #endif
  
 -/* Perl does not guarantee that U32 is exactly 32 bits.  Some system
@@ -67,7 +70,7 @@
 -                        ((U32)(*(s+3)) << 24))
 -#endif
 -
--/* This stucture keeps the current state of algorithm.
+-/* This structure keeps the current state of algorithm.
 - */
 -typedef struct {
 -  U32 A, B, C, D;  /* current digest */
@@ -76,10 +79,10 @@
 -  U8 buffer[128];  /* collect complete 64 byte blocks */
 -} MD5_CTX;
 -
- #ifdef USE_ITHREADS
+ #if defined(USE_ITHREADS) && defined(MGf_DUP)
  STATIC int dup_md5_ctx(pTHX_ MAGIC *mg, CLONE_PARAMS *params)
  {
-@@ -131,325 +78,6 @@
+@@ -176,325 +123,6 @@
  #endif
  };
  
@@ -405,7 +408,7 @@
  static MD5_CTX* get_md5_ctx(pTHX_ SV* sv)
  {
      MAGIC *mg;
-@@ -629,7 +257,7 @@
+@@ -674,7 +302,7 @@
  	InputStream fh
      PREINIT:
  	MD5_CTX* context = get_md5_ctx(aTHX_ self);

@@ -1,5 +1,5 @@
---- dist/ExtUtils-ParseXS/lib/ExtUtils/ParseXS/Utilities.pm.orig	Thu Dec 13 22:16:26 2012
-+++ dist/ExtUtils-ParseXS/lib/ExtUtils/ParseXS/Utilities.pm	Thu Dec 13 22:16:45 2012
+--- ./dist/ExtUtils-ParseXS/lib/ExtUtils/ParseXS/Utilities.pm.orig	Sun Aug 11 19:44:48 2013
++++ ./dist/ExtUtils-ParseXS/lib/ExtUtils/ParseXS/Utilities.pm	Mon Sep 30 07:53:02 2013
 @@ -3,7 +3,6 @@
  use warnings;
  use Exporter;
@@ -7,4 +7,4 @@
 -use lib qw( lib );
  use ExtUtils::ParseXS::Constants ();
  
- our $VERSION = '3.16';
+ our $VERSION = '3.19';

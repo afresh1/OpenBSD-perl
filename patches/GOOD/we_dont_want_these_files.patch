@@ -1,5 +1,5 @@
---- ./t/porting/dual-life.t.orig	Tue Apr 24 17:18:36 2012
-+++ ./t/porting/dual-life.t	Wed Jun 27 08:10:39 2012
+--- ./t/porting/dual-life.t.orig	Sun Aug 11 19:44:49 2013
++++ ./t/porting/dual-life.t	Mon Sep 30 10:04:08 2013
 @@ -21,6 +21,8 @@
    \.\./cpan/Encode/bin/u(?:cm(?:2table|lint|sort)|nidump)
     |
@@ -9,8 +9,8 @@
  )\z}ix;
  
  my %dist_dir_exe;
---- ./utils/Makefile.SH.orig	Tue Apr 24 17:18:36 2012
-+++ ./utils/Makefile.SH	Wed Jun 27 08:10:39 2012
+--- ./utils/Makefile.SH.orig	Sun Aug 11 19:21:51 2013
++++ ./utils/Makefile.SH	Mon Sep 30 10:04:08 2013
 @@ -48,9 +48,9 @@
  # Files to be built with variable substitution after miniperl is
  # available.  Dependencies handled manually below (for now).
@@ -37,8 +37,8 @@
  
  cpanp-run-perl:	cpanp-run-perl.PL ../config.sh
  
---- ./utils/perlbug.PL.orig	Thu May 10 11:38:09 2012
-+++ ./utils/perlbug.PL	Wed Jun 27 08:10:39 2012
+--- ./utils/perlbug.PL.orig	Sun Aug 11 19:44:49 2013
++++ ./utils/perlbug.PL	Mon Sep 30 10:04:08 2013
 @@ -344,15 +344,14 @@
  This program provides an easy way to send a thank-you message back to the
  authors and maintainers of perl.
@@ -77,8 +77,8 @@
  smile. 
  
  =back
---- ./utils.lst.orig	Tue Apr 24 17:18:36 2012
-+++ ./utils.lst	Wed Jun 27 08:10:39 2012
+--- ./utils.lst.orig	Sun Aug 11 19:44:49 2013
++++ ./utils.lst	Mon Sep 30 10:04:08 2013
 @@ -14,16 +14,13 @@
  utils/instmodsh
  utils/json_pp
