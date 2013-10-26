@@ -5,7 +5,7 @@ WRKDIR=$PWD
 
 mv -f $SRCDIR/patches/GOOD/pre_built_unicore.patch{,.old}
 
-PERL_BASE=perl-5.16.3
+PERL_BASE=perl-5.18.1
 # imports PERL_BASE
 . $SRCDIR/build_local_perl
 
