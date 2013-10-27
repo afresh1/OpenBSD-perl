@@ -105,8 +105,7 @@ foreach my $page (sort {
         say "New page: $page [$new_pod{$page}{file}]";
         $changed++;
     }
-    push @file_list, sprintf "%-20s %-2s %s",
-        $page, @{ $new_pod{$page} }{qw( section file )};
+    push @file_list, [ $page, @{ $new_pod{$page} }{qw( section file )} ];
 }
 
 foreach my $page (sort { 
@@ -130,9 +129,9 @@ while (<$ifh>) {
         print $ofh $_;
 
         foreach my $i ( 0 .. $#file_list ) {
-            my $fmt = "    %-70s";
+            my $fmt = "    %s %s\t\t\t%s";
             $fmt .= $i == $#file_list ? "\n" : " \\\n";
-            printf $ofh $fmt, $file_list[$i];
+            printf $ofh $fmt, @{ $file_list[$i] };
         }
 
         while (<$ifh>) { last unless m{\\$} }
