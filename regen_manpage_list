@@ -100,7 +100,7 @@ my $changed = 0;
 my @file_list;
 foreach my $page (sort { 
     $new_pod{$a}{section} cmp $new_pod{$b}{section}
-        || $a cmp $b } keys %new_pod) {
+        || lc($a) cmp lc($b) } keys %new_pod) {
     unless ($old_pod{$page}) {
         say "New page: $page [$new_pod{$page}{file}]";
         $changed++;
