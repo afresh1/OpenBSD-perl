@@ -245,7 +245,6 @@ _quick3p=
     perluniintro 1			pod/perluniintro.pod \
     perluniprops 1			pod/perluniprops.pod \
     perlunitut 1			pod/perlunitut.pod \
-    PerlUtil 1			symbian/PerlUtil.pod \
     perlutil 1			pod/perlutil.pod \
     perlvar 1			pod/perlvar.pod \
     perlvms 1			pod/perlvms.pod \
