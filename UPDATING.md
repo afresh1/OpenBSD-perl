@@ -16,9 +16,9 @@ This is still an art, not as yet a complete doc, but a start.
 * At some point you won't get any better results and you will actually have to
   look at the logs and update patches.
 * Eventually everything will build and tests will pass.
-* After this, use `build_local_perl` to build a "clean" perl install
+* After this, use `make_patched_perl` to build a patched perl directory
 * Change into the perl build directory and run `regen_manpage_list`
-* Copy the new Makefile.bsdwrapper1
+* Copy the new Makefile.bsdwrapper1 to the git repo
 * Then you can commit the patch changes!
 * Now have people test on additional architectures.
 
@@ -26,4 +26,4 @@ This is still an art, not as yet a complete doc, but a start.
 I am still not sure on this step.
 
 The one note I am sure of is to remind someone that they should use "-k o"
-when importing into cvs so that keywords don't get expanded.
+when importing into cvs so that keywords don't get expanded.
