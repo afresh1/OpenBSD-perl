@@ -1,14 +1,14 @@
---- ./cpan/Pod-Parser/lib/Pod/PlainText.pm.orig	Sun Aug 11 19:44:48 2013
-+++ ./cpan/Pod-Parser/lib/Pod/PlainText.pm	Sun Sep 29 14:47:32 2013
-@@ -592,6 +592,11 @@
-         $_[0] = $infh;
-         return $parser->parse_from_filehandle (@_);
-     } else {
+--- cpan/Pod-Parser/lib/Pod/PlainText.pm.orig	Sun Aug 11 19:44:48 2013
++++ cpan/Pod-Parser/lib/Pod/PlainText.pm	Sat Nov  9 15:28:17 2013
+@@ -596,6 +596,11 @@
+     }
+ }
+ 
 +sub begin_pod {
 +    my $self = shift;
 +    $$self{EXCLUDE} = 0;
 +    $$self{VERBATIM} = 0;
 +}
-         return $parser->parse_from_file (@_);
-     }
- }
+ 
+ ############################################################################
+ # Module return value and documentation
