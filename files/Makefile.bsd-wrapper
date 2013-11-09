@@ -1,9 +1,9 @@
-# $OpenBSD: Makefile.bsd-wrapper,v 1.91 2013/03/29 20:59:04 miod Exp $
+# $OpenBSD: Makefile.bsd-wrapper,v 1.93 2013/08/13 05:52:09 guenther Exp $
 #
 # Build wrapper for Perl 5.16.2
 #
 
-# For ``NOMAN'' and ``COMPILER_VERSION''
+# For ``NOMAN''
 .include <bsd.own.mk>
 
 # There is no point in building a profiled libperl that is never used.
@@ -13,9 +13,7 @@ TARGET_MACHINE_ARCH?=	$(MACHINE_ARCH)
 
 # Perl builds with -fno-strict-aliasing, we want libperl to do the same
 CFLAGS+= -fno-strict-aliasing
-.if ${COMPILER_VERSION:L} == "gcc3" || ${COMPILER_VERSION:L} == "gcc4"
 CFLAGS+= -fno-delete-null-pointer-checks
-.endif
 
 CONFIGURE_ARGS= -dsE -Dopenbsd_distribution=defined -Dccflags='-DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE'
 
@@ -46,7 +44,7 @@ DYNALOADER=ext/DynaLoader/dl_dlopen.xs
 
 # Arguments passed to Configure...
 
-CPPFLAGS+= -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DPERL_RANDOM_DEVICE=\"/dev/arandom\" -I.
+CPPFLAGS+= -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DPERL_RANDOM_DEVICE=\"/dev/arandom\" -DBIG_TIME -I.
 
 .if defined (INSTALL_STRIP) && ${INSTALL_STRIP} == "-s"
 STRIPFLAGS='-s'
