@@ -1,5 +1,17 @@
+--- ./cpan/Module-Pluggable/t/lib/EditorJunk/Plugin/Bar.pm~.orig	Sun Aug 11 19:21:50 2013
++++ ./cpan/Module-Pluggable/t/lib/EditorJunk/Plugin/Bar.pm~	Sat Nov  9 16:39:22 2013
+@@ -1,9 +0,0 @@
+-package EditorJunk::Bar;
+-
+-
+-use strict;
+-
+-
+-1;
+-
+-
 --- ./MANIFEST.orig	Sun Aug 11 19:44:51 2013
-+++ ./MANIFEST	Mon Sep 30 09:23:30 2013
++++ ./MANIFEST	Sat Nov  9 16:39:22 2013
 @@ -1841,7 +1841,6 @@
  cpan/Module-Pluggable/t/lib/Acme/Foo-Bar.pm		Module::Pluggable tests
  cpan/Module-Pluggable/t/lib/Acme/MyTest/Plugin/Foo.pm	Module::Pluggable tests
