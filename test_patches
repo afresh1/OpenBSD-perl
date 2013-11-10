@@ -31,7 +31,7 @@ find ${SRCDIR}/patches/RESEARCH -name $NAME | {
         cd ${PERL_BASE}
 
         echo Applying $patch
-        if ! patch -Ep0 -F 10 -Ni "$patch" >$log 2>&1; then
+        if ! patch -p0 -F 10 -Ni "$patch" >$log 2>&1; then
             echo "Failed"
             continue
         fi
