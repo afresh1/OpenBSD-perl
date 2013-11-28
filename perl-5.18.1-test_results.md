@@ -5,9 +5,9 @@ These tests *not* are currently enabling threads on purpose.  That addition will
 [Build logs are available on github](https://github.com/afresh1/OpenBSD-perl/tree/master/build_logs/perl-5.18.1)
 
 [ ] alpha	Digital Alpha-based systems
-[x] [amd64](https://github.com/afresh1/OpenBSD-perl/tree/master/build_logs/perl-5.18.1-build-amd64-20131109T174240.log)	AMD64-based systems
+[x] [amd64](https://github.com/afresh1/OpenBSD-perl/tree/master/build_logs/perl-5.18.1/perl-5.18.1-build-amd64-20131109T174240.log)	AMD64-based systems
 [ ] armish	ARM-based appliances (by Thecus, IO-DATA, and others)
-[x] [armv7](https://github.com/afresh1/OpenBSD-perl/tree/master/build_logs/perl-5.18.1-build-armv7-20131108T222113.log)	ARM-based devices, such as BeagleBone, BeagleBoard, PandaBoard ES, SABRE Lite, Nitrogen6x and Wandboard
+[x] [armv7](https://github.com/afresh1/OpenBSD-perl/tree/master/build_logs/perl-5.18.1/perl-5.18.1-build-armv7-20131108T222113.log)	ARM-based devices, such as BeagleBone, BeagleBoard, PandaBoard ES, SABRE Lite, Nitrogen6x and Wandboard
 [ ] aviion	Motorola 881x0-based Data General AViiON systems
 [ ] hp300	Hewlett-Packard HP 9000 series 300 and 400 workstations
 [ ] hppa	Hewlett-Packard Precision Architecture (PA-RISC) systems
@@ -22,6 +22,6 @@ These tests *not* are currently enabling threads on purpose.  That addition will
 [ ] sgi	SGI MIPS-based workstations
 [ ] socppc	Freescale PowerPC SoC-based machines
 [ ] sparc	Sun sun4, sun4c, sun4e and sun4m class SPARC systems
-[x] [sparc64](https://github.com/afresh1/OpenBSD-perl/tree/master/build_logs/perl-5.18.1-build-sparc64-20131102T171136.log)	Sun UltraSPARC and Fujitsu SPARC64 systems
+[x] [sparc64](https://github.com/afresh1/OpenBSD-perl/tree/master/build_logs/perl-5.18.1/perl-5.18.1-build-sparc64-20131102T171136.log)	Sun UltraSPARC and Fujitsu SPARC64 systems
 [ ] vax	Digital VAX-based systems
 [ ] zaurus	Sharp Zaurus C3x00 PDAs
