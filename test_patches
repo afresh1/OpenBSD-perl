@@ -22,6 +22,7 @@ find ${SRCDIR}/patches/RESEARCH -name $NAME | {
 
         cd $WRKDIR
         log=/tmp/buildlogs/`basename $patch`.log
+        >$log # truncate
 
         echo Extracting perl
         if [ -e ${PERL_BASE} ]; then
@@ -30,9 +31,9 @@ find ${SRCDIR}/patches/RESEARCH -name $NAME | {
         tar xzf "${SRCDIR}/${PERL_BASE}.tar.gz"
         cd ${PERL_BASE}
 
-        echo Applying $patch
-        if ! patch -p0 -F 10 -Ni "$patch" >$log 2>&1; then
-            echo "Failed"
+        echo Applying $patch 2>&1 | tee -a $log
+        if ! patch -p0 -F 10 -Ni "$patch" 2>&1 | tee -a $log; then
+            echo "Failed" 2>&1 | tee -a $log
             continue
         fi
 
