@@ -4,6 +4,8 @@ SRCDIR=`dirname $0 | xargs readlink -f`
 WRKDIR=$PWD
 
 mv -f $SRCDIR/patches/GOOD/pre_built_unicore.patch{,.old}
+mkdir -p $SRCDIR/patches/RESEARCH
+mv -f $SRCDIR/patches/{GOOD,RESEARCH}/dont_build_unicore.patch
 
 PERL_BASE=perl-5.18.1
 # imports PERL_BASE
@@ -54,4 +56,5 @@ diff -ruN $WRKDIR/${PERL_BASE}.orig/ ./ \
     > $SRCDIR/patches/RESEARCH/pre_built_unicore.patch
 
 cd $WRKDIR
+$SRCDIR/test_patches pre_built_unicore.patch
 $SRCDIR/test_patches

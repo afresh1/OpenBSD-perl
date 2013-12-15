@@ -9,14 +9,13 @@ This is still an art, not as yet a complete doc, but a start.
 * mv patches/GOOD patches/RESEARCH
 * Change to a temporary directory and run `NO_LOCAL_PATCHES=1 build_local_perl`
 * See if it runs successfully, it generally should
-* run the `update_unicore` script (this might not work first, unsure)
-* update_unicore runs `test_patches` to try applying and building with all
-  patches
+* Run `test_patches` to update and test all patches
 * You may need to move files from APPLIES to RESEARCH and re-run
   `test_patches` a few times as some patches depend on other patches
 * Likely you will need to set NO_BSD_WRAPPER for the first few rounds
 * At some point you won't get any better results and you will actually have to
   look at the logs and update patches.
+* Once all the patches have been regeneraed run the `update_unicore` script
 * Eventually everything will build and tests will pass.
 * After this, use `make_patched_perl` to build a patched perl directory
 * Change into the perl build directory and run `regen_manpage_list`
