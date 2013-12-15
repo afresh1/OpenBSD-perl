@@ -10,9 +10,11 @@ This is still an art, not as yet a complete doc, but a start.
 * Change to a temporary directory and run `NO_LOCAL_PATCHES=1 build_local_perl`
 * See if it runs successfully, it generally should
 * run the `update_unicore` script (this might not work first, unsure)
-* Now run `test_patches` to try applying and building with all patches
-* You may need to move files from APPLIES to RESEARCH a few times as some
-  patches depend on other patches
+* update_unicore runs `test_patches` to try applying and building with all
+  patches
+* You may need to move files from APPLIES to RESEARCH and re-run
+  `test_patches` a few times as some patches depend on other patches
+* Likely you will need to set NO_BSD_WRAPPER for the first few rounds
 * At some point you won't get any better results and you will actually have to
   look at the logs and update patches.
 * Eventually everything will build and tests will pass.
