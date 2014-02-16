@@ -7,7 +7,7 @@ mv -f $SRCDIR/patches/GOOD/pre_built_unicore.patch{,.old}
 mkdir -p $SRCDIR/patches/RESEARCH
 mv -f $SRCDIR/patches/{GOOD,RESEARCH}/dont_build_unicore.patch
 
-PERL_BASE=perl-5.18.2-RC1
+PERL_BASE=perl-5.18.2
 # imports PERL_BASE
 . $SRCDIR/build_local_perl
 
