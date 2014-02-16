@@ -7,7 +7,7 @@ Now available from https://github.com/afresh1/OpenBSD-perl
 
 It's easy!
 
-* [download the patches and scripts](https://github.com/afresh1/OpenBSD-perl/downloads)
+* [download the patches and scripts](https://github.com/afresh1/OpenBSD-perl/archive/master.tar.gz)
 * extract someplace
 * download perl-5.18.2.tar.gz into the same directory
     * http://cpan.metacpan.org/authors/id/R/RJ/RJBS/perl-5.18.2.tar.gz
