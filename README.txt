@@ -4,6 +4,6 @@ It's easy!
 * extract someplace
 * copy perl-5.18.2.tar.gz into the same directory
 * cd to someplace you have room
-* run /path/to/OpenBSD-perl/build_local_perl
+* run /path/to/OpenBSD-perl/build_perl
 * wait
 * send me the log file(s) it generates
