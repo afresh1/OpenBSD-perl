@@ -13,6 +13,10 @@ This is still an art, not as yet a complete doc, but a start.
 * You may need to move files from APPLIES to RESEARCH and re-run
   `test_patches` a few times as some patches depend on other patches
 * Likely you will need to set NO_BSD_WRAPPER for the first few rounds
+* After you do get to the BSD_WRAPPER, you probably will need to
+    * First NO_LOCALE_test_fixes.patch will need to be applied
+    * While doing this, won't pass without put_OpenBSD-MkTemp_in_MANIFEST.patch
+    * unless you mv files/cpan out of the way, so need to do that.
 * At some point you won't get any better results and you will actually have to
   look at the logs and update patches.
 * Once all the patches have been regeneraed run the `update_unicore` script
