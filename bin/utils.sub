@@ -1,0 +1,78 @@
+#!/bin/sh
+
+SRCDIR=$( dirname $BINDIR )
+WRKDIR=$( pwd )
+PERL_BASE=perl-5.18.2
+
+if [ ! -e ${SRCDIR}/${PERL_BASE}.tar.gz ]; then
+    echo Please put ${PERL_BASE}.tar.gz in $SRCDIR >&2
+    exit 255
+fi
+
+install_local_files() {
+    cp -Rf ${SRCDIR}/files/* ./
+}
+
+
+apply_good_patches() {
+    local name=${1:-*.patch}
+
+    find ${SRCDIR}/patches/GOOD -name "$name" -print \
+        -exec patch -Ep0 -i {} \;
+}
+
+do_extract_perl() {
+    if [ -e "$PERL_BASE" ]; then
+        echo "Removing old perl srcdir"
+        mv -f $PERL_BASE old && rm -rf old &
+    fi
+
+    echo Extracting ${PERL_BASE}.tar.gz
+    tar xzf "$SRCDIR/${PERL_BASE}.tar.gz"
+}
+
+do_patch_perl() {
+    echo Copying local files
+    install_local_files
+
+    echo Applying local patches
+    apply_good_patches "$@"
+}
+
+do_build_perl() {
+    if [ -z "NO_BSD_WRAPPER" ]; then
+        echo make obj
+        make $J -f Makefile.bsd-wrapper obj
+
+        echo Configure
+        make $J -f Makefile.bsd-wrapper config.sh
+
+        echo Building
+        make $J -f Makefile.bsd-wrapper all
+
+        echo Testing
+        make $J -f Makefile.bsd-wrapper test
+
+    else
+        echo Configuring
+        sh ./Configure -de
+
+        echo Building
+        make
+
+        echo Testing
+        make test
+    fi
+}
+
+test_build_success() {
+    local log=$1
+    local status=`tail -2 $log | head -1`
+
+    if [ "$status" == "All tests successful." ]; then
+        echo "I'm winning, I'm winning!"
+        return 0
+    else
+        return 1
+    fi
+}

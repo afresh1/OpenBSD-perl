@@ -1,0 +1,2 @@
+#!/bin/sh
+echo "This script is deprecated, please use build_perl instead"

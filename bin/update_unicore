@@ -1,15 +1,16 @@
 #!/bin/sh
 
-SRCDIR=`dirname $0 | xargs readlink -f`/..
-WRKDIR=$PWD
+BINDIR=`dirname $0 | xargs readlink -f`
+. $BINDIR/utils.sub
 
-mv -f $SRCDIR/patches/GOOD/pre_built_unicore.patch{,.old}
 mkdir -p $SRCDIR/patches/RESEARCH
+mv -f $SRCDIR/patches/GOOD/pre_built_unicore.patch{,.old}
 mv -f $SRCDIR/patches/{GOOD,RESEARCH}/dont_build_unicore.patch
 
-PERL_BASE=perl-5.18.2
-# imports PERL_BASE
-. $SRCDIR/build_local_perl
+do_extract_perl
+cd $PERL_BASE
+do_patch_perl
+do_build_perl
 
 cd $WRKDIR
 mkdir -p unicore/.old
@@ -20,21 +21,22 @@ mkdir -p unicore/{lib,pod}
 cp -r $PERL_BASE/obj/lib/unicore          unicore/lib/
 cp    $PERL_BASE/obj/pod/perluniprops.pod unicore/pod/
 
-$SRCDIR/make_patched_perl
-rm -rf ${PERL_BASE}.orig
-cp -r  ${PERL_BASE}{,.orig}
-
-mkdir -p $SRCDIR/patches/RESEARCH/
+do_extract_perl
 
 cd $PERL_BASE
+do_patch_perl
+
+rm -rf $WRKDIR/${PERL_BASE}.orig
+cp -r  $WRKDIR/${PERL_BASE}{,.orig}
+
 chmod -R +w .
 cp -r $WRKDIR/unicore/* ./
-
-cp MANIFEST{,.orig}
 
 # Should maybe do some of this with the newly built perl above ...
 sed -e '/flag =g/s/ perluniprops//' pod/perl.pod > pod/perl.pod.new
 mv  -f pod/perl.pod.new pod/perl.pod
+
+cp MANIFEST{,.orig}
 
 # Would be nice to figure out how to get pod_rules to pick these up
 find lib/unicore -type f |
@@ -45,16 +47,15 @@ perl Porting/pod_rules.pl
 # Somehow we get duplicates, boo
 perl -i.old -naE 'print unless $SEEN{$F[0]}++' MANIFEST
 
-# Apply the patch not to rebuild them
-patch -Ep0 < $SRCDIR/patches/APPLIES/dont_build_unicore.patch
-
 # Cleanup cruft
-find ./ $WRKDIR/${PERL_BASE}.orig \
+find $WRKDIR/${PERL_BASE}.orig ./ \
     \( -name '*.old' -o -name '*.rej' -o -name '*.orig' \) -exec rm -f {} \+
 
 diff -ruN $WRKDIR/${PERL_BASE}.orig/ ./ \
     > $SRCDIR/patches/RESEARCH/pre_built_unicore.patch
 
 cd $WRKDIR
-$SRCDIR/test_patches pre_built_unicore.patch
-$SRCDIR/test_patches
+rm -rf ${PERL_BASE}.orig
+
+$BINDIR/test_patches pre_built_unicore.patch
+$BINDIR/test_patches

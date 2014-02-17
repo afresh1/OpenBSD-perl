@@ -1,35 +1,22 @@
 #!/bin/sh
 
-SRCDIR=`dirname $0 | xargs readlink -f`/..
+BINDIR=`dirname $0 | xargs readlink -f`
+. $BINDIR/utils.sub
 
 NAME=${1:-*.patch}
-PERL_BASE=perl-5.18.2
-
-if [ ! -e ${SRCDIR}/${PERL_BASE}.tar.gz ]; then
-    echo Please put ${PERL_BASE}.tar.gz in $SRCDIR >&2
-    exit 255
-fi
-
-WRKDIR=`pwd`
-
-NEWDIR=APPLIES
-[ -n "$REGEN_PATCHES" ] && NEWDIR=REGEN
 
 mkdir -p /tmp/buildlogs
-find ${SRCDIR}/patches/RESEARCH -name $NAME | {
+find ${SRCDIR}/patches/RESEARCH -name "$NAME" | {
     while read patch; do
-	echo Testing $patch
+        echo Testing $patch
 
         cd $WRKDIR
         log=/tmp/buildlogs/`basename $patch`.log
         >$log # truncate
 
         echo Extracting perl
-        if [ -e ${PERL_BASE} ]; then
-            mv -f ${PERL_BASE} old; rm -rf old &
-        fi
-        tar xzf "${SRCDIR}/${PERL_BASE}.tar.gz"
-        cd ${PERL_BASE}
+        do_extract_perl
+        cd $PERL_BASE
 
         echo Applying $patch 2>&1 | tee -a $log
         if ! patch -p0 -F 10 -Ni "$patch" 2>&1 | tee -a $log; then
@@ -37,7 +24,7 @@ find ${SRCDIR}/patches/RESEARCH -name $NAME | {
             continue
         fi
 
-        new_patch=`echo "$patch" | sed -e "s/RESEARCH/$NEWDIR/"`
+        new_patch=`echo "$patch" | sed -e "s/RESEARCH/APPLIES/"`
         new_dir=`dirname "$new_patch"`
         mkdir -p "$new_dir"
 
@@ -48,55 +35,28 @@ find ${SRCDIR}/patches/RESEARCH -name $NAME | {
             done
         ) > "${new_patch}.new"
 
-        if [ -n "$NO_BSD_WRAPPER" ]; then
-            echo Configuring
-            sh ./Configure -de 2>&1 | tee -a $log
-
-            echo Building
-            make 2>&1 | tee -a $log
-
-            echo Testing
-            make test 2>&1 | tee -a $log
-
-        elif [ -z "$REGEN_PATCHES" ]; then
-            echo Copying local files
-            cp -Rf ${SRCDIR}/files/* ./
-
-            echo Applying local patches
-            find ${SRCDIR}/patches/GOOD -name '*.patch' -print \
-                -exec patch -Ep0 -i {} \; | tee -a $log
-
-            echo make obj
-            make -f Makefile.bsd-wrapper obj  2>&1 | tee -a $log
-
-            echo Configure
-            make -f Makefile.bsd-wrapper config.sh 2>&1 | tee -a $log
-
-            echo Building
-            make -f Makefile.bsd-wrapper all  2>&1 | tee -a $log
-
-            echo Testing
-            make -f Makefile.bsd-wrapper test 2>&1 | tee -a $log
+        if [ -z "$REGEN_PATCHES" ]; then
+            do_patch_perl | tee -a $log
+            do_build_perl | tee -a $log
         fi
 
         echo Renaming patches
-        mv -f "$patch" "$patch.old"
+        mv -f "$patch" "${patch}.old"
         patch="$new_patch"
 
         # Did we win?
-        status=`tail -2 $log | head -1`
-        if [ "$status" == "All tests successful." ]; then
-            new_patch=`echo "$patch" | sed -e "s/$NEWDIR/GOOD/"`
+        if test_build_success $log; then
+            new_patch=`echo "$patch" | sed -e "s/APPLIES/GOOD/"`
 
             new_dir=`dirname "$new_patch"`
             mkdir -p "$new_dir"
 
-            mv -f "$patch.new" "$new_patch"
-	    patch="$new_patch"
-	else
-	    mv -f "${patch}.new" "$patch"
+            mv -f "${patch}.new" "$new_patch"
+            patch="$new_patch"
+        else
+            mv -f "${patch}.new" "$patch"
         fi
 
-	echo Patch is now $patch
+        echo Patch is now $patch
     done
 }

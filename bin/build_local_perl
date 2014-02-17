@@ -1,61 +1,34 @@
 #!/bin/sh
 
-SRCDIR=`dirname $0 | xargs readlink -f`/..
+BINDIR=`dirname $0 | xargs readlink -f`
+. $BINDIR/utils.sub
 
-PERL_BASE=perl-5.18.2
-
-if [ ! -e ${SRCDIR}/${PERL_BASE}.tar.gz ]; then
-    echo Please put ${PERL_BASE}.tar.gz in $SRCDIR >&2
-    exit 255
-fi
-
-#J='-j4'
-
-log=`pwd`/${PERL_BASE}-build
+log=$WRKDIR/${PERL_BASE}-build
 if [ -n "$NO_LOCAL_PATCHES" ]; then
     log=${log}-NO-PATCHES
 fi
 log=${log}-`machine`-`date +%Y%m%dT%H%M%S`.log
-
 uname -a > $log
 
-if [ -e ${PERL_BASE} ]; then
-    echo "Removing old perl srcdir"
-    mv -f ${PERL_BASE} old && rm -rf old &
-fi
-
-echo Extracting ${PERL_BASE}.tar.gz
-tar xzf "${SRCDIR}/${PERL_BASE}.tar.gz"
-cd ${PERL_BASE}
+do_extract_perl 2>&1 | tee -a $log
+cd $PERL_BASE
 
 if [ -z "$NO_LOCAL_PATCHES" ]; then
-    echo Copying files
-    cp -fr ${SRCDIR}/files/* ./
-
-    echo Applying local patches
-    find ${SRCDIR}/patches/GOOD -name '*.patch' -print \
-        -exec patch -Ep0 -i {} 2>&1 \; | tee -a $log
-
-    make $J -f Makefile.bsd-wrapper obj    2>&1 | tee -a $log
-    make $J -f Makefile.bsd-wrapper depend 2>&1 | tee -a $log
-    make $J -f Makefile.bsd-wrapper all    2>&1 | tee -a $log
-    make $J -f Makefile.bsd-wrapper test   2>&1 | tee -a $log
+    do_patch_perl 2>&1 | tee -a $log
 else
-    sh ./Configure -de 2>&1 | tee -a $log
-    make 2>&1 | tee -a $log
-    make test 2>&1 | tee -a $log
+    NO_BSD_WRAPPER=1
 fi
+do_build_perl 2>&1 | tee -a $log
 
+cd $WRKDIR
 
 # Did we win?
-status=`tail -2 $log | head -1`
-date >> $log
-if [ "$status" == "All tests successful." ]; then
-	echo "I'm winning, I'm winning!"
+if test_build_success $log; then
 	echo "To install system perl:\n  cd ${PERL_BASE} && sudo make -f Makefile.bsd-wrapper install"
 elif [ -z "$NO_LOCAL_PATCHES" ]; then
     # re-run without patches
-    cd ..
     NO_LOCAL_PATCHES=1 $0
 fi
+date >> $log
+
 echo "Please send $log\n  to andrew@afresh1.com"
