@@ -101,6 +101,7 @@ _quick3p=
     perl5162delta 1			pod/perl5162delta.pod \
     perl5163delta 1			pod/perl5163delta.pod \
     perl5180delta 1			pod/perl5180delta.pod \
+    perl5181delta 1			pod/perl5181delta.pod \
     perl561delta 1			pod/perl561delta.pod \
     perl56delta 1			pod/perl56delta.pod \
     perl581delta 1			pod/perl581delta.pod \
@@ -220,6 +221,7 @@ _quick3p=
     perlref 1			pod/perlref.pod \
     perlreftut 1			pod/perlreftut.pod \
     perlreguts 1			pod/perlreguts.pod \
+    perlrepository 1			pod/perlrepository.pod \
     perlrequick 1			pod/perlrequick.pod \
     perlreref 1			pod/perlreref.pod \
     perlretut 1			pod/perlretut.pod \
