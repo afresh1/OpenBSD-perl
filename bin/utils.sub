@@ -42,15 +42,19 @@ do_patch_perl() {
 do_build_perl() {
     if [ -z "NO_BSD_WRAPPER" ]; then
         echo make obj
+        echo "make $J -f Makefile.bsd-wrapper obj"
         make $J -f Makefile.bsd-wrapper obj
 
         echo Configure
+        echo "make $J -f Makefile.bsd-wrapper config.sh"
         make $J -f Makefile.bsd-wrapper config.sh
 
         echo Building
+        echo "make $J -f Makefile.bsd-wrapper all"
         make $J -f Makefile.bsd-wrapper all
 
         echo Testing
+        echo "make $J -f Makefile.bsd-wrapper test"
         make $J -f Makefile.bsd-wrapper test
 
     else
