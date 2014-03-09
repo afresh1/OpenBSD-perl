@@ -151,6 +151,14 @@ maninstall:
 PICFLAG=-fPIC
 .endif
 
+# Unaligned access on alpha with -ftree-ter
+# http://gcc.gnu.org/bugzilla/show_bug.cgi?id=59679
+# More details
+# https://rt.perl.org/Public/Bug/Display.html?id=120888
+.if ($(TARGET_MACHINE_ARCH) == alpha)
+CFLAGS+= -fno-tree-ter
+.endif
+
 # The DynaLoader extension is now compiled statically into libperl
 miniperl: ${GENERATED} ${SRCS1:S/.c/.o/g} opmini.o miniperl.o miniperlmain.o
 	${CC} -o miniperl ${SRCS1:S/.c/.o/g} opmini.o miniperl.o miniperlmain.o ${LDFLAGS} -lm -lpthread
