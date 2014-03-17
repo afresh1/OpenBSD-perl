@@ -1,0 +1,49 @@
+#!/bin/sh
+# This script generates a perl-5.XX.X.patch file that you can
+# provide to people who want to try installing it in a real system
+
+BINDIR=`dirname $0 | xargs readlink -f`
+. $BINDIR/utils.sub
+
+if [ ! -e ~/openbsd-cvs-src.tar.gz ]; then
+    echo "You need a source for the cvsroot that you don't mind breaking"
+    exit 1;
+fi
+
+# Extract a relatively up-to-date perl cvs tree
+tar xzf ~/openbsd-cvs-src.tar.gz
+export CVSROOT=${PWD}/cvs
+
+# And note the directory we want to diff
+PERLCVS=src/gnu/usr.bin/perl
+
+# Now checkout a clean copy of the existing perl
+cvs co $PERLCVS
+
+# Now we need a patched version of perl
+do_extract_perl
+cd $PERL_BASE
+do_patch_perl
+cd $OLDPWD
+
+# Now remove any files that are not in the new perl
+cd $PERLCVS
+find . \( \( -type f -o -path '*/CVS' -prune \) ! -name CVS ! -exec test -e $OLDPWD/$PERL_BASE/{} \; \) -exec cvs rm -f {} \;
+cd $OLDPWD
+
+# copy in the new files
+cp -r $PERL_BASE/* $PERLCVS
+
+# remove any patch cruft
+find $PERLCVS -name '*.orig' -exec rm -f {} \+
+
+# add any directories that aren't in CVS
+find $PERLCVS \( -type d -o -path '*/CVS' -prune \) ! -name CVS ! -exec test -e {}/CVS \; -exec cvs add {} \;
+
+# Add any files that aren't in CVS
+find $PERLCVS \( \( -type f -o -path '*/CVS' -prune \) ! -name CVS ! -exec test -e $CVSROOT/{},v \; \) -exec cvs add {} \;
+
+# Finally generate a patch
+cd src 
+cvs diff -uNp gnu/usr.bin/perl > ../$PERL_BASE.patch 
+cd $OLDPWD
