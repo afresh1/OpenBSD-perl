@@ -2,7 +2,7 @@
 # This script generates a perl-5.XX.X.patch file that you can
 # provide to people who want to try installing it in a real system
 
-BINDIR=`dirname $0 | xargs readlink -f`
+BINDIR=$( readlink -f $(dirname $0) )
 . $BINDIR/utils.sub
 
 if [ ! -e ~/openbsd-cvs-src.tar.gz ]; then
