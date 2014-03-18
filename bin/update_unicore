@@ -1,6 +1,6 @@
 #!/bin/sh
 
-BINDIR=`dirname $0 | xargs readlink -f`
+BINDIR=$( readlink -f $(dirname $0) )
 . $BINDIR/utils.sub
 
 mkdir -p $SRCDIR/patches/RESEARCH
