@@ -47,9 +47,14 @@ find( sub {
     return if /\.orig$/;    # skip patch files
     return if $file =~ m{/t/}; # or files in test dirs
     return if $file =~ m{/ext/}; # or in an ext dir
+    return if /symbian/; # don't need that
 
+    # Don't find things in the source, only installed
+    return if $file =~ m{^dist/};
+    return if $file =~ m{^cpan/};
+
+    # Remove leading ./ and optional obj/
     $file =~ s{^\./(?:obj/)?}{};
-    $file =~ s{^.*/(lib|pod)/}{$1/};
 
     my $page;
 
@@ -79,6 +84,7 @@ find( sub {
         }
 
         return unless $found_pod;
+        return unless $page;
 
         $page =~ s/^\w\<//;    # strip possible B<
         $page =~ s/[^\w:]//g;
@@ -86,9 +92,10 @@ find( sub {
 
     return unless $page;
 
-    my $section = exists $old_pod{$page} ? $old_pod{$page}{section}
-                : /\.pm$/                ? '3p'
-                :                          '1';
+    my $section
+        = exists $old_pod{$page} ? $old_pod{$page}{section}
+        : $file =~ /\.pm$/       ? '3p'
+        :                          '1';
 
     $new_pod{$page} = {
         file    => $file,
@@ -102,7 +109,7 @@ foreach my $page (sort {
     $new_pod{$a}{section} cmp $new_pod{$b}{section}
         || lc($a) cmp lc($b) } keys %new_pod) {
     unless ($old_pod{$page}) {
-        say "New page: $page [$new_pod{$page}{file}]";
+        say "New page: $page [$new_pod{$page}{file}][$new_pod{$page}{section}]";
         $changed++;
     }
     push @file_list, [ $page, @{ $new_pod{$page} }{qw( section file )} ];
@@ -112,7 +119,7 @@ foreach my $page (sort {
     $old_pod{$a}{section} cmp $old_pod{$b}{section}
         || $a cmp $b } keys %old_pod) {
     unless ($new_pod{$page}) {
-        say "Lost page: $page [$old_pod{$page}{file}]";
+        say "Lost page: $page [$old_pod{$page}{file}][$old_pod{$page}{section}]";
         $changed++;
     }
 }
