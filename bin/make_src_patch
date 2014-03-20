@@ -30,20 +30,23 @@ cd $OLDPWD
 
 # Now remove any files that are not in the new perl
 cd $PERLCVS
-find . \( \( -type f -o -path '*/CVS' -prune \) ! -name CVS ! -exec test -e $OLDPWD/$PERL_BASE/{} \; \) -exec cvs rm -f {} \;
+find . \( \( -type f -o -path '*/CVS' -prune \) ! -name CVS \
+    ! -exec test -e $OLDPWD/$PERL_BASE/{} \; \) -exec cvs rm -f {} \;
 cd $OLDPWD
 
 # copy in the new files
 cp -r $PERL_BASE/* $PERLCVS
 
 # remove any patch cruft
-find $PERLCVS -name '*.orig' -exec rm -f {} \+
+find $PERL_BASE $PERLCVS -name '*.orig' -exec rm -f {} \+
 
 # add any directories that aren't in CVS
-find $PERLCVS \( -type d -o -path '*/CVS' -prune \) ! -name CVS ! -exec test -e {}/CVS \; -exec cvs add {} \;
+find $PERLCVS \( -type d -o -path '*/CVS' -prune \) ! -name CVS \
+    ! -exec test -e {}/CVS \; -exec cvs add {} \;
 
 # Add any files that aren't in CVS
-find $PERLCVS \( \( -type f -o -path '*/CVS' -prune \) ! -name CVS ! -exec test -e $CVSROOT/{},v \; \) -exec cvs add {} \;
+find $PERLCVS \( \( -type f -o -path '*/CVS' -prune \) ! -name CVS \
+    ! -exec test -e $CVSROOT/{},v \; \) -exec cvs add {} \;
 
 # Finally generate a patch
 cd src 
