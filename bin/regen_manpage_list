@@ -129,6 +129,8 @@ unless ($changed) {
     exit;
 }
 
+my $num_tabs   = 5;
+my $tab_length = 8;
 open my $ofh, '>', $bsdwrapper . '.new' or die $!;
 open my $ifh, '<', $bsdwrapper          or die $!;
 while (<$ifh>) {
@@ -136,7 +138,15 @@ while (<$ifh>) {
         print $ofh $_;
 
         foreach my $i ( 0 .. $#file_list ) {
-            my $fmt = "    %s %s\t\t\t%s";
+            my $tabs = (
+                (     ( $tab_length * $num_tabs )
+                    - ( length( $file_list[$i][0] . $file_list[$i][1] ) + 5 )
+                ) / $tab_length
+            );
+            $tabs++ if $tabs != int $tabs;
+            $tabs = "\t" x int($tabs) || 1;
+
+            my $fmt = "    %s %s$tabs%s";
             $fmt .= $i == $#file_list ? "\n" : " \\\n";
             printf $ofh $fmt, @{ $file_list[$i] };
         }
