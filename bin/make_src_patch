@@ -52,3 +52,18 @@ find $PERLCVS \( \( -type f -o -path '*/CVS' -prune \) ! -name CVS \
 cd src 
 cvs diff -uNp gnu/usr.bin/perl > ../$PERL_BASE.patch 
 cd $OLDPWD
+
+cat <<EOL
+
+Now you're ready to apply the patch!
+
+copy the patch into /usr/src (or adjust the path in the next line)
+
+patch -p0 -E < ${PERL_BASE}.patch
+
+find gnu/usr.bin/perl -name '*.orig' -exec rm -f {} \+
+
+find -d gnu/usr.bin/perl -type d ! -name CVS | while read d; do
+    [ \$( ls -1 \$d | grep -v 'CVS' | wc -l ) == 0 ] && rm -rf \$d
+done
+EOL
