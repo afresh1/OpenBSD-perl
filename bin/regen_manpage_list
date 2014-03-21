@@ -34,7 +34,8 @@ close $fh;
 
 
 my %new_pod;
-find( sub {
+my $wanted = sub {
+    my $look_in = shift;
     if ($_ eq 'Porting') {
         $File::Find::prune = 1;
         return;
@@ -53,8 +54,8 @@ find( sub {
     $file =~ s{^\./(?:obj/)?}{};
 
     # Don't find things in the source, only installed
-    return if $file =~ m{^dist/};
-    return if $file =~ m{^cpan/};
+    return if $look_in ne 'dist' && $file =~ m{^dist/};
+    return if $look_in ne 'cpan' && $file =~ m{^cpan/};
 
     my $page;
 
@@ -101,7 +102,11 @@ find( sub {
         file    => $file,
         section => $section,
     };
-}, '.');
+};
+
+foreach my $look_in ('cpan', 'dist', '.') {
+    find( sub{ $wanted->( $look_in ) }, $look_in);
+}
 
 my $changed = 0;
 my @file_list;
