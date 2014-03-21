@@ -49,12 +49,12 @@ find( sub {
     return if $file =~ m{/ext/}; # or in an ext dir
     return if /symbian/; # don't need that
 
+    # Remove leading ./ and optional obj/
+    $file =~ s{^\./(?:obj/)?}{};
+
     # Don't find things in the source, only installed
     return if $file =~ m{^dist/};
     return if $file =~ m{^cpan/};
-
-    # Remove leading ./ and optional obj/
-    $file =~ s{^\./(?:obj/)?}{};
 
     my $page;
 
