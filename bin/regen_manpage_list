@@ -144,7 +144,7 @@ while (<$ifh>) {
                 ) / $tab_length
             );
             $tabs++ if $tabs != int $tabs;
-            $tabs = "\t" x int($tabs) || 1;
+            $tabs = "\t" x ( int($tabs) || 1);
 
             my $fmt = "    %s %s$tabs%s";
             $fmt .= $i == $#file_list ? "\n" : " \\\n";
