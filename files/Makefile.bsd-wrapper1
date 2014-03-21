@@ -37,17 +37,12 @@ _quick3p=
     buildperlpl 1			cpan/Devel-PPPort/devel/buildperl.pl \
     c2ph 1				utils/pstruct \
     Changes 1				dist/Data-Dumper/Changes \
-    Config::Perl::V 1			lib/Config/Perl/V.pm \
     config_data 1			utils/config_data \
     corelist 1				utils/corelist \
     cpan 1				utils/cpan \
     cpan2dist 1				utils/cpan2dist \
     cpanp 1				utils/cpanp \
-    CPANPLUS::Config::HomeEnv 1		lib/CPANPLUS/Config/HomeEnv.pm \
-    diagnostics 1			lib/diagnostics.pm \
     enc2xs 1				utils/enc2xs \
-    Encode::CJKConstantspm 1		lib/Encode/CJKConstants.pm \
-    Encode::MIME::NAME 1		lib/Encode/MIME/Name.pm \
     exetype 1				win32/bin/exetype.pl \
     find2perl 1				x2p/find2perl \
     function 1				cpan/Pod-Perldoc/corpus/perlfunc.pod \
@@ -62,24 +57,6 @@ _quick3p=
     libnetFAQ 1				lib/Net/libnetFAQ.pod \
     make_patchnumpl 1			make_patchnum.pl \
     mkppport 1				mkppport \
-    Module::Build::Platform::aix 1	lib/Module/Build/Platform/aix.pm \
-    Module::Build::Platform::Amiga 1	lib/Module/Build/Platform/Amiga.pm \
-    Module::Build::Platform::cygwin 1	lib/Module/Build/Platform/cygwin.pm \
-    Module::Build::Platform::darwin 1	lib/Module/Build/Platform/darwin.pm \
-    Module::Build::Platform::EBCDIC 1	lib/Module/Build/Platform/EBCDIC.pm \
-    Module::Build::Platform::MacOS 1	lib/Module/Build/Platform/MacOS.pm \
-    Module::Build::Platform::MPEiX 1	lib/Module/Build/Platform/MPEiX.pm \
-    Module::Build::Platform::os2 1	lib/Module/Build/Platform/os2.pm \
-    Module::Build::Platform::RiscOS 1	lib/Module/Build/Platform/RiscOS.pm \
-    Module::Build::Platform::VMS 1	lib/Module/Build/Platform/VMS.pm \
-    Module::Build::Platform::VOS 1	lib/Module/Build/Platform/VOS.pm \
-    Module::Build::Platform::Windows 1	lib/Module/Build/Platform/Windows.pm \
-    Module::CoreList::Utils 1		lib/Module/CoreList/Utils.pm \
-    OS2::DLL 1				os2/OS2/OS2-REXX/DLL/DLL.pm \
-    OS2::ExtAttr 1			os2/OS2/OS2-ExtAttr/ExtAttr.pm \
-    OS2::PrfDB 1			os2/OS2/OS2-PrfDB/PrfDB.pm \
-    OS2::Process 1			os2/OS2/OS2-Process/Process.pm \
-    OS2::REXX 1				os2/OS2/OS2-REXX/REXX.pm \
     perl 1				pod/perl.pod \
     perl5004delta 1			pod/perl5004delta.pod \
     perl5005delta 1			pod/perl5005delta.pod \
@@ -269,8 +246,7 @@ _quick3p=
     pod_file 1				lib/unicore/mktables \
     podchecker 1			cpan/Pod-Checker/blib/script/podchecker \
     podselect 1				cpan/Pod-Parser/blib/script/podselect \
-    POSIX 1				lib/POSIX.pod \
-    ppporth 1				cpan/List-Util/ppport.h \
+    ppporth 1				dist/Cwd/ppport.h \
     prove 1				utils/prove \
     psed 1				x2p/psed \
     ptardiff 1				utils/ptardiff \
@@ -282,11 +258,7 @@ _quick3p=
     shasum 1				utils/shasum \
     soak 1				cpan/Devel-PPPort/soak \
     splain 1				utils/splain \
-    Sys::Syslog::Win32 1		cpan/Sys-Syslog/win32/Win32.pm \
     TODO 1				dist/Data-Dumper/Todo \
-    Unicode::Collate::CJK::Zhuyin 1	lib/Unicode/Collate/CJK/Zhuyin.pm \
-    Win32 1				cpan/Win32/Win32.pm \
-    Win32API::File 1			cpan/Win32API-File/File.pm \
     xsubpp 1				utils/xsubpp \
     zipdetails 1			utils/zipdetails \
     AnyDBM_File 3p			lib/AnyDBM_File.pm \
@@ -343,6 +315,7 @@ _quick3p=
     Compress::Zlib 3p			lib/Compress/Zlib.pm \
     Config 3p				lib/Config.pod \
     Config::Extensions 3p		lib/Config/Extensions.pm \
+    Config::Perl::V 3p			lib/Config/Perl/V.pm \
     constant 3p				lib/constant.pm \
     CORE 3p				lib/CORE.pod \
     CPAN 3p				lib/CPAN.pm \
@@ -370,6 +343,7 @@ _quick3p=
     CPANPLUS::Backend 3p		lib/CPANPLUS/Backend.pm \
     CPANPLUS::Backend::RV 3p		lib/CPANPLUS/Backend/RV.pm \
     CPANPLUS::Config 3p			lib/CPANPLUS/Config.pm \
+    CPANPLUS::Config::HomeEnv 3p	lib/CPANPLUS/Config/HomeEnv.pm \
     CPANPLUS::Configure 3p		lib/CPANPLUS/Configure.pm \
     CPANPLUS::Dist 3p			lib/CPANPLUS/Dist.pm \
     CPANPLUS::Dist::Autobundle 3p	lib/CPANPLUS/Dist/Autobundle.pm \
@@ -387,8 +361,8 @@ _quick3p=
     CPANPLUS::Internals::Report 3p	lib/CPANPLUS/Internals/Report.pm \
     CPANPLUS::Internals::Search 3p	lib/CPANPLUS/Internals/Search.pm \
     CPANPLUS::Internals::Source 3p	lib/CPANPLUS/Internals/Source.pm \
-    CPANPLUS::Internals::Source::Memory 3p1lib/CPANPLUS/Internals/Source/Memory.pm \
-    CPANPLUS::Internals::Source::SQLite 3p1lib/CPANPLUS/Internals/Source/SQLite.pm \
+    CPANPLUS::Internals::Source::Memory 3p	lib/CPANPLUS/Internals/Source/Memory.pm \
+    CPANPLUS::Internals::Source::SQLite 3p	lib/CPANPLUS/Internals/Source/SQLite.pm \
     CPANPLUS::Internals::Utils 3p	lib/CPANPLUS/Internals/Utils.pm \
     CPANPLUS::Module 3p			lib/CPANPLUS/Module.pm \
     CPANPLUS::Module::Author 3p		lib/CPANPLUS/Module/Author.pm \
@@ -399,10 +373,10 @@ _quick3p=
     CPANPLUS::Shell 3p			lib/CPANPLUS/Shell.pm \
     CPANPLUS::Shell::Classic 3p		lib/CPANPLUS/Shell/Classic.pm \
     CPANPLUS::Shell::Default 3p		lib/CPANPLUS/Shell/Default.pm \
-    CPANPLUS::Shell::Default::Plugins::CustomSource 3p1lib/CPANPLUS/Shell/Default/Plugins/CustomSource.pm \
-    CPANPLUS::Shell::Default::Plugins::HOWTO 3p1lib/CPANPLUS/Shell/Default/Plugins/HOWTO.pod \
-    CPANPLUS::Shell::Default::Plugins::Remote 3p1lib/CPANPLUS/Shell/Default/Plugins/Remote.pm \
-    CPANPLUS::Shell::Default::Plugins::Source 3p1lib/CPANPLUS/Shell/Default/Plugins/Source.pm \
+    CPANPLUS::Shell::Default::Plugins::CustomSource 3p	lib/CPANPLUS/Shell/Default/Plugins/CustomSource.pm \
+    CPANPLUS::Shell::Default::Plugins::HOWTO 3p	lib/CPANPLUS/Shell/Default/Plugins/HOWTO.pod \
+    CPANPLUS::Shell::Default::Plugins::Remote 3plib/CPANPLUS/Shell/Default/Plugins/Remote.pm \
+    CPANPLUS::Shell::Default::Plugins::Source 3plib/CPANPLUS/Shell/Default/Plugins/Source.pm \
     CPerlBase 3p			symbian/PerlBase.pod \
     Cwd 3p				lib/Cwd.pm \
     Data::Dumper 3p			lib/Data/Dumper.pm \
@@ -419,6 +393,7 @@ _quick3p=
     Devel::Peek 3p			lib/Devel/Peek.pm \
     Devel::PPPort 3p			lib/Devel/PPPort.pm \
     Devel::SelfStubber 3p		lib/Devel/SelfStubber.pm \
+    diagnostics 3p			lib/diagnostics.pm \
     Digest 3p				lib/Digest.pm \
     Digest::base 3p			lib/Digest/base.pm \
     Digest::file 3p			lib/Digest/file.pm \
@@ -431,6 +406,7 @@ _quick3p=
     Encode::_Name_ 3p			lib/Encode/_PM.e2x \
     Encode::Alias 3p			lib/Encode/Alias.pm \
     Encode::Byte 3p			lib/Encode/Byte.pm \
+    Encode::CJKConstantspm 3p		lib/Encode/CJKConstants.pm \
     Encode::CN 3p			lib/Encode/CN.pm \
     Encode::CN::HZ 3p			lib/Encode/CN/HZ.pm \
     Encode::Config 3p			lib/Encode/Config.pm \
@@ -445,6 +421,7 @@ _quick3p=
     Encode::KR 3p			lib/Encode/KR.pm \
     Encode::KR::2022_KR 3p		lib/Encode/KR/2022_KR.pm \
     Encode::MIME::Header 3p		lib/Encode/MIME/Header.pm \
+    Encode::MIME::NAME 3p		lib/Encode/MIME/Name.pm \
     Encode::PerlIO 3p			lib/Encode/PerlIO.pod \
     Encode::Supported 3p		lib/Encode/Supported.pod \
     Encode::Symbol 3p			lib/Encode/Symbol.pm \
@@ -459,7 +436,7 @@ _quick3p=
     Exporter 3p				lib/Exporter.pm \
     Exporter::Heavy 3p			lib/Exporter/Heavy.pm \
     ExtUtils::CBuilder 3p		lib/ExtUtils/CBuilder.pm \
-    ExtUtils::CBuilder::Platform::Windows 3p1lib/ExtUtils/CBuilder/Platform/Windows.pm \
+    ExtUtils::CBuilder::Platform::Windows 3p	lib/ExtUtils/CBuilder/Platform/Windows.pm \
     ExtUtils::Command 3p		lib/ExtUtils/Command.pm \
     ExtUtils::Command::MM 3p		lib/ExtUtils/Command/MM.pm \
     ExtUtils::Constant 3p		lib/ExtUtils/Constant.pm \
@@ -661,12 +638,25 @@ _quick3p=
     Module::Build::Cookbook 3p		lib/Module/Build/Cookbook.pm \
     Module::Build::ModuleInfo 3p	lib/Module/Build/ModuleInfo.pm \
     Module::Build::Notes 3p		lib/Module/Build/Notes.pm \
+    Module::Build::Platform::aix 3p	lib/Module/Build/Platform/aix.pm \
+    Module::Build::Platform::Amiga 3p	lib/Module/Build/Platform/Amiga.pm \
+    Module::Build::Platform::cygwin 3p	lib/Module/Build/Platform/cygwin.pm \
+    Module::Build::Platform::darwin 3p	lib/Module/Build/Platform/darwin.pm \
     Module::Build::Platform::Default 3p	lib/Module/Build/Platform/Default.pm \
+    Module::Build::Platform::EBCDIC 3p	lib/Module/Build/Platform/EBCDIC.pm \
+    Module::Build::Platform::MacOS 3p	lib/Module/Build/Platform/MacOS.pm \
+    Module::Build::Platform::MPEiX 3p	lib/Module/Build/Platform/MPEiX.pm \
+    Module::Build::Platform::os2 3p	lib/Module/Build/Platform/os2.pm \
+    Module::Build::Platform::RiscOS 3p	lib/Module/Build/Platform/RiscOS.pm \
     Module::Build::Platform::Unix 3p	lib/Module/Build/Platform/Unix.pm \
+    Module::Build::Platform::VMS 3p	lib/Module/Build/Platform/VMS.pm \
+    Module::Build::Platform::VOS 3p	lib/Module/Build/Platform/VOS.pm \
+    Module::Build::Platform::Windows 3p	lib/Module/Build/Platform/Windows.pm \
     Module::Build::PPMMaker 3p		lib/Module/Build/PPMMaker.pm \
     Module::Build::Version 3p		lib/Module/Build/Version.pm \
     Module::Build::YAML 3p		lib/Module/Build/YAML.pm \
     Module::CoreList 3p			lib/Module/CoreList.pod \
+    Module::CoreList::Utils 3p		lib/Module/CoreList/Utils.pm \
     Module::Load 3p			lib/Module/Load.pm \
     Module::Load::Conditional 3p	lib/Module/Load/Conditional.pm \
     Module::Loaded 3p			lib/Module/Loaded.pm \
@@ -697,6 +687,11 @@ _quick3p=
     open 3p				lib/open.pm \
     OpenBSD::MkTemp 3p			lib/OpenBSD/MkTemp.pm \
     ops 3p				lib/ops.pm \
+    OS2::DLL 3p				os2/OS2/OS2-REXX/DLL/DLL.pm \
+    OS2::ExtAttr 3p			os2/OS2/OS2-ExtAttr/ExtAttr.pm \
+    OS2::PrfDB 3p			os2/OS2/OS2-PrfDB/PrfDB.pm \
+    OS2::Process 3p			os2/OS2/OS2-Process/Process.pm \
+    OS2::REXX 3p			os2/OS2/OS2-REXX/REXX.pm \
     overload 3p				lib/overload.pm \
     overloading 3p			lib/overloading.pm \
     Package::Constants 3p		lib/Package/Constants.pm \
@@ -747,7 +742,7 @@ _quick3p=
     Pod::Simple::Methody 3p		lib/Pod/Simple/Methody.pm \
     Pod::Simple::PullParser 3p		lib/Pod/Simple/PullParser.pm \
     Pod::Simple::PullParserEndToken 3p	lib/Pod/Simple/PullParserEndToken.pm \
-    Pod::Simple::PullParserStartToken 3p1lib/Pod/Simple/PullParserStartToken.pm \
+    Pod::Simple::PullParserStartToken 3p	lib/Pod/Simple/PullParserStartToken.pm \
     Pod::Simple::PullParserTextToken 3p	lib/Pod/Simple/PullParserTextToken.pm \
     Pod::Simple::PullParserToken 3p	lib/Pod/Simple/PullParserToken.pm \
     Pod::Simple::RTF 3p			lib/Pod/Simple/RTF.pm \
@@ -762,6 +757,7 @@ _quick3p=
     Pod::Text::Color 3p			lib/Pod/Text/Color.pm \
     Pod::Text::Termcap 3p		lib/Pod/Text/Termcap.pm \
     Pod::Usage 3p			lib/Pod/Usage.pm \
+    POSIX 3p				lib/POSIX.pod \
     re 3p				lib/re.pm \
     Safe 3p				lib/Safe.pm \
     Scalar::Util 3p			lib/Scalar/Util.pm \
@@ -778,11 +774,12 @@ _quick3p=
     Symbol 3p				lib/Symbol.pm \
     Sys::Hostname 3p			lib/Sys/Hostname.pm \
     Sys::Syslog 3p			lib/Sys/Syslog.pm \
+    Sys::Syslog::Win32 3p		cpan/Sys-Syslog/win32/Win32.pm \
     TAP::Base 3p			lib/TAP/Base.pm \
     TAP::Formatter::Base 3p		lib/TAP/Formatter/Base.pm \
     TAP::Formatter::Color 3p		lib/TAP/Formatter/Color.pm \
     TAP::Formatter::Console 3p		lib/TAP/Formatter/Console.pm \
-    TAP::Formatter::Console::ParallelSession 3p1lib/TAP/Formatter/Console/ParallelSession.pm \
+    TAP::Formatter::Console::ParallelSession 3p	lib/TAP/Formatter/Console/ParallelSession.pm \
     TAP::Formatter::Console::Session 3p	lib/TAP/Formatter/Console/Session.pm \
     TAP::Formatter::File 3p		lib/TAP/Formatter/File.pm \
     TAP::Formatter::File::Session 3p	lib/TAP/Formatter/File/Session.pm \
@@ -813,11 +810,11 @@ _quick3p=
     TAP::Parser::Scheduler::Spinner 3p	lib/TAP/Parser/Scheduler/Spinner.pm \
     TAP::Parser::Source 3p		lib/TAP/Parser/Source.pm \
     TAP::Parser::SourceHandler 3p	lib/TAP/Parser/SourceHandler.pm \
-    TAP::Parser::SourceHandler::Executable 3p1lib/TAP/Parser/SourceHandler/Executable.pm \
+    TAP::Parser::SourceHandler::Executable 3p	lib/TAP/Parser/SourceHandler/Executable.pm \
     TAP::Parser::SourceHandler::File 3p	lib/TAP/Parser/SourceHandler/File.pm \
-    TAP::Parser::SourceHandler::Handle 3p1lib/TAP/Parser/SourceHandler/Handle.pm \
+    TAP::Parser::SourceHandler::Handle 3p	lib/TAP/Parser/SourceHandler/Handle.pm \
     TAP::Parser::SourceHandler::Perl 3p	lib/TAP/Parser/SourceHandler/Perl.pm \
-    TAP::Parser::SourceHandler::RawTAP 3p1lib/TAP/Parser/SourceHandler/RawTAP.pm \
+    TAP::Parser::SourceHandler::RawTAP 3p	lib/TAP/Parser/SourceHandler/RawTAP.pm \
     TAP::Parser::Utils 3p		lib/TAP/Parser/Utils.pm \
     TAP::Parser::YAMLish::Reader 3p	lib/TAP/Parser/YAMLish/Reader.pm \
     TAP::Parser::YAMLish::Writer 3p	lib/TAP/Parser/YAMLish/Writer.pm \
@@ -871,6 +868,7 @@ _quick3p=
     Unicode::Collate::CJK::Korean 3p	lib/Unicode/Collate/CJK/Korean.pm \
     Unicode::Collate::CJK::Pinyin 3p	lib/Unicode/Collate/CJK/Pinyin.pm \
     Unicode::Collate::CJK::Stroke 3p	lib/Unicode/Collate/CJK/Stroke.pm \
+    Unicode::Collate::CJK::Zhuyin 3p	lib/Unicode/Collate/CJK/Zhuyin.pm \
     Unicode::Collate::Locale 3p		lib/Unicode/Collate/Locale.pm \
     Unicode::Normalize 3p		lib/Unicode/Normalize.pm \
     Unicode::UCD 3p			lib/Unicode/UCD.pm \
@@ -884,6 +882,8 @@ _quick3p=
     vmsish 3p				lib/vmsish.pm \
     warnings 3p				regen/warnings.pl \
     warnings::register 3p		lib/warnings/register.pm \
+    Win32 3p				cpan/Win32/Win32.pm \
+    Win32API::File 3p			cpan/Win32API-File/File.pm \
     XS::APItest 3p			lib/XS/APItest.pm \
     XS::Typemap 3p			lib/XS/Typemap.pm \
     XSLoader 3p				lib/XSLoader.pm
