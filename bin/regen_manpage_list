@@ -157,8 +157,9 @@ while (<$ifh>) {
                     - ( length( $file_list[$i][0] . $file_list[$i][1] ) + 5 )
                 ) / $tab_length
             );
+            $tabs = 1 if $tabs < 1;
             $tabs++ if $tabs != int $tabs;
-            $tabs = "\t" x ( int($tabs) || 1);
+            $tabs = "\t" x int($tabs);
 
             my $fmt = "    %s %s$tabs%s";
             $fmt .= $i == $#file_list ? "\n" : " \\\n";
