@@ -77,11 +77,13 @@
  smile. 
  
  =back
---- ./utils.lst.orig	Sun Aug 11 19:44:49 2013
-+++ ./utils.lst	Mon Sep 30 10:04:08 2013
-@@ -14,16 +14,13 @@
+--- ./utils.lst.orig	Mon Jan  6 14:46:46 2014
++++ ./utils.lst	Fri Mar 21 19:30:38 2014
+@@ -12,25 +12,19 @@
+ utils/h2ph
+ utils/h2xs
  utils/instmodsh
- utils/json_pp
+-utils/json_pp
  utils/libnetcfg
 -utils/perlbug	# link = utils/perlthanks
 +utils/perlbug
@@ -97,3 +99,10 @@
  utils/cpanp-run-perl
  utils/cpanp
  utils/cpan2dist
+-utils/shasum
+ utils/splain
+ utils/xsubpp
+-utils/zipdetails
+ x2p/a2p
+ x2p/find2perl
+ x2p/s2p         # link = x2p/psed
