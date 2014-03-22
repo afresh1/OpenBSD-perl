@@ -22,6 +22,13 @@ my %skip_page = map { $_ => 1 } qw(
     ptargrep
     shasum
     zipdetails
+    TODO
+    Changes
+    HACKERS
+    INSTALL
+    installhtml
+    make_patchnumpl
+    mkppport
 );
 
 open my $fh, '<', $bsdwrapper or die "Couldn't open $bsdwrapper: $!";
@@ -64,6 +71,11 @@ my $wanted = sub {
     # Don't find things in the source, only installed
     return if $look_in ne 'dist' && $file =~ m{^dist/};
     return if $look_in ne 'cpan' && $file =~ m{^cpan/};
+
+    # Nothing in here is useful and can hide correct source of manuals
+    return if $file =~ m{^regen/};
+    return if $file =~ m{^hints/};
+    return if $file =~ m{^Cross/};
 
     my $page;
 
