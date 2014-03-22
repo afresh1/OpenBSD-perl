@@ -225,7 +225,6 @@ _quick3p=
     perluniintro 1			pod/perluniintro.pod \
     perluniprops 1			pod/perluniprops.pod \
     perlunitut 1			pod/perlunitut.pod \
-    PerlUtil 1				symbian/PerlUtil.pod \
     perlutil 1				pod/perlutil.pod \
     perlvar 1				pod/perlvar.pod \
     perlvms 1				pod/perlvms.pod \
@@ -372,7 +371,6 @@ _quick3p=
     CPANPLUS::Shell::Default::Plugins::HOWTO 3p	lib/CPANPLUS/Shell/Default/Plugins/HOWTO.pod \
     CPANPLUS::Shell::Default::Plugins::Remote 3p	lib/CPANPLUS/Shell/Default/Plugins/Remote.pm \
     CPANPLUS::Shell::Default::Plugins::Source 3p	lib/CPANPLUS/Shell/Default/Plugins/Source.pm \
-    CPerlBase 3p			symbian/PerlBase.pod \
     Cwd 3p				lib/Cwd.pm \
     Data::Dumper 3p			lib/Data/Dumper.pm \
     DB 3p				lib/DB.pm \
