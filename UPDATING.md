@@ -6,6 +6,7 @@ This is still an art, not as yet a complete doc, but a start.
 
 * Pick a new version of perl and download the tar.gz
 * Update the different scripts, primarily test_patches, with the new version
+* Update files/shlib_version
 * mv patches/GOOD patches/RESEARCH
 * Change to a temporary directory and run `NO_LOCAL_PATCHES=1 build_local_perl`
 * See if it runs successfully, it generally should
