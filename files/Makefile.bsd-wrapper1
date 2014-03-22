@@ -370,8 +370,8 @@ _quick3p=
     CPANPLUS::Shell::Default 3p		lib/CPANPLUS/Shell/Default.pm \
     CPANPLUS::Shell::Default::Plugins::CustomSource 3p	lib/CPANPLUS/Shell/Default/Plugins/CustomSource.pm \
     CPANPLUS::Shell::Default::Plugins::HOWTO 3p	lib/CPANPLUS/Shell/Default/Plugins/HOWTO.pod \
-    CPANPLUS::Shell::Default::Plugins::Remote 3plib/CPANPLUS/Shell/Default/Plugins/Remote.pm \
-    CPANPLUS::Shell::Default::Plugins::Source 3plib/CPANPLUS/Shell/Default/Plugins/Source.pm \
+    CPANPLUS::Shell::Default::Plugins::Remote 3p	lib/CPANPLUS/Shell/Default/Plugins/Remote.pm \
+    CPANPLUS::Shell::Default::Plugins::Source 3p	lib/CPANPLUS/Shell/Default/Plugins/Source.pm \
     CPerlBase 3p			symbian/PerlBase.pod \
     Cwd 3p				lib/Cwd.pm \
     Data::Dumper 3p			lib/Data/Dumper.pm \
