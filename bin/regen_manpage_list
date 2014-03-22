@@ -29,6 +29,10 @@ my %skip_page = map { $_ => 1 } qw(
     installhtml
     make_patchnumpl
     mkppport
+    perlcn
+    perljp
+    perlko
+    perltw
 );
 
 open my $fh, '<', $bsdwrapper or die "Couldn't open $bsdwrapper: $!";
