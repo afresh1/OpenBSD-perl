@@ -36,7 +36,6 @@ _quick3p=
     a2p 1				x2p/a2p.pod \
     buildperlpl 1			cpan/Devel-PPPort/devel/buildperl.pl \
     c2ph 1				utils/pstruct \
-    Changes 1				dist/Data-Dumper/Changes \
     config_data 1			utils/config_data \
     corelist 1				utils/corelist \
     cpan 1				utils/cpan \
@@ -48,14 +47,9 @@ _quick3p=
     function 1				cpan/Pod-Perldoc/corpus/perlfunc.pod \
     h2ph 1				utils/h2ph \
     h2xs 1				utils/h2xs \
-    HACKERS 1				cpan/Devel-PPPort/HACKERS \
-    INSTALL 1				INSTALL \
-    installhtml 1			installhtml \
     instmodsh 1				utils/instmodsh \
     libnetcfg 1				utils/libnetcfg \
     libnetFAQ 1				lib/Net/libnetFAQ.pod \
-    make_patchnumpl 1			make_patchnum.pl \
-    mkppport 1				mkppport \
     perl 1				pod/perl.pod \
     perl5004delta 1			pod/perl5004delta.pod \
     perl5005delta 1			pod/perl5005delta.pod \
@@ -247,13 +241,10 @@ _quick3p=
     ppporth 1				dist/Cwd/ppport.h \
     prove 1				utils/prove \
     psed 1				x2p/psed \
-    READMEhints 1			hints/README.hints \
-    READMEnew 1				Cross/README.new \
     regenerate 1			cpan/Devel-PPPort/devel/regenerate \
     runperlbat 1			win32/bin/runperl.pl \
     soak 1				cpan/Devel-PPPort/soak \
     splain 1				utils/splain \
-    TODO 1				dist/Data-Dumper/Todo \
     xsubpp 1				utils/xsubpp \
     AnyDBM_File 3p			lib/AnyDBM_File.pm \
     App::Cpan 3p			lib/App/Cpan.pm \
@@ -301,7 +292,6 @@ _quick3p=
     CGI::Push 3p			lib/CGI/Push.pm \
     CGI::Switch 3p			lib/CGI/Switch.pm \
     CGI::Util 3p			lib/CGI/Util.pm \
-    CharClass::Matcher 3p		regen/regcharclass.pl \
     charnames 3p			lib/charnames.pm \
     Class::Struct 3p			lib/Class/Struct.pm \
     Compress::Raw::Bzip2 3p		lib/Compress/Raw/Bzip2.pm \
@@ -479,7 +469,7 @@ _quick3p=
     ExtUtils::XSSymSet 3p		lib/ExtUtils/XSSymSet.pm \
     Fatal 3p				lib/Fatal.pm \
     Fcntl 3p				lib/Fcntl.pm \
-    feature 3p				regen/feature.pl \
+    feature 3p				lib/feature.pm \
     fields 3p				lib/fields.pm \
     File::Basename 3p			lib/File/Basename.pm \
     File::CheckTree 3p			lib/File/CheckTree.pm \
@@ -873,7 +863,7 @@ _quick3p=
     version 3p				lib/version.pod \
     version::Internals 3p		lib/version/Internals.pod \
     vmsish 3p				lib/vmsish.pm \
-    warnings 3p				regen/warnings.pl \
+    warnings 3p				lib/warnings.pm \
     warnings::register 3p		lib/warnings/register.pm \
     Win32 3p				cpan/Win32/Win32.pm \
     Win32API::File 3p			cpan/Win32API-File/File.pm \
