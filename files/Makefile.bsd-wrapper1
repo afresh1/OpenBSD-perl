@@ -52,7 +52,6 @@ _quick3p=
     INSTALL 1				INSTALL \
     installhtml 1			installhtml \
     instmodsh 1				utils/instmodsh \
-    json_pp 1				utils/json_pp \
     libnetcfg 1				utils/libnetcfg \
     libnetFAQ 1				lib/Net/libnetFAQ.pod \
     make_patchnumpl 1			make_patchnum.pl \
@@ -249,18 +248,14 @@ _quick3p=
     ppporth 1				dist/Cwd/ppport.h \
     prove 1				utils/prove \
     psed 1				x2p/psed \
-    ptardiff 1				utils/ptardiff \
-    ptargrep 1				utils/ptargrep \
     READMEhints 1			hints/README.hints \
     READMEnew 1				Cross/README.new \
     regenerate 1			cpan/Devel-PPPort/devel/regenerate \
     runperlbat 1			win32/bin/runperl.pl \
-    shasum 1				utils/shasum \
     soak 1				cpan/Devel-PPPort/soak \
     splain 1				utils/splain \
     TODO 1				dist/Data-Dumper/Todo \
     xsubpp 1				utils/xsubpp \
-    zipdetails 1			utils/zipdetails \
     AnyDBM_File 3p			lib/AnyDBM_File.pm \
     App::Cpan 3p			lib/App/Cpan.pm \
     App::Prove 3p			lib/App/Prove.pm \
