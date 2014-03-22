@@ -56,7 +56,7 @@ my $wanted = sub {
     return if /\.orig$/;    # skip patch files
     return if $file =~ m{/t/}; # or files in test dirs
     return if $file =~ m{/ext/}; # or in an ext dir
-    return if /symbian/; # don't need that
+    return if $file =~ m{symbian}; # don't need that
 
     # Remove leading ./ and optional obj/
     $file =~ s{^\./(?:obj/)?}{};
