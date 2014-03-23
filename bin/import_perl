@@ -27,21 +27,24 @@ TAG=`echo $PERL_BASE | tr 'a-z.-' 'A-Z_'`
 
 # Now we need a patched version of perl
 do_extract_perl
+
+cp -r $PERL_BASE ${PERL_BASE}.orig
+
 cd $PERL_BASE
-
-# Import a "clean" perl
-cvs import -m"Import $PERL_BASE" $PERLCVS PERL $TAG
-
 # Apply our local patches
 do_patch_perl
-
 cd $OLDPWD
-
-# Checkout the tree to fix the merge errors
-cvs checkout -jPERL:yesterday -jPERL src/gnu/usr.bin/perl
 
 # remove any patch cruft
 find $PERL_BASE \( -name '*.orig' \) -exec rm -f {} \+
+
+cd ${PERL_BASE}.orig
+# Import a "clean" perl
+cvs import -kb -m"Import $PERL_BASE" $PERLCVS PERL $TAG
+cd $OLDPWD
+
+# Checkout the tree to fix the merge errors
+cvs checkout -jPERL:yesterday -jPERL $PERLCVS
 
 # remove any files that are not in the new perl
 cd $PERLCVS
@@ -64,3 +67,5 @@ find $PERLCVS \( \( -type f -o -path '*/CVS' -prune \) \
     ! -exec test -e $CVSROOT/{},v \; \) -exec cvs add {} \;
 
 # Verify it looks good, then cvs commit
+cd src
+cvs commit -m"Apply local patches, remove excess files"
