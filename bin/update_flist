@@ -12,6 +12,12 @@ if [ ! -s $newflist ]; then
     exit
 fi
 
+msg=`head -1 $newflist`
+if [ "$msg" = 'DESTDIR must be set' ]; then
+    echo $msg
+    exit 1
+fi
+
 add=${wrkdir}/add
 del=${wrkdir}/del
 
