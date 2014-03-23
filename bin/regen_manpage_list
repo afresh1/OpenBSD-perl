@@ -22,17 +22,77 @@ my %skip_page = map { $_ => 1 } qw(
     ptargrep
     shasum
     zipdetails
-    TODO
+
+
     Changes
     HACKERS
     INSTALL
+    TODO
+    buildperlpl
+    exetype
     installhtml
     make_patchnumpl
     mkppport
     perlcn
+    perldtrace
+    perlebcdic
+    perlglobbat
     perljp
     perlko
     perltw
+    pl2bat
+    ppporth
+    regenerate
+    runperlbat
+    soak
+
+    perlaix
+    perlamiga
+    perlbs2000
+    perlce
+    perlcygwin
+    perldgux
+    perldos
+    perlfreebsd
+    perlhaiku
+    perlhpux
+    perlhurd
+    perlirix
+    perllinux
+    perlmacos
+    perlmacosx
+    perlnetware
+    perlos2
+    perlos390
+    perlos400
+    perlplan9
+    perlqnx
+    perlricos
+    perlsolaris
+    perltrue64
+    perlvms
+    perlvos
+    perlwin32
+    Module::Build::Platform::Amiga
+    Module::Build::Platform::EBCDIC
+    Module::Build::Platform::MPEiX
+    Module::Build::Platform::MacOS
+    Module::Build::Platform::RiscOS
+    Module::Build::Platform::VMS
+    Module::Build::Platform::VOS
+    Module::Build::Platform::Windows
+    Module::Build::Platform::aix
+    Module::Build::Platform::cygwin
+    Module::Build::Platform::darwin
+    Module::Build::Platform::os2
+    OS2::DLL
+    OS2::ExtAttr
+    OS2::PrfDB
+    OS2::Process
+    OS2::REXX
+    Sys::Syslog::Win32
+    Win32
+    Win32API::File
 );
 
 open my $fh, '<', $bsdwrapper or die "Couldn't open $bsdwrapper: $!";
