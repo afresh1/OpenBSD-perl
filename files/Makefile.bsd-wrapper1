@@ -34,7 +34,6 @@ _quick3p=
 
 .for page sect file in \
     a2p 1				x2p/a2p.pod \
-    buildperlpl 1			cpan/Devel-PPPort/devel/buildperl.pl \
     c2ph 1				utils/pstruct \
     config_data 1			utils/config_data \
     corelist 1				utils/corelist \
@@ -42,7 +41,6 @@ _quick3p=
     cpan2dist 1				utils/cpan2dist \
     cpanp 1				utils/cpanp \
     enc2xs 1				utils/enc2xs \
-    exetype 1				win32/bin/exetype.pl \
     find2perl 1				x2p/find2perl \
     function 1				cpan/Pod-Perldoc/corpus/perlfunc.pod \
     h2ph 1				utils/h2ph \
@@ -86,35 +84,26 @@ _quick3p=
     perl589delta 1			pod/perl589delta.pod \
     perl58delta 1			pod/perl58delta.pod \
     perl5dbpl 1				lib/perl5db.pl \
-    perlaix 1				pod/perlaix.pod \
-    perlamiga 1				pod/perlamiga.pod \
     perlapi 1				pod/perlapi.pod \
     perlapio 1				pod/perlapio.pod \
     perlartistic 1			pod/perlartistic.pod \
     perlbook 1				pod/perlbook.pod \
     perlboot 1				pod/perlboot.pod \
     perlbot 1				pod/perlbot.pod \
-    perlbs2000 1			pod/perlbs2000.pod \
     perlbug 1				utils/perlbug \
     perlcall 1				pod/perlcall.pod \
-    perlce 1				pod/perlce.pod \
     perlcheat 1				pod/perlcheat.pod \
     perlclib 1				pod/perlclib.pod \
     perlcommunity 1			pod/perlcommunity.pod \
-    perlcygwin 1			pod/perlcygwin.pod \
     perldata 1				pod/perldata.pod \
     perldbmfilter 1			pod/perldbmfilter.pod \
     perldebguts 1			pod/perldebguts.pod \
     perldebtut 1			pod/perldebtut.pod \
     perldebug 1				pod/perldebug.pod \
     perldelta 1				pod/perldelta.pod \
-    perldgux 1				pod/perldgux.pod \
     perldiag 1				pod/perldiag.pod \
     perldoc 1				lib/perldoc.pod \
-    perldos 1				pod/perldos.pod \
     perldsc 1				pod/perldsc.pod \
-    perldtrace 1			pod/perldtrace.pod \
-    perlebcdic 1			pod/perlebcdic.pod \
     perlembed 1				pod/perlembed.pod \
     perlexperiment 1			pod/perlexperiment.pod \
     perlfaq 1				lib/perlfaq.pod \
@@ -130,39 +119,29 @@ _quick3p=
     perlfilter 1			pod/perlfilter.pod \
     perlfork 1				pod/perlfork.pod \
     perlform 1				pod/perlform.pod \
-    perlfreebsd 1			pod/perlfreebsd.pod \
     perlfunc 1				pod/perlfunc.pod \
     perlgit 1				pod/perlgit.pod \
-    perlglobbat 1			win32/bin/perlglob.pl \
     perlglossary 1			lib/perlglossary.pod \
     perlgpl 1				pod/perlgpl.pod \
     perlguts 1				pod/perlguts.pod \
     perlhack 1				pod/perlhack.pod \
     perlhacktips 1			pod/perlhacktips.pod \
     perlhacktut 1			pod/perlhacktut.pod \
-    perlhaiku 1				pod/perlhaiku.pod \
     perlhist 1				pod/perlhist.pod \
-    perlhpux 1				pod/perlhpux.pod \
-    perlhurd 1				pod/perlhurd.pod \
     perlintern 1			pod/perlintern.pod \
     perlinterp 1			pod/perlinterp.pod \
     perlintro 1				pod/perlintro.pod \
     perliol 1				pod/perliol.pod \
     perlipc 1				pod/perlipc.pod \
-    perlirix 1				pod/perlirix.pod \
     perlivp 1				utils/perlivp \
     perllexwarn 1			pod/perllexwarn.pod \
-    perllinux 1				pod/perllinux.pod \
     perllocale 1			pod/perllocale.pod \
     perllol 1				pod/perllol.pod \
-    perlmacos 1				pod/perlmacos.pod \
-    perlmacosx 1			pod/perlmacosx.pod \
     perlmod 1				pod/perlmod.pod \
     perlmodinstall 1			pod/perlmodinstall.pod \
     perlmodlib 1			pod/perlmodlib.pod \
     perlmodstyle 1			pod/perlmodstyle.pod \
     perlmroapi 1			pod/perlmroapi.pod \
-    perlnetware 1			pod/perlnetware.pod \
     perlnewmod 1			pod/perlnewmod.pod \
     perlnumber 1			pod/perlnumber.pod \
     perlobj 1				pod/perlobj.pod \
@@ -170,19 +149,14 @@ _quick3p=
     perlop 1				pod/perlop.pod \
     perlopenbsd 1			pod/perlopenbsd.pod \
     perlopentut 1			pod/perlopentut.pod \
-    perlos2 1				pod/perlos2.pod \
-    perlos390 1				pod/perlos390.pod \
-    perlos400 1				pod/perlos400.pod \
     perlpacktut 1			pod/perlpacktut.pod \
     perlperf 1				pod/perlperf.pod \
-    perlplan9 1				pod/perlplan9.pod \
     perlpod 1				pod/perlpod.pod \
     perlpodspec 1			pod/perlpodspec.pod \
     perlpodstyle 1			pod/perlpodstyle.pod \
     perlpolicy 1			pod/perlpolicy.pod \
     perlport 1				pod/perlport.pod \
     perlpragma 1			pod/perlpragma.pod \
-    perlqnx 1				pod/perlqnx.pod \
     perlre 1				pod/perlre.pod \
     perlreapi 1				pod/perlreapi.pod \
     perlrebackslash 1			pod/perlrebackslash.pod \
@@ -197,7 +171,6 @@ _quick3p=
     perlriscos 1			pod/perlriscos.pod \
     perlrun 1				pod/perlrun.pod \
     perlsec 1				pod/perlsec.pod \
-    perlsolaris 1			pod/perlsolaris.pod \
     perlsource 1			pod/perlsource.pod \
     perlstyle 1				pod/perlstyle.pod \
     perlsub 1				pod/perlsub.pod \
@@ -217,14 +190,10 @@ _quick3p=
     perlunitut 1			pod/perlunitut.pod \
     perlutil 1				pod/perlutil.pod \
     perlvar 1				pod/perlvar.pod \
-    perlvms 1				pod/perlvms.pod \
-    perlvos 1				pod/perlvos.pod \
-    perlwin32 1				pod/perlwin32.pod \
     perlxs 1				lib/perlxs.pod \
     perlxstut 1				lib/perlxstut.pod \
     perlxstypemap 1			lib/perlxstypemap.pod \
     piconv 1				utils/piconv \
-    pl2bat 1				win32/bin/pl2bat.pl \
     pl2pm 1				utils/pl2pm \
     pod2html 1				utils/pod2html \
     pod2latex 1				cpan/Pod-LaTeX/blib/script/pod2latex \
@@ -234,12 +203,8 @@ _quick3p=
     pod_file 1				lib/unicore/mktables \
     podchecker 1			cpan/Pod-Checker/blib/script/podchecker \
     podselect 1				cpan/Pod-Parser/blib/script/podselect \
-    ppporth 1				dist/Cwd/ppport.h \
     prove 1				utils/prove \
     psed 1				x2p/psed \
-    regenerate 1			cpan/Devel-PPPort/devel/regenerate \
-    runperlbat 1			win32/bin/runperl.pl \
-    soak 1				cpan/Devel-PPPort/soak \
     splain 1				utils/splain \
     xsubpp 1				utils/xsubpp \
     AnyDBM_File 3p			lib/AnyDBM_File.pm \
@@ -617,20 +582,8 @@ _quick3p=
     Module::Build::Cookbook 3p		lib/Module/Build/Cookbook.pm \
     Module::Build::ModuleInfo 3p	lib/Module/Build/ModuleInfo.pm \
     Module::Build::Notes 3p		lib/Module/Build/Notes.pm \
-    Module::Build::Platform::aix 3p	lib/Module/Build/Platform/aix.pm \
-    Module::Build::Platform::Amiga 3p	lib/Module/Build/Platform/Amiga.pm \
-    Module::Build::Platform::cygwin 3p	lib/Module/Build/Platform/cygwin.pm \
-    Module::Build::Platform::darwin 3p	lib/Module/Build/Platform/darwin.pm \
     Module::Build::Platform::Default 3p	lib/Module/Build/Platform/Default.pm \
-    Module::Build::Platform::EBCDIC 3p	lib/Module/Build/Platform/EBCDIC.pm \
-    Module::Build::Platform::MacOS 3p	lib/Module/Build/Platform/MacOS.pm \
-    Module::Build::Platform::MPEiX 3p	lib/Module/Build/Platform/MPEiX.pm \
-    Module::Build::Platform::os2 3p	lib/Module/Build/Platform/os2.pm \
-    Module::Build::Platform::RiscOS 3p	lib/Module/Build/Platform/RiscOS.pm \
     Module::Build::Platform::Unix 3p	lib/Module/Build/Platform/Unix.pm \
-    Module::Build::Platform::VMS 3p	lib/Module/Build/Platform/VMS.pm \
-    Module::Build::Platform::VOS 3p	lib/Module/Build/Platform/VOS.pm \
-    Module::Build::Platform::Windows 3p	lib/Module/Build/Platform/Windows.pm \
     Module::Build::PPMMaker 3p		lib/Module/Build/PPMMaker.pm \
     Module::Build::Version 3p		lib/Module/Build/Version.pm \
     Module::Build::YAML 3p		lib/Module/Build/YAML.pm \
@@ -666,11 +619,6 @@ _quick3p=
     open 3p				lib/open.pm \
     OpenBSD::MkTemp 3p			lib/OpenBSD/MkTemp.pm \
     ops 3p				lib/ops.pm \
-    OS2::DLL 3p				os2/OS2/OS2-REXX/DLL/DLL.pm \
-    OS2::ExtAttr 3p			os2/OS2/OS2-ExtAttr/ExtAttr.pm \
-    OS2::PrfDB 3p			os2/OS2/OS2-PrfDB/PrfDB.pm \
-    OS2::Process 3p			os2/OS2/OS2-Process/Process.pm \
-    OS2::REXX 3p			os2/OS2/OS2-REXX/REXX.pm \
     overload 3p				lib/overload.pm \
     overloading 3p			lib/overloading.pm \
     Package::Constants 3p		lib/Package/Constants.pm \
@@ -753,7 +701,6 @@ _quick3p=
     Symbol 3p				lib/Symbol.pm \
     Sys::Hostname 3p			lib/Sys/Hostname.pm \
     Sys::Syslog 3p			lib/Sys/Syslog.pm \
-    Sys::Syslog::Win32 3p		cpan/Sys-Syslog/win32/Win32.pm \
     TAP::Base 3p			lib/TAP/Base.pm \
     TAP::Formatter::Base 3p		lib/TAP/Formatter/Base.pm \
     TAP::Formatter::Color 3p		lib/TAP/Formatter/Color.pm \
@@ -861,8 +808,6 @@ _quick3p=
     vmsish 3p				lib/vmsish.pm \
     warnings 3p				lib/warnings.pm \
     warnings::register 3p		lib/warnings/register.pm \
-    Win32 3p				cpan/Win32/Win32.pm \
-    Win32API::File 3p			cpan/Win32API-File/File.pm \
     XS::APItest 3p			lib/XS/APItest.pm \
     XS::Typemap 3p			lib/XS/Typemap.pm \
     XSLoader 3p				lib/XSLoader.pm
