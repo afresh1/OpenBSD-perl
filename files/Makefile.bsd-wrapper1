@@ -83,7 +83,7 @@ _quick3p=
     perl588delta 1			pod/perl588delta.pod \
     perl589delta 1			pod/perl589delta.pod \
     perl58delta 1			pod/perl58delta.pod \
-    perl5dbpl 1				lib/perl5db.pl \
+    perl5db 1				lib/perl5db.pl \
     perlapi 1				pod/perlapi.pod \
     perlapio 1				pod/perlapio.pod \
     perlartistic 1			pod/perlartistic.pod \
@@ -350,7 +350,7 @@ _quick3p=
     Encode::_Name_ 3p			lib/Encode/_PM.e2x \
     Encode::Alias 3p			lib/Encode/Alias.pm \
     Encode::Byte 3p			lib/Encode/Byte.pm \
-    Encode::CJKConstantspm 3p		lib/Encode/CJKConstants.pm \
+    Encode::CJKConstants 3p		lib/Encode/CJKConstants.pm \
     Encode::CN 3p			lib/Encode/CN.pm \
     Encode::CN::HZ 3p			lib/Encode/CN/HZ.pm \
     Encode::Config 3p			lib/Encode/Config.pm \
