@@ -1,0 +1,56 @@
+#!/bin/sh
+
+wrkdir=`mktemp -d /tmp/_flist.XXXXXXXXXX` || exit 1
+trap "rm -rf ${wrkdir}; exit 1" 1 2 3 13 15
+
+newflist=${wrkdir}/newflist
+
+sh checkflist > $newflist
+if [ ! -s $newflist ]; then
+    echo No changes
+    rm -rf ${wrkdir}
+    exit
+fi
+
+add=${wrkdir}/add
+del=${wrkdir}/del
+
+sed -ne 's/^> //p' $newflist > $add
+sed -ne 's/^< //p' $newflist > $del
+
+this_arch=`machine`
+
+echo lists/base/mi
+cp lists/base/mi{,.orig}
+( grep -v -e ${this_arch}-openbsd -e '/man/' $add
+  fgrep -v -x -f $del lists/base/mi.orig
+) | sort > lists/base/mi
+
+echo lists/man/mi
+cp lists/man/mi{,.orig}
+( grep '/man/' $add | fgrep -v -x -f lists/base/mi
+  fgrep -v -x -f $del lists/man/mi.orig
+) | sort > lists/man/mi
+
+for file in lists/base/md.*; do
+    [ "$file" = "${file%.orig}" ] || continue
+    arch=${file#*.}
+
+    echo $file
+    cp $file{,.orig}
+
+    arch_add=${wrkdir}/${arch}_add
+    arch_del=${wrkdir}/${arch}_del
+
+    sed -e "s/${this_arch}-openbsd/${arch}-openbsd/" \
+        $add    > $arch_add
+
+    sed -e "s/${this_arch}-openbsd/${arch}-openbsd/" \
+        $del > $arch_del
+
+    ( grep ${arch}-openbsd $arch_add | grep -v '/man/'
+      fgrep -v -x -f $arch_del $file.orig
+    ) | sort > $file
+done
+
+rm -rf ${wrkdir}
