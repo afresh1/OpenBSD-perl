@@ -42,6 +42,10 @@ for file in lists/base/md.*; do
     [ "$file" = "${file%.orig}" ] || continue
     arch=${file#*.}
 
+    # vax is not shared, so the lists are too different
+    [ $this_arch  = vax -a $arch != vax ] && continue
+    [ $this_arch != vax -a $arch  = vax ] && continue
+
     echo $file
     cp $file{,.orig}
 
