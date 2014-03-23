@@ -28,10 +28,10 @@ my %skip_page = map { $_ => 1 } qw(
     HACKERS
     INSTALL
     TODO
-    buildperlpl
+    buildperl
     exetype
     installhtml
-    make_patchnumpl
+    make_patchnum
     mkppport
     perlcn
     perldtrace
@@ -171,6 +171,7 @@ my $wanted = sub {
         return unless $found_pod;
         return unless $page;
 
+        $page =~ s/\.p[lm]$//;
         $page =~ s/^\w\<//;    # strip possible B<
         $page =~ s/[^\w:]//g;
     }
