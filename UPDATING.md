@@ -29,7 +29,8 @@ This is still an art, not as yet a complete doc, but a start.
 * Now have people test on additional architectures.
 
 ### Updating in CVS
-I am still not sure on this step.
+See bin/import_perl for most of the notes related to importing. That script
+works to test importing into a local copy of a repo.
 
 The one note I am sure of is to remind someone that they should use "-k o"
-when importing into cvs so that keywords don't get expanded.
+when importing into cvs so that keywords don't get expanded.
