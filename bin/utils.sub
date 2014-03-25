@@ -32,6 +32,8 @@ do_extract_perl() {
 }
 
 do_patch_perl() {
+    [ "$NO_LOCAL_PATCHES" ] && return
+
     echo Copying local files
     install_local_files
 
@@ -40,6 +42,8 @@ do_patch_perl() {
 }
 
 do_build_perl() {
+    [ "$NO_LOCAL_PATCHES" ] && NO_BSD_WRAPPER=1
+
     if [ -z "$NO_BSD_WRAPPER" ]; then
         echo make obj
         echo "make $J -f Makefile.bsd-wrapper obj"

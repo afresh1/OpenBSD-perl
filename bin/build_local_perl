@@ -13,11 +13,7 @@ uname -a > $log
 do_extract_perl 2>&1 | tee -a $log
 cd $PERL_BASE
 
-if [ -z "$NO_LOCAL_PATCHES" ]; then
-    do_patch_perl 2>&1 | tee -a $log
-else
-    NO_BSD_WRAPPER=1
-fi
+do_patch_perl 2>&1 | tee -a $log
 do_build_perl 2>&1 | tee -a $log
 
 cd $WRKDIR
