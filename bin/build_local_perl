@@ -14,6 +14,14 @@ do_extract_perl 2>&1 | tee -a $log
 cd $PERL_BASE
 
 do_patch_perl 2>&1 | tee -a $log
+
+if [ -z "$NO_READONLY_SRC" ]; then
+    [ -e ../obj ] && mv ../obj ../old && rm -rf ../old &
+    mkdir ../obj
+    ln -sf $PWD/../obj obj
+    chmod -R -w .
+fi
+
 do_build_perl 2>&1 | tee -a $log
 
 cd $WRKDIR

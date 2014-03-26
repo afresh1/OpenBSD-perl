@@ -24,7 +24,7 @@ apply_good_patches() {
 do_extract_perl() {
     if [ -e "$PERL_BASE" ]; then
         echo "Removing old perl srcdir"
-        mv -f $PERL_BASE old && rm -rf old &
+        mv -f $PERL_BASE old && chmod -R +w old && rm -rf old &
     fi
 
     echo Extracting ${PERL_BASE}.tar.gz
