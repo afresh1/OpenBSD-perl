@@ -18,7 +18,7 @@ apply_good_patches() {
     local name=${1:-*.patch}
 
     find ${SRCDIR}/patches/GOOD -name "$name" -print \
-        -exec patch -Ep0 -i {} \;
+        -exec patch -fEp0 -i {} \;
 }
 
 do_extract_perl() {
