@@ -15,7 +15,7 @@ cd $PERL_BASE
 
 do_patch_perl 2>&1 | tee -a $log
 
-if [ -z "$NO_READONLY_SRC" ]; then
+if [ -z "$NO_READONLY_SRC" -a -z "$NO_LOCAL_PATCHES" ]; then
     [ -e ../obj ] && mv ../obj ../old && rm -rf ../old &
     mkdir ../obj
     ln -sf $PWD/../obj obj
