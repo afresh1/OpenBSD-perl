@@ -2,7 +2,7 @@
 
 SRCDIR=$( dirname $BINDIR )
 WRKDIR=$( pwd )
-PERL_BASE=perl-5.18.2
+PERL_BASE=perl-5.19.10
 
 if [ ! -e ${SRCDIR}/${PERL_BASE}.tar.gz ]; then
     echo Please put ${PERL_BASE}.tar.gz in $SRCDIR >&2
@@ -63,7 +63,7 @@ do_build_perl() {
 
     else
         echo Configuring
-        sh ./Configure -de
+        sh ./Configure -Dusedevel -de
 
         echo Building
         make

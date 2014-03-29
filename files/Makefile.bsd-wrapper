@@ -15,7 +15,7 @@ TARGET_MACHINE_ARCH?=	$(MACHINE_ARCH)
 CFLAGS+= -fno-strict-aliasing
 CFLAGS+= -fno-delete-null-pointer-checks
 
-CONFIGURE_ARGS= -dsE -Dopenbsd_distribution=defined -Dccflags='-DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE'
+CONFIGURE_ARGS= -Dusedevel -dsE -Dopenbsd_distribution=defined -Dccflags='-DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE'
 
 .if !exists(${.OBJDIR}/config.over)
 CONFIGURE_ARGS+= -Dmksymlinks
