@@ -1,6 +1,6 @@
---- ./installperl.orig	Sun Aug 11 19:44:48 2013
-+++ ./installperl	Sun Sep 29 17:12:18 2013
-@@ -375,7 +375,9 @@
+--- ./installperl.orig	Sun Oct 20 06:31:29 2013
++++ ./installperl	Tue Mar 25 01:41:36 2014
+@@ -372,7 +372,9 @@
      )
  } else {
      # [als] hard-coded 'libperl' name... not good!

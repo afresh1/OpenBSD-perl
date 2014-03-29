@@ -1,6 +1,6 @@
---- ./installperl.orig	Sun Aug 11 19:44:48 2013
-+++ ./installperl	Sun Sep 29 18:55:30 2013
-@@ -250,9 +250,9 @@
+--- ./installperl.orig	Sun Oct 20 06:31:29 2013
++++ ./installperl	Tue Mar 25 03:31:21 2014
+@@ -246,9 +246,9 @@
      }
  }
  

@@ -1,6 +1,6 @@
---- ./Configure.orig	Sun Aug 11 19:44:47 2013
-+++ ./Configure	Sun Sep 29 16:57:34 2013
-@@ -22368,6 +22368,7 @@
+--- ./Configure.orig	Tue Mar 18 10:48:51 2014
++++ ./Configure	Mon Mar 24 23:51:31 2014
+@@ -22377,6 +22377,7 @@
  find_extensions='
      for xxx in *; do
  	case "$xxx" in

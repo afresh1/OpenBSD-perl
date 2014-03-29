@@ -1,6 +1,6 @@
---- ./Configure.orig	Sun Aug 11 19:44:47 2013
-+++ ./Configure	Sun Sep 29 13:37:11 2013
-@@ -2743,36 +2743,29 @@
+--- ./Configure.orig	Tue Mar 18 10:48:51 2014
++++ ./Configure	Mon Mar 24 20:58:18 2014
+@@ -2795,36 +2795,29 @@
  	*)	case "$lns:$issymlink" in
  		*"ln"*" -s:"*"test -"?)
  			echo "Creating the symbolic links..." >&4

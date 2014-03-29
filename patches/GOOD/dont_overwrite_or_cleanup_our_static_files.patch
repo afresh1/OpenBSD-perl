@@ -1,5 +1,5 @@
---- ./Makefile.SH.orig	Mon Jan  6 14:46:42 2014
-+++ ./Makefile.SH	Sat Mar 22 13:24:25 2014
+--- ./Makefile.SH.orig	Tue Mar 18 11:53:02 2014
++++ ./Makefile.SH	Fri Mar 28 21:25:59 2014
 @@ -571,13 +571,14 @@
  
  .PHONY: all translators utilities
@@ -19,12 +19,12 @@
  # make sure that we recompile perl.c if the git version changes
  perl$(OBJ_EXT): git_version.h
  
-@@ -1277,14 +1278,13 @@
- 	-rm -f perl.Addrs perl.Counts t/perl.Addrs t/perl.Counts *perl.xok
+@@ -1262,14 +1263,13 @@
+ 	-rm -f *perl.xok
  	-rm -f cygwin.c libperl*.def libperl*.dll cygperl*.dll *.exe.stackdump
  	-rm -f $(PERL_EXE) $(MINIPERL_EXE) $(LIBPERL) libperl.* microperl
--	-rm -f config.arch config.over $(DTRACE_H) runtests
-+	-rm -f $(DTRACE_H) runtests
+-	-rm -f config.arch config.over $(DTRACE_H)
++	-rm -f $(DTRACE_H)
  
  # Do not 'make _tidy' directly.
  _tidy:
@@ -35,9 +35,9 @@
  	-@for x in $(DYNALOADER) $(dynamic_ext) $(static_ext) $(nonxs_ext) ; do \
  	$(MINIPERL) make_ext.pl --target=clean $$x MAKE=$(MAKE) ; \
  	done
---- ./MANIFEST.orig	Mon Jan  6 14:46:42 2014
-+++ ./MANIFEST	Sat Mar 22 13:24:25 2014
-@@ -7,6 +7,7 @@
+--- ./MANIFEST.orig	Tue Mar 18 10:48:51 2014
++++ ./MANIFEST	Fri Mar 28 21:25:59 2014
+@@ -8,6 +8,7 @@
  Changes			Describe how to peruse changes between releases
  charclass_invlists.h	Compiled-in inversion lists
  config_h.SH		Produces config.h
@@ -45,42 +45,31 @@
  configpm		Produces lib/Config.pm
  Configure		Portability tool
  configure.com		Configure-equivalent for VMS
-@@ -4131,6 +4132,7 @@
+@@ -4006,6 +4007,7 @@
+ feature.h			Feature header
  form.h				Public declarations for formats
  generate_uudmap.c		Generate uudmap.h, the uuencode decoding map
- genpacksizetables.pl		Generate the size tables for pack/unpack
 +git_version.h			Pre-generated git_version.h for OpenBSD
  globals.c			File to declare global symbols (for shared library)
  globvar.sym			Global variables that need hiding when embedded
  gv.c				Glob value code
-@@ -4274,6 +4276,7 @@
+@@ -4151,6 +4153,7 @@
  lib/Class/Struct.t		See if Class::Struct works
  lib/Config/Extensions.pm	Convenient hash lookup for built extensions
  lib/Config/Extensions.t		See if Config::Extensions works
 +lib/Config_git.pl		Pre-generated Config_git.pl for OpenBSD
  lib/Config.t			See if Config works
  lib/CORE.pod			document the CORE namespace
- lib/DBM_Filter/Changes		DBM Filter Change history
---- ./Porting/Maintainers.pl.orig	Mon Jan  6 14:46:42 2014
-+++ ./Porting/Maintainers.pl	Sat Mar 22 13:24:25 2014
-@@ -14,6 +14,7 @@
- %Maintainers = (
-     'abergman'  => 'Arthur Bergman <abergman@cpan.org>',
-     'abigail'   => 'Abigail <abigail@abigail.be>',
-+    'afresh1'   => 'Andrew Fresh <afresh1@openbsd.org>',
-     'ambs'      => 'Alberto Simões <ambs@cpan.org>',
-     'ams'       => 'Abhijit Menon-Sen <ams@cpan.org>',
-     'andk'      => 'Andreas J. Koenig <andk@cpan.org>',
-@@ -2213,6 +2214,12 @@
+ lib/DBM_Filter/compress.pm	DBM Filter to compress keys/values
+--- ./Porting/Maintainers.pl.orig	Thu Mar 20 08:55:07 2014
++++ ./Porting/Maintainers.pl	Fri Mar 28 21:25:59 2014
+@@ -1478,6 +1478,9 @@
                  lib/vmsish.{pm,t}
                  ],
-         'UPSTREAM' => 'blead',
-+    },
-+
-+    'openbsd' => {
-+        'MAINTAINER' => 'afresh1',
-+        'FILES'      => q[lib/Config_git.pl],
-+        'UPSTREAM'   => undef,
      },
++    'openbsd' => {
++        'FILES'      => q[lib/Config_git.pl],
++    },
  );
  
+ # legacy CPAN flag

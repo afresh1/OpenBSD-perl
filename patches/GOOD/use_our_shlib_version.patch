@@ -1,6 +1,6 @@
---- ./hints/openbsd.sh.orig	Tue Apr 30 19:52:55 2013
-+++ ./hints/openbsd.sh	Mon Sep 30 16:18:14 2013
-@@ -206,9 +206,9 @@
+--- ./hints/openbsd.sh.orig	Sun Oct 20 06:31:29 2013
++++ ./hints/openbsd.sh	Tue Mar 25 04:49:38 2014
+@@ -147,9 +147,9 @@
  	locincpth='/usr/local/include'
  	loclibpth='/usr/local/lib'
  	# Link perl with shared libperl

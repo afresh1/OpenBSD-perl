@@ -1,5 +1,5 @@
---- ./hints/openbsd.sh.orig	Tue Apr 30 19:52:55 2013
-+++ ./hints/openbsd.sh	Sun Sep 29 14:05:14 2013
+--- ./hints/openbsd.sh.orig	Sun Oct 20 06:31:29 2013
++++ ./hints/openbsd.sh	Mon Mar 24 22:01:14 2014
 @@ -44,7 +44,7 @@
  #
  ARCH=`arch | sed 's/^OpenBSD.//'`

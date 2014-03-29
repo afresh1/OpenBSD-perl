@@ -1,5 +1,5 @@
---- ./dist/threads-shared/t/stress.t.orig	Sun Aug 11 19:44:48 2013
-+++ ./dist/threads-shared/t/stress.t	Sun Sep 29 18:24:31 2013
+--- ./dist/threads-shared/t/stress.t.orig	Fri Jan 11 07:27:58 2013
++++ ./dist/threads-shared/t/stress.t	Tue Mar 25 02:44:16 2014
 @@ -83,7 +83,7 @@
          print "# Looping for $busycount iterations should take about 0.025s\n";
      }

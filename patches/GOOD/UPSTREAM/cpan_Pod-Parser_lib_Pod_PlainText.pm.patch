@@ -1,5 +1,5 @@
---- cpan/Pod-Parser/lib/Pod/PlainText.pm.orig	Sat Nov 30 11:32:35 2013
-+++ cpan/Pod-Parser/lib/Pod/PlainText.pm	Sat Nov 30 11:47:42 2013
+--- ./cpan/Pod-Parser/lib/Pod/PlainText.pm.orig	Thu Feb  6 11:21:58 2014
++++ ./cpan/Pod-Parser/lib/Pod/PlainText.pm	Mon Mar 24 22:32:48 2014
 @@ -596,6 +596,11 @@
      }
  }

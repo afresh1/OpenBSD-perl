@@ -1,5 +1,5 @@
---- ./lib/Getopt/Std.pm.orig	Sun Aug 11 19:21:50 2013
-+++ ./lib/Getopt/Std.pm	Sun Sep 29 15:44:44 2013
+--- ./lib/Getopt/Std.pm.orig	Mon Aug 12 05:25:24 2013
++++ ./lib/Getopt/Std.pm	Tue Mar 25 00:23:03 2014
 @@ -4,7 +4,7 @@
  
  =head1 NAME

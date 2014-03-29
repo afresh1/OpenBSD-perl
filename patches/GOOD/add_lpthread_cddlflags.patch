@@ -1,6 +1,6 @@
---- ./Makefile.SH.orig	Mon Jan  6 14:46:42 2014
-+++ ./Makefile.SH	Sat Mar 22 10:02:24 2014
-@@ -695,6 +695,14 @@
+--- ./Makefile.SH.orig	Tue Mar 18 11:53:02 2014
++++ ./Makefile.SH	Tue Mar 25 01:25:36 2014
+@@ -728,6 +728,14 @@
  esac
  
  case "$osname" in

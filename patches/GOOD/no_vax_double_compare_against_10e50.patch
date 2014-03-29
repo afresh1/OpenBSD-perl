@@ -1,6 +1,15 @@
---- ./util.c.orig	Sun Aug 11 19:44:49 2013
-+++ ./util.c	Sat Nov  9 13:19:28 2013
-@@ -4806,7 +4806,11 @@
+--- ./t/porting/customized.dat.orig	Mon Mar  3 09:52:44 2014
++++ ./t/porting/customized.dat	Sat Mar 29 12:56:45 2014
+@@ -17,5 +17,5 @@
+ podlators cpan/podlators/scripts/pod2man.PL f81acf53f3ff46cdcc5ebdd661c5d13eb35d20d6
+ podlators cpan/podlators/scripts/pod2text.PL b4693fcfe4a0a1b38a215cfb8985a65d5d025d69
+ version cpan/version/lib/version.pm fa9931d4db05aff9a0a6ef558610b1a472d9306e
+-version vutil.c 238196173eb90dea388443213a4b968323474874
++version vutil.c 6c93c7ed7d9aaf459c2e5b5ad08f7815bb27745a
+ version vxs.inc 9064aacbdfe42bb584a068f62b505dd11dbb4dc4
+--- ./vutil.c.orig	Thu Feb  6 11:21:58 2014
++++ ./vutil.c	Sat Mar 29 12:56:45 2014
+@@ -587,7 +587,11 @@
  
  	/* may get too much accuracy */ 
  	char tbuf[64];
@@ -10,5 +19,5 @@
  	SV *sv = SvNVX(ver) > 10e50 ? newSV(64) : 0;
 +#endif
  	char *buf;
- #ifdef USE_LOCALE_NUMERIC
- 	char *loc = savepv(setlocale(LC_NUMERIC, NULL));
+         STORE_NUMERIC_LOCAL_SET_STANDARD();
+ 	if (sv) {

@@ -1,6 +1,6 @@
---- ./dist/Math-BigInt/lib/Math/BigInt.pm.orig	Sun Aug 11 19:44:48 2013
-+++ ./dist/Math-BigInt/lib/Math/BigInt.pm	Thu Oct 31 09:05:27 2013
-@@ -2670,11 +2670,12 @@
+--- ./dist/Math-BigInt/lib/Math/BigInt.pm.orig	Sun Oct 20 06:31:29 2013
++++ ./dist/Math-BigInt/lib/Math/BigInt.pm	Tue Mar 25 00:07:12 2014
+@@ -2677,11 +2677,12 @@
              next;
          }
  

@@ -1,5 +1,5 @@
---- ./cpan/Text-Balanced/lib/Text/Balanced.pm.orig	Tue Apr 30 19:52:55 2013
-+++ ./cpan/Text-Balanced/lib/Text/Balanced.pm	Sun Sep 29 15:15:39 2013
+--- ./cpan/Text-Balanced/lib/Text/Balanced.pm.orig	Fri Jul  2 11:28:35 2010
++++ ./cpan/Text-Balanced/lib/Text/Balanced.pm	Mon Mar 24 23:04:22 2014
 @@ -1508,7 +1508,7 @@
  If the string is "PARA", C<extract_tagged> returns only the first paragraph
  after the tag (up to the first line that is either empty or contains

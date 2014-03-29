@@ -1,6 +1,6 @@
---- ./MANIFEST.orig	Mon Jan  6 14:46:42 2014
-+++ ./MANIFEST	Sat Jan 25 17:25:03 2014
-@@ -3710,7 +3710,6 @@
+--- ./MANIFEST.orig	Tue Mar 18 10:48:51 2014
++++ ./MANIFEST	Tue Mar 25 00:54:11 2014
+@@ -3577,7 +3577,6 @@
  ext/B/B/Xref.pm		Compiler Xref backend
  ext/B/B.xs		Compiler backend external subroutines
  ext/B/hints/darwin.pl	Hints for named architecture

@@ -1,30 +1,34 @@
---- ./t/porting/dual-life.t.orig	Sun Aug 11 19:44:49 2013
-+++ ./t/porting/dual-life.t	Mon Sep 30 10:04:08 2013
-@@ -21,6 +21,8 @@
+--- ./t/porting/dual-life.t.orig	Wed Jan 29 07:51:46 2014
++++ ./t/porting/dual-life.t	Thu Mar 27 21:17:27 2014
+@@ -23,6 +23,12 @@
+ # Exceptions that are found in dual-life bin dirs but aren't
+ # installed by default; some occur only during testing:
+ my $not_installed = qr{^(?:
++  \.\./cpan/Archive-Tar/bin/ptar.*
++   |
++  \.\./cpan/JSON-PP/bin/json_pp
++   |
++  \.\./cpan/IO-Compress/bin/zipdetails
++   |
    \.\./cpan/Encode/bin/u(?:cm(?:2table|lint|sort)|nidump)
     |
-   \.\./cpan/Module-Build/MB-[\w\d]+/Simple/(?:test_install/)?bin/.*
-+   |
-+  \.\./cpan/Archive-Tar/bin/ptar.*
- )\z}ix;
- 
- my %dist_dir_exe;
---- ./utils/Makefile.SH.orig	Mon Jan  6 14:46:46 2014
-+++ ./utils/Makefile.SH	Sat Mar 22 11:33:13 2014
-@@ -48,9 +48,9 @@
+   \.\./cpan/Module-(?:Metadata|Build)
+--- ./utils/Makefile.PL.orig	Wed Jan 29 07:51:46 2014
++++ ./utils/Makefile.PL	Thu Mar 27 21:17:27 2014
+@@ -35,9 +35,9 @@
  # Files to be built with variable substitution after miniperl is
  # available.  Dependencies handled manually below (for now).
  
--pl = c2ph.PL config_data.PL corelist.PL cpan.PL h2ph.PL h2xs.PL instmodsh.PL json_pp.PL perlbug.PL perldoc.PL perlivp.PL pl2pm.PL prove.PL ptar.PL ptardiff.PL ptargrep.PL cpanp-run-perl.PL cpanp.PL cpan2dist.PL shasum.PL splain.PL libnetcfg.PL piconv.PL enc2xs.PL xsubpp.PL pod2html.PL zipdetails.PL
--plextract = c2ph config_data corelist cpan h2ph h2xs instmodsh json_pp perlbug perldoc perlivp pl2pm prove ptar ptardiff ptargrep cpanp-run-perl cpanp cpan2dist shasum splain libnetcfg piconv enc2xs xsubpp pod2html zipdetails
--plextractexe = ./c2ph ./config_data ./corelist ./cpan ./h2ph ./h2xs ./json_pp ./instmodsh ./perlbug ./perldoc ./perlivp ./pl2pm ./prove ./ptar ./ptardiff ./ptargrep ./cpanp-run-perl ./cpanp ./cpan2dist ./shasum ./splain ./libnetcfg ./piconv ./enc2xs ./xsubpp ./pod2html ./zipdetails
-+pl = c2ph.PL config_data.PL corelist.PL cpan.PL h2ph.PL h2xs.PL instmodsh.PL perlbug.PL perldoc.PL perlivp.PL pl2pm.PL prove.PL cpanp-run-perl.PL cpanp.PL cpan2dist.PL splain.PL libnetcfg.PL piconv.PL enc2xs.PL xsubpp.PL pod2html.PL
-+plextract = c2ph config_data corelist cpan h2ph h2xs instmodsh perlbug perldoc perlivp pl2pm prove cpanp-run-perl cpanp cpan2dist splain libnetcfg piconv enc2xs xsubpp pod2html
-+plextractexe = ./c2ph ./config_data ./corelist ./cpan ./h2ph ./h2xs ./instmodsh ./perlbug ./perldoc ./perlivp ./pl2pm ./prove ./cpanp-run-perl ./cpanp ./cpan2dist ./splain ./libnetcfg ./piconv ./enc2xs ./xsubpp ./pod2html
+-pl = c2ph.PL config_data.PL corelist.PL cpan.PL h2ph.PL h2xs.PL instmodsh.PL json_pp.PL perlbug.PL perldoc.PL perlivp.PL pl2pm.PL prove.PL ptar.PL ptardiff.PL ptargrep.PL shasum.PL splain.PL libnetcfg.PL piconv.PL enc2xs.PL xsubpp.PL pod2html.PL zipdetails.PL
+-plextract = c2ph config_data corelist cpan h2ph h2xs instmodsh json_pp perlbug perldoc perlivp pl2pm prove ptar ptardiff ptargrep shasum splain libnetcfg piconv enc2xs xsubpp pod2html zipdetails
+-plextractexe = ./c2ph ./config_data ./corelist ./cpan ./h2ph ./h2xs ./json_pp ./instmodsh ./perlbug ./perldoc ./perlivp ./pl2pm ./prove ./ptar ./ptardiff ./ptargrep ./shasum ./splain ./libnetcfg ./piconv ./enc2xs ./xsubpp ./pod2html ./zipdetails
++pl = c2ph.PL config_data.PL corelist.PL cpan.PL h2ph.PL h2xs.PL instmodsh.PL perlbug.PL perldoc.PL perlivp.PL pl2pm.PL prove.PL splain.PL libnetcfg.PL piconv.PL enc2xs.PL xsubpp.PL pod2html.PL
++plextract = c2ph config_data corelist cpan h2ph h2xs instmodsh perlbug perldoc perlivp pl2pm prove libnetcfg piconv enc2xs xsubpp pod2html
++plextractexe = ./c2ph ./config_data ./corelist ./cpan ./h2ph ./h2xs ./instmodsh ./perlbug ./perldoc ./perlivp ./pl2pm ./prove ./splain ./libnetcfg ./piconv ./enc2xs ./xsubpp ./pod2html
  
  all: $(plextract) 
  
-@@ -71,8 +71,6 @@
+@@ -58,8 +58,6 @@
  
  instmodsh:	instmodsh.PL ../config.sh
  
@@ -33,7 +37,7 @@
  perlbug:	perlbug.PL ../config.sh ../patchlevel.h
  
  perldoc:	perldoc.PL ../config.sh
-@@ -81,12 +79,6 @@
+@@ -68,16 +66,8 @@
  
  prove:		prove.PL ../config.sh
  
@@ -43,21 +47,14 @@
 -
 -ptargrep:	ptargrep.PL ../config.sh
 -
- cpanp-run-perl:	cpanp-run-perl.PL ../config.sh
- 
- cpanp:	cpanp.PL ../config.sh
-@@ -95,10 +87,6 @@
- 
  pl2pm:		pl2pm.PL ../config.sh
  
 -shasum:		shasum.PL ../config.sh
 -
--splain:		splain.PL ../config.sh ../lib/diagnostics.pm
--
- libnetcfg:	libnetcfg.PL ../config.sh
+ splain:		splain.PL ../config.sh ../lib/diagnostics.pm
  
- piconv:		piconv.PL ../config.sh
-@@ -106,8 +94,6 @@
+ libnetcfg:	libnetcfg.PL ../config.sh
+@@ -87,8 +77,6 @@
  enc2xs:		enc2xs.PL ../config.sh
  
  xsubpp:		xsubpp.PL ../config.sh
@@ -66,9 +63,9 @@
  
  pod2html:	pod2html.PL ../config.sh ../ext/Pod-Html/bin/pod2html
  
---- ./utils/perlbug.PL.orig	Mon Jan  6 14:46:46 2014
-+++ ./utils/perlbug.PL	Sat Mar 22 11:33:13 2014
-@@ -344,15 +344,14 @@
+--- ./utils/perlbug.PL.orig	Mon Jan 20 06:05:57 2014
++++ ./utils/perlbug.PL	Thu Mar 27 21:17:27 2014
+@@ -349,15 +349,14 @@
  This program provides an easy way to send a thank-you message back to the
  authors and maintainers of perl.
  
@@ -86,7 +83,7 @@
  
  Please do not use $0 to send test messages, test whether perl
  works, or to report bugs in perl modules from CPAN.
-@@ -1170,8 +1169,6 @@
+@@ -1239,8 +1238,6 @@
  B<perlbug> S<[ B<-v> ]> S<[ B<-r> I<returnaddress> ]>
   S<[ B<-A> ]> S<[ B<-ok> | B<-okay> | B<-nok> | B<-nokay> ]>
  
@@ -95,39 +92,34 @@
  =head1 DESCRIPTION
  
  
-@@ -1324,8 +1321,8 @@
+@@ -1393,8 +1390,8 @@
  
  =item Can you use C<perlbug> to submit a thank-you note?
  
 -Yes, you can do this by either using the C<-T> option, or by invoking
 -the program as C<perlthanks>. Thank-you notes are good. It makes people
-+Yes, you can do this by either using the C<-T> option.
++Yes, you can do this by using the C<-T> option.
 +Thank-you notes are good. It makes people
  smile. 
  
  =back
---- ./utils.lst.orig	Mon Jan  6 14:46:46 2014
-+++ ./utils.lst	Fri Mar 21 19:30:38 2014
-@@ -12,25 +12,19 @@
+--- ./utils.lst.orig	Mon Aug 12 05:25:25 2013
++++ ./utils.lst	Thu Mar 27 21:17:27 2014
+@@ -11,7 +11,6 @@
  utils/h2ph
  utils/h2xs
  utils/instmodsh
 -utils/json_pp
  utils/libnetcfg
--utils/perlbug	# link = utils/perlthanks
-+utils/perlbug
+ utils/perlbug	# link = utils/perlthanks
  utils/perldoc
- utils/perlivp
- utils/piconv
+@@ -20,13 +19,8 @@
  utils/pl2pm
  utils/pod2html
  utils/prove
 -utils/ptar
 -utils/ptardiff
 -utils/ptargrep
- utils/cpanp-run-perl
- utils/cpanp
- utils/cpan2dist
 -utils/shasum
  utils/splain
  utils/xsubpp

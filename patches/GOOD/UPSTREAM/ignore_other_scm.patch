@@ -1,47 +1,47 @@
---- ./cpan/Compress-Raw-Bzip2/private/MakeUtil.pm.orig	Tue Apr 30 19:52:54 2013
-+++ ./cpan/Compress-Raw-Bzip2/private/MakeUtil.pm	Sun Sep 29 15:30:10 2013
-@@ -35,7 +35,8 @@
-     my $path = shift;
- 
-     return undef
--        if $path =~ /(~|\.bak|_bak)$/ ||
-+        if $path =~ /^(?:RCS|CVS|SCCS|\.svn|_darcs)$/ ||
-+           $path =~ /(~|\.bak|_bak)$/ ||
-            $path =~ /\..*\.sw(o|p)$/  ||
-            $path =~ /\B\.svn\b/;
- 
---- ./cpan/Compress-Raw-Zlib/private/MakeUtil.pm.orig	Tue Apr 30 19:52:54 2013
-+++ ./cpan/Compress-Raw-Zlib/private/MakeUtil.pm	Sun Sep 29 15:30:10 2013
-@@ -35,7 +35,8 @@
-     my $path = shift;
- 
-     return undef
--        if $path =~ /(~|\.bak|_bak)$/ ||
-+        if $path =~ /^(?:RCS|CVS|SCCS|\.svn|_darcs)$/ ||
-+           $path =~ /(~|\.bak|_bak)$/ ||
-            $path =~ /\..*\.sw(o|p)$/  ||
-            $path =~ /\B\.svn\b/;
- 
---- ./cpan/IO-Compress/private/MakeUtil.pm.orig	Tue Apr 30 19:52:55 2013
-+++ ./cpan/IO-Compress/private/MakeUtil.pm	Sun Sep 29 15:30:10 2013
-@@ -35,7 +35,8 @@
-     my $path = shift;
- 
-     return undef
--        if $path =~ /(~|\.bak|_bak)$/ ||
-+        if $path =~ /^(?:RCS|CVS|SCCS|\.svn|_darcs)$/ ||
-+           $path =~ /(~|\.bak|_bak)$/ ||
-            $path =~ /\..*\.sw(o|p)$/  ||
-            $path =~ /\B\.svn\b/;
- 
---- ./Configure.orig	Sun Aug 11 19:44:47 2013
-+++ ./Configure	Sun Sep 29 15:30:11 2013
-@@ -22617,6 +22617,8 @@
+--- ./Configure.orig	Tue Mar 18 10:48:51 2014
++++ ./Configure	Sat Mar 29 11:23:33 2014
+@@ -22604,6 +22604,8 @@
  nonxs_ext=''
  for xxx in $nonxs_extensions ; do
  	case "$xxx" in
 +	CVS|RCS|SCCS|.svn)
 +		;;
- 	*)	nonxs_ext="$nonxs_ext $xxx"
+ 	VMS*)
  		;;
- 	esac
+ 	*)	nonxs_ext="$nonxs_ext $xxx"
+--- ./cpan/Compress-Raw-Bzip2/private/MakeUtil.pm.orig	Fri Jul  2 11:28:31 2010
++++ ./cpan/Compress-Raw-Bzip2/private/MakeUtil.pm	Sat Mar 29 11:23:33 2014
+@@ -35,7 +35,8 @@
+     my $path = shift;
+ 
+     return undef
+-        if $path =~ /(~|\.bak|_bak)$/ ||
++        if $path =~ /^(?:RCS|CVS|SCCS|\.svn|_darcs)$/ ||
++           $path =~ /(~|\.bak|_bak)$/ ||
+            $path =~ /\..*\.sw(o|p)$/  ||
+            $path =~ /\B\.svn\b/;
+ 
+--- ./cpan/Compress-Raw-Zlib/private/MakeUtil.pm.orig	Fri Jul  2 11:28:31 2010
++++ ./cpan/Compress-Raw-Zlib/private/MakeUtil.pm	Sat Mar 29 11:23:33 2014
+@@ -35,7 +35,8 @@
+     my $path = shift;
+ 
+     return undef
+-        if $path =~ /(~|\.bak|_bak)$/ ||
++        if $path =~ /^(?:RCS|CVS|SCCS|\.svn|_darcs)$/ ||
++           $path =~ /(~|\.bak|_bak)$/ ||
+            $path =~ /\..*\.sw(o|p)$/  ||
+            $path =~ /\B\.svn\b/;
+ 
+--- ./cpan/IO-Compress/private/MakeUtil.pm.orig	Fri Jul  2 11:28:33 2010
++++ ./cpan/IO-Compress/private/MakeUtil.pm	Sat Mar 29 11:23:33 2014
+@@ -35,7 +35,8 @@
+     my $path = shift;
+ 
+     return undef
+-        if $path =~ /(~|\.bak|_bak)$/ ||
++        if $path =~ /^(?:RCS|CVS|SCCS|\.svn|_darcs)$/ ||
++           $path =~ /(~|\.bak|_bak)$/ ||
+            $path =~ /\..*\.sw(o|p)$/  ||
+            $path =~ /\B\.svn\b/;
+ 

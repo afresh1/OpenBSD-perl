@@ -1,5 +1,5 @@
---- ./ext/re/t/reflags.t.orig	Sun Aug 11 19:44:48 2013
-+++ ./ext/re/t/reflags.t	Fri Oct 25 21:43:19 2013
+--- ./ext/re/t/reflags.t.orig	Sun Mar  3 07:37:07 2013
++++ ./ext/re/t/reflags.t	Mon Mar 24 19:43:59 2014
 @@ -56,7 +56,7 @@
  SKIP: {
    if (
@@ -9,8 +9,8 @@
    ) {
      skip "no locale support", 7
    }
---- ./lib/locale.t.orig	Sun Aug 11 19:44:48 2013
-+++ ./lib/locale.t	Fri Oct 25 21:43:19 2013
+--- ./lib/locale.t.orig	Sat Mar 15 07:26:05 2014
++++ ./lib/locale.t	Mon Mar 24 19:43:59 2014
 @@ -15,7 +15,7 @@
      @INC = '../lib';
      unshift @INC, '.';
@@ -20,8 +20,8 @@
  	print "1..0\n";
  	exit;
      }
---- ./t/op/quotemeta.t.orig	Sun Aug 11 19:44:49 2013
-+++ ./t/op/quotemeta.t	Fri Oct 25 21:43:19 2013
+--- ./t/op/quotemeta.t.orig	Sun Mar  3 07:37:07 2013
++++ ./t/op/quotemeta.t	Mon Mar 24 19:43:59 2014
 @@ -128,10 +128,18 @@
      is(quotemeta($char), "\\$char", "quotemeta '\\N{U+D7}' locale in UTF-8");
      is(length(quotemeta($char)), 2, "quotemeta '\\N{U+D7}' locale in UTF-8 length");
@@ -45,14 +45,14 @@
  
      is(quotemeta("\x{263a}"), "\\\x{263a}", "quotemeta locale Unicode quoted");
      is(length(quotemeta("\x{263a}")), 2, "quotemeta locale Unicode quoted length");
---- ./t/op/taint.t.orig	Sun Aug 11 19:44:49 2013
-+++ ./t/op/taint.t	Fri Oct 25 21:43:19 2013
+--- t/op/taint.t.orig	Mon Mar  3 09:52:44 2014
++++ t/op/taint.t	Wed Mar 26 21:52:08 2014
 @@ -17,7 +17,7 @@
  use strict;
  use Config;
  
--plan tests => 797;
-+plan tests => 813;
+-plan tests => 798;
++plan tests => 814;
  
  $| = 1;
  
@@ -223,7 +223,7 @@
          $desc = "use re 'taint': substitution with pattern tainted via locale";
  
          $s = 'abcd';
-@@ -2184,7 +2230,13 @@
+@@ -2197,7 +2243,13 @@
      isnt_tainted($b, "regex optimization of single char /[]/i doesn't taint");
  }
  
@@ -238,7 +238,7 @@
      # RT 81230: tainted value during FETCH created extra ref to tied obj
  
      package P81230;
-@@ -2315,7 +2367,7 @@
+@@ -2328,7 +2380,7 @@
  }
  
  SKIP: {
@@ -247,8 +247,8 @@
  
      use feature 'fc';
      BEGIN {
---- ./t/re/pat.t.orig	Sun Aug 11 19:44:51 2013
-+++ ./t/re/pat.t	Fri Oct 25 21:43:19 2013
+--- ./t/re/pat.t.orig	Thu Mar 20 03:04:50 2014
++++ ./t/re/pat.t	Mon Mar 24 19:43:59 2014
 @@ -509,7 +509,13 @@
          is(qr/\b\v$/,     '(?^:\b\v$)', 'qr/\b\v$/');
      }
@@ -264,24 +264,9 @@
          is(qr/\b\v$/, '(?^:\b\v$)', 'Verify no locale, no unicode_strings gives default modifier');
          is(qr/(?l:\b\v$)/, '(?^:(?l:\b\v$))', 'Verify infix l modifier compiles');
          is(qr/(?u:\b\v$)/, '(?^:(?u:\b\v$))', 'Verify infix u modifier compiles');
---- ./t/uni/overload.t.orig	Sun Aug 11 19:44:49 2013
-+++ ./t/uni/overload.t	Fri Oct 25 21:43:19 2013
-@@ -101,6 +101,12 @@
-         $have_setlocale++;
-     }
- };
-+if (
-+    !$Config::Config{d_setlocale}
-+  || $Config::Config{ccflags} =~ /\bD?NO_LOCALE(_|\b)/
-+) {
-+    $have_setlocale = 0;
-+}
- 
- SKIP: {
-     if (!$have_setlocale) {
---- ./t/uni/fold.t.orig	Sun Aug 11 19:44:49 2013
-+++ ./t/uni/fold.t	Fri Oct 25 21:43:19 2013
-@@ -428,7 +428,7 @@
+--- ./t/uni/fold.t.orig	Thu Feb  6 11:22:11 2014
++++ ./t/uni/fold.t	Mon Mar 24 19:43:59 2014
+@@ -432,7 +432,7 @@
          utf8::upgrade($utf8);
          is(fc($latin1), fc($utf8), "fc() gives the same results for \\x{$_} in Latin-1 and UTF-8 under unicode_strings");
          SKIP: {
@@ -290,7 +275,7 @@
                BEGIN {
                    if($Config{d_setlocale}) {
                        require locale; import locale;
-@@ -437,7 +437,13 @@
+@@ -441,7 +441,13 @@
              is(fc($latin1), lc($latin1), "use locale; fc(qq{\\x{$_}}), lc(qq{\\x{$_}}) when qq{\\x{$_}} is in latin-1");
              is(fc($utf8), lc($utf8), "use locale; fc(qq{\\x{$_}}), lc(qq{\\x{$_}}) when qq{\\x{$_}} is in latin-1");
          }
@@ -305,3 +290,18 @@
              no feature 'unicode_strings';
              is(fc($latin1), lc($latin1), "under nothing, fc() for <256 is the same as lc");
          }
+--- ./t/uni/overload.t.orig	Sun Mar  3 07:37:07 2013
++++ ./t/uni/overload.t	Mon Mar 24 19:43:59 2014
+@@ -101,6 +101,12 @@
+         $have_setlocale++;
+     }
+ };
++if (
++    !$Config::Config{d_setlocale}
++  || $Config::Config{ccflags} =~ /\bD?NO_LOCALE(_|\b)/
++) {
++    $have_setlocale = 0;
++}
+ 
+ SKIP: {
+     if (!$have_setlocale) {

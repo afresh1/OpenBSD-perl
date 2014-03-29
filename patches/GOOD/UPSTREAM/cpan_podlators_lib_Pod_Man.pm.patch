@@ -1,6 +1,6 @@
---- ./cpan/podlators/lib/Pod/Man.pm.orig	Sun Aug 11 19:44:48 2013
-+++ ./cpan/podlators/lib/Pod/Man.pm	Sun Sep 29 15:01:37 2013
-@@ -864,7 +864,9 @@
+--- ./cpan/podlators/lib/Pod/Man.pm.orig	Sun Oct 20 06:31:28 2013
++++ ./cpan/podlators/lib/Pod/Man.pm	Mon Mar 24 23:20:07 2014
+@@ -857,7 +857,9 @@
                  $cut = $i + 1;
                  $cut++ if ($dirs[$i + 1] && $dirs[$i + 1] eq 'lib');
                  last;

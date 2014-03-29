@@ -1,5 +1,5 @@
---- ./cpan/NEXT/lib/NEXT.pm.orig	Tue Apr 30 19:52:55 2013
-+++ ./cpan/NEXT/lib/NEXT.pm	Sun Sep 29 14:33:25 2013
+--- ./cpan/NEXT/lib/NEXT.pm.orig	Fri Sep 24 01:40:31 2010
++++ ./cpan/NEXT/lib/NEXT.pm	Mon Mar 24 22:16:54 2014
 @@ -190,7 +190,7 @@
  
  =head1 NAME

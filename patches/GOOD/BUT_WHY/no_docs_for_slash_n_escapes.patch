@@ -1,6 +1,6 @@
---- ./pod/perlop.pod.orig	Sun Aug 11 19:44:48 2013
-+++ ./pod/perlop.pod	Sun Sep 29 12:40:53 2013
-@@ -1541,7 +1541,7 @@
+--- ./pod/perlop.pod.orig	Sat Mar 15 07:26:05 2014
++++ ./pod/perlop.pod	Mon Mar 24 19:11:04 2014
+@@ -1567,7 +1567,7 @@
  C<"\015">.  If you get in the habit of using C<"\n"> for networking,
  you may be burned some day.
  X<newline> X<line terminator> X<eol> X<end of line>
