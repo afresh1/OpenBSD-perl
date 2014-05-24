@@ -32,15 +32,6 @@
  	-if exist $(LIBDIR)\Package rmdir /s /q $(LIBDIR)\Package
  	-if exist $(LIBDIR)\Params rmdir /s /q $(LIBDIR)\Params
  	-if exist $(LIBDIR)\Parse rmdir /s /q $(LIBDIR)\Parse
-@@ -1276,7 +1277,7 @@
- 	-if exist $(LIBDIR)\VMS rmdir /s /q $(LIBDIR)\VMS
- 	-if exist $(LIBDIR)\Win32API rmdir /s /q $(LIBDIR)\Win32API
- 	-if exist $(LIBDIR)\XS rmdir /s /q $(LIBDIR)\XS
--	-cd $(PODDIR) && del /f *.html *.bat roffitall \
-+'	-cd $(PODDIR) && del /f *.html *.bat roffitall \
- 	    perl51910delta.pod perlaix.pod perlamiga.pod perlandroid.pod \
- 	    perlapi.pod perlbs2000.pod perlce.pod perlcn.pod perlcygwin.pod \
- 	    perldos.pod perlfreebsd.pod perlhaiku.pod perlhpux.pod \
 --- ./win32/makefile.mk.orig	Mon Mar  3 09:52:44 2014
 +++ ./win32/makefile.mk	Wed Mar 26 22:48:56 2014
 @@ -1435,6 +1435,7 @@
@@ -51,12 +42,3 @@
  	-if exist $(LIBDIR)\Package rmdir /s /q $(LIBDIR)\Package
  	-if exist $(LIBDIR)\Params rmdir /s /q $(LIBDIR)\Params
  	-if exist $(LIBDIR)\Parse rmdir /s /q $(LIBDIR)\Parse
-@@ -1459,7 +1460,7 @@
- 	-if exist $(LIBDIR)\VMS rmdir /s /q $(LIBDIR)\VMS
- 	-if exist $(LIBDIR)\Win32API rmdir /s /q $(LIBDIR)\Win32API
- 	-if exist $(LIBDIR)\XS rmdir /s /q $(LIBDIR)\XS
--	-cd $(PODDIR) && del /f *.html *.bat roffitall \
-+'	-cd $(PODDIR) && del /f *.html *.bat roffitall \
- 	    perl51910delta.pod perlaix.pod perlamiga.pod perlandroid.pod \
- 	    perlapi.pod perlbs2000.pod perlce.pod perlcn.pod perlcygwin.pod \
- 	    perldos.pod perlfreebsd.pod perlhaiku.pod perlhpux.pod \
