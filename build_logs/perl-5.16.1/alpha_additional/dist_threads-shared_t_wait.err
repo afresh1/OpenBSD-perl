@@ -1,8 +1,0 @@
-1..91
-ok 1 - Loaded
-ok 2 - cond_wait() present
-ok 3 - cond_wait() prototype '\[$@%];\[$@%]'
-ok 4 - cond_timedwait() present
-ok 5 - cond_timedwait() prototype '\[$@%]$;\[$@%]'
-ok 6 - Shared synchronization tests preparation
-Segmentation fault (core dumped) 

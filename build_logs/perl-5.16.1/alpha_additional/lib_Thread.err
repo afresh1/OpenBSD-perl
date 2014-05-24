@@ -1,3 +1,0 @@
-1..13
-ok 1 - The object isa Thread
-Segmentation fault (core dumped) 

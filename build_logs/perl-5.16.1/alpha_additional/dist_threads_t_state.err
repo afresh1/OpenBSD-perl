@@ -1,9 +1,0 @@
-1..59
-ok 1 - Loaded
-ok 2 - thread running
-ok 3 - thread running list
-ok 4 - thread not detached
-ok 5 - thread not joinable
-ok 6 - thread joinable list
-ok 7 - thread list
-Segmentation fault (core dumped) 
