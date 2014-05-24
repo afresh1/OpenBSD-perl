@@ -2,7 +2,7 @@
 
 SRCDIR=$( dirname $BINDIR )
 WRKDIR=$( pwd )
-PERL_BASE=perl-5.19.10
+PERL_BASE=perl-5.20.0-RC1
 
 if [ ! -e ${SRCDIR}/${PERL_BASE}.tar.gz ]; then
     echo Please put ${PERL_BASE}.tar.gz in $SRCDIR >&2
