@@ -45,14 +45,14 @@
  
      is(quotemeta("\x{263a}"), "\\\x{263a}", "quotemeta locale Unicode quoted");
      is(length(quotemeta("\x{263a}")), 2, "quotemeta locale Unicode quoted length");
---- t/op/taint.t.orig	Mon Mar  3 09:52:44 2014
-+++ t/op/taint.t	Wed Mar 26 21:52:08 2014
+--- ./t/op/taint.t.orig	Tue May 13 19:31:23 2014
++++ ./t/op/taint.t	Sat May 17 12:57:04 2014
 @@ -17,7 +17,7 @@
  use strict;
  use Config;
  
--plan tests => 798;
-+plan tests => 814;
+-plan tests => 800;
++plan tests => 816;
  
  $| = 1;
  
