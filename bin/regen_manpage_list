@@ -187,6 +187,13 @@ my $wanted = sub {
         : $file =~ /\.pm$/       ? '3p'
         :                          '1';
 
+    # Sometimes we want to pull the pod from a page other than
+    # where we find it by default.  If we did, and it still exists
+    # keep using it.
+    if (exists $old_pod{$page} && -e "$root/$old_pod{$page}{file}") {
+        $file = $old_pod{$page}{file};
+    }
+
     $new_pod{$page} = {
         file    => $file,
         section => $section,
