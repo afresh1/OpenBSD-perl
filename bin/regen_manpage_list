@@ -3,12 +3,15 @@ use strict;
 use warnings;
 use File::Find;
 
+use Cwd;
 use 5.010;
+
+my $root = getcwd;
 
 chdir 'obj' if -d 'obj';  # Look in the obj dir if we have one
 
 my ($bsdwrapper) = grep { -e } 'Makefile.bsd-wrapper1',
-    '../Makefile.bsd-wrapper1';
+    "$root/Makefile.bsd-wrapper1";
 
 die "Couldn't find Makefile.bsd-wrapper1" unless $bsdwrapper;
 
