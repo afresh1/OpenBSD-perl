@@ -68,7 +68,7 @@ man.build: perl.build
 beforedepend: config.sh config.h bitcount.h mg_data.h uudmap.h Makefile makedepend x2p/Makefile
 	cd ${.OBJDIR} && exec ${MAKE} depend
 
-perl.build:	perl.lib
+perl.build:	perl.lib DynaLoader.c
 	cd ${.OBJDIR} && exec ${MAKE}
 
 config.sh:	${.CURDIR}/config.over
@@ -157,8 +157,8 @@ CFLAGS+= -fno-tree-ter
 .endif
 
 # The DynaLoader extension is now compiled statically into libperl
-miniperl: ${GENERATED} ${SRCS1:S/.c/.o/g} opmini.o miniperl.o miniperlmain.o
-	${CC} -o miniperl ${SRCS1:S/.c/.o/g} opmini.o miniperl.o miniperlmain.o ${LDFLAGS} -lm -lpthread
+miniperl: ${GENERATED} ${SRCS1:S/.c/.o/g} caretx.o opmini.o perlmini.o miniperlmain.o
+	${CC} ${CPPFLAGS} ${CFLAGS} -o $@ ${SRCS1:S/.c/.o/g} caretx.o opmini.o perlmini.o miniperlmain.o ${LDFLAGS} -lm -lutil
 
 opmini.c: op.c
 	rm -f opmini.c
@@ -167,8 +167,11 @@ opmini.c: op.c
 opmini.o: opmini.c
 	${CC} ${CPPFLAGS} ${CFLAGS} -DPERL_EXTERNAL_GLOB -c  $> -o $@
 
-miniperl.o: perl.c
-	${CC} ${CPPFLAGS} ${CFLAGS} -DPERL_EXTERNAL_GLOB -DPERL_IS_MINIPERL -c  $> -o $@
+caretx.o: caretx.c
+	${CC} ${CPPFLAGS} ${CFLAGS} -DPERL_EXTERNAL_GLOB -c  $> -o $@
+
+perlmini.o: perlmini.c
+	${CC} ${CPPFLAGS} ${CFLAGS} -DPERL_EXTERNAL_GLOB -DPERL_IS_MINIPERL -c $> -o $@
 
 lib/Config.pm: miniperl config.sh
 	cd ${.OBJDIR} && exec ${MAKE} preplibrary
