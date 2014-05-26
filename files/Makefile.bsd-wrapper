@@ -52,7 +52,7 @@ STRIPFLAGS='-s'
 
 GEN_AFTER= 	bitcount.h config.h mg_data.h uudmap.h cflags makedepend \
 		myconfig Makefile Policy.sh pod/Makefile \
-		x2p/Makefile x2p/cflags
+		x2p/Makefile
 
 GENERATED=	config.sh ${GEN_AFTER}
 
@@ -98,9 +98,6 @@ pod/Makefile:
 
 x2p/Makefile:
 	cd ${.OBJDIR}/x2p && exec /bin/sh Makefile.SH
-
-x2p/cflags:
-	cd ${.OBJDIR}/x2p && exec /bin/sh cflags.SH
 
 # Never try to regenerate perly.c or perly.h
 perly.c perly.h: perly.y
