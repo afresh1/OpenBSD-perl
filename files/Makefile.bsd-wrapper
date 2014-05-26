@@ -91,7 +91,7 @@ bitcount.h: generate_uudmap
 	./generate_uudmap uudmap.h bitcount.h mg_data.h
 
 generate_uudmap: generate_uudmap.o
-	${CC} -o generate_uudmap generate_uudmap.o
+	${CC} ${CPPFLAGS} ${CFLAGS} -o generate_uudmap generate_uudmap.o
 
 pod/Makefile:
 	cd ${.OBJDIR}/pod && exec /bin/sh Makefile.SH
