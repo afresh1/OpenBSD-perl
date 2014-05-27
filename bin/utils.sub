@@ -63,7 +63,7 @@ do_build_perl() {
 
     else
         echo Configuring
-        sh ./Configure -Dusedevel -de
+        sh ./Configure
 
         echo Building
         make
