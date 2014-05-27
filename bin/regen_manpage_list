@@ -76,6 +76,7 @@ my %skip_page = map { $_ => 1 } qw(
     perlvms
     perlvos
     perlwin32
+    GDBM_File
     Module::Build::Platform::Amiga
     Module::Build::Platform::EBCDIC
     Module::Build::Platform::MPEiX
