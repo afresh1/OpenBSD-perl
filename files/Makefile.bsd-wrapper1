@@ -420,7 +420,6 @@ _quick3p=
     Filter::Simple 3p			lib/Filter/Simple.pm \
     Filter::Util::Call 3p		lib/Filter/Util/Call.pm \
     FindBin 3p				lib/FindBin.pm \
-    GDBM_File 3p			lib/GDBM_File.pm \
     Getopt::Long 3p			lib/Getopt/Long.pm \
     Getopt::Std 3p			lib/Getopt/Std.pm \
     Haiku 3p				haiku/Haiku/Haiku.pm \
