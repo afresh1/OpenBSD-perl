@@ -115,7 +115,7 @@ install: install.lib install.perl maninstall
 install.perl:
 	cd ${.OBJDIR}; INSTALL=${INSTALL} INSTALL_COPY=${INSTALL_COPY} \
 	 STRIPFLAGS=${STRIPFLAGS} INSTALLFLAGS=-o NOLIBINSTALL=1 \
-	 LD_LIBRARY_PATH=${.OBJDIR} exec ./perl installperl --destdir=${DESTDIR} -o STRIPFLAGS=${STRIPFLAGS}
+	 LD_LIBRARY_PATH=${.OBJDIR} exec ./perl installperl --destdir=${DESTDIR} -o ${STRIPFLAGS}
 
 test:
 	-@if [ -e Makefile ]; then ${MAKE} test; fi

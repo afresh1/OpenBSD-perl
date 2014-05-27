@@ -1,5 +1,5 @@
---- ./installperl.orig	Sun Oct 20 06:31:29 2013
-+++ ./installperl	Mon Mar 24 21:12:46 2014
+--- installperl.orig	Mon May 26 06:34:20 2014
++++ installperl	Mon May 26 22:05:05 2014
 @@ -274,6 +274,10 @@
      $packlist->{"$Config{installbin}/$perldll"} = { type => 'file' };
  } # if (($Is_W32 and ! $Is_NetWare) or $Is_Cygwin)
@@ -11,7 +11,7 @@
  # First we install the version-numbered executables.
  
  if ($Is_VMS) {
-@@ -297,10 +301,8 @@
+@@ -297,10 +301,7 @@
  }
  elsif ($^O ne 'dos') {
      if (!$Is_NetWare) {
@@ -19,12 +19,11 @@
 -	copy("perl$exe_ext", "$installbin/$perl_verbase$ver$exe_ext");
 -	strip("$installbin/$perl_verbase$ver$exe_ext");
 -	chmod(0755, "$installbin/$perl_verbase$ver$exe_ext");
-+	install("perl$exe_ext", "$installbin/$perl_verbase$ver$exe_ext",
-+	    "0755", $dostrip);
++	install("perl$exe_ext", "$installbin/$perl_verbase$ver$exe_ext", "0755");
      }
      else {
  	# If installing onto a NetWare server
-@@ -633,6 +635,21 @@
+@@ -633,6 +634,21 @@
  	    unless -f $to and (chmod(0666, $to), unlink $to)
  		   and File::Copy::copy($from, $to);
      }
@@ -32,12 +31,12 @@
 +}
 +
 +sub install {
-+    my($from,$to,$mode,$strip) = @_;
++    my($from,$to,$mode) = @_;
 +
 +    my $xto = $to;
 +    my $cmd = join(' ', @installcmd);
 +    $cmd .= " -m $mode" if $mode;
-+    $cmd .= " -s" if $strip;
++    $cmd .= " -s" if $opts{strip};
 +    $cmd .= " $from $to";
 +    $xto =~ s/^\Q$opts{destdir}\E// if $opts{destdir};
 +    print $opts{verbose} ? "  install $from $xto\n" : "  $xto\n" unless $opts{silent};
