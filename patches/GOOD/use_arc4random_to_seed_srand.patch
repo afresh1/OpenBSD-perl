@@ -1,0 +1,40 @@
+Date: Wed, 28 May 2014 18:00:59 -0700
+From: Philip Guenther <pguenther@proofpoint.com>
+To: hackers@openbsd.org
+Subject: perl: stop using /dev/arandom
+User-Agent: Alpine 2.11 (BSO 23 2013-08-11)
+
+
+{Perl_,}seed() is a maybe-public API in libperl (c.f. perlapi(1)) which
+currently reads a U32 from /dev/arandom.  That's not as good as just
+calling arc4random(), as the device doesn't work in chroots, etc.  While
+it's configurable for various other sources, Perl_seed() doesn't currently
+have a "just call this other function, dammit" define, so here's the blunt
+hammer diff to pound arc4random() into it.
+
+(Perl_seed() is only used in perl itself as the seed generator if you call
+perl-level srand() without an argument, and similarly the perl-level
+rand() without previously seeding it.)
+
+Yay/nay?
+
+--- ./util.c.orig	Mon Jan  6 14:46:46 2014
++++ ./util.c	Wed May 28 18:11:52 2014
+@@ -5582,6 +5582,9 @@
+ U32
+ Perl_seed(pTHX)
+ {
++#if defined(__OpenBSD__)
++	return arc4random();
++#else
+     dVAR;
+     /*
+      * This is really just a quick hack which grabs various garbage
+@@ -5658,6 +5661,7 @@
+     u += SEED_C5 * (U32)PTR2UV(&when);
+ #endif
+     return u;
++#endif
+ }
+ 
+ void
