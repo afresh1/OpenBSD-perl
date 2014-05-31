@@ -1,5 +1,5 @@
---- ./installperl.orig	Sun Aug 11 19:44:48 2013
-+++ ./installperl	Sun Sep 29 13:51:13 2013
+--- installperl.orig.good	Sat May 31 16:30:25 2014
++++ installperl	Sat May 31 16:33:30 2014
 @@ -278,6 +278,10 @@
      $packlist->{"$installbin/$perldll"} = { type => 'file' };
  } # if (($Is_W32 and ! $Is_NetWare) or $Is_Cygwin)
@@ -24,7 +24,7 @@
      }
      else {
  	# If installing onto a NetWare server
-@@ -650,6 +652,21 @@
+@@ -650,6 +652,24 @@
  	    unless -f $to and (chmod(0666, $to), unlink $to)
  		   and File::Copy::copy($from, $to);
      }
@@ -34,15 +34,18 @@
 +sub install {
 +    my($from,$to,$mode,$strip) = @_;
 +
++    my @cmd = @installcmd;
++    push @cmd, ( '-m', $mode ) if $mode;
++    push @cmd, ( '-s'        ) if $strip;
++    push @cmd, ( $from, $to  );
++
 +    my $xto = $to;
-+    my $cmd = join(' ', @installcmd);
-+    $cmd .= " -m $mode" if $mode;
-+    $cmd .= " -s" if $strip;
-+    $cmd .= " $from $to";
 +    $xto =~ s/^\Q$opts{destdir}\E// if $opts{destdir};
-+    print $opts{verbose} ? "  install $from $xto\n" : "  $xto\n" unless $opts{silent};
-+    system($cmd);
-+    warn "Couldn't $cmd\n" if $?;
++    print $opts{verbose} ? "  install $from $xto\n" : "  $xto\n"
++        unless $opts{silent};
++
++    system(@cmd);
++    warn "Couldn't @cmd\n" if $?;
      $packlist->{$xto} = { type => 'file' };
  }
  
