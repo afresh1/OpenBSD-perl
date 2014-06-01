@@ -1,5 +1,5 @@
---- ./hints/openbsd.sh.orig	Sun Oct 20 06:31:29 2013
-+++ ./hints/openbsd.sh	Mon Mar 24 22:01:14 2014
+--- ./hints/openbsd.sh.orig	Mon May 26 06:34:20 2014
++++ ./hints/openbsd.sh	Sun Jun  1 10:30:00 2014
 @@ -44,7 +44,7 @@
  #
  ARCH=`arch | sed 's/^OpenBSD.//'`
@@ -27,13 +27,11 @@
     ;;
  *)
     test "$optimize" || optimize='-O2'
-@@ -122,8 +122,8 @@
- 	;;
+@@ -123,7 +123,7 @@
  	esac
  	case "$osvers" in
--	[012].*|3.[0-6])
+ 	[012].*|3.[0-6])
 -        	# Broken at least up to OpenBSD 3.6, we'll see about 3.7
-+	[012].*|3.[0-5])
 +        	# Broken up to OpenBSD 3.6, fixed in OpenBSD 3.7
  		d_getservbyname_r=$undef ;;
  	esac
