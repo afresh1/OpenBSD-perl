@@ -1,6 +1,6 @@
---- ./Configure.orig	Sun Aug 11 19:44:47 2013
-+++ ./Configure	Sun Sep 29 13:37:11 2013
-@@ -2743,36 +2743,29 @@
+--- Configure.orig	Mon Jan  6 14:46:42 2014
++++ Configure	Tue Jun  3 22:53:00 2014
+@@ -2743,36 +2743,34 @@
  	*)	case "$lns:$issymlink" in
  		*"ln"*" -s:"*"test -"?)
  			echo "Creating the symbolic links..." >&4
@@ -12,9 +12,14 @@
 -				mkdir -p $directory
 -			done
 +			awk -v src="$src" '{
-+				dir=$1;
-+				if (!sub(/\/[^\/]*$/, "", dir)) { dir = "." }
-+				mf[dir] = mf[dir]" "src"/"$1;
++				d=""
++				n=split($1, array, "/")
++				if (n == 1) { d = "." }
++				for (i=0; i<n; i++) {
++					if (d) { d=d"/" }
++					d = d array[i]
++				}
++				mf[d] = mf[d]" "src"/"$1
 +			} END {
 +				for (d in mf) {
 +					if (d != ".") { system("mkdir -p "d) }
