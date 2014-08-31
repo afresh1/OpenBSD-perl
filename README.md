@@ -10,7 +10,7 @@ It's easy!
 * [download the patches and scripts](https://github.com/afresh1/OpenBSD-perl/archive/master.tar.gz)
 * extract someplace
 * download perl-5.20.1-RC1.tar.gz into the same directory
-    * http://cpan.metacpan.org/authors/id/R/RJ/RJBS/perl-5.20.1-RC1.tar.gz
+    * https://cpan.metacpan.org/authors/id/S/SH/SHAY/perl-5.20.1-RC1.tar.gz
 * cd to someplace you have room
 * run /path/to/OpenBSD-perl/build_perl
 * wait
