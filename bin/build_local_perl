@@ -26,6 +26,8 @@ do_build_perl 2>&1 | tee -a $log
 
 cd $WRKDIR
 
+date >> $log
+
 # Did we win?
 if test_build_success $log; then
 	echo "To install system perl:\n  cd ${PERL_BASE} && sudo make -f Makefile.bsd-wrapper install"
@@ -33,6 +35,5 @@ elif [ -z "$NO_LOCAL_PATCHES" ]; then
     # re-run without patches
     NO_LOCAL_PATCHES=1 $0
 fi
-date >> $log
 
 echo "Please send $log\n  to andrew@afresh1.com"
