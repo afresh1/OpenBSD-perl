@@ -31,7 +31,7 @@ date >> $log
 # Did we win?
 if test_build_success $log; then
 	echo "To install system perl:\n  cd ${PERL_BASE} && sudo make -f Makefile.bsd-wrapper install"
-elif [ -z "$NO_LOCAL_PATCHES" ]; then
+elif [ -z "$NO_LOCAL_PATCHES" -a -z "$NO_RETRY_WITHOUT_PATCHES" ]; then
     # re-run without patches
     NO_LOCAL_PATCHES=1 $0
 fi
