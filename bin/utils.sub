@@ -79,9 +79,9 @@ do_build_perl() {
 
 test_build_success() {
     local log=$1
-    local status=`tail -2 $log | head -1`
+    local status=`tail -5 $log | grep 'All tests successful.'`
 
-    if [ "$status" == "All tests successful." ]; then
+    if [ -n "$status" ]; then
         echo "I'm winning, I'm winning!"
         return 0
     else
