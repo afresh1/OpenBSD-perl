@@ -27,6 +27,7 @@ This is still an art, not as yet a complete doc, but a start.
 * Copy the new Makefile.bsdwrapper1 to the git repo
 * Then you can commit the patch changes!
 * Now have people test on additional architectures.
+* Double check that we got results from all archs, or at least enough
 
 ### Updating in CVS
 See bin/import_perl for most of the notes related to importing. That script
