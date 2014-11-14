@@ -40,9 +40,20 @@ find $PERL_BASE \( -name '*.orig' \) -exec rm -f {} \+
 
 
 # Import vendor version perl
-cd ${PERL_BASE}.dist
 TAG=`echo $PERL_BASE | tr 'a-z.-' 'A-Z_'`
-cvs import -kb -m"Import $PERL_BASE" $PERLCVS PERL $TAG
+cmd="cvs -d $CVSROOT import -kb -m\"Import $PERL_BASE\" $PERLCVS PERL $TAG"
+if [ -n "$AUTOCOMMIT" ]; then
+    cd ${PERL_BASE}.dist
+    $cmd
+    cd $OLDPWD
+else
+    echo "Ready to import, use this command, then fg to continue:"
+    echo cd ${PERL_BASE}.dist
+    echo $cmd
+    echo cd \$OLDPWD
+    kill -STOP $$
+fi
+
 cd $OLDPWD
 
 # Checkout the tree to fix the merge errors
@@ -75,5 +86,9 @@ find $PERLCVS \( -type f -o -path '*/CVS' -prune \) \
   -exec cvs add {} \;
 
 # Verify it looks good, then cvs commit
-cd src
-cvs commit -m"Apply local patches, remove excess files"
+if [ -n "$AUTOCOMMIT" ]; then
+    cvs commit -m"Apply local patches, fix merge conflicts, remove excess files - ${PERL_BASE}" $PERLCVS
+else
+    echo "Verify local patches look good, then cvs commit and fg to continue"
+    kill -STOP $$
+fi
