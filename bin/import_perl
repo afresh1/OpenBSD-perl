@@ -89,7 +89,7 @@ else
 fi
 
 # Add patches and remove anything we removed
-cvs_rm_add ${PERL_BASE}.dist $PERLCVS
+cvs_rm_add ${PERL_BASE} $PERLCVS
 
 # Verify it looks good, then cvs commit
 if [ -n "$AUTOCOMMIT" ]; then
