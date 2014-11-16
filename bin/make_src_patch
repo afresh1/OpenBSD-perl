@@ -33,12 +33,6 @@ cd $OLDPWD
 # remove any patch cruft
 find $PERL_BASE -name '*.orig' -exec rm -f {} \+
 
-# Now remove any files that are not in the new perl
-cd $PERLCVS
-find . \( \( -type f -o -path '*/CVS' -prune \) ! -name CVS \
-    ! -exec test -e $OLDPWD/$PERL_BASE/{} \; \) -exec cvs rm -f {} \;
-cd $OLDPWD
-
 # add and remove the files to match
 cvs_rm_add $PERL_BASE $PERLCVS
 
