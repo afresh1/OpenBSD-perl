@@ -16,7 +16,13 @@ setup_cvsroot
 PERLCVS=src/gnu/usr.bin/perl
 
 # Now checkout a clean copy of the existing perl
-cvs co $PERLCVS
+cvs co -P $PERLCVS
+
+# Put unicore off until later
+if [ -n "$SKIP_UNICORE_PATCH" ]; then
+    mv $SRCDIR/patches/GOOD/pre_built_unicore.patch ${WRKDIR}
+    trap "mv ${PWD}/pre_built_unicore.patch $SRCDIR/patches/GOOD/" 0 1 2 15
+fi
 
 # Now we need a patched version of perl
 do_extract_perl
