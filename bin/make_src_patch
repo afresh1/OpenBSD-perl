@@ -37,16 +37,8 @@ find . \( \( -type f -o -path '*/CVS' -prune \) ! -name CVS \
     ! -exec test -e $OLDPWD/$PERL_BASE/{} \; \) -exec cvs rm -f {} \;
 cd $OLDPWD
 
-# copy in the new files
-cp -r $PERL_BASE/* $PERLCVS
-
-# add any directories that aren't in CVS
-find $PERLCVS \( -type d -o -path '*/CVS' -prune \) ! -name CVS \
-    ! -exec test -e {}/CVS \; -exec cvs add {} \;
-
-# Add any files that aren't in CVS
-find $PERLCVS \( \( -type f -o -path '*/CVS' -prune \) ! -name CVS \
-    ! -exec test -e $CVSROOT/{},v \; \) -exec cvs add {} \;
+# add and remove the files to match
+cvs_rm_add $PERL_BASE $PERLCVS
 
 # Finally generate a patch
 cd src 
@@ -57,13 +49,16 @@ cat <<EOL
 
 Now you're ready to apply the patch!
 
-copy the patch into /usr/src (or adjust the path in the next line)
+copy the patch into /usr/src (or adjust the paths below)
 
 patch -p0 -E < ${PERL_BASE}.patch
 
+# Remove patch cruft
 find gnu/usr.bin/perl -name '*.orig' -exec rm -f {} \+
 
-find -d gnu/usr.bin/perl -type d ! -name CVS | while read d; do
-    [ \$( ls -1 \$d | grep -v 'CVS' | wc -l ) == 0 ] && rm -rf \$d
-done
+# Add and remove binary and zero sized files that patch doesn't understand
+grep -B1 -e '^Index:' -e 'Binary files /tmp/.* and /dev/null differ' \\
+    ${PERL_BASE}.patch | sed -ne 's/^diff -N //p' |
+    while read f; do if [ -e \$f ]; then rm \$f; else touch \$f; fi; done
+
 EOL
