@@ -47,3 +47,13 @@ Just regenerates the patches, doesn't attempt to build.
 
 Disables using `make -f Makefile.bsd-wrapper` and instead
 uses the standard `./Configure && make` to build perl.
+
+### SKIP_UNICORE_PATCH
+
+Ignores files in lib/unicore/{lib,To} when doing cvs rm and add
+
+In make_src_patch, setting this doesn't apply pre_built_unicore.patch and
+so makes the patch slightly smaller.  Not really useful.
+
+Mostly used internally by import_perl to apply the unicore changes in a
+separate commit.

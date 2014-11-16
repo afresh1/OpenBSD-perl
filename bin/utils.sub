@@ -93,31 +93,43 @@ cvs_rm_add() {
     local src=$1
     local dst=$2
 
+    # Because we pass wildcards to find in a variable
+    set -f
+
     # Remove merge cruft, we know what we want
     find $dst -name '.#*' -exec rm -f {} \+
 
+    not_cvs="! -name CVS ! -path */CVS/*"
+
+    not_unicore=''
+    if [ -n "$SKIP_UNICORE_PATCH" ]; then
+        not_unicore="! -path */unicore/lib ! -path */unicore/lib/*"
+        not_unicore="! -path */unicore/To  ! -path */unicore/To/* $not_unicore"
+        not_unicore="$not_unicore ! -name mktables.lst"
+    fi
+
     # remove any files that are not in the new perl
+    # Need to cd into $dst so `test -e` sees the correct path
     cd $dst
-    find . \( -type f -o -path '*/CVS' -prune \) \
-        ! -name CVS \
+    find . -type f $not_cvs $not_unicore \
         ! -exec test -e $OLDPWD/$src/{} \; \
-    -exec cvs rm -f {} \;
+    -exec cvs rm -f {} \+
     cd $OLDPWD
 
     # copy in the new files
+    set +f # need to glob *this*
     cp -r $src/* $dst
+    set -f
 
     # add any directories that aren't in CVS
-    find $dst \( -type d -o -path '*/CVS' -prune \) \
-        ! -name CVS \
+    find $dst -type d $not_cvs $not_unicore \
         ! -exec test -e {}/CVS \; \
-    -exec cvs add {} \;
+    -exec cvs add {} \+
 
     # Add any files that aren't in CVS
-    find $dst \( -type f -o -path '*/CVS' -prune \) \
-        ! -name CVS \
+    find $dst -type f $not_cvs $not_unicore \
         ! -execdir grep -q /{}/ CVS/Entries \; \
-    -exec cvs add -kb {} \;
+    -exec cvs add -kb {} \+
 }
 
 # Extract a relatively up-to-date perl cvs tree
