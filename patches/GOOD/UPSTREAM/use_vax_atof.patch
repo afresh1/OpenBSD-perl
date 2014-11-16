@@ -1,0 +1,16 @@
+--- hints/openbsd.sh.orig	Sun Nov 16 11:11:56 2014
++++ hints/openbsd.sh	Sun Nov 16 11:13:55 2014
+@@ -101,6 +101,13 @@
+    ;;
+ esac
+ 
++# Special per-arch specific ccflags
++case "${ARCH}-${osvers}" in
++    vax-*)
++    ccflags="-DUSE_PERL_ATOF=0 $ccflags"
++    ;;
++esac
++
+ # This script UU/usethreads.cbu will get 'called-back' by Configure 
+ # after it has prompted the user for whether to use threads.
+ cat > UU/usethreads.cbu <<'EOCBU'
