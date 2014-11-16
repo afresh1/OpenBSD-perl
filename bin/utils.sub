@@ -88,3 +88,34 @@ test_build_success() {
         return 1
     fi
 }
+
+cvs_rm_add() {
+    local src=$1
+    local dst=$2
+
+    # Remove merge cruft, we know what we want
+    find $dst -name '.#*' -exec rm -f {} \+
+
+    # remove any files that are not in the new perl
+    cd $dst
+    find . \( -type f -o -path '*/CVS' -prune \) \
+        ! -name CVS \
+        ! -exec test -e $OLDPWD/$src/{} \; \
+    -exec cvs rm -f {} \;
+    cd $OLDPWD
+
+    # copy in the new files
+    cp -r $src/* $dst
+
+    # add any directories that aren't in CVS
+    find $dst \( -type d -o -path '*/CVS' -prune \) \
+        ! -name CVS \
+        ! -exec test -e {}/CVS \; \
+    -exec cvs add {} \;
+
+    # Add any files that aren't in CVS
+    find $dst \( -type f -o -path '*/CVS' -prune \) \
+        ! -name CVS \
+        ! -execdir grep -q /{}/ CVS/Entries \; \
+    -exec cvs add -kb {} \;
+}
