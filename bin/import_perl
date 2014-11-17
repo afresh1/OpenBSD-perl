@@ -40,8 +40,6 @@ else
     kill -STOP $$
 fi
 
-cd $OLDPWD
-
 # Checkout the tree to fix the merge errors
 cvs checkout -jPERL:yesterday -jPERL $PERLCVS
 chmod -R u+w $PERLCVS
