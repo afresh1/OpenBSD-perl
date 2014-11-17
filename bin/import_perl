@@ -18,6 +18,10 @@ do_extract_perl
 rm -rf ${PERL_BASE}.dist
 cp -r $PERL_BASE ${PERL_BASE}.dist
 
+# Put unicore off until later
+mv $SRCDIR/patches/GOOD/pre_built_unicore.patch ${WRKDIR} || exit
+trap "mv ${PWD}/pre_built_unicore.patch $SRCDIR/patches/GOOD/" 0 1 2 15
+
 # Apply our local patches
 cd $PERL_BASE
 do_patch_perl
@@ -45,17 +49,17 @@ cvs checkout -jPERL:yesterday -jPERL $PERLCVS
 chmod -R u+w $PERLCVS
 
 # Get us even with vendor perl
-cvs_rm_add ${PERL_BASE}.dist $PERLCVS
+SKIP_UNICORE_PATCH=1 cvs_rm_add ${PERL_BASE}.dist $PERLCVS
 
 if [ -n "$AUTOCOMMIT" ]; then
-    cvs commit -m"Fix merge issues, remove excess files - match ${PERL_BASE}" $PERLCVS
+    cvs commit -m"Fix merge issues, remove excess files - match ${PERL_BASE} dist" $PERLCVS
 else
     echo "Verify we match upstream, commit, and fg to continue"
     kill -STOP $$
 fi
 
 # Add patches and remove anything we removed
-cvs_rm_add ${PERL_BASE} $PERLCVS
+SKIP_UNICORE_PATCH=1 cvs_rm_add ${PERL_BASE} $PERLCVS
 
 # Verify it looks good, then cvs commit
 if [ -n "$AUTOCOMMIT" ]; then
@@ -64,6 +68,24 @@ else
     echo "Verify local patches look good, then commit and fg to continue"
     kill -STOP $$
 fi
+
+# Now apply unicore patches
+patch -fEp0 -d $PERL_BASE -i ${WRKDIR}/pre_built_unicore.patch
+
+# remove any patch cruft
+find $PERL_BASE \( -name '*.orig' \) -exec rm -f {} \+
+
+# Add unicore patches and remove anything we removed
+cvs_rm_add ${PERL_BASE} $PERLCVS
+
+# Verify it looks good, then cvs commit
+if [ -n "$AUTOCOMMIT" ]; then
+    cvs commit -m"apply pre-build unicore, remove excess files - ${PERL_BASE}" $PERLCVS
+else
+    echo "Verify unicore look good, then commit and fg to continue"
+    kill -STOP $$
+fi
+
 
 cd $PERLCVS
 cvs up -PAd
