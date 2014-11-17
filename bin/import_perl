@@ -28,15 +28,14 @@ find $PERL_BASE \( -name '*.orig' \) -exec rm -f {} \+
 
 # Import vendor version perl
 TAG=`echo $PERL_BASE | tr 'a-z.-' 'A-Z_'`
-cmd="cvs -d $CVSROOT import -kb -m\"Import $PERL_BASE\" $PERLCVS PERL $TAG"
 if [ -n "$AUTOCOMMIT" ]; then
     cd ${PERL_BASE}.dist
-    $cmd
+    cvs import -kb -m"Import $PERL_BASE" $PERLCVS PERL $TAG
     cd $OLDPWD
 else
     echo "Ready to import, use this command, then fg to continue:"
     echo cd ${PERL_BASE}.dist
-    echo $cmd
+    echo "cvs -d $CVSROOT import -kb -m\"Import $PERL_BASE\" $PERLCVS PERL $TAG"
     echo cd \$OLDPWD
     kill -STOP $$
 fi
