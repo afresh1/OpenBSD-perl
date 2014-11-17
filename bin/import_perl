@@ -49,7 +49,7 @@ cvs checkout -jPERL:yesterday -jPERL $PERLCVS
 chmod -R u+w $PERLCVS
 
 # Get us even with vendor perl
-SKIP_UNICORE_PATCH=1 cvs_rm_add ${PERL_BASE}.dist $PERLCVS
+SKIP_FILES=1 SKIP_UNICORE_PATCH=1 cvs_rm_add ${PERL_BASE}.dist $PERLCVS
 
 if [ -n "$AUTOCOMMIT" ]; then
     cvs commit -m"Fix merge issues, remove excess files - match ${PERL_BASE} dist" $PERLCVS

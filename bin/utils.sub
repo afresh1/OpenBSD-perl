@@ -99,9 +99,16 @@ cvs_rm_add() {
     # Remove merge cruft, we know what we want
     find $dst -name '.#*' -exec rm -f {} \+
 
-    not_cvs="! -name CVS ! -path */CVS/*"
+    local skip_files="! -name CVS ! -path */CVS/*"
+    if [ -n "$SKIP_FILES" ]; then
+        cd $SRCDIR/files
+        for f in $( find . -type f | sed -e 's/^\./\*/' ); do
+            skip_files="$skip_files ! -path $f"
+        done
+        cd $OLDPWD
+    fi
 
-    not_unicore=''
+    local not_unicore=''
     if [ -n "$SKIP_UNICORE_PATCH" ]; then
         not_unicore="! -path */unicore/lib ! -path */unicore/lib/*"
         not_unicore="! -path */unicore/To  ! -path */unicore/To/* $not_unicore"
@@ -121,7 +128,7 @@ cvs_rm_add() {
     # remove any files that are not in the new perl
     # Need to cd into $dst so `test -e` sees the correct path
     cd $dst
-    find . -type f $not_cvs $not_unicore \
+    find . -type f $skip_files $not_unicore \
         ! -exec test -e $OLDPWD/$src/{} \; \
     -exec cvs rm -f {} \+
     cd $OLDPWD
@@ -132,12 +139,12 @@ cvs_rm_add() {
     set -f
 
     # add any directories that aren't in CVS
-    find $dst -type d $not_cvs $not_unicore \
+    find $dst -type d $skip_files $not_unicore \
         ! -exec test -e {}/CVS \; \
     -exec cvs add {} \+
 
     # Add any files that aren't in CVS
-    find $dst -type f $not_cvs $not_unicore \
+    find $dst -type f $skip_files $not_unicore \
         ! -execdir grep -q /{}/ CVS/Entries \; \
     -exec cvs add -kb {} \+
 }
