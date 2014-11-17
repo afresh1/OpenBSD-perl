@@ -105,7 +105,17 @@ cvs_rm_add() {
     if [ -n "$SKIP_UNICORE_PATCH" ]; then
         not_unicore="! -path */unicore/lib ! -path */unicore/lib/*"
         not_unicore="! -path */unicore/To  ! -path */unicore/To/* $not_unicore"
-        not_unicore="$not_unicore ! -name mktables.lst"
+        for f in \
+            CombiningClass.pl \
+            Decomposition.pl \
+            Heavy.pl \
+            Name.pl \
+            Name.pm \
+            TestProp.pl \
+            UCD.pl \
+            perluniprops.pod \
+            mktables.lst \
+        ; do not_unicore="$not_unicore ! -name $f"; done
     fi
 
     # remove any files that are not in the new perl
