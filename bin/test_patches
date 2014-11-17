@@ -19,7 +19,7 @@ find ${SRCDIR}/patches/RESEARCH -name "$NAME" | {
         cd $PERL_BASE
 
         echo Applying $patch 2>&1 | tee -a $log
-        if ! patch -p0 -F 10 -Ni "$patch" 2>&1 | tee -a $log; then
+        if ! patch -p0 -E -F 10 -Ni "$patch" 2>&1 | tee -a $log; then
             echo "Failed" 2>&1 | tee -a $log
             continue
         fi
