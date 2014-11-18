@@ -1,0 +1,17 @@
+Index: hints/openbsd.sh
+===================================================================
+RCS file: /cvs/src/gnu/usr.bin/perl/hints/openbsd.sh,v
+retrieving revision 1.54
+diff -u -p -r1.54 openbsd.sh
+--- hints/openbsd.sh	17 Nov 2014 21:01:00 -0000	1.54
++++ hints/openbsd.sh	18 Nov 2014 00:30:01 -0000
+@@ -154,6 +154,9 @@ case "$openbsd_distribution" in
+ 		useshrplib=true
+ 		libperl=`. $src/shlib_version; echo libperl.so.${major}.${minor}`
+ 	fi
++
++	# Don't support DBM not in base
++	i_gdbm='undef'
+ 	;;
+ esac
+ 
