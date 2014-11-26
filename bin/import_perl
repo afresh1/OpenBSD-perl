@@ -90,3 +90,9 @@ fi
 cd $PERLCVS
 cvs up -PAd
 cd $OLDPWD
+
+mv $PERLCVS{,.imported}
+
+cvs checkout $PERLCVS
+cd $PERLCVS
+diff -ru $PERL_BASE $PERLCVS
