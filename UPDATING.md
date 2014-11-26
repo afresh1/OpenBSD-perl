@@ -25,8 +25,13 @@ This is still an art, not as yet a complete doc, but a start.
 * After this, use `make_patched_perl` to build a patched perl directory
 * Change into the perl build directory and run `regen_manpage_list`
 * Copy the new Makefile.bsdwrapper1 to the git repo
+* Check out coreutils --diff $last_version $current_version | grep absent
 * Then you can commit the patch changes!
 * Now have people test on additional architectures.
+* Try building a release with it
+    * and installing it
+    * and building packages
+    * and using dpb
 * Double check that we got results from all archs, or at least enough
 
 ### Updating in CVS
