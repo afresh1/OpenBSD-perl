@@ -31,7 +31,7 @@ find ${SRCDIR}/patches/RESEARCH -name "$NAME" | {
         echo Generating $new_patch
         find . -name '*.orig' | (
             while read o; do
-                diff -uN $o ${o%.orig}
+                diff -uNp $o ${o%.orig}
             done
         ) > "${new_patch}.new"
 
