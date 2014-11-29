@@ -1,0 +1,116 @@
+--- ./ext/DynaLoader/Makefile.PL.orig	Sun Aug 11 19:35:42 2013
++++ ./ext/DynaLoader/Makefile.PL	Fri Oct 25 22:41:40 2013
+@@ -64,8 +64,8 @@
+ 
+     return "
+ $object : \$(FIRST_MAKEFILE) \$(OBJECT)
+-	\$(RM_RF) $object
+-	\$(CP) \$(OBJECT) $object
++	#\$(RM_RF) $object
++	#\$(CP) \$(OBJECT) $object
+ 
+ static :: $object
+ ";
+--- ./Makefile.SH.orig	Sun Aug 11 19:44:47 2013
++++ ./Makefile.SH	Fri Oct 25 22:41:40 2013
+@@ -711,11 +711,11 @@
+ LIBPERL_NONSHR		= libperl_nonshr$(LIB_EXT)
+ MINIPERL_NONSHR		= miniperl_nonshr$(EXE_EXT)
+ 
+-$(LIBPERL_NONSHR): $(obj)
+-	$(RMS) $(LIBPERL_NONSHR)
+-	$(AR) rcu $(LIBPERL_NONSHR) $(obj)
++#$(LIBPERL_NONSHR): $(obj)
++#	$(RMS) $(LIBPERL_NONSHR)
++#	$(AR) rcu $(LIBPERL_NONSHR) $(obj)
+ 
+-$(MINIPERL_NONSHR): $(LIBPERL_NONSHR) miniperlmain$(OBJ_EXT) opmini$(OBJ_EXT)  perlmini$(OBJ_EXT)
++$(MINIPERL_NONSHR): miniperlmain$(OBJ_EXT) opmini$(OBJ_EXT)  perlmini$(OBJ_EXT)
+ 	$(CC) $(LDFLAGS) -o $(MINIPERL_NONSHR) miniperlmain$(OBJ_EXT) \
+ 	    opmini$(OBJ_EXT) perlmini$(OBJ_EXT) $(LIBPERL_NONSHR) $(LIBS)
+ 
+@@ -799,33 +799,33 @@
+ 		;;
+     esac
+ 	$spitshell >>$Makefile <<'!NO!SUBS!'
+-$(LIBPERL): $& $(obj) $(DYNALOADER) $(LIBPERLEXPORT)
+-!NO!SUBS!
+-	case "$useshrplib" in
+-	true)
+-		$spitshell >>$Makefile <<'!NO!SUBS!'
+-	rm -f $@
+-	$(LD) -o $@ $(SHRPLDFLAGS) $(obj) $(DYNALOADER) $(libs)
+-!NO!SUBS!
+-		case "$osname" in
+-		aix)
+-			$spitshell >>$Makefile <<'!NO!SUBS!'
+-	rm -f libperl$(OBJ_EXT)
+-	mv $@ libperl$(OBJ_EXT)
+-	$(AR) qv $(LIBPERL) libperl$(OBJ_EXT)
+-!NO!SUBS!
+-			;;
+-		esac
+-		;;
+-	*)
+-		$spitshell >>$Makefile <<'!NO!SUBS!'
+-	rm -f $(LIBPERL)
+-	$(AR) rcu $(LIBPERL) $(obj) $(DYNALOADER)
+-	@$(ranlib) $(LIBPERL)
+-!NO!SUBS!
+-		;;
+-	esac
+-	$spitshell >>$Makefile <<'!NO!SUBS!'
++#$(LIBPERL): $& $(obj) $(DYNALOADER) $(LIBPERLEXPORT)
++#!NO!SUBS!
++#	case "$useshrplib" in
++#	true)
++#		$spitshell >>$Makefile <<'!NO!SUBS!'
++#	rm -f $@
++#	$(LD) -o $@ $(SHRPLDFLAGS) $(obj) $(DYNALOADER) $(libs)
++#!NO!SUBS!
++#		case "$osname" in
++#		aix)
++#			$spitshell >>$Makefile <<'!NO!SUBS!'
++#	rm -f libperl$(OBJ_EXT)
++#	mv $@ libperl$(OBJ_EXT)
++#	$(AR) qv $(LIBPERL) libperl$(OBJ_EXT)
++#!NO!SUBS!
++#			;;
++#		esac
++#		;;
++#	*)
++#		$spitshell >>$Makefile <<'!NO!SUBS!'
++#	rm -f $(LIBPERL)
++#	$(AR) rcu $(LIBPERL) $(obj) $(DYNALOADER)
++#	@$(ranlib) $(LIBPERL)
++#!NO!SUBS!
++#		;;
++#	esac
++#	$spitshell >>$Makefile <<'!NO!SUBS!'
+ 
+ # How to build executables.
+ 
+@@ -888,19 +888,19 @@
+ 
+ 	$spitshell >>$Makefile <<'!NO!SUBS!'
+ 
+-$(PERL_EXE): $& perlmain$(OBJ_EXT) $(LIBPERL) $(static_ext) ext.libs $(PERLEXPORT)
++$(PERL_EXE): $& perlmain$(OBJ_EXT) $(static_ext) ext.libs $(PERLEXPORT)
+ 	-@rm -f miniperl.xok
+ 	$(SHRPENV) $(LDLIBPTH) $(CC) -o perl$(PERL_SUFFIX) $(PERL_PROFILE_LDFLAGS) $(CLDFLAGS) $(CCDLFLAGS) perlmain$(OBJ_EXT) $(static_ext) $(LLIBPERL) `cat ext.libs` $(libs)
+ 
+ # Purify/Quantify Perls.
+ 
+-pure$(PERL_EXE): $& perlmain$(OBJ_EXT) $(LIBPERL) $(static_ext) ext.libs $(PERLEXPORT)
++pure$(PERL_EXE): $& perlmain$(OBJ_EXT) $(static_ext) ext.libs $(PERLEXPORT)
+ 	$(SHRPENV) $(LDLIBPTH) purify $(CC) -o pureperl $(CLDFLAGS) $(CCDLFLAGS) perlmain$(OBJ_EXT) $(static_ext) $(LLIBPERL) `cat ext.libs` $(libs)
+ 
+-purecov$(PERL_EXE): $& perlmain$(OBJ_EXT) $(LIBPERL) $(static_ext) ext.libs $(PERLEXPORT)
++purecov$(PERL_EXE): $& perlmain$(OBJ_EXT) $(static_ext) ext.libs $(PERLEXPORT)
+ 	$(SHRPENV) $(LDLIBPTH) purecov $(CC) -o purecovperl $(CLDFLAGS) $(CCDLFLAGS) perlmain$(OBJ_EXT) $(static_ext) $(LLIBPERL) `cat ext.libs` $(libs)
+ 
+-quant$(PERL_EXE): $& perlmain$(OBJ_EXT) $(LIBPERL) $(static_ext) ext.libs $(PERLEXPORT)
++quant$(PERL_EXE): $& perlmain$(OBJ_EXT) $(static_ext) ext.libs $(PERLEXPORT)
+ 	$(SHRPENV) $(LDLIBPTH) quantify $(CC) -o quantperl $(CLDFLAGS) $(CCDLFLAGS) perlmain$(OBJ_EXT) $(static_ext) $(LLIBPERL) `cat ext.libs` $(libs)
+ 
+ !NO!SUBS!
