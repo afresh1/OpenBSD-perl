@@ -1,6 +1,6 @@
---- ./ext/DynaLoader/Makefile.PL.orig	Sun Aug 11 19:35:42 2013
-+++ ./ext/DynaLoader/Makefile.PL	Fri Oct 25 22:41:40 2013
-@@ -64,8 +64,8 @@
+--- ./ext/DynaLoader/Makefile.PL.orig	Fri May 25 14:23:00 2012
++++ ./ext/DynaLoader/Makefile.PL	Sat Nov 29 12:46:16 2014
+@@ -64,8 +64,8 @@ sub MY::static {
  
      return "
  $object : \$(FIRST_MAKEFILE) \$(OBJECT)
@@ -11,9 +11,9 @@
  
  static :: $object
  ";
---- ./Makefile.SH.orig	Sun Aug 11 19:44:47 2013
-+++ ./Makefile.SH	Fri Oct 25 22:41:40 2013
-@@ -711,11 +711,11 @@
+--- ./Makefile.SH.orig	Sun Sep 14 04:30:59 2014
++++ ./Makefile.SH	Sat Nov 29 12:46:16 2014
+@@ -744,11 +744,11 @@ CCDLFLAGS		= `echo $ccdlflags|sed -e 's@-bE:.*/perl\.e
  LIBPERL_NONSHR		= libperl_nonshr$(LIB_EXT)
  MINIPERL_NONSHR		= miniperl_nonshr$(EXE_EXT)
  
@@ -29,7 +29,7 @@
  	$(CC) $(LDFLAGS) -o $(MINIPERL_NONSHR) miniperlmain$(OBJ_EXT) \
  	    opmini$(OBJ_EXT) perlmini$(OBJ_EXT) $(LIBPERL_NONSHR) $(LIBS)
  
-@@ -799,33 +799,33 @@
+@@ -832,33 +832,33 @@ $(MINIDTRACE_O): perldtrace.d $(minindt_obj) perlmini$
  		;;
      esac
  	$spitshell >>$Makefile <<'!NO!SUBS!'
@@ -90,27 +90,3 @@
  
  # How to build executables.
  
-@@ -888,19 +888,19 @@
- 
- 	$spitshell >>$Makefile <<'!NO!SUBS!'
- 
--$(PERL_EXE): $& perlmain$(OBJ_EXT) $(LIBPERL) $(static_ext) ext.libs $(PERLEXPORT)
-+$(PERL_EXE): $& perlmain$(OBJ_EXT) $(static_ext) ext.libs $(PERLEXPORT)
- 	-@rm -f miniperl.xok
- 	$(SHRPENV) $(LDLIBPTH) $(CC) -o perl$(PERL_SUFFIX) $(PERL_PROFILE_LDFLAGS) $(CLDFLAGS) $(CCDLFLAGS) perlmain$(OBJ_EXT) $(static_ext) $(LLIBPERL) `cat ext.libs` $(libs)
- 
- # Purify/Quantify Perls.
- 
--pure$(PERL_EXE): $& perlmain$(OBJ_EXT) $(LIBPERL) $(static_ext) ext.libs $(PERLEXPORT)
-+pure$(PERL_EXE): $& perlmain$(OBJ_EXT) $(static_ext) ext.libs $(PERLEXPORT)
- 	$(SHRPENV) $(LDLIBPTH) purify $(CC) -o pureperl $(CLDFLAGS) $(CCDLFLAGS) perlmain$(OBJ_EXT) $(static_ext) $(LLIBPERL) `cat ext.libs` $(libs)
- 
--purecov$(PERL_EXE): $& perlmain$(OBJ_EXT) $(LIBPERL) $(static_ext) ext.libs $(PERLEXPORT)
-+purecov$(PERL_EXE): $& perlmain$(OBJ_EXT) $(static_ext) ext.libs $(PERLEXPORT)
- 	$(SHRPENV) $(LDLIBPTH) purecov $(CC) -o purecovperl $(CLDFLAGS) $(CCDLFLAGS) perlmain$(OBJ_EXT) $(static_ext) $(LLIBPERL) `cat ext.libs` $(libs)
- 
--quant$(PERL_EXE): $& perlmain$(OBJ_EXT) $(LIBPERL) $(static_ext) ext.libs $(PERLEXPORT)
-+quant$(PERL_EXE): $& perlmain$(OBJ_EXT) $(static_ext) ext.libs $(PERLEXPORT)
- 	$(SHRPENV) $(LDLIBPTH) quantify $(CC) -o quantperl $(CLDFLAGS) $(CCDLFLAGS) perlmain$(OBJ_EXT) $(static_ext) $(LLIBPERL) `cat ext.libs` $(libs)
- 
- !NO!SUBS!
