@@ -33,7 +33,6 @@ my %skip_page = map { $_ => 1 } qw(
     TODO
     buildperl
     exetype
-    function
     installhtml
     make_patchnum
     mkppport
@@ -120,13 +119,14 @@ close $fh;
 my %new_pod;
 my $wanted = sub {
     my $look_in = shift;
-    if ($_ eq 'Porting') {
+    my $file = $File::Find::name;
+
+    if ($_ eq 'Porting' or $file =~ m#/Pod-Perldoc/corpus$#) {
         $File::Find::prune = 1;
         return;
     }
 
     return unless -f $_;
-    my $file = $File::Find::name;
 
     return if /\.t(?:xt)$/; # skip txt files and tests
     return if /\.orig$/;    # skip patch files
