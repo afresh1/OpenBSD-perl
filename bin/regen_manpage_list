@@ -33,6 +33,7 @@ my %skip_page = map { $_ => 1 } qw(
     TODO
     buildperl
     exetype
+    function
     installhtml
     make_patchnum
     mkppport
