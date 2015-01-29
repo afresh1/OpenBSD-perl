@@ -1,4 +1,7 @@
 Once we have something working, for vax, we need to have pre-built unicore
-* regenerate MANIFEST
-* Generate unicore files
-* regenerate MANIFEST (again)
+* script to regenerate MANIFEST
+* script to update the RCS Id's on files/*
+* script to regenerate MANIFEST (again)
+* Check that perl doesn't rebuild when nothing has changed.
+* check DynaLoader.sed
+* More fixes for vax
