@@ -14,18 +14,18 @@ This is still an art, not as yet a complete doc, but a start.
 * You may need to move files from APPLIES to RESEARCH and re-run
   `test_patches` a few times as some patches depend on other patches
 * Likely you will need to set NO_BSD_WRAPPER for the first few rounds
-* After you do get to the BSD_WRAPPER, you probably will need to
+* After you do get to use Makefile.bsdwrapper, you probably will need to
     * First NO_LOCALE_test_fixes.patch will need to be applied
     * While doing this, won't pass without put_OpenBSD-MkTemp_in_MANIFEST.patch
     * unless you mv files/cpan out of the way, so need to do that.
 * At some point you won't get any better results and you will actually have to
   look at the logs and update patches.
-* Once all the patches have been regeneraed run the `update_unicore` script
+* Once all the patches have been regenerated run the `update_unicore` script
 * Eventually everything will build and tests will pass.
 * After this, use `make_patched_perl` to build a patched perl directory
 * Change into the perl build directory and run `regen_manpage_list`
 * Copy the new Makefile.bsdwrapper1 to the git repo
-* Check out coreutils --diff $last_version $current_version | grep absent
+* Check out corelist --diff $last_version $current_version | grep absent
 * Then you can commit the patch changes!
 * Now have people test on additional architectures.
 * Try building a release with it
