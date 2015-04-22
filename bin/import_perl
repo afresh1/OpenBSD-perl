@@ -80,7 +80,7 @@ cvs_rm_add ${PERL_BASE} $PERLCVS
 
 # Verify it looks good, then cvs commit
 if [ -n "$AUTOCOMMIT" ]; then
-    cvs commit -m"apply pre-build unicore, remove excess files - ${PERL_BASE}" $PERLCVS
+    cvs commit -m"apply pre-built unicore, remove excess files - ${PERL_BASE}" $PERLCVS
 else
     echo "Verify unicore look good, then commit and fg to continue"
     kill -STOP $$
