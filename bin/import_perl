@@ -52,20 +52,22 @@ chmod -R u+w $PERLCVS
 SKIP_FILES=1 SKIP_UNICORE_PATCH=1 cvs_rm_add ${PERL_BASE}.dist $PERLCVS
 
 if [ -n "$AUTOCOMMIT" ]; then
-    cvs commit -m"Fix merge issues, remove excess files - match ${PERL_BASE} dist" $PERLCVS
+    cvs commit -m"Fix merge issues, remove excess files - match $PERL_BASE dist" $PERLCVS
 else
     echo "Verify we match upstream, commit, and fg to continue"
+    echo "cvs -d $CVSROOT commit $PERLCVS"
     kill -STOP $$
 fi
 
 # Add patches and remove anything we removed
-SKIP_UNICORE_PATCH=1 cvs_rm_add ${PERL_BASE} $PERLCVS
+SKIP_UNICORE_PATCH=1 cvs_rm_add $PERL_BASE $PERLCVS
 
 # Verify it looks good, then cvs commit
 if [ -n "$AUTOCOMMIT" ]; then
-    cvs commit -m"Apply local patches, remove excess files - ${PERL_BASE}" $PERLCVS
+    cvs commit -m"Apply local patches, remove excess files - $PERL_BASE" $PERLCVS
 else
     echo "Verify local patches look good, then commit and fg to continue"
+    echo "cvs -d $CVSROOT commit $PERLCVS"
     kill -STOP $$
 fi
 
@@ -76,13 +78,14 @@ patch -fEp0 -d $PERL_BASE -i ${WRKDIR}/pre_built_unicore.patch
 find $PERL_BASE \( -name '*.orig' \) -exec rm -f {} \+
 
 # Add unicore patches and remove anything we removed
-cvs_rm_add ${PERL_BASE} $PERLCVS
+cvs_rm_add $PERL_BASE $PERLCVS
 
 # Verify it looks good, then cvs commit
 if [ -n "$AUTOCOMMIT" ]; then
-    cvs commit -m"Apply pre-build unicore, remove excess files - ${PERL_BASE}" $PERLCVS
+    cvs commit -m"Apply pre-built unicore patch, remove excess files - $PERL_BASE" $PERLCVS
 else
     echo "Verify unicore look good, then commit and fg to continue"
+    echo "cvs -d $CVSROOT commit $PERLCVS"
     kill -STOP $$
 fi
 
@@ -91,7 +94,8 @@ cd $PERLCVS
 cvs up -PAd
 cd $OLDPWD
 
-mv $PERLCVS{,.imported}
+mv ${PERLCVS%%/*} ${PERLCVS%%/*}.imported
+cvs checkout -P $PERLCVS
 
-cvs checkout -Pd $( echo $PERLCVS | sed -e 's,/, ,' )
+set -x
 diff -x CVS -ru $PERL_BASE $PERLCVS
