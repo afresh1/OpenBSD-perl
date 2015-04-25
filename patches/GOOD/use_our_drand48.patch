@@ -1,0 +1,31 @@
+--- ./Configure.orig	Sun Sep 14 04:30:59 2014
++++ ./Configure	Mon Dec 22 08:47:43 2014
+@@ -19586,9 +19586,9 @@ case "$ccflags" in
+ 	;;
+ esac
+ 
+-randfunc=Perl_drand48
+-drand01="Perl_drand48()"
+-seedfunc="Perl_drand48_init"
++randfunc=drand48
++drand01="drand48()"
++seedfunc="srand48"
+ randbits=48
+ randseedtype=U32
+ 
+--- ./pp.c.orig	Sun Sep 14 04:31:05 2014
++++ ./pp.c	Mon Dec 22 08:47:43 2014
+@@ -2785,9 +2785,12 @@ PP(pp_srand)
+         }
+     }
+     else {
+-        anum = seed();
++        anum = 0;
+     }
+ 
++    if (anum)
++        (void)srand48_deterministic((Rand_seed_t)anum);
++    else
+     (void)seedDrand01((Rand_seed_t)anum);
+     PL_srand_called = TRUE;
+     if (anum)
