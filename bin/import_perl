@@ -20,7 +20,7 @@ cp -r $PERL_BASE ${PERL_BASE}.dist
 
 # Put unicore off until later
 mv $SRCDIR/patches/GOOD/pre_built_unicore.patch ${WRKDIR} || exit
-trap "mv ${PWD}/pre_built_unicore.patch $SRCDIR/patches/GOOD/" 0 1 2 15
+trap "mv ${WRKDIR}/pre_built_unicore.patch $SRCDIR/patches/GOOD/" 0 1 2 15
 
 # Apply our local patches
 cd $PERL_BASE
@@ -80,7 +80,7 @@ cvs_rm_add ${PERL_BASE} $PERLCVS
 
 # Verify it looks good, then cvs commit
 if [ -n "$AUTOCOMMIT" ]; then
-    cvs commit -m"apply pre-built unicore, remove excess files - ${PERL_BASE}" $PERLCVS
+    cvs commit -m"Apply pre-build unicore, remove excess files - ${PERL_BASE}" $PERLCVS
 else
     echo "Verify unicore look good, then commit and fg to continue"
     kill -STOP $$
@@ -93,6 +93,5 @@ cd $OLDPWD
 
 mv $PERLCVS{,.imported}
 
-cvs checkout $PERLCVS
-cd $PERLCVS
-diff -ru $PERL_BASE $PERLCVS
+cvs checkout -Pd $( echo $PERLCVS | sed -e 's,/, ,' )
+diff -x CVS -ru $PERL_BASE $PERLCVS
