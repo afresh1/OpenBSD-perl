@@ -2,7 +2,7 @@ It's easy!
 
 * download the scripts - https://github.com/afresh1/OpenBSD-perl/archive/master.tar.gz
 * extract someplace
-* copy perl-5.20.2.tar.gz into the same directory
+* copy perl-5.22.0.tar.gz into the same directory
 * cd to someplace you have room
 * run /path/to/OpenBSD-perl/build_perl
 * wait
