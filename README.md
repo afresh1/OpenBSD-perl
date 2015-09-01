@@ -57,3 +57,8 @@ so makes the patch slightly smaller.  Not really useful.
 
 Mostly used internally by import_perl to apply the unicore changes in a
 separate commit.
+
+### J
+
+Provides "make flags" hook, normally used to set `J=-j8` or something
+to run make in parallel.
