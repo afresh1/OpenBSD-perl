@@ -26,7 +26,7 @@ H2PH=		/usr/bin/h2ph
 LIB=	perl
 
 SRCS1=	gv.c toke.c perly.c pad.c regcomp.c dump.c util.c mg.c reentr.c \
-	mro.c keywords.c hv.c av.c run.c pp_hot.c sv.c pp.c scope.c pp_ctl.c \
+	mro_core.c keywords.c hv.c av.c run.c pp_hot.c sv.c pp.c scope.c pp_ctl.c \
 	pp_sys.c doop.c doio.c regexec.c utf8.c taint.c deb.c universal.c \
 	globals.c perlio.c perlapi.c numeric.c mathoms.c locale.c \
 	pp_pack.c pp_sort.c caretx.c
