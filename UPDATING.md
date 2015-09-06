@@ -7,11 +7,11 @@ This is still an art, not as yet a complete doc, but a start.
 * Pick a new version of perl and download the tar.gz
 * Update the different scripts, primarily test_patches, with the new version
 * Update files/shlib_version
-* mv patches/GOOD patches/RESEARCH
+* mv patches/GOOD patches/GOOD.orig and run `bin/cp_good_research`
 * Change to a temporary directory and run `NO_LOCAL_PATCHES=1 build_local_perl`
 * See if it runs successfully, it generally should
 * Run `test_patches` to update and test all patches
-* You may need to move files from APPLIES to RESEARCH and re-run
+* You may need to rerun `bin/cp_good_research` and re-run
   `test_patches` a few times as some patches depend on other patches
 * Likely you will need to set NO_BSD_WRAPPER for the first few rounds
 * After you do get to use Makefile.bsdwrapper, you probably will need to

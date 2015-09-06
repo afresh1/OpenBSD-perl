@@ -1,0 +1,21 @@
+#!/bin/sh
+
+WRK=patches/GOOD
+SRC=patches/GOOD.orig
+DST=patches/RESEARCH
+
+if [ ! -e "$SRC" ]; then
+	echo "Before using this, 'mv $WRK $SRC'" >&2
+	exit 1
+fi
+
+find "$SRC" | while read from; do
+	[ "$SRC" == "$from" ] && continue
+	to="$DST/${from#$SRC/}"
+	if [ -d "$from" -a ! -d "$to" ]; then
+		mkdir -p "$to"
+	elif [ ! -e "$WRK/${from#$SRC/}" ]; then
+		echo "$to"
+		cp "$from" "$to"
+	fi
+done
