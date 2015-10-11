@@ -1,5 +1,5 @@
---- ./ext/NDBM_File/Makefile.PL.orig	Wed Aug 17 04:31:42 2011
-+++ ./ext/NDBM_File/Makefile.PL	Tue Mar 25 02:12:51 2014
+--- ./ext/NDBM_File/Makefile.PL.orig	Wed May 13 13:19:29 2015
++++ ./ext/NDBM_File/Makefile.PL	Thu Sep 17 23:57:40 2015
 @@ -1,7 +1,7 @@
  use ExtUtils::MakeMaker;
  WriteMakefile(
@@ -9,9 +9,9 @@
      XSPROTOARG => '-noprototypes', 		# XXX remove later?
      VERSION_FROM => 'NDBM_File.pm',
      INC => ($^O eq "MacOS" ? "-i ::::db:include" : "")
---- ./lib/AnyDBM_File.pm.orig	Tue Sep  6 07:52:47 2011
-+++ ./lib/AnyDBM_File.pm	Tue Mar 25 02:12:51 2014
-@@ -22,8 +22,6 @@
+--- ./lib/AnyDBM_File.pm.orig	Wed May 13 13:19:30 2015
++++ ./lib/AnyDBM_File.pm	Thu Sep 17 23:57:40 2015
+@@ -22,8 +22,6 @@ __END__
  
  AnyDBM_File - provide framework for multiple DBMs
  

@@ -1,6 +1,6 @@
---- ./ext/DynaLoader/dl_dlopen.xs.orig	Sun Sep 14 04:31:01 2014
-+++ ./ext/DynaLoader/dl_dlopen.xs	Tue Nov 25 19:21:00 2014
-@@ -170,8 +170,8 @@ dl_load_file(filename, flags=0)
+--- ./ext/DynaLoader/dl_dlopen.xs.orig	Wed May 13 13:19:29 2015
++++ ./ext/DynaLoader/dl_dlopen.xs	Thu Sep 17 22:45:04 2015
+@@ -172,8 +172,8 @@ dl_load_file(filename, flags=0)
      char pathbuf[PATH_MAX + 2];
      if (*filename != '/' && strchr(filename, '/')) {
  	if (getcwd(pathbuf, PATH_MAX - strlen(filename))) {

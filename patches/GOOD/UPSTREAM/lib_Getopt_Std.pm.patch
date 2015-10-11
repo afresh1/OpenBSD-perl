@@ -1,6 +1,6 @@
---- ./lib/Getopt/Std.pm.orig	Mon Aug 12 05:25:24 2013
-+++ ./lib/Getopt/Std.pm	Tue Mar 25 00:23:03 2014
-@@ -4,7 +4,7 @@
+--- ./lib/Getopt/Std.pm.orig	Wed May 13 13:19:30 2015
++++ ./lib/Getopt/Std.pm	Thu Sep 17 22:10:38 2015
+@@ -4,7 +4,7 @@ require Exporter;
  
  =head1 NAME
  

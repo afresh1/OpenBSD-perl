@@ -1,6 +1,6 @@
---- ./ext/DynaLoader/Makefile.PL.orig	Fri May 25 14:23:00 2012
-+++ ./ext/DynaLoader/Makefile.PL	Sat Nov 29 12:46:16 2014
-@@ -64,8 +64,8 @@ sub MY::static {
+--- ./ext/DynaLoader/Makefile.PL.orig	Wed May 13 13:19:29 2015
++++ ./ext/DynaLoader/Makefile.PL	Fri Oct  2 20:57:08 2015
+@@ -65,8 +65,8 @@ sub MY::static {
  
      return "
  $object : \$(FIRST_MAKEFILE) \$(OBJECT)
@@ -11,9 +11,9 @@
  
  static :: $object
  ";
---- ./Makefile.SH.orig	Sun Sep 14 04:30:59 2014
-+++ ./Makefile.SH	Sat Nov 29 12:46:16 2014
-@@ -744,11 +744,11 @@ CCDLFLAGS		= `echo $ccdlflags|sed -e 's@-bE:.*/perl\.e
+--- ./Makefile.SH.orig	Wed May 13 13:19:28 2015
++++ ./Makefile.SH	Fri Oct  2 20:57:08 2015
+@@ -735,11 +735,11 @@ CCDLFLAGS		= `echo $ccdlflags|sed -e 's@-bE:.*/perl\.e
  LIBPERL_NONSHR		= libperl_nonshr$(LIB_EXT)
  MINIPERL_NONSHR		= miniperl_nonshr$(EXE_EXT)
  
@@ -29,7 +29,7 @@
  	$(CC) $(LDFLAGS) -o $(MINIPERL_NONSHR) miniperlmain$(OBJ_EXT) \
  	    opmini$(OBJ_EXT) perlmini$(OBJ_EXT) $(LIBPERL_NONSHR) $(LIBS)
  
-@@ -832,33 +832,33 @@ $(MINIDTRACE_O): perldtrace.d $(minindt_obj) perlmini$
+@@ -823,33 +823,33 @@ $(MINIDTRACE_O): perldtrace.d $(minindt_obj) perlmini$
  		;;
      esac
  	$spitshell >>$Makefile <<'!NO!SUBS!'

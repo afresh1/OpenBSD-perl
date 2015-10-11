@@ -1,6 +1,6 @@
---- ./Configure.orig	Tue Mar 18 10:48:51 2014
-+++ ./Configure	Sat Mar 29 11:23:33 2014
-@@ -22604,6 +22604,8 @@
+--- ./Configure.orig	Wed May 13 13:19:28 2015
++++ ./Configure	Thu Sep 17 21:36:13 2015
+@@ -23417,6 +23417,8 @@ esac
  nonxs_ext=''
  for xxx in $nonxs_extensions ; do
  	case "$xxx" in
@@ -9,9 +9,9 @@
  	VMS*)
  		;;
  	*)	nonxs_ext="$nonxs_ext $xxx"
---- ./cpan/Compress-Raw-Bzip2/private/MakeUtil.pm.orig	Fri Jul  2 11:28:31 2010
-+++ ./cpan/Compress-Raw-Bzip2/private/MakeUtil.pm	Sat Mar 29 11:23:33 2014
-@@ -35,7 +35,8 @@
+--- ./cpan/Compress-Raw-Bzip2/private/MakeUtil.pm.orig	Wed May 13 13:19:28 2015
++++ ./cpan/Compress-Raw-Bzip2/private/MakeUtil.pm	Thu Sep 17 21:36:13 2015
+@@ -35,7 +35,8 @@ sub MY::libscan
      my $path = shift;
  
      return undef
@@ -21,9 +21,9 @@
             $path =~ /\..*\.sw(o|p)$/  ||
             $path =~ /\B\.svn\b/;
  
---- ./cpan/Compress-Raw-Zlib/private/MakeUtil.pm.orig	Fri Jul  2 11:28:31 2010
-+++ ./cpan/Compress-Raw-Zlib/private/MakeUtil.pm	Sat Mar 29 11:23:33 2014
-@@ -35,7 +35,8 @@
+--- ./cpan/Compress-Raw-Zlib/private/MakeUtil.pm.orig	Wed May 13 13:19:28 2015
++++ ./cpan/Compress-Raw-Zlib/private/MakeUtil.pm	Thu Sep 17 21:36:13 2015
+@@ -35,7 +35,8 @@ sub MY::libscan
      my $path = shift;
  
      return undef
@@ -33,9 +33,9 @@
             $path =~ /\..*\.sw(o|p)$/  ||
             $path =~ /\B\.svn\b/;
  
---- ./cpan/IO-Compress/private/MakeUtil.pm.orig	Fri Jul  2 11:28:33 2010
-+++ ./cpan/IO-Compress/private/MakeUtil.pm	Sat Mar 29 11:23:33 2014
-@@ -35,7 +35,8 @@
+--- ./cpan/IO-Compress/private/MakeUtil.pm.orig	Wed May 13 13:19:29 2015
++++ ./cpan/IO-Compress/private/MakeUtil.pm	Thu Sep 17 21:36:13 2015
+@@ -35,7 +35,8 @@ sub MY::libscan
      my $path = shift;
  
      return undef

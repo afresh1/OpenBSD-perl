@@ -1,6 +1,6 @@
---- ./dist/threads-shared/t/stress.t.orig	Fri Jan 11 07:27:58 2013
-+++ ./dist/threads-shared/t/stress.t	Tue Mar 25 02:44:16 2014
-@@ -83,7 +83,7 @@
+--- ./dist/threads-shared/t/stress.t.orig	Wed May 13 13:19:29 2015
++++ ./dist/threads-shared/t/stress.t	Fri Sep 18 00:32:15 2015
+@@ -83,7 +83,7 @@ use threads::shared;
          print "# Looping for $busycount iterations should take about 0.025s\n";
      }
  

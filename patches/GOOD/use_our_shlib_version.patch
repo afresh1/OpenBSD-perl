@@ -1,6 +1,6 @@
---- ./hints/openbsd.sh.orig	Sun Oct 20 06:31:29 2013
-+++ ./hints/openbsd.sh	Tue Mar 25 04:49:38 2014
-@@ -147,9 +147,9 @@
+--- ./hints/openbsd.sh.orig	Wed May 13 13:19:29 2015
++++ ./hints/openbsd.sh	Fri Sep 18 02:51:03 2015
+@@ -143,9 +143,9 @@ case "$openbsd_distribution" in
  	locincpth='/usr/local/include'
  	loclibpth='/usr/local/lib'
  	# Link perl with shared libperl

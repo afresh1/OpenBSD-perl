@@ -1,6 +1,6 @@
---- Makefile.SH.orig	Sun May 25 13:37:36 2014
-+++ Makefile.SH	Sun May 25 13:42:32 2014
-@@ -933,10 +933,6 @@
+--- ./Makefile.SH.orig	Wed May 13 13:19:28 2015
++++ ./Makefile.SH	Fri Oct  2 21:11:29 2015
+@@ -924,10 +924,6 @@ lib/buildcustomize.pl: \$& \$(mini_obj) write_buildcus
  		else
  			$spitshell >>$Makefile <<'!NO!SUBS!'
  lib/buildcustomize.pl: $& $(mini_obj) write_buildcustomize.pl

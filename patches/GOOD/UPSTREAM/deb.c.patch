@@ -1,6 +1,6 @@
---- ./deb.c.orig	Wed Aug 29 11:02:03 2012
-+++ ./deb.c	Mon Mar 24 23:35:55 2014
-@@ -234,7 +234,7 @@
+--- ./deb.c.orig	Wed May 13 13:19:29 2015
++++ ./deb.c	Thu Sep 17 21:19:00 2015
+@@ -233,7 +233,7 @@ Perl_deb_stack_all(pTHX)
  		PerlIO_printf(Perl_debug_log, "\n");
  	    else {
  
