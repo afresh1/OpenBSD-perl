@@ -1,25 +1,76 @@
---- ./cpan/Pod-Parser/lib/Pod/PlainText.pm.orig	Thu Feb  6 11:21:58 2014
-+++ ./cpan/Pod-Parser/lib/Pod/PlainText.pm	Mon Mar 24 22:32:48 2014
-@@ -596,6 +596,11 @@
-     }
+--- ./cpan/Pod-Parser/lib/Pod/PlainText.pm.orig	Wed May 13 13:19:29 2015
++++ ./cpan/Pod-Parser/lib/Pod/PlainText.pm	Sat Oct  3 12:27:52 2015
+@@ -139,6 +139,19 @@ sub initialize {
+     return $self->SUPER::initialize;
  }
  
++# pod2text and pod2man re-use the same parser on a list of files,
++# and will lose some information if some intermediate documents produce
++# unbalanced calls to begin_cmd/end_cmd.
++# via r1.4 of OpenBSD src/gnu/usr.bin/perl/lib/Pod/PlainText.pm
 +sub begin_pod {
 +    my $self = shift;
-+    $$self{EXCLUDE} = 0;
++
 +    $$self{VERBATIM} = 0;
++    $$self{EXCLUDE}  = 0;
++
++    return $self->SUPER::begin_pod(@_);
 +}
++
  
  ############################################################################
- # Module return value and documentation
---- t/porting/customized.dat.orig	Sat Feb 21 13:19:49 2015
-+++ t/porting/customized.dat	Sat Feb 21 13:19:58 2015
-@@ -20,7 +20,7 @@
- Encode cpan/Encode/TW/Makefile.PL 0cc44f95e59f45c0fb3b66bde41525f13c19a25c
- Module::Build cpan/Module-Build/lib/Module/Build/ConfigData.pm 85eb9656e68d1f256737dc52d86b5d0fed28f832
- PerlIO::via::QuotedPrint cpan/PerlIO-via-QuotedPrint/t/QuotedPrint.t ca39f0146e89de02c746e199c45dcb3e5edad691
--Pod::Parser cpan/Pod-Parser/lib/Pod/PlainText.pm f0b490545b4e52e141450d1192d0ca00bd8d7a82
-+Pod::Parser cpan/Pod-Parser/lib/Pod/PlainText.pm 77708dd9c53ce7cd9f14c3c40a4f90e986b22e45
- Text::Balanced cpan/Text-Balanced/t/01_compile.t 1598cf491a48fa546260a2ec41142abe84da533d
- Text::Balanced cpan/Text-Balanced/t/02_extbrk.t 6ba1b64a4604e822dc2260b8ffcea6b406339ee8
- Text::Balanced cpan/Text-Balanced/t/03_extcbk.t 3307c980af28963414cab799c427b359ef3b8657
+ # Core overrides
+--- ./cpan/Pod-Parser/t/unbalanced.t.orig	Sat Oct  3 12:27:52 2015
++++ ./cpan/Pod-Parser/t/unbalanced.t	Sat Oct  3 12:27:52 2015
+@@ -0,0 +1,51 @@
++#!/usr/bin/perl
++use strict;
++use warnings;
++
++use Pod::PlainText;
++use Test::More;
++
++my $invalid = q{
++=head1 One
++
++=begin foo
++
++Foo
++};
++
++my $valid = q{
++=head1 Two
++
++=begin bar
++
++Bar
++
++=end bar
++
++=head1 Three
++};
++
++
++my $parser = Pod::PlainText->new;
++
++my $out = '';
++open my $out_fh, '>', \$out or die "Couldn't open out: $!";
++
++{
++    open my $fh, '<', \$invalid or die "Couldn't open invalid: $!";
++    $parser->parse_from_filehandle($fh, $out_fh);
++    close $fh;
++}
++
++{
++    open my $fh, '<', \$valid or die "Couldn't open valid: $!";
++    $parser->parse_from_filehandle($fh, $out_fh);
++    close $fh;
++}
++
++close $out_fh;
++
++
++is $out, "One\nTwo\nThree\n", "Correctly parsed valid document";
++
++done_testing;
