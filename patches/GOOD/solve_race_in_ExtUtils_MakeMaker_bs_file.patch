@@ -1,15 +1,15 @@
---- ./cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Unix.pm.orig	Wed May 14 16:51:23 2014
-+++ ./cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Unix.pm	Fri Jan  2 18:50:56 2015
-@@ -911,7 +911,7 @@ OTHERLDFLAGS = '.$ld_opt.$otherldflags.'
+--- ./cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Unix.pm.orig	Sat May 16 05:23:24 2015
++++ ./cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Unix.pm	Fri Sep 18 02:15:44 2015
+@@ -932,7 +932,7 @@ OTHERLDFLAGS = '.$ld_opt.$otherldflags.'
  INST_DYNAMIC_DEP = '.$inst_dynamic_dep.'
  INST_DYNAMIC_FIX = '.$ld_fix.'
  
--$(INST_DYNAMIC): $(OBJECT) $(MYEXTLIB) $(INST_ARCHAUTODIR)$(DFSEP).exists $(EXPORT_LIST) $(PERL_ARCHIVE) $(PERL_ARCHIVE_AFTER) $(INST_DYNAMIC_DEP)
-+$(INST_DYNAMIC): $(OBJECT) $(MYEXTLIB) $(BOOTSTRAP) $(INST_ARCHAUTODIR)$(DFSEP).exists $(EXPORT_LIST) $(PERL_ARCHIVE) $(PERL_ARCHIVE_AFTER) $(INST_DYNAMIC_DEP)
+-$(INST_DYNAMIC): $(OBJECT) $(MYEXTLIB) $(INST_ARCHAUTODIR)$(DFSEP).exists $(EXPORT_LIST) $(PERL_ARCHIVEDEP) $(PERL_ARCHIVE_AFTER) $(INST_DYNAMIC_DEP)
++$(INST_DYNAMIC): $(OBJECT) $(MYEXTLIB) $(BOOTSTRAP) $(INST_ARCHAUTODIR)$(DFSEP).exists $(EXPORT_LIST) $(PERL_ARCHIVEDEP) $(PERL_ARCHIVE_AFTER) $(INST_DYNAMIC_DEP)
  ');
      if ($armaybe ne ':'){
  	$ldfrom = 'tmp$(LIB_EXT)';
-@@ -963,7 +963,7 @@ MAKE
+@@ -984,7 +984,7 @@ MAKE
  
      push @m, <<'MAKE';
  	$(CHMOD) $(PERM_RWX) $@
@@ -18,3 +18,14 @@
  	- $(CP_NONEMPTY) $(BOOTSTRAP) $(INST_BOOT) $(PERM_RW)
  MAKE
  
+--- ./t/porting/customized.dat.orig	Mon May 18 14:39:15 2015
++++ ./t/porting/customized.dat	Fri Sep 18 02:15:44 2015
+@@ -22,7 +22,7 @@ ExtUtils::MakeMaker cpan/ExtUtils-MakeMaker/lib/ExtUti
+ ExtUtils::MakeMaker cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_NW5.pm 433135eecb85b4b1d90d3027432f329436c78447
+ ExtUtils::MakeMaker cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_OS2.pm 1fbb5605bfb47feee4083feba8aa85e659628f70
+ ExtUtils::MakeMaker cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_QNX.pm 5b66d1f485a6034d96fc24ba1665b1bad9e447f1
+-ExtUtils::MakeMaker cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Unix.pm 8cef99a9bd370ecfd07ddb0efbdcbb4101255e45
++ExtUtils::MakeMaker cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Unix.pm fa99617126b337f429b41dc1857cb5be88196f32
+ ExtUtils::MakeMaker cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_UWIN.pm 939572fde3d59ba77c2e677fe2df2bed4bed5898
+ ExtUtils::MakeMaker cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_VMS.pm 09c2049bfd25b735e2a5bcf56a6cff7b4827f9c8
+ ExtUtils::MakeMaker cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_VOS.pm d65d63f8217a55c36f62e249814988974f593c79
