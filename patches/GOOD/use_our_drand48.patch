@@ -1,5 +1,5 @@
 --- ./Configure.orig	Wed May 13 13:19:28 2015
-+++ ./Configure	Fri Sep 18 02:33:50 2015
++++ ./Configure	Sun Oct 11 21:38:40 2015
 @@ -20345,9 +20345,9 @@ case "$ccflags" in
  	;;
  esac
@@ -14,18 +14,19 @@
  randseedtype=U32
  
 --- ./pp.c.orig	Wed May 13 13:19:30 2015
-+++ ./pp.c	Fri Sep 18 02:33:50 2015
-@@ -2929,9 +2929,12 @@ PP(pp_srand)
++++ ./pp.c	Sun Oct 11 21:38:40 2015
+@@ -2927,12 +2927,13 @@ PP(pp_srand)
+                              "Integer overflow in srand");
+             anum = UV_MAX;
          }
++        (void)srand48_deterministic((Rand_seed_t)anum);
      }
      else {
--        anum = seed();
-+        anum = 0;
+         anum = seed();
++        (void)seedDrand01((Rand_seed_t)anum);
      }
  
-+    if (anum)
-+        (void)srand48_deterministic((Rand_seed_t)anum);
-+    else
-     (void)seedDrand01((Rand_seed_t)anum);
+-    (void)seedDrand01((Rand_seed_t)anum);
      PL_srand_called = TRUE;
      if (anum)
+ 	XPUSHu(anum);
