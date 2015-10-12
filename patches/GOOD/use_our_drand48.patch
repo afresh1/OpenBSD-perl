@@ -13,19 +13,20 @@
  randbits=48
  randseedtype=U32
  
---- ./pp.c.orig	Sun Sep 14 04:31:05 2014
-+++ ./pp.c	Mon Dec 22 08:47:43 2014
-@@ -2785,9 +2785,12 @@ PP(pp_srand)
+--- ./pp.c.orig	Wed May 13 13:19:30 2015
++++ ./pp.c	Sun Oct 11 21:38:40 2015
+@@ -2927,12 +2927,13 @@ PP(pp_srand)
+                              "Integer overflow in srand");
+             anum = UV_MAX;
          }
++        (void)srand48_deterministic((Rand_seed_t)anum);
      }
      else {
--        anum = seed();
-+        anum = 0;
+         anum = seed();
++        (void)seedDrand01((Rand_seed_t)anum);
      }
  
-+    if (anum)
-+        (void)srand48_deterministic((Rand_seed_t)anum);
-+    else
-     (void)seedDrand01((Rand_seed_t)anum);
+-    (void)seedDrand01((Rand_seed_t)anum);
      PL_srand_called = TRUE;
      if (anum)
+ 	XPUSHu(anum);
