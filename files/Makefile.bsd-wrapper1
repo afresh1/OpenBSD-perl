@@ -75,19 +75,9 @@ _quick3p=
     perl5200delta 1			pod/perl5200delta.pod \
     perl5201delta 1			pod/perl5201delta.pod \
     perl5202delta 1			pod/perl5202delta.pod \
-    perl5210delta 1			pod/perl5210delta.pod \
-    perl52110delta 1			pod/perl52110delta.pod \
-    perl52111delta 1			pod/perl52111delta.pod \
-    perl5211delta 1			pod/perl5211delta.pod \
-    perl5212delta 1			pod/perl5212delta.pod \
-    perl5213delta 1			pod/perl5213delta.pod \
-    perl5214delta 1			pod/perl5214delta.pod \
-    perl5215delta 1			pod/perl5215delta.pod \
-    perl5216delta 1			pod/perl5216delta.pod \
-    perl5217delta 1			pod/perl5217delta.pod \
-    perl5218delta 1			pod/perl5218delta.pod \
-    perl5219delta 1			pod/perl5219delta.pod \
+    perl5203delta 1			pod/perl5203delta.pod \
     perl5220delta 1			pod/perl5220delta.pod \
+    perl5221delta 1			pod/perl5221delta.pod \
     perl561delta 1			pod/perl561delta.pod \
     perl56delta 1			pod/perl56delta.pod \
     perl581delta 1			pod/perl581delta.pod \
