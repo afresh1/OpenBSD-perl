@@ -1,0 +1,64 @@
+NAME
+    OpenBSD::Pledge - Perl interface to OpenBSD pledge(2)
+
+SYNOPSIS
+      use OpenBSD::Pledge;
+      my $file = "/usr/share/dict/words";
+      pledge(qw( stdio rpath ), [$file]) || die "Unable to pledge: $!";
+
+      open my $fh, '<', $file or die "Unable to open $file: $!\n";
+      while (<$fh>) {
+        print if /pledge/i;
+      }
+      close $fh;
+
+DESCRIPTION
+    This module provides a perl interface to OpenBSD's pledge(2) syscall.
+    This is used to limit what your program can do.
+
+    Once you pledge that your program will only make certain syscalls the
+    kernel will kill the program if it attempts to call any other
+    interfaces.
+
+  EXPORT
+    Exports "pledge" by default.
+
+    ":all" will also export "pledgenames"
+
+METHODS
+  pledge(@flags, [\@paths])
+    This is the primary interface to pledge.
+
+    See the man page for more details.
+
+    Returns true on success, returns false and sets $! on failure.
+
+  pledgenames
+    Returns a list of the possible flags you can pass to "pledge".
+
+BUGS AND LIMITATIONS
+    Perl is particularly fond of "stdio" so you usually need to include at
+    least that flag.
+
+SEE ALSO
+    man 2 pledge
+    <http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man2/pledge.2>
+
+AUTHOR
+    Andrew Fresh, <afresh1@OpenBSD.org>
+
+LICENSE AND COPYRIGHT
+    Copyright (C) 2015 by Andrew Fresh <afresh1@OpenBSD.org>
+
+    Permission to use, copy, modify, and distribute this software for any
+    purpose with or without fee is hereby granted, provided that the above
+    copyright notice and this permission notice appear in all copies.
+
+    THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+    WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+    MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+    ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+    WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+    ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+    OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
