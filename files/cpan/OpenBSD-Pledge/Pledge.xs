@@ -1,3 +1,5 @@
+/*	$OpenBSD: Pledge.xs,v 1.1 2015/11/29 19:01:27 afresh1 Exp $	*/
+
 /*
  * Copyright (c) 2015 Andrew Fresh <afresh1@openbsd.org>
  *
@@ -27,36 +29,36 @@ MODULE = OpenBSD::Pledge		PACKAGE = OpenBSD::Pledge
 AV *
 pledgenames()
     INIT:
-        int i;
+	int i;
     CODE:
-        for (i = 0; pledgenames[i].bits != 0; i++)
-            XPUSHs( sv_2mortal(
-                newSVpv(pledgenames[i].name, strlen(pledgenames[i].name))
-            ) );
-        XSRETURN(i);
+	for (i = 0; pledgenames[i].bits != 0; i++)
+		XPUSHs( sv_2mortal(
+		     newSVpv(pledgenames[i].name, strlen(pledgenames[i].name))
+		) );
+	XSRETURN(i);
 
 int
-_pledge(const char * flags, SV * paths)
+_pledge(const char * promises, SV * paths)
     INIT:
-        SSize_t numpaths = 0, n;
+	SSize_t numpaths = 0, n;
 
-	CODE:
-        if (SvOK(paths)) {
-            if (SvTYPE(SvRV(paths)) != SVt_PVAV)
-                croak("not an ARRAY reference");
+    CODE:
+	if (SvOK(paths)) {
+		if (SvTYPE(SvRV(paths)) != SVt_PVAV)
+			croak("not an ARRAY reference");
 
-            numpaths = av_top_index((AV *)SvRV(paths));
+		numpaths = av_top_index((AV *)SvRV(paths));
 
-            const char *pledge_paths[ numpaths + 1 ];
-            pledge_paths[ numpaths + 1 ] = NULL;
+		const char *pledge_paths[ numpaths + 1 ];
+		pledge_paths[ numpaths + 1 ] = NULL;
 
-            for (n = 0; n <= numpaths; n++)
-                pledge_paths[n]
-                    = SvPV_nolen(*av_fetch((AV *)SvRV(paths), n, 0));
+		for (n = 0; n <= numpaths; n++)
+			pledge_paths[n]
+			    = SvPV_nolen(*av_fetch((AV *)SvRV(paths), n, 0));
 
-            RETVAL = pledge(flags, pledge_paths) != -1;
-        }
-        else
-            RETVAL = pledge(flags, NULL) != -1;
-	OUTPUT:
-		RETVAL
+		RETVAL = pledge(promises, pledge_paths) != -1;
+	}
+	else
+		RETVAL = pledge(promises, NULL) != -1;
+    OUTPUT:
+	RETVAL
