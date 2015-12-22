@@ -9,3 +9,25 @@
  
      my $mutex = 1;
      share($mutex);
+--- ./t/op/getppid.t.orig	Sat Oct 17 05:32:22 2015
++++ ./t/op/getppid.t	Mon Dec 21 08:27:55 2015
+@@ -97,7 +97,7 @@ sub fork_and_retrieve {
+ 		}
+ 	    } else {
+ 		# Fudge it by waiting a bit more:
+-		sleep 2;
++		sleep 3;
+ 	    }
+ 	    my $ppid2 = getppid();
+ 	    print $w "$how,$ppid1,$ppid2\n";
+--- ./t/re/speed.t.orig	Sat Oct 17 05:38:38 2015
++++ ./t/re/speed.t	Mon Dec 21 08:27:55 2015
+@@ -41,7 +41,7 @@ run_tests() unless caller;
+ sub run_tests {
+ 
+ 
+-    watchdog(($::running_as_thread && $::running_as_thread) ? 50 : 75);
++    watchdog(($::running_as_thread && $::running_as_thread) ? 50 : 180);
+ 
+     {
+         # [perl #120446]
