@@ -28,7 +28,7 @@ this_arch=`machine`
 
 echo lists/base/mi
 cp lists/base/mi{,.orig}
-( grep -v -e ${this_arch}-openbsd -e '/man/' -e '/lib/' $add
+( grep -v -e ${this_arch}-openbsd -e '/man/' $add
   fgrep -v -x -f $del lists/base/mi.orig
 ) | sort > lists/base/mi
 
@@ -49,16 +49,12 @@ for file in lists/base/md.*; do
     echo $file
     cp $file{,.orig}
 
-    arch_add=${wrkdir}/${arch}_add
     arch_del=${wrkdir}/${arch}_del
-
-    sed -e "s/${this_arch}-openbsd/${arch}-openbsd/" \
-        $add    > $arch_add
 
     sed -e "s/${this_arch}-openbsd/${arch}-openbsd/" \
         $del > $arch_del
 
-    ( grep -e ${arch}-openbsd -e '/lib/' $arch_add | grep -v '/man/'
+    ( sed -ne "s/${this_arch}-openbsd/${arch}-openbsd/p" $add
       fgrep -v -x -f $arch_del $file.orig
     ) | sort > $file
 done
