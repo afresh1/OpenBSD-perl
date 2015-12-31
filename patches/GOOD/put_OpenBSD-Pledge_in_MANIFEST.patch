@@ -1,13 +1,12 @@
---- MANIFEST.orig	Mon Nov 23 18:36:24 2015
-+++ MANIFEST	Mon Nov 23 18:37:10 2015
-@@ -1682,6 +1682,10 @@
+--- MANIFEST.orig	Thu Dec 31 10:44:44 2015
++++ MANIFEST	Thu Dec 31 10:46:54 2015
+@@ -1729,6 +1729,9 @@
  cpan/OpenBSD-MkTemp/MkTemp.xs	OpenBSD::MkTemp
  cpan/OpenBSD-MkTemp/README	OpenBSD::MkTemp Readme
  cpan/OpenBSD-MkTemp/t/OpenBSD-MkTemp.t	OpenBSD::MkTemp test file
 +cpan/OpenBSD-Pledge/lib/OpenBSD/Pledge.pm	OpenBSD::Pledge
 +cpan/OpenBSD-Pledge/Pledge.xs	OpenBSD::Pledge
-+cpan/OpenBSD-Pledge/README	OpenBSD::Pledge Readme
 +cpan/OpenBSD-Pledge/t/OpenBSD-Pledge.t	OpenBSD::Pledge test file
+ cpan/Package-Constants/lib/Package/Constants.pm	Package::Constants
+ cpan/Package-Constants/t/01_list.t		Package::Constants tests
  cpan/Params-Check/lib/Params/Check.pm	Params::Check
- cpan/Params-Check/t/01_Params-Check.t	Params::Check tests
- cpan/parent/lib/parent.pm			Establish an ISA relationship with base classes at compile time
