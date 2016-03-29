@@ -94,7 +94,7 @@ L</pledge>.
 
 L<pledge(2)>
 
-L<http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man2/pledge.2>
+L<http://man.openbsd.org/pledge.2>
 
 =head1 AUTHOR
 
