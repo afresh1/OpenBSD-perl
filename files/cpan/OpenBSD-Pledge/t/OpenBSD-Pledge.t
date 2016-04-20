@@ -82,7 +82,9 @@ xspledge_ok cpath => sub { mkdir q{/} };
 eval { OpenBSD::Pledge::_pledge( q{}, {} ) } && fail "Should have died";
 like $@, qr/not an ARRAY reference/ms, "Correct error for non arrayref";
 
+TODO:
 {
+local $TODO = 'Path support is disabled for now';
 	my $pid = fork // die "Unable to fork: $!\n";
 
 	if ( !$pid ) {
