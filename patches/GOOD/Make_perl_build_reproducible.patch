@@ -1,0 +1,46 @@
+From Daniel Dickman <daniel AT openbsd DOT org>
+
+The Perl build is not deterministic. I'd like to propose committing this patch:
+
+It is the same one found here:
+https://github.com/Perl/perl5/commit/6baa8dbdfb8bc6c409778912cc3c8ea3dd39c342
+
+Plus undefining PERL_BUILD_DATE to avoid adding it to the binary.
+
+Index: perl.c
+===================================================================
+RCS file: /home/cvs/src/gnu/usr.bin/perl/perl.c,v
+retrieving revision 1.25
+diff -u -p -u -r1.25 perl.c
+--- perl.c	25 Apr 2015 19:14:37 -0000	1.25
++++ perl.c	15 Feb 2016 18:23:22 -0000
+@@ -1776,15 +1776,22 @@ S_Internals_V(pTHX_ CV *cv)
+     PUSHs(Perl_newSVpvn_flags(aTHX_ non_bincompat_options,
+ 			      sizeof(non_bincompat_options) - 1, SVs_TEMP));
+
+-#ifdef __DATE__
+-#  ifdef __TIME__
++#ifndef PERL_BUILD_DATE
++#  ifdef __DATE__
++#    ifdef __TIME__
++#      define PERL_BUILD_DATE __DATE__ " " __TIME__
++#    else
++#      define PERL_BUILD_DATE __DATE__
++#    endif
++#  endif
++#endif
++
++#undef PERL_BUILD_DATE
++
++#ifdef PERL_BUILD_DATE
+     PUSHs(Perl_newSVpvn_flags(aTHX_
+-			      STR_WITH_LEN("Compiled at " __DATE__ " " __TIME__),
+-			      SVs_TEMP));
+-#  else
+-    PUSHs(Perl_newSVpvn_flags(aTHX_ STR_WITH_LEN("Compiled on " __DATE__),
++			      STR_WITH_LEN("Compiled at " PERL_BUILD_DATE),
+ 			      SVs_TEMP));
+-#  endif
+ #else
+     PUSHs(&PL_sv_undef);
+ #endif
