@@ -10,6 +10,8 @@ use warnings;
 
 use Test::More;
 use Errno;
+use FileHandle;
+use Scalar::Util qw( openhandle );
 BEGIN { use_ok('OpenBSD::MkTemp') };
 
 #########################
@@ -62,6 +64,17 @@ undef $fh2;
 open(F, ">$file2")		|| die "$0: unable to open $file2: $!";
 cmp_ok(fileno(F), '==', $fileno, "mkstemp file handle ref counting");
 
+subtest "mkstemp in scalar context" => sub {
+    plan tests => 2;
+    ok my $fh = OpenBSD::MkTemp::mkstemp($template);
+    is openhandle($fh), $fh, "mkstemp returns a filehandle in scalar mode";
+};
+
+subtest "mkstemps in scalar context" => sub {
+    plan tests => 2;
+    ok my $fh = OpenBSD::MkTemp::mkstemps($template, ".foo");
+    is openhandle($fh), $fh, "mkstemps returns a filehandle in scalar mode";
+};
 
 #
 # How about some failures?
