@@ -1,0 +1,31 @@
+
+libpthread isn't needed because of the TIB work.  libutil, well, I don't 
+think it's been needed for a long time, if ever; just a generic configure 
+script in action.
+
+I've been running my laptop with this for a couple days.
+
+Amusingly, this is mostly polish: the new libpthread doesn't install its 
+callbacks until a process does something that requires the threading bits 
+to initialize, so this just saves a bit of memory and a bit of ld.so's 
+time.
+
+
+Philip
+
+Index: hints/openbsd.sh
+===================================================================
+RCS file: /cvs/src/gnu/usr.bin/perl/hints/openbsd.sh,v
+retrieving revision 1.59
+diff -u -p -r1.59 openbsd.sh
+--- hints/openbsd.sh	25 Apr 2015 19:26:22 -0000	1.59
++++ hints/openbsd.sh	27 Jun 2016 02:54:11 -0000
+@@ -84,6 +84,8 @@ esac
+ # around for old NetBSD binaries.
+ libswanted=`echo $libswanted | sed 's/ crypt / /'`
+ 
++libswanted=`echo $libswanted | sed 's/ util / /'`
++
+ # Configure can't figure this out non-interactively
+ d_suidsafe=$define
+ 
