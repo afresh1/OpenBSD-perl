@@ -58,7 +58,8 @@ grep -B1 -e '^Index:' -e 'Binary files /tmp/.* and /dev/null differ' \\
     while read f; do if [ -e \$f ]; then rm \$f; else touch \$f; fi; done
 
 # TODO: IMPROVE THIS
-find -d . \( -type d -o -path '*/CVS' -prune \) \\
+cd gnu/usr.bin/perl && find -d . \\
+    \( -type d -o -path '*/CVS' -prune \) \\
     ! -name CVS \\
     -exec test -e {}/CVS \; \\
     -execdir sh -c 'test \$( ls -1 {} | grep -v '^CVS/$' | wc -l ) -eq 0' \; \\
