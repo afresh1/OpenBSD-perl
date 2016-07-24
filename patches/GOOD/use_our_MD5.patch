@@ -417,11 +417,14 @@
  754b9db19f79dbc4992f7166eb0f37ce  rfc1321.txt
  EOT
  }
---- ./t/porting/customized.dat.orig	Tue May 13 19:31:23 2014
-+++ ./t/porting/customized.dat	Sat May 24 10:19:33 2014
-@@ -1,4 +1,4 @@
+--- t/porting/customized.dat.orig Sun Jul 24 06:27:06 2016
++++ t/porting/customized.dat      Sun Jul 24 06:27:57 2016
+@@ -6,7 +6,7 @@
+ CPAN cpan/CPAN/lib/CPAN/Index.pm e16aaca226d692a886fc289b4daef8885caa9d20
+ CPAN cpan/CPAN/lib/CPAN/LWP/UserAgent.pm c9a184eeefe4388ef2c85ae04496d06219d7cab0
+ CPAN cpan/CPAN/lib/CPAN/Mirrors.pm b68181e1e27a88247b5ce5f2a41d999fbeaf9ad0
 -Digest::MD5 cpan/Digest-MD5/t/files.t bdbe05b705d9da305fedce7a9f4b6ba63250c7cf
 +Digest::MD5 cpan/Digest-MD5/t/files.t c1417867017210ce3d199eb9d55d8ef61fdf1a83
- Encode cpan/Encode/bin/enc2xs f60036fd3574ec05c9aab7f4db00a828d5dea92d
+ Encode cpan/Encode/bin/enc2xs a0685329f5e713b1f3866d90b61e3210fe943d8b
  Encode cpan/Encode/Byte/Makefile.PL 0986e25f981a3bf182a13a0060d28d4efedd87e6
  Encode cpan/Encode/CN/Makefile.PL 5507a49d822d0c1d14e967f4595e29e9c873540b
