@@ -10,10 +10,10 @@ fi
 log=${log}-`machine`-`date +%Y%m%dT%H%M%S`.log
 uname -a > $log
 
-do_extract_perl 2>&1 | tee -a $log
+do_extract_perl || exit 1 2>&1 | tee -a $log
 cd $PERL_BASE
 
-do_patch_perl 2>&1 | tee -a $log
+do_patch_perl || exit 1 2>&1 | tee -a $log
 
 if [ -z "$NO_READONLY_SRC" -a -z "$NO_LOCAL_PATCHES" ]; then
     [ -e ../obj ] && mv ../obj ../old && rm -rf ../old &
