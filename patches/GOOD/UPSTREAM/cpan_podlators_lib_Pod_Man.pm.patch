@@ -1,13 +1,11 @@
---- ./cpan/podlators/lib/Pod/Man.pm.orig	Wed May 13 13:19:29 2015
-+++ ./cpan/podlators/lib/Pod/Man.pm	Thu Sep 17 21:01:49 2015
-@@ -857,7 +857,9 @@ sub devise_title {
-                 $cut = $i + 1;
-                 $cut++ if ($dirs[$i + 1] && $dirs[$i + 1] eq 'lib');
-                 last;
--            }
-+            } elsif ($dirs[$i] eq 'lib' && $dirs[$i + 1] && $dirs[0] eq 'ext') {
-+                $cut = $i + 1;
-+	    }
-         }
-         if ($cut > 0) {
-             splice (@dirs, 0, $cut);
+--- cpan/podlators/lib/Pod/Man.pm.orig	Wed Apr  6 05:31:16 2016
++++ cpan/podlators/lib/Pod/Man.pm	Wed Aug 31 04:25:42 2016
+@@ -896,6 +896,8 @@
+                     $cut = $i + 1;
+                     $cut++ if ($dirs[$i + 1] && $dirs[$i + 1] eq 'lib');
+                     last;
++                } elsif ($dirs[$i] eq 'lib' && $dirs[$i + 1] && $dirs[0] eq 'ext') {
++                    $cut = $i + 1;
+                 }
+             }
+             if ($cut > 0) {
