@@ -16,11 +16,9 @@ Philip
 Index: hints/openbsd.sh
 ===================================================================
 RCS file: /cvs/src/gnu/usr.bin/perl/hints/openbsd.sh,v
-retrieving revision 1.59
-diff -u -p -r1.59 openbsd.sh
---- hints/openbsd.sh	25 Apr 2015 19:26:22 -0000	1.59
-+++ hints/openbsd.sh	27 Jun 2016 02:54:11 -0000
-@@ -84,6 +84,8 @@ esac
+--- hints/openbsd.sh.orig	Wed Aug 31 07:04:47 2016
++++ hints/openbsd.sh	Wed Aug 31 07:23:01 2016
+@@ -84,6 +84,8 @@
  # around for old NetBSD binaries.
  libswanted=`echo $libswanted | sed 's/ crypt / /'`
  
@@ -28,4 +26,14 @@ diff -u -p -r1.59 openbsd.sh
 +
  # Configure can't figure this out non-interactively
  d_suidsafe=$define
+ 
+@@ -129,6 +131,9 @@
+         	# Broken up to OpenBSD 3.6, fixed in OpenBSD 3.7
+ 		d_getservbyname_r=$undef ;;
+ 	esac
++	;;
++*)
++	libswanted=`echo $libswanted | sed 's/ pthread / /'`
+ esac
+ EOCBU
  
