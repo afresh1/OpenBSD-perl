@@ -11,35 +11,35 @@
  
  static :: $object
  ";
---- ./Makefile.SH.orig	Wed May 13 13:19:28 2015
-+++ ./Makefile.SH	Fri Oct  2 20:57:08 2015
-@@ -735,11 +735,11 @@ CCDLFLAGS		= `echo $ccdlflags|sed -e 's@-bE:.*/perl\.e
+--- Makefile.SH.orig	Thu Sep  1 09:49:31 2016
++++ Makefile.SH	Thu Sep  1 09:55:02 2016
+@@ -782,11 +782,11 @@
  LIBPERL_NONSHR		= libperl_nonshr$(LIB_EXT)
  MINIPERL_NONSHR		= miniperl_nonshr$(EXE_EXT)
  
--$(LIBPERL_NONSHR): $(obj)
+-$(LIBPERL_NONSHR): $(perllib_objs)
 -	$(RMS) $(LIBPERL_NONSHR)
--	$(AR) rcu $(LIBPERL_NONSHR) $(obj)
-+#$(LIBPERL_NONSHR): $(obj)
+-	$(AR) rc $(LIBPERL_NONSHR) $(perllib_objs)
++#$(LIBPERL_NONSHR): $(perllib_objs)
 +#	$(RMS) $(LIBPERL_NONSHR)
-+#	$(AR) rcu $(LIBPERL_NONSHR) $(obj)
++#	$(AR) rc $(LIBPERL_NONSHR) $(perllib_objs)
  
 -$(MINIPERL_NONSHR): $(LIBPERL_NONSHR) miniperlmain$(OBJ_EXT) opmini$(OBJ_EXT)  perlmini$(OBJ_EXT)
 +$(MINIPERL_NONSHR): miniperlmain$(OBJ_EXT) opmini$(OBJ_EXT)  perlmini$(OBJ_EXT)
  	$(CC) $(LDFLAGS) -o $(MINIPERL_NONSHR) miniperlmain$(OBJ_EXT) \
  	    opmini$(OBJ_EXT) perlmini$(OBJ_EXT) $(LIBPERL_NONSHR) $(LIBS)
  
-@@ -823,33 +823,33 @@ $(MINIDTRACE_O): perldtrace.d $(minindt_obj) perlmini$
+@@ -873,33 +873,33 @@
  		;;
      esac
  	$spitshell >>$Makefile <<'!NO!SUBS!'
--$(LIBPERL): $& $(obj) $(DYNALOADER) $(LIBPERLEXPORT)
+-$(LIBPERL): $& $(perllib_objs) $(DYNALOADER) $(LIBPERLEXPORT)
 -!NO!SUBS!
 -	case "$useshrplib" in
 -	true)
 -		$spitshell >>$Makefile <<'!NO!SUBS!'
 -	rm -f $@
--	$(LD) -o $@ $(SHRPLDFLAGS) $(obj) $(DYNALOADER) $(libs)
+-	$(LD) -o $@ $(SHRPLDFLAGS) $(perllib_objs) $(DYNALOADER) $(libs)
 -!NO!SUBS!
 -		case "$osname" in
 -		aix)
@@ -54,19 +54,19 @@
 -	*)
 -		$spitshell >>$Makefile <<'!NO!SUBS!'
 -	rm -f $(LIBPERL)
--	$(AR) rcu $(LIBPERL) $(obj) $(DYNALOADER)
+-	$(AR) rc $(LIBPERL) $(perllib_objs) $(DYNALOADER)
 -	@$(ranlib) $(LIBPERL)
 -!NO!SUBS!
 -		;;
 -	esac
 -	$spitshell >>$Makefile <<'!NO!SUBS!'
-+#$(LIBPERL): $& $(obj) $(DYNALOADER) $(LIBPERLEXPORT)
++#$(LIBPERL): $& $(perllib_objs) $(DYNALOADER) $(LIBPERLEXPORT)
 +#!NO!SUBS!
 +#	case "$useshrplib" in
 +#	true)
 +#		$spitshell >>$Makefile <<'!NO!SUBS!'
 +#	rm -f $@
-+#	$(LD) -o $@ $(SHRPLDFLAGS) $(obj) $(DYNALOADER) $(libs)
++#	$(LD) -o $@ $(SHRPLDFLAGS) $(perllib_objs) $(DYNALOADER) $(libs)
 +#!NO!SUBS!
 +#		case "$osname" in
 +#		aix)
@@ -81,7 +81,7 @@
 +#	*)
 +#		$spitshell >>$Makefile <<'!NO!SUBS!'
 +#	rm -f $(LIBPERL)
-+#	$(AR) rcu $(LIBPERL) $(obj) $(DYNALOADER)
++#	$(AR) rc $(LIBPERL) $(perllib_objs) $(DYNALOADER)
 +#	@$(ranlib) $(LIBPERL)
 +#!NO!SUBS!
 +#		;;

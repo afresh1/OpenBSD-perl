@@ -1,10 +1,9 @@
---- ./t/porting/customized.dat.orig	Mon May 18 14:39:15 2015
-+++ ./t/porting/customized.dat	Sat Oct  3 13:03:58 2015
-@@ -45,4 +45,4 @@ Win32API::File cpan/Win32API-File/typemap 24bff088babe
- podlators cpan/podlators/scripts/pod2man.PL f81acf53f3ff46cdcc5ebdd661c5d13eb35d20d6
- podlators cpan/podlators/scripts/pod2text.PL b4693fcfe4a0a1b38a215cfb8985a65d5d025d69
- version cpan/version/lib/version.pm d0923b895d57f1d669ae36fcf85c87b16db341d1
--version vutil.c 668f17ca43e2527645674d29ba772b86330d5663
+--- t/porting/customized.dat.orig	Thu Apr  7 04:44:45 2016
++++ t/porting/customized.dat	Sat Sep 24 19:54:02 2016
+@@ -55,3 +55,4 @@
+ Socket cpan/Socket/Socket.xs edd4fed212785f11c5c2095a75941dad27d586d9
+ autodie cpan/autodie/t/mkdir.t 9e70d2282a3cc7d76a78bf8144fccba20fb37dac
+ version cpan/version/lib/version.pm ff75e2076be10bd4c05133cd979fda0b38ca8653
 +version vutil.c 45ff345c3d8424ba63e130a223848f5b336bd87b
 --- ./vutil.c.orig	Wed May 13 13:19:31 2015
 +++ ./vutil.c	Sat Oct  3 13:03:58 2015
