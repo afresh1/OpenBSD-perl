@@ -1,0 +1,19 @@
+Don't check if target directory is writeable. This gets in the way of
+noperm builds.
+
+Index: installperl
+===================================================================
+RCS file: /cvs/src/gnu/usr.bin/perl/installperl,v
+retrieving revision 1.35
+diff -u -p -u -r1.35 installperl
+--- installperl	16 Sep 2016 08:33:13 -0000	1.35
++++ installperl	19 Sep 2016 00:30:10 -0000
+@@ -232,8 +232,6 @@ if ($Is_VMS) {  # Hang in there until Fi
+    $installbin		|| die "No installbin directory in config.sh\n";
+ -d $installbin	        || mkpath($installbin);
+ -d $installbin		|| $opts{notify} || die "$installbin is not a directory\n";
+--w $installbin		|| $opts{notify} || die "$installbin is not writable by you\n"
+-	unless $installbin =~ m#^/afs/# || $opts{notify};
+ 
+ if (!$Is_NetWare) {
+ if (!$Is_VMS) {
