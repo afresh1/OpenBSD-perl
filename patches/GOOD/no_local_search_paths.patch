@@ -11,25 +11,37 @@
  	# Link perl with shared libperl
  	if [ "$usedl" = "$define" -a -r shlib_version ]; then
  		useshrplib=true
---- ./installperl.orig	Wed May 13 13:19:29 2015
-+++ ./installperl	Fri Sep 18 01:06:42 2015
-@@ -715,6 +715,19 @@ sub installlib {
- 	return unless $do_installprivlib;
+--- configpm.orig	Sat Dec 27 03:49:22 2014
++++ configpm	Sun Sep 18 10:29:26 2016
+@@ -1090,6 +1090,18 @@
+ }
+ 
+ if ($orig_config_txt ne $config_txt or $orig_heavy_txt ne $heavy_txt) {
++    # During the build don't look in /usr/local for libs or includes
++    # but after, we want to let modules look there.
++    my $install_heavy_txt = $heavy_txt;
++    $install_heavy_txt =~ s,^(ccflags|cppflags)[^=]*='[^']+,$& -I/usr/local/include,gm;
++    $install_heavy_txt =~ s,^(ldflags|lddlflags)[^=]*='[^']+,$& -L/usr/local/lib,gm;
++
++    open INSTALL_CONFIG_HEAVY, ">", "$Config_heavy.install"
++         or die "Can't open install $Config_heavy: $!\n";
++    print INSTALL_CONFIG_HEAVY $install_heavy_txt;
++    close INSTALL_CONFIG_HEAVY;
++    print "updated install $Config_heavy\n";
++
+     open CONFIG, ">", $Config_PM or die "Can't open $Config_PM: $!\n";
+     open CONFIG_HEAVY, ">", $Config_heavy or die "Can't open $Config_heavy: $!\n";
+     print CONFIG $config_txt;
+--- installperl.orig	Sun Sep 18 16:59:49 2016
++++ installperl	Sun Sep 18 17:05:01 2016
+@@ -664,6 +664,10 @@
+ 	return;
      }
  
-+    if ($name eq 'Config_heavy.pl') {
-+        open my $ifh, '<', $_ or die $!;
-+        $_ = "$_.orig";
-+        open my $ofh, '>', $_ or die $!;
-+        while (my $l = <$ifh>) {
-+            $l =~ s,^(ccflags|cppflags)[^=]*='[^']+,$& -I/usr/local/include,;
-+            $l =~ s,^(ldflags|lddlflags)[^=]*='[^']+,$& -L/usr/local/lib,;
-+            print $ofh $l;
-+        }
-+        close $ifh;
-+        close $ofh;
-+    }
++    # If we have different install version, install that instead
++    return if -e "$_.install";
++    $name =~ s/\.install$//;
 +
-     if ($Is_NetWare && !$opts{netware} && /\.(?:nlp|nlm|bs)$/) {
-         # Don't copy .nlp,.nlm files, doesn't make sense on Windows and also
-         # if copied will give problems when building new extensions.
+     # ignore patch backups, RCS files, emacs backup & temp files and the
+     # .exists files, .PL files, and test files.
+     return if $name =~ m{\.orig$|\.rej$|~$|^#.+#$|,v$|^\.exists|\.PL$|\.plc$|\.t$|^test\.pl$|^dbm_filter_util\.pl$|^filter-util\.pl$|^uupacktool\.pl$|^\.gitignore$} ||
