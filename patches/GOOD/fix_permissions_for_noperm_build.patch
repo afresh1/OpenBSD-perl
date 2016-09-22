@@ -1,0 +1,150 @@
+--- ./installperl.orig	Wed Sep 21 21:32:31 2016
++++ ./installperl	Wed Sep 21 21:32:43 2016
+@@ -77,8 +77,8 @@ $opts{destdir} = '';
+     my $usage = 0;
+     if (!GetOptions(\%opts, 'notify|n', 'strip|s', 'silent|S',
+                     'skip-otherperls|o', 'force|f', 'verbose|V', 'archname|A',
+-                    'netware', 'nopods|p', 'destdir:s', 'help|h|?',
+-                    'versiononly|v' => \$versiononly, '<>' => sub {
++                    'netware', 'nopods|p', 'destdir:s', 'help|h|?', 'user|u:s',
++		    'group|g:s', 'versiononly|v' => \$versiononly, '<>' => sub {
+                         if ($_[0] eq '+v') {
+                             $versiononly = 0;
+                         } else {
+@@ -107,6 +107,8 @@ Usage $0: [switches]
+   -A        Also install perl with the architecture's name in the perl binary's
+             name.
+   -p        Don't install the pod files. [This will break use diagnostics;]
++  -g group  install files with the specified group
++  -u user   install files with the specified user 
+   -netware  Install correctly on a Netware server.
+   -destdir  Prefix installation directories by this string.
+   -h        Display this help message.
+@@ -114,6 +116,8 @@ EOT
+         exit $usage;
+     }
+ }
++$opts{'uid'} = getpwnam($opts{'user'}) if exists($opts{'user'});
++$opts{'gid'} = getgrnam($opts{'group'}) if exists($opts{'group'});
+ 
+ $versiononly = 1 if $Config{versiononly} && !defined $versiononly;
+ my (@scripts, @tolink);
+@@ -587,6 +591,9 @@ if (!$versiononly && !$opts{'skip-otherperls'}) {
+ }
+ 
+ $packlist->write() unless $opts{notify};
++if (defined($opts{uid}) || defined($opts{gid})) {
++    chown($opts{uid}, $opts{gid}, $packlist->packlist_file());
++}
+ print "  Installation complete\n" if $opts{verbose};
+ 
+ exit 0;
+@@ -625,6 +632,7 @@ sub safe_unlink {
+ 
+ sub copy {
+     my($from,$to) = @_;
++    my($success) = 0;
+ 
+     my $xto = $to;
+     $xto =~ s/^\Q$opts{destdir}\E//;
+@@ -632,12 +640,15 @@ sub copy {
+ 	unless $opts{silent};
+     print "  creating new version of $xto\n"
+ 	if $Is_VMS and -e $to and !$opts{silent};
+-    unless ($opts{notify} or File::Copy::copy($from, $to)) {
++    unless ($opts{notify} or File::Copy::copy($from, $to) and ++$success) {
+ 	# Might have been that F::C::c can't overwrite the target
+ 	warn "Couldn't copy $from to $to: $!\n"
+ 	    unless -f $to and (chmod(0666, $to), unlink $to)
+-		   and File::Copy::copy($from, $to);
++		   and File::Copy::copy($from, $to) and ++$success;
+     }
++    if (defined($opts{uid}) || defined($opts{gid})) {
++	chown($opts{uid}, $opts{gid}, $to) if $success;
++    }
+     $packlist->{$xto} = { type => 'file' };
+ }
+ 
+@@ -647,6 +658,8 @@ sub install {
+     my $xto = $to;
+     my $cmd = join(' ', @installcmd);
+     $cmd .= " -m $mode" if $mode;
++    $cmd .= " -o $opts{uid}" if defined($opts{uid});
++    $cmd .= " -g $opts{gid}" if defined($opts{gid});
+     $cmd .= " -s" if $opts{strip};
+     $cmd .= " $from $to";
+     $xto =~ s/^\Q$opts{destdir}\E// if $opts{destdir};
+--- ./Makefile.bsd-wrapper.orig	Wed Sep 21 21:32:30 2016
++++ ./Makefile.bsd-wrapper	Wed Sep 21 21:32:43 2016
+@@ -100,18 +100,21 @@ perly.c perly.h: perly.y
+ 	-@true
+ 
+ install: install.lib install.perl maninstall
+-	-mkdir -p ${DESTDIR}/usr/libdata/perl5/site_perl/${MACHINE_ARCH}-openbsd
++	-${INSTALL} -d -o ${LIBOWN} -g ${LIBGRP} -m ${DIRMODE} \
++		${DESTDIR}/usr/libdata/perl5/site_perl/${MACHINE_ARCH}-openbsd
+ 	(cd ${DESTDIR}/usr/include; ${H2PH} \
+ 		-d ${DESTDIR}/usr/libdata/perl5/site_perl/${MACHINE_ARCH}-openbsd \
+ 		`find . -name '*.h'`; \
+ 		pax -rw `find . -type l \! -name '*.h' | sed 's/^..//'` \
+ 		${DESTDIR}/usr/libdata/perl5/site_perl/${MACHINE_ARCH}-openbsd)
++	chown -RP ${LIBOWN}:${LIBGRP} \
++	    ${DESTDIR}/usr/libdata/perl5/site_perl/${MACHINE_ARCH}-openbsd
+ 	-chmod -R a+rX ${DESTDIR}/usr/libdata/perl5
+ 
+ install.perl:
+ 	cd ${.OBJDIR}; INSTALL=${INSTALL} INSTALL_COPY=${INSTALL_COPY} \
+ 	 STRIPFLAGS=${STRIPFLAGS} INSTALLFLAGS=-o NOLIBINSTALL=1 \
+-	 LD_LIBRARY_PATH=${.OBJDIR} exec ./perl installperl --destdir=${DESTDIR} -o ${STRIPFLAGS}
++	 LD_LIBRARY_PATH=${.OBJDIR} exec ./perl installperl --user=${LIBOWN} --group=${LIBGRP} --destdir=${DESTDIR} -o ${STRIPFLAGS}
+ 
+ test:
+ 	-@if [ -e Makefile ]; then ${MAKE} test; fi
+--- ./install_lib.pl.orig	Tue Mar  1 04:33:02 2016
++++ ./install_lib.pl	Wed Sep 21 21:32:43 2016
+@@ -6,7 +6,7 @@
+ use strict;
+ use vars qw($Is_VMS $Is_W32 $Is_OS2 $Is_Cygwin $Is_Darwin $Is_NetWare $Is_AmigaOS
+ 	    %opts $packlist);
+-use subs qw(unlink link chmod);
++use subs qw(unlink link chmod chown);
+ require File::Path;
+ require File::Copy;
+ 
+@@ -99,6 +99,9 @@ sub link {
+ 		unless -f $to and (chmod(0666, $to), unlink $to)
+ 			and File::Copy::copy($from, $to) and ++$success;
+ 	}
++	if (defined($opts{uid}) || defined($opts{gid})) {
++	    chown($opts{uid}, $opts{gid}, $to) if $success;
++	}
+ 	$packlist->{$xto} = { type => 'file' };
+     }
+     $success;
+@@ -114,6 +117,16 @@ sub chmod {
+       unless $opts{notify};
+ }
+ 
++sub chown {
++    my($uid,$gid,$name) = @_;
++
++    return if ($^O eq 'dos');
++    printf "  chown %s:%s %s\n", $uid, $gid, $name if $opts{verbose};
++    CORE::chown($uid,$gid,$name)
++	|| warn sprintf("Couldn't chown %s:%s %s: $!\n", $uid, $gid, $name)
++      unless $opts{notify};
++}
++
+ sub samepath {
+     my($p1, $p2) = @_;
+ 
+@@ -145,7 +158,8 @@ sub safe_rename {
+ }
+ 
+ sub mkpath {
+-    File::Path::mkpath(shift , $opts{verbose}, 0777) unless $opts{notify};
++    File::Path::make_path(shift, {owner=>$opts{uid}, group=>$opts{gid},
++        mode=>0777, verbose=>$opts{verbose}}) unless $opts{notify};
+ }
+ 
+ sub unixtoamiga
