@@ -233,7 +233,6 @@ _quick3p=
     autodie::hints 3p			lib/autodie/hints.pm \
     autodie::Scope::Guard 3p		lib/autodie/Scope/Guard.pm \
     autodie::Scope::GuardStack 3p	lib/autodie/Scope/GuardStack.pm \
-    autodie::ScopeUtil 3p		lib/autodie/ScopeUtil.pm \
     autodie::skip 3p			lib/autodie/skip.pm \
     AutoLoader 3p			lib/AutoLoader.pm \
     AutoSplit 3p			lib/AutoSplit.pm \
@@ -484,12 +483,10 @@ _quick3p=
     Locale::Codes 3p			lib/Locale/Codes.pod \
     Locale::Codes::API 3p		lib/Locale/Codes/API.pod \
     Locale::Codes::Changes 3p		lib/Locale/Codes/Changes.pod \
-    Locale::Codes::Constants 3p		lib/Locale/Codes/Constants.pod \
     Locale::Codes::Country 3p		lib/Locale/Codes/Country.pod \
     Locale::Codes::Currency 3p		lib/Locale/Codes/Currency.pod \
     Locale::Codes::LangExt 3p		lib/Locale/Codes/LangExt.pod \
     Locale::Codes::LangFam 3p		lib/Locale/Codes/LangFam.pod \
-    Locale::Codes::LangFam_Retired 3p	lib/Locale/Codes/LangFam_Retired.pm \
     Locale::Codes::Language 3p		lib/Locale/Codes/Language.pod \
     Locale::Codes::LangVar 3p		lib/Locale/Codes/LangVar.pod \
     Locale::Codes::Script 3p		lib/Locale/Codes/Script.pod \
