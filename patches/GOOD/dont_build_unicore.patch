@@ -1,5 +1,5 @@
---- ./Makefile.SH.orig	Sun May  8 06:28:35 2016
-+++ ./Makefile.SH	Sun Sep 25 13:06:14 2016
+--- ./Makefile.SH.orig	Sat Jul 16 03:52:42 2016
++++ ./Makefile.SH	Wed Oct 12 20:13:20 2016
 @@ -1066,10 +1066,7 @@ $(CONFIGPOD): config.sh $(MINIPERL_EXE) configpm Porti
  unidatafiles $(unidatafiles) pod/perluniprops.pod: uni.data
  
