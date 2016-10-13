@@ -78,6 +78,9 @@ _quick3p=
     perl5203delta 1			pod/perl5203delta.pod \
     perl5220delta 1			pod/perl5220delta.pod \
     perl5221delta 1			pod/perl5221delta.pod \
+    perl5222delta 1			pod/perl5222delta.pod \
+    perl5240delta 1			pod/perl5240delta.pod \
+    perl5241delta 1			pod/perl5241delta.pod \
     perl561delta 1			pod/perl561delta.pod \
     perl56delta 1			pod/perl56delta.pod \
     perl581delta 1			pod/perl581delta.pod \
@@ -234,6 +237,7 @@ _quick3p=
     autodie::Scope::Guard 3p		lib/autodie/Scope/Guard.pm \
     autodie::Scope::GuardStack 3p	lib/autodie/Scope/GuardStack.pm \
     autodie::skip 3p			lib/autodie/skip.pm \
+    autodie::Util 3p			lib/autodie/Util.pm \
     AutoLoader 3p			lib/AutoLoader.pm \
     AutoSplit 3p			lib/AutoSplit.pm \
     autouse 3p				lib/autouse.pm \
@@ -261,6 +265,7 @@ _quick3p=
     Config 3p				lib/Config.pod \
     Config::Extensions 3p		lib/Config/Extensions.pm \
     Config::Perl::V 3p			lib/Config/Perl/V.pm \
+    Configure 3p			cpan/Term-ReadKey/Configure.pm \
     constant 3p				lib/constant.pm \
     CORE 3p				lib/CORE.pod \
     CPAN 3p				lib/CPAN.pm \
@@ -409,6 +414,7 @@ _quick3p=
     File::GlobMapper 3p			lib/File/GlobMapper.pm \
     File::Path 3p			lib/File/Path.pm \
     File::Spec 3p			lib/File/Spec.pm \
+    File::Spec::AmigaOS 3p		lib/File/Spec/AmigaOS.pm \
     File::Spec::Cygwin 3p		lib/File/Spec/Cygwin.pm \
     File::Spec::Epoc 3p			lib/File/Spec/Epoc.pm \
     File::Spec::Functions 3p		lib/File/Spec/Functions.pm \
