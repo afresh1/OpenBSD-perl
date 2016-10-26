@@ -74,32 +74,6 @@
      $cmd .= " -s" if $opts{strip};
      $cmd .= " $from $to";
      $xto =~ s/^\Q$opts{destdir}\E// if $opts{destdir};
---- ./Makefile.bsd-wrapper.orig	Wed Sep 21 21:32:30 2016
-+++ ./Makefile.bsd-wrapper	Wed Sep 21 21:32:43 2016
-@@ -100,18 +100,21 @@ perly.c perly.h: perly.y
- 	-@true
- 
- install: install.lib install.perl maninstall
--	-mkdir -p ${DESTDIR}/usr/libdata/perl5/site_perl/${MACHINE_ARCH}-openbsd
-+	-${INSTALL} -d -o ${LIBOWN} -g ${LIBGRP} -m ${DIRMODE} \
-+		${DESTDIR}/usr/libdata/perl5/site_perl/${MACHINE_ARCH}-openbsd
- 	(cd ${DESTDIR}/usr/include; ${H2PH} \
- 		-d ${DESTDIR}/usr/libdata/perl5/site_perl/${MACHINE_ARCH}-openbsd \
- 		`find . -name '*.h'`; \
- 		pax -rw `find . -type l \! -name '*.h' | sed 's/^..//'` \
- 		${DESTDIR}/usr/libdata/perl5/site_perl/${MACHINE_ARCH}-openbsd)
-+	chown -RP ${LIBOWN}:${LIBGRP} \
-+	    ${DESTDIR}/usr/libdata/perl5/site_perl/${MACHINE_ARCH}-openbsd
- 	-chmod -R a+rX ${DESTDIR}/usr/libdata/perl5
- 
- install.perl:
- 	cd ${.OBJDIR}; INSTALL=${INSTALL} INSTALL_COPY=${INSTALL_COPY} \
- 	 STRIPFLAGS=${STRIPFLAGS} INSTALLFLAGS=-o NOLIBINSTALL=1 \
--	 LD_LIBRARY_PATH=${.OBJDIR} exec ./perl installperl --destdir=${DESTDIR} -o ${STRIPFLAGS}
-+	 LD_LIBRARY_PATH=${.OBJDIR} exec ./perl installperl --user=${LIBOWN} --group=${LIBGRP} --destdir=${DESTDIR} -o ${STRIPFLAGS}
- 
- test:
- 	-@if [ -e Makefile ]; then ${MAKE} test; fi
 --- ./install_lib.pl.orig	Tue Mar  1 04:33:02 2016
 +++ ./install_lib.pl	Wed Sep 21 21:32:43 2016
 @@ -6,7 +6,7 @@
