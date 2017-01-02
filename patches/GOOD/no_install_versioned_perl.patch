@@ -1,0 +1,16 @@
+Index: installperl
+===================================================================
+RCS file: /cvs/src/gnu/usr.bin/perl/installperl,v
+retrieving revision 1.37
+diff -u -p -r1.37 installperl
+--- installperl	24 Sep 2016 19:47:37 -0000	1.37
++++ installperl	9 Nov 2016 18:39:59 -0000
+@@ -405,7 +405,7 @@ if (! $versiononly && ! samepath($instal
+ 	symlink("$installbin/$perl_verbase$ver$exe_ext",
+ 		"$installbin/$perl$exe_ext");
+     } else {
+-	link("$installbin/$perl_verbase$ver$exe_ext",
++	safe_rename("$installbin/$perl_verbase$ver$exe_ext",
+ 		"$installbin/$perl$exe_ext");
+     }
+ }
