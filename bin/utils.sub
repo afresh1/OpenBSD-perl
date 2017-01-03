@@ -18,7 +18,7 @@ apply_good_patches() {
     local name=${1:-*.patch}
     local _file;
 
-    find ${SRCDIR}/patches/GOOD -name "$name" -print | while read _file; do
+    find ${SRCDIR}/patches/GOOD -name "$name" -print | sort | while read _file; do
         patch -fEp0 -i $_file
 	if [ $( find . -name '*.rej' | wc -l ) -ne 0 ]; then
 		echo $_file failed!
