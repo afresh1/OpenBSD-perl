@@ -1,0 +1,21 @@
+OpenBSD alpha.home.hewus.com 6.0 GENERIC#7 alpha
+make obj
+make -j1 -f Makefile.bsd-wrapper obj
+making /home/afresh1/perl/perl-5.24.1-RC5/obj
+mkdir: /home/afresh1/perl/perl-5.24.1-RC5/obj: File exists
+*** Error 1 in /home/afresh1/perl/perl-5.24.1-RC5 (<bsd.obj.mk>:63 'obj': @cd /home/afresh1/perl/perl-5.24.1-RC5;  umask 007;  here=`/bin/pw...)
+Configure
+make -j1 -f Makefile.bsd-wrapper depend
+cc -O2 -pipe -g -fno-strict-aliasing -fno-delete-null-pointer-checks  -fno-tree-ter  -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DBIG_TIME -I. -c generate_uudmap.c -o generate_uudmap.o
+Assembler messages:
+FATAL: can't create generate_uudmap.o.o: Permission denied
+*** Error 2 in /home/afresh1/perl/perl-5.24.1-RC5 (<bsd.lib.mk>:41 'generate_uudmap.o': @cc -O2 -pipe -g -fno-strict-aliasing -fno-delete-nu...)
+Building
+make -j1 -f Makefile.bsd-wrapper all
+cc -O2 -pipe -g -fno-strict-aliasing -fno-delete-null-pointer-checks  -fno-tree-ter  -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DBIG_TIME -I. -c generate_uudmap.c -o generate_uudmap.o
+Assembler messages:
+FATAL: can't create generate_uudmap.o.o: Permission denied
+*** Error 2 in /home/afresh1/perl/perl-5.24.1-RC5 (<bsd.lib.mk>:41 'generate_uudmap.o': @cc -O2 -pipe -g -fno-strict-aliasing -fno-delete-nu...)
+Testing
+make -j1 -f Makefile.bsd-wrapper test
+Wed Jan  4 02:49:57 PST 2017
