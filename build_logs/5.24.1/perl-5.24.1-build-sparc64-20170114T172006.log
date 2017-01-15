@@ -1,0 +1,939 @@
+OpenBSD sparc64.home.hewus.com 6.0 GENERIC#69 sparc64
+make obj
+make -j1 -f Makefile.bsd-wrapper obj
+Configure
+make -j1 -f Makefile.bsd-wrapper depend
+cc -O2 -pipe -g -fno-strict-aliasing -fno-delete-null-pointer-checks   -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DBIG_TIME -I. -c /home/afresh1/perl/perl-5.24.1/generate_uudmap.c -o generate_uudmap.o
+cc  -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DBIG_TIME -I. -O2 -pipe -g -fno-strict-aliasing -fno-delete-null-pointer-checks  -o generate_uudmap generate_uudmap.o
+cd /home/afresh1/perl/perl-5.24.1/obj && PATH="/bin:/usr/bin:/sbin:/usr/sbin"  exec /bin/sh /home/afresh1/perl/perl-5.24.1/Configure -dsE -Dopenbsd_distribution=defined -Dccflags='-DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE' -Dmksymlinks
+(I see you are using the Korn shell.  Some ksh's blow up on Configure,
+mainly on older exotic systems.  If yours does, try the Bourne shell instead.)
+Sources for perl5 found in "/home/afresh1/perl/perl-5.24.1".
+First let's make sure your kit is complete.  Checking...
+Locating common programs...
+Checking compatibility between /bin/echo and builtin echo (if any)...
+Symbolic links are supported.
+Checking how to test for symbolic links...
+You can test for symbolic links with 'test -h'.
+Creating the symbolic links...
+Checking for cross-compile
+No targethost for running compiler tests against defined, running locally
+Good, your tr supports [:lower:] and [:upper:] to convert case.
+Using [:upper:] and [:lower:] to convert case.
+aix                 esix4               linux               sco_2_3_1   
+aix_3               fps                 lynxos              sco_2_3_2   
+aix_4               freebsd             midnightbsd         sco_2_3_3   
+altos486            freemint            mips                sco_2_3_4   
+amigaos             genix               mirbsd              solaris_2   
+atheos              gnu                 mpc                 stellar   
+aux_3               gnukfreebsd         ncr_tower           sunos_4_0   
+bitrig              gnuknetbsd          netbsd              sunos_4_1   
+bsdos               greenhills          newsos4             super-ux   
+catamount           haiku               nonstopux           svr4   
+convexos            hpux                openbsd             svr5   
+cxux                i386                opus                ti1500   
+cygwin              interix             os2                 ultrix_4   
+darwin              irix_4              os390               umips   
+dcosx               irix_5              os400               unicos   
+dec_osf             irix_6              posix-bc            unicosmk   
+dos_djgpp           irix_6_0            powerux             unisysdynix   
+dragonfly           irix_6_1            qnx                 utekv   
+dynix               isc                 riscos              uwin   
+dynixptx            isc_2               sco                 vos   
+epix                linux-android       sco_2_3_0   
+Which of these apply, if any? [openbsd]  
+Operating system name? [openbsd]  
+Operating system version? [6.0]  
+Installation prefix to use? (~name ok) [/usr]  
+AFS does not seem to be running...
+What installation prefix should I use for installing files? (~name ok)
+[/usr]  
+Getting the current patchlevel...
+Build a threading Perl? [n]  
+Build Perl for multiplicity? [n]  
+Use which C compiler? [cc]  
+Checking for GNU cc in disguise and/or its version number...
+Now, how can we feed standard input to your C preprocessor...
+Directories to use for library searches? [/usr/lib /usr/lib]  
+What is the file extension used for shared libraries? [so]  
+Make shared library basenames unique? [n]  
+Build Perl for SOCKS? [n]  
+Try to use long doubles if available? [n]  
+Checking for optional libraries...
+What libraries to use? [-lm -lc]  
+What optimizer/debugger flag should be used? [-O2]  
+Any additional cc flags?
+[-DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -fno-strict-aliasing -fno-delete-null-pointer-checks -pipe -fstack-protector-strong]  
+Let me guess what the preprocessor flags are...
+Any additional ld flags (NOT including libraries)?
+[-Wl,-E  -fstack-protector-strong]  
+Checking your choice of C compiler and flags for coherency...
+Computing filename position in cpp output for #include directives...
+<stdlib.h> found.
+Checking to see how big your integers are...
+Checking to see if you have long long...
+Checking to see how big your long longs are...
+<inttypes.h> found.
+Checking to see if you have int64_t...
+Checking which 64-bit integer type we could use...
+We could use 'long' for 64-bit integers.
+Try to use maximal 64-bit support, if available? [y]  
+Checking if your C library has broken 64-bit functions...
+Checking for GNU C Library...
+Shall I use /usr/bin/nm to extract C symbols from the libraries? [y]  
+Where is your C library? [/usr/lib/libc.so.89.2]  
+Extracting names from the following files for later perusal:
+	/usr/lib/libc.so.89.2
+	/usr/lib/libm.so.9.0
+This may take a while....done.
+Checking for C++...
+Checking to see how big your double precision numbers are...
+<float.h> found.
+Checking to see if you have long double...
+ldexpl() found.
+Checking to see how big your long doubles are...
+Checking the kind of long doubles you have...
+You have IEEE 754 128-bit big endian long doubles.
+What is your architecture name [OpenBSD.sparc64-openbsd]  
+Add the Perl API version to your archname? [n]  
+This architecture is naturally 64-bit, not changing architecture name.
+Pathname where the public executables will reside? (~name ok) [/usr/bin]  
+Use relocatable @INC? [n]  
+Pathname where the private library files will reside? (~name ok)
+[/usr/lib/perl5/5.24.1]  
+Where do you want to put the public architecture-dependent libraries? (~name ok)
+[/usr/lib/perl5/5.24.1/OpenBSD.sparc64-openbsd]  
+Other username to test security of setuid scripts with? [none]  
+Well, the recommended value *is* secure.
+Does your kernel have *secure* setuid scripts? [y]  
+Installation prefix to use for add-on modules and utilities? (~name ok)
+[/usr/local]  
+Pathname for the site-specific library files? (~name ok)
+[/usr/local/lib/perl5/site_perl/5.24.1]  
+List of earlier versions to include in @INC? [none]  
+<malloc/malloc.h> NOT found.
+<malloc.h> found.
+Checking to see how big your pointers are...
+Do you wish to wrap malloc calls to protect against potential overflows? [y]  
+Do you wish to attempt to use the malloc that comes with perl5? [n]  
+Your system wants malloc to return 'void *', it would seem.
+Your system uses void free(), it would seem.
+Pathname for the site-specific architecture-dependent library files? (~name ok)
+[/usr/local/lib/perl5/site_perl/5.24.1/OpenBSD.sparc64-openbsd]  
+Do you want to configure vendor-specific add-on directories? [n]  
+Colon-separated list of additional directories for perl to search? [none]  
+Checking out function prototypes...
+Support DTrace if available? [n]  
+Install any extra modules (y or n)? [n]  
+Directory for the main Perl5 html pages? (~name ok) [none]  
+Directory for the Perl5 module html pages? (~name ok) [none]  
+dlopen() found.
+<unistd.h> found.
+Do you wish to use dynamic loading? [y]  
+Source file to use for dynamic loading [ext/DynaLoader/dl_dlopen.xs]  
+Any special flags to pass to cc -c to compile shared library modules?
+[-DPIC -fPIC ]  
+What command should be used to create dynamic libraries? [cc]  
+Any special flags to pass to cc to create a dynamically loaded library?
+[-shared -fPIC  -fstack-protector-strong]  
+Any special flags to pass to cc to use dynamic linking? [none]  
+ld supports scripting
+Build a shared libperl.so (y/n) [y]  
+What name do you want to give to the shared libperl? [libperl.so.17.99]  
+
+Adding -Wl,-R/usr/lib/perl5/5.24.1/OpenBSD.sparc64-openbsd/CORE to the flags
+passed to cc so that the perl executable will find the
+installed shared libperl.so.17.99.
+
+System manual is in /usr/share/man/man1.
+Where do the main Perl5 manual pages (source) go? (~name ok) [none]  
+You can have filenames longer than 14 characters.
+Where do the perl5 library man pages (source) go? (~name ok) [none]  
+Figuring out host name...
+Your host name appears to be "sparc64.home.hewus.com". Right? [y]  
+What is your domain name? [.home.hewus.com]  
+What is your e-mail address? [afresh1@sparc64.home.hewus.com]  
+Perl administrator e-mail address [afresh1@sparc64.home.hewus.com]  
+Do you want to install only the version-specific parts of perl? [n]  
+What shall I put after the #! to start up perl ("none" to not use #!)?
+[/usr/bin/perl]  
+Where do you keep publicly executable scripts? (~name ok) [/usr/bin]  
+Pathname where the add-on public executables should be installed? (~name ok)
+[/usr/local/bin]  
+Pathname where the site-specific html pages should be installed? (~name ok)
+[none]  
+Pathname where the site-specific library html pages should be installed? (~name ok)
+[none]  
+Pathname where the site-specific manual pages should be installed? (~name ok)
+[none]  
+Pathname where the site-specific library manual pages should be installed? (~name ok)
+[none]  
+Pathname where add-on public executable scripts should be installed? (~name ok)
+[/usr/local/bin]  
+backtrace() NOT found.
+Use the "fast stdio" if available? [n]  
+off_t found.
+Checking to see how big your file offsets are...
+fpos_t found.
+Checking the size of fpos_t...
+Using <string.h> instead of <strings.h>.
+qgcvt() NOT found.
+Checking the kind of doubles you have...
+You have IEEE 754 64-bit big endian doubles.
+Checking how to print long doubles...
+gconvert NOT found.
+gcvt() found.
+I'll use gcvt to convert floats into a string.
+fwalk() NOT found.
+access() found.
+<unistd.h> defines the *_OK access constants.
+accessx() NOT found.
+acosh() found.
+aintl() NOT found.
+alarm() found.
+ctime64() NOT found.
+localtime64() NOT found.
+gmtime64() NOT found.
+mktime64() NOT found.
+difftime64() NOT found.
+asctime64() NOT found.
+<pthread.h> found.
+<sys/types.h> found.
+<sys/select.h> found.
+Testing to see if we should include <time.h>, <sys/time.h> or both.
+We'll include <sys/time.h>.
+Checking to see if your struct tm has tm_zone field...
+Checking to see if your struct tm has tm_gmtoff field...
+asctime_r() found.
+asinh() found.
+atanh() found.
+atolf() NOT found.
+atoll() found.
+Checking whether your compiler can handle __attribute__((format)) ...
+Checking whether your compiler allows __printf__ format to be null ...
+Checking whether your compiler can handle __attribute__((malloc)) ...
+Checking whether your compiler can handle __attribute__((nonnull(1))) ...
+Checking whether your compiler can handle __attribute__((noreturn)) ...
+Checking whether your compiler can handle __attribute__((pure)) ...
+Checking whether your compiler can handle __attribute__((unused)) ...
+Checking whether your compiler can handle __attribute__((deprecated)) ...
+Checking whether your compiler can handle __attribute__((warn_unused_result)) ...
+bcmp() found.
+bcopy() found.
+getpgrp() found.
+You have to use getpgrp() instead of getpgrp(pid).
+setpgrp() found.
+You have to use setpgrp(pid,pgrp) instead of setpgrp().
+Checking whether your compiler can handle __builtin_choose_expr ...
+Checking whether your compiler can handle __builtin_expect ...
+bzero() found.
+<stdarg.h> found.
+<varargs.h> found.
+We'll include <stdarg.h> to get va_dcl definition.
+You have <stdarg.h> and <stdlib.h>, so checking for C99 variadic macros.
+You have C99 variadic macros.
+You have void (*signal())().
+Checking whether your C compiler can cast large floats to int32.
+/tmp//ccsYq73e.o: In function `main':
+try.c:(.text+0x70): warning: warning: sprintf() is often misused, please use snprintf()
+Checking whether your C compiler can cast negative float to unsigned.
+/tmp//cce9xqPd.o: In function `main':
+try.c:(.text+0xa0): warning: warning: sprintf() is often misused, please use snprintf()
+cbrt() found.
+vprintf() found.
+/tmp//ccmfo71b.o: In function `xxx':
+try.c:(.text+0x74): warning: warning: vsprintf() is often misused, please use vsnprintf()
+Your vsprintf() returns (int).
+chown() found.
+chroot() found.
+chsize() NOT found.
+class() NOT found.
+clearenv() NOT found.
+Hmm... Looks like you have Berkeley networking support.
+socketpair() found.
+Checking the availability sa_len in the sock struct ...
+Checking the availability struct sockaddr_in6 ...
+Checking the availability sin6_scope_id in struct sockaddr_in6 ...
+Checking the availability struct ip_mreq ...
+Checking the availability struct ip_mreq_source ...
+Checking the availability struct ipv6_mreq ...
+Checking the availability struct ipv6_mreq_source ...
+Checking the availability of certain socket constants...
+<sys/uio.h> found.
+Checking to see if your system supports struct cmsghdr...
+Checking to see if your C compiler knows about "const"...
+copysign() found.
+copysignl() found.
+crypt() found.
+<crypt.h> NOT found.
+crypt_r() NOT found.
+ctermid() found.
+ctermid_r() NOT found.
+ctime_r() found.
+cuserid() NOT found.
+<limits.h> found.
+DBL_DIG found.
+dbmclose() NOT found.
+difftime() found.
+<dirent.h> found.
+Your directory entries are struct dirent.
+Good, your directory entry keeps length information in d_namlen.
+Checking to see if DIR has a dd_fd member variable
+<sys/dir.h> found.
+<sys/ndir.h> NOT found.
+dirfd() found.
+dladdr() found.
+dlerror() found.
+<dlfcn.h> found.
+What is the extension of dynamically loaded modules [so]  
+Checking whether your dlsym() needs a leading underscore ...
+dlsym doesn't need a leading underscore.
+drand48_r() NOT found.
+dup2() found.
+eaccess() NOT found.
+endgrent() found.
+<grp.h> found.
+endgrent_r() NOT found.
+endhostent() found.
+<netdb.h> found.
+endhostent_r() NOT found.
+endnetent() found.
+endnetent_r() NOT found.
+endprotoent() found.
+endprotoent_r() found.
+endpwent() found.
+<pwd.h> found.
+endpwent_r() NOT found.
+endservent() found.
+endservent_r() found.
+<sys/file.h> defines the O_* constants...
+and you have the 3 argument form of open().
+<sys/file.h> found.
+We'll be including <sys/file.h>.
+<fcntl.h> found.
+We don't need to include <fcntl.h> if we include <sys/file.h>.
+fork() found.
+pipe() found.
+Figuring out the flag used by open() for non-blocking I/O...
+Let's see what value errno gets from read() on a O_NONBLOCK file...
+/tmp//ccTYDhId.o: In function `main':
+try.c:(.text+0x100): warning: warning: sprintf() is often misused, please use snprintf()
+erf() found.
+erfc() found.
+exp2() found.
+expm1() found.
+Checking how std your stdio is...
+Checking to see what happens if we set the stdio ptr...
+Increasing ptr in your stdio leaves cnt unchanged.  Good.
+You seem to have 'fast stdio' to directly manipulate the stdio buffers.
+fchdir() found.
+fchmod() found.
+fchown() found.
+fcntl() found.
+Well, your system knows about the normal fd_set typedef...
+and you have the normal fd_set macros (just as I'd expect).
+fdclose() NOT found.
+fdim() found.
+fegetround() found.
+fgetpos() found.
+finite() found.
+finitel() NOT found.
+flock() found.
+fma() found.
+fmax() found.
+fmin() found.
+fp_class() NOT found.
+<math.h> found.
+Checking to see if you have fpclassify...
+fp_classify() NOT found.
+fp_classl() NOT found.
+pathconf() found.
+fpathconf() found.
+fpclass() NOT found.
+fpclassl() NOT found.
+fpgetround() found.
+Checking to see if you have fpos64_t...
+<xlocale.h> NOT found.
+newlocale() NOT found.
+freelocale() NOT found.
+uselocale() NOT found.
+duplocale() NOT found.
+frexpl() found.
+<sys/param.h> found.
+<sys/mount.h> found.
+Checking to see if your system supports struct fs_data...
+fseeko() found.
+fsetpos() found.
+fstatfs() found.
+statvfs() found.
+fstatvfs() found.
+fsync() found.
+ftello() found.
+Checking if you have a working futimes()
+Yes, you have
+<ndbm.h> found.
+<gdbm/ndbm.h> NOT found.
+<gdbm-ndbm.h> NOT found.
+dbm_open() found.
+Checking if your <ndbm.h> uses prototypes...
+getaddrinfo() found.
+getcwd() found.
+getespwnam() NOT found.
+getfsstat() found.
+getgrent() found.
+getgrent_r() NOT found.
+getgrgid_r() found.
+getgrnam_r() found.
+gethostbyaddr() found.
+gethostbyname() found.
+gethostent() found.
+gethostname() found.
+uname() found.
+Shall I ignore gethostname() from now on? [n]  
+gethostbyaddr_r() NOT found.
+gethostbyname_r() NOT found.
+gethostent_r() NOT found.
+getitimer() found.
+getlogin() found.
+getlogin_r() found.
+getmnt() NOT found.
+getmntent() NOT found.
+getnameinfo() found.
+getnetbyaddr() found.
+getnetbyname() found.
+getnetent() found.
+getnetbyaddr_r() NOT found.
+getnetbyname_r() NOT found.
+getnetent_r() NOT found.
+getpagesize() found.
+getprotobyname() found.
+getprotobynumber() found.
+getprotoent() found.
+getpgid() found.
+getpgrp2() NOT found.
+getppid() found.
+getpriority() found.
+getprotobyname_r() found.
+getprotobynumber_r() found.
+getprotoent_r() found.
+getprpwnam() NOT found.
+getpwent() found.
+getpwent_r() NOT found.
+getpwnam_r() found.
+getpwuid_r() found.
+getservbyname() found.
+getservbyport() found.
+getservent() found.
+getservbyname_r() found.
+getservbyport_r() found.
+getservent_r() found.
+getspnam() NOT found.
+<shadow.h> NOT found.
+getspnam_r() NOT found.
+gettimeofday() found.
+gmtime_r() found.
+hasmntopt() NOT found.
+<netinet/in.h> found.
+<arpa/inet.h> found.
+htonl() found.
+hypot() found.
+ilogb() found.
+ilogbl() found.
+strchr() found.
+inet_aton() found.
+inet_ntop() found.
+inet_pton() found.
+isascii() found.
+isblank() found.
+Checking to see if you have isfinite...
+isfinitel() NOT found.
+Checking to see if you have isinf...
+isinfl() NOT found.
+Checking to see if you have isless...
+Checking to see if you have isnan...
+isnanl() NOT found.
+Checking to see if you have isnormal...
+j0() found.
+j0l() NOT found.
+killpg() found.
+localeconv() found.
+lchown() found.
+LDBL_DIG found.
+lgamma() found.
+lgamma_r() found.
+Checking to see if your libm supports _LIB_VERSION...
+No, it does not (probably harmless)
+link() found.
+llrint() found.
+llrintl() found.
+llround() found.
+llroundl() found.
+localtime_r() found.
+lockf() found.
+log1p() found.
+log2() found.
+logb() found.
+lrint() found.
+lrintl() found.
+lround() found.
+lroundl() found.
+lstat() found.
+madvise() found.
+malloc_size() NOT found.
+malloc_good_size() NOT found.
+mblen() found.
+mbstowcs() found.
+mbtowc() found.
+memchr() found.
+memcmp() found.
+memcpy() found.
+memmem() found.
+memmove() found.
+memset() found.
+mkdir() found.
+mkdtemp() found.
+mkfifo() found.
+mkstemp() found.
+mkstemps() found.
+mktime() found.
+<sys/mman.h> found.
+mmap() found.
+and it returns (void *).
+sqrtl() found.
+scalbnl() found.
+truncl() found.
+modfl() found.
+mprotect() found.
+msgctl() found.
+msgget() found.
+msgsnd() found.
+msgrcv() found.
+You have the full msg*(2) library.
+Checking to see if your system supports struct msghdr...
+msync() found.
+munmap() found.
+nan() found.
+nearbyint() found.
+nextafter() found.
+nexttoward() found.
+nice() found.
+<langinfo.h> found.
+nl_langinfo() found.
+<quadmath.h> NOT found.
+Checking to see if your C compiler knows about "volatile"...
+Choosing the C types to be used for Perl's internal types...
+Checking how many bits of your UVs your NVs can preserve...
+Checking to find the largest integer value your NVs can hold...
+The largest integer your NVs can preserve is equal to 256.0*256.0*256.0*256.0*256.0*256.0*2.0*2.0*2.0*2.0*2.0
+Checking whether NV 0.0 is all bits zero in memory...
+0.0 is represented as all bits zero in memory
+Checking to see if you have off64_t...
+pause() found.
+poll() found.
+prctl() NOT found.
+readlink() found.
+vfork() found.
+Do you still want to use vfork()? [y]  
+pthread_attr_setscope() NOT found.
+Checking to see if you have ptrdiff_t...
+random_r() NOT found.
+readdir() found.
+seekdir() found.
+telldir() found.
+rewinddir() found.
+readdir64_r() NOT found.
+readdir_r() found.
+readv() found.
+recvmsg() found.
+regcomp() found.
+remainder() found.
+remquo() found.
+rename() found.
+rint() found.
+rmdir() found.
+round() found.
+<memory.h> found.
+Checking if your memcmp() can compare relative magnitude...
+scalbn() found.
+select() found.
+semctl() found.
+semget() found.
+semop() found.
+You have the full sem*(2) library.
+You have union semun in <sys/sem.h>.
+You can use union semun for semctl IPC_STAT.
+You can also use struct semid_ds* for semctl IPC_STAT.
+sendmsg() found.
+setegid() found.
+seteuid() found.
+setgrent() found.
+setgrent_r() NOT found.
+sethostent() found.
+sethostent_r() NOT found.
+setitimer() found.
+setlinebuf() found.
+setlocale() found.
+<locale.h> found.
+setlocale_r() NOT found.
+setnetent() found.
+setnetent_r() NOT found.
+setprotoent() found.
+setpgid() found.
+setpgrp2() NOT found.
+setpriority() found.
+setproctitle() found.
+setprotoent_r() found.
+setpwent() found.
+setpwent_r() NOT found.
+setregid() found.
+setresgid() found.
+setreuid() found.
+setresuid() found.
+setrgid() NOT found.
+setruid() NOT found.
+setservent() found.
+setservent_r() found.
+setsid() found.
+setvbuf() found.
+shmctl() found.
+shmget() found.
+shmat() found.
+and it returns (void *).
+shmdt() found.
+You have the full shm*(2) library.
+sigaction() found.
+pid_t found.
+Checking if your siginfo_t has si_errno field...
+Checking if your siginfo_t has si_pid field...
+Checking if your siginfo_t has si_uid field...
+Checking if your siginfo_t has si_addr field...
+Checking if your siginfo_t has si_status field...
+Checking if your siginfo_t has si_band field...
+Checking if your siginfo_t has si_value field...
+Checking if your siginfo_t has si_fd field...
+<sunmath.h> NOT found.
+Checking to see if you have signbit() available to work on double... Yes.
+sigprocmask() found.
+POSIX sigsetjmp found.
+snprintf() found.
+vsnprintf() found.
+sockatmark() found.
+socks5_init() NOT found.
+Checking whether sprintf returns the length of the string...
+sprintf returns the length of the string (as ANSI says it should)
+srand48_r() NOT found.
+srandom_r() NOT found.
+stat() found.
+<sys/stat.h> found.
+Checking to see if your struct stat has st_blocks field...
+<sys/vfs.h> NOT found.
+<sys/statfs.h> NOT found.
+Checking to see if your system supports struct statfs...
+Checking to see if your struct statfs has f_flags field...
+Your compiler supports static __inline__.
+Checking how to access stdio streams by file descriptor number...
+You can access stdio streams by file descriptor number by the __sF array.
+strcoll() found.
+Checking to see if your C compiler can copy structs...
+strerror() found.
+strerror_r() found.
+strftime() found.
+strlcat() found.
+strlcpy() found.
+strtod() found.
+strtol() found.
+strtold() found.
+strtoll() found.
+strtoq() found.
+strtoul() found.
+strtoull() found.
+strtouq() found.
+strxfrm() found.
+symlink() found.
+syscall() found.
+sysconf() found.
+system() found.
+tcgetpgrp() found.
+tcsetpgrp() found.
+tgamma() found.
+time() found.
+time_t found.
+timegm() found.
+<sys/times.h> found.
+times() found.
+clock_t found.
+tmpnam_r() NOT found.
+trunc() found.
+truncate() found.
+ttyname_r() found.
+tzname[] found.
+(Testing for character data alignment may crash the test.  That's okay.)
+It seems that you must access character data in an aligned manner.
+ualarm() found.
+umask() found.
+unordered() NOT found.
+unsetenv() found.
+usleep() found.
+ustat() NOT found.
+closedir() found.
+Checking whether closedir() returns a status...
+wait4() found.
+waitpid() found.
+A working wcscmp() found.
+wcstombs() found.
+A working wcsxfrm() found.
+wctomb() found.
+writev() found.
+Checking alignment constraints...
+Doubles must be aligned on a how-many-byte boundary? [8]  
+Checking how long a character is (in bits)...
+What is the length of a character (in bits)? [8]  
+Checking to see how your cpp does stuff like concatenate tokens...
+Oh!  Smells like ANSI's been here.
+<db.h> found.
+Checking Berkeley DB version ...
+Looks OK.
+Checking return type needed for hash for Berkeley DB ...
+Checking return type needed for prefix for Berkeley DB ...
+Checking the kind of infinities and nans you have...
+Checking how many mantissa bits your doubles have...
+Checking how many mantissa bits your long doubles have...
+Checking how many mantissa bits your NVs have...
+Using our internal random number implementation...
+Determining whether or not we are on an EBCDIC system...
+Nope, no EBCDIC, probably ASCII or some ISO Latin. Or UTF-8.
+Checking how to flush all pending stdio output...
+Your fflush(NULL) works okay for output streams.
+Let's see if it clobbers input pipes...
+fflush(NULL) seems to behave okay with input streams.
+Checking the size of gid_t...
+Checking the sign of gid_t...
+Checking how to print 64-bit integers...
+Checking the format strings to be used for Perl's internal types...
+Checking the format string to be used for gids...
+getgroups() found.
+setgroups() found.
+What type pointer is the second argument to getgroups() and setgroups()?
+[gid_t]  
+Checking if your /usr/bin/make program sets $(MAKE)...
+mode_t found.
+It seems that you don't need va_copy().
+size_t found.
+What is the type for the 1st argument to gethostbyaddr? [char *]  
+What is the type for the 2nd argument to gethostbyaddr? [size_t]  
+What pager is used on your system? [/usr/bin/less -R]  
+Checking how to generate random libraries on your machine...
+<values.h> NOT found.
+Your select() operates on 32 bits at a time.
+Generating a list of signal names and numbers...
+Checking the size of size_t...
+Checking to see if you have socklen_t...
+<socks.h> NOT found.
+I'll be using ssize_t for functions returning a byte count.
+Checking the size of st_ino...
+Checking the sign of st_ino...
+Your stdio uses signed chars.
+Checking the size of uid_t...
+Checking the sign of uid_t...
+Checking the format string to be used for uids...
+Determining whether we can use sysctl with KERN_PROC_PATHNAME to find executing program...
+I'm unable to compile the test program.
+I'll assume no sysctl with KERN_PROC_PATHNAME here.
+Determining whether we can use _NSGetExecutablePath to find executing program...
+I'm unable to compile the test program.
+I'll assume no _NSGetExecutablePath here.
+It appears we'll be able to prototype varargs functions.
+Which compiler compiler (yacc) shall I use? [yacc]  
+<assert.h> found.
+<bfd.h> NOT found.
+<execinfo.h> NOT found.
+<fenv.h> found.
+<fp.h> NOT found.
+<fp_class.h> NOT found.
+<gdbm.h> NOT found.
+<ieeefp.h> found.
+<libutil.h> NOT found.
+<mntent.h> NOT found.
+<net/errno.h> NOT found.
+<netinet/tcp.h> found.
+<poll.h> found.
+<prot.h> NOT found.
+Guessing which symbols your C compiler and preprocessor define...
+Adding -D_FORTIFY_SOURCE=2 to ccflags...
+tcsetattr() found.
+You have POSIX termios.h... good!
+<stdbool.h> found.
+<stddef.h> found.
+<stdint.h> found.
+<sys/access.h> NOT found.
+<sys/filio.h> found.
+<sys/ioctl.h> found.
+You have socket ioctls defined in <sys/sockio.h>.
+<syslog.h> found.
+<sys/mode.h> NOT found.
+<sys/poll.h> found.
+<sys/resource.h> found.
+<sys/security.h> NOT found.
+<sys/statvfs.h> found.
+<sys/un.h> found.
+<sys/utsname.h> found.
+<sys/wait.h> found.
+<ustat.h> NOT found.
+<utime.h> found.
+<vfork.h> NOT found.
+Looking for extensions...
+What extensions do you wish to load dynamically?
+[B Compress/Raw/Bzip2 Compress/Raw/Zlib Cwd DB_File Data/Dumper Devel/PPPort Devel/Peek Digest/MD5 Digest/SHA Encode Fcntl File/DosGlob File/Glob Filter/Util/Call Hash/Util Hash/Util/FieldHash I18N/Langinfo IO IPC/SysV List/Util MIME/Base64 Math/BigInt/FastCalc NDBM_File Opcode OpenBSD/MkTemp OpenBSD/Pledge POSIX PerlIO/encoding PerlIO/mmap PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Term/ReadKey Tie/Hash/NamedCapture Time/HiRes Time/Piece Unicode/Collate Unicode/Normalize XS/APItest XS/Typemap arybase attributes mro re threads threads/shared]  
+What extensions do you wish to load statically? [none]  
+I see a config.over file.  Do you wish to load it? [y]  
+Stripping down executable paths...
+Creating config.sh...
+cd /home/afresh1/perl/perl-5.24.1/obj && exec /bin/sh Makefile.SH
+Extracting Makefile (with variable substitutions)
+cd /home/afresh1/perl/perl-5.24.1/obj && exec /bin/sh makedepend.SH
+Extracting makedepend (with variable substitutions)
+cd /home/afresh1/perl/perl-5.24.1/obj && exec /bin/sh config_h.SH
+Extracting config.h (with variable substitutions)
+./generate_uudmap uudmap.h bitcount.h mg_data.h
+cd /home/afresh1/perl/perl-5.24.1/obj && exec make depend
+sh ./makedepend MAKE="make" cflags
+rm -f opmini.c
+cp op.c opmini.c
+rm -f perlmini.c
+cp perl.c perlmini.c
+echo av.c scope.c op.c doop.c doio.c dump.c gv.c hv.c mg.c reentr.c mro_core.c perl.c perly.c pp.c pp_hot.c pp_ctl.c pp_sys.c regcomp.c regexec.c utf8.c sv.c taint.c toke.c util.c deb.c run.c universal.c pad.c globals.c keywords.c perlio.c perlapi.c numeric.c mathoms.c locale.c pp_pack.c pp_sort.c caretx.c dquote.c time64.c  miniperlmain.c opmini.c perlmini.c | tr ' ' '\n' >.clist
+Finding dependencies for av.o.
+Finding dependencies for scope.o.
+Finding dependencies for op.o.
+Finding dependencies for doop.o.
+Finding dependencies for doio.o.
+Finding dependencies for dump.o.
+Finding dependencies for gv.o.
+Finding dependencies for hv.o.
+Finding dependencies for mg.o.
+Finding dependencies for reentr.o.
+Finding dependencies for mro_core.o.
+Finding dependencies for perl.o.
+Finding dependencies for perly.o.
+Finding dependencies for pp.o.
+Finding dependencies for pp_hot.o.
+Finding dependencies for pp_ctl.o.
+Finding dependencies for pp_sys.o.
+Finding dependencies for regcomp.o.
+Finding dependencies for regexec.o.
+Finding dependencies for utf8.o.
+Finding dependencies for sv.o.
+Finding dependencies for taint.o.
+Finding dependencies for toke.o.
+Finding dependencies for util.o.
+Finding dependencies for deb.o.
+Finding dependencies for run.o.
+Finding dependencies for universal.o.
+Finding dependencies for pad.o.
+Finding dependencies for globals.o.
+Finding dependencies for keywords.o.
+Finding dependencies for perlio.o.
+Finding dependencies for perlapi.o.
+Finding dependencies for numeric.o.
+Finding dependencies for mathoms.o.
+Finding dependencies for locale.o.
+Finding dependencies for pp_pack.o.
+Finding dependencies for pp_sort.o.
+Finding dependencies for caretx.o.
+Finding dependencies for dquote.o.
+Finding dependencies for time64.o.
+Finding dependencies for miniperlmain.o.
+Finding dependencies for opmini.o.
+Finding dependencies for perlmini.o.
+Updating makefile...
+mkdep -a -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DBIG_TIME -I. /home/afresh1/perl/perl-5.24.1/gv.c /home/afresh1/perl/perl-5.24.1/toke.c perly.c /home/afresh1/perl/perl-5.24.1/pad.c /home/afresh1/perl/perl-5.24.1/regcomp.c /home/afresh1/perl/perl-5.24.1/dump.c /home/afresh1/perl/perl-5.24.1/util.c /home/afresh1/perl/perl-5.24.1/mg.c /home/afresh1/perl/perl-5.24.1/reentr.c /home/afresh1/perl/perl-5.24.1/mro_core.c /home/afresh1/perl/perl-5.24.1/keywords.c /home/afresh1/perl/perl-5.24.1/hv.c /home/afresh1/perl/perl-5.24.1/av.c /home/afresh1/perl/perl-5.24.1/run.c /home/afresh1/perl/perl-5.24.1/pp_hot.c /home/afresh1/perl/perl-5.24.1/sv.c /home/afresh1/perl/perl-5.24.1/pp.c /home/afresh1/perl/perl-5.24.1/scope.c /home/afresh1/perl/perl-5.24.1/pp_ctl.c /home/afresh1/perl/perl-5.24.1/pp_sys.c /home/afresh1/perl/perl-5.24.1/doop.c /home/afresh1/perl/perl-5.24.1/doio.c /home/afresh1/perl/perl-5.24.1/dquote.c /home/afresh1/perl/perl-5.24.1/regexec.c /home/afresh1/perl/perl-5.24.1/utf8.c /home/afresh1/perl/perl-5.24.1/taint.c /home/afresh1/perl/perl-5.24.1/deb.c /home/afresh1/perl/perl-5.24.1/universal.c /home/afresh1/perl/perl-5.24.1/globals.c /home/afresh1/perl/perl-5.24.1/perlio.c /home/afresh1/perl/perl-5.24.1/perlapi.c /home/afresh1/perl/perl-5.24.1/numeric.c /home/afresh1/perl/perl-5.24.1/mathoms.c /home/afresh1/perl/perl-5.24.1/locale.c /home/afresh1/perl/perl-5.24.1/time64.c /home/afresh1/perl/perl-5.24.1/pp_pack.c /home/afresh1/perl/perl-5.24.1/pp_sort.c /home/afresh1/perl/perl-5.24.1/caretx.c /home/afresh1/perl/perl-5.24.1/op.c /home/afresh1/perl/perl-5.24.1/perl.c
+Building
+make -j1 -f Makefile.bsd-wrapper all
+cc  -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DBIG_TIME -I. -O2 -pipe -g -fno-strict-aliasing -fno-delete-null-pointer-checks  -DPERL_EXTERNAL_GLOB -c  opmini.c -o opmini.o
+op.c: In function 'Perl_report_redefined_cv':
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+op.c:14743: warning: passing argument 1 of 'S_CvGV' discards qualifiers from pointer target type
+cc  -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DBIG_TIME -I. -O2 -pipe -g -fno-strict-aliasing -fno-delete-null-pointer-checks  -DPERL_EXTERNAL_GLOB -DPERL_IS_MINIPERL -c perlmini.c -o perlmini.o
+cc -O2 -pipe -g -fno-strict-aliasing -fno-delete-null-pointer-checks   -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DBIG_TIME -I. -c miniperlmain.c -o miniperlmain.o
+cd /home/afresh1/perl/perl-5.24.1/obj/pod && exec /bin/sh Makefile.SH
+Extracting pod/Makefile (with variable substitutions)
+cd /home/afresh1/perl/perl-5.24.1/obj && exec /bin/sh Policy_sh.SH
+Extracting Policy.sh (with variable substitutions)
+cd /home/afresh1/perl/perl-5.24.1/obj && exec /bin/sh myconfig.SH
+Extracting myconfig (with variable substitutions)
+cd /home/afresh1/perl/perl-5.24.1/obj && exec /bin/sh cflags.SH
+cflags.SH: Adding -std=c89.
+cflags.SH: Adding -Werror=declaration-after-statement.
+cflags.SH: Adding -Wextra.
+cflags.SH: Adding -Wc++-compat.
+cflags.SH: Adding -Wwrite-strings.
+cflags.SH: cc       = cc
+cflags.SH: ccflags  = -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -fno-strict-aliasing -fno-delete-null-pointer-checks -pipe -fstack-protector-strong -D_FORTIFY_SOURCE=2
+cflags.SH: stdflags =  -std=c89
+cflags.SH: optimize = -O2
+cflags.SH: warn     =  -Wall -Werror=declaration-after-statement -Wextra -Wc++-compat -Wwrite-strings
+Extracting cflags (with variable substitutions)
+cc -O2 -pipe -g -fno-strict-aliasing -fno-delete-null-pointer-checks   -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DBIG_TIME -I. -c -fPIC -DPIC /home/afresh1/perl/perl-5.24.1/pp_sort.c -o pp_sort.so
+cc -O2 -pipe -g -fno-strict-aliasing -fno-delete-null-pointer-checks   -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DBIG_TIME -I. -c /home/afresh1/perl/perl-5.24.1/pp_sort.c -o pp_sort.o
+cc -O2 -pipe -g -fno-strict-aliasing -fno-delete-null-pointer-checks   -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DBIG_TIME -I. -c -fPIC -DPIC /home/afresh1/perl/perl-5.24.1/pp_pack.c -o pp_pack.so
+cc -O2 -pipe -g -fno-strict-aliasing -fno-delete-null-pointer-checks   -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DBIG_TIME -I. -c /home/afresh1/perl/perl-5.24.1/pp_pack.c -o pp_pack.o
+cc -O2 -pipe -g -fno-strict-aliasing -fno-delete-null-pointer-checks   -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DBIG_TIME -I. -c -fPIC -DPIC /home/afresh1/perl/perl-5.24.1/time64.c -o time64.so
+cc -O2 -pipe -g -fno-strict-aliasing -fno-delete-null-pointer-checks   -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DBIG_TIME -I. -c /home/afresh1/perl/perl-5.24.1/time64.c -o time64.o
+cc -O2 -pipe -g -fno-strict-aliasing -fno-delete-null-pointer-checks   -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DBIG_TIME -I. -c -fPIC -DPIC /home/afresh1/perl/perl-5.24.1/locale.c -o locale.so
+cc -O2 -pipe -g -fno-strict-aliasing -fno-delete-null-pointer-checks   -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DBIG_TIME -I. -c /home/afresh1/perl/perl-5.24.1/locale.c -o locale.o
+cc -O2 -pipe -g -fno-strict-aliasing -fno-delete-null-pointer-checks   -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DBIG_TIME -I. -c -fPIC -DPIC /home/afresh1/perl/perl-5.24.1/mathoms.c -o mathoms.so
+cc -O2 -pipe -g -fno-strict-aliasing -fno-delete-null-pointer-checks   -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DBIG_TIME -I. -c /home/afresh1/perl/perl-5.24.1/mathoms.c -o mathoms.o
+cc -O2 -pipe -g -fno-strict-aliasing -fno-delete-null-pointer-checks   -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DBIG_TIME -I. -c -fPIC -DPIC /home/afresh1/perl/perl-5.24.1/numeric.c -o numeric.so
+cc -O2 -pipe -g -fno-strict-aliasing -fno-delete-null-pointer-checks   -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DBIG_TIME -I. -c /home/afresh1/perl/perl-5.24.1/numeric.c -o numeric.o
+cc -O2 -pipe -g -fno-strict-aliasing -fno-delete-null-pointer-checks   -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DBIG_TIME -I. -c -fPIC -DPIC /home/afresh1/perl/perl-5.24.1/deb.c -o deb.so
+cc -O2 -pipe -g -fno-strict-aliasing -fno-delete-null-pointer-checks   -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DBIG_TIME -I. -c /home/afresh1/perl/perl-5.24.1/deb.c -o deb.o
+cc -O2 -pipe -g -fno-strict-aliasing -fno-delete-null-pointer-checks   -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DBIG_TIME -I. -c -fPIC -DPIC /home/afresh1/perl/perl-5.24.1/taint.c -o taint.so
+cc -O2 -pipe -g -fno-strict-aliasing -fno-delete-null-pointer-checks   -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DBIG_TIME -I. -c /home/afresh1/perl/perl-5.24.1/taint.c -o taint.o
+cc -O2 -pipe -g -fno-strict-aliasing -fno-delete-null-pointer-checks   -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DBIG_TIME -I. -c -fPIC -DPIC /home/afresh1/perl/perl-5.24.1/utf8.c -o utf8.so
+/home/afresh1/perl/perl-5.24.1/utf8.c: In function 'Perl_swash_fetch':
+/home/afresh1/perl/perl-5.24.1/utf8.c:3030: warning: comparison is always false due to limited range of data type
+cc -O2 -pipe -g -fno-strict-aliasing -fno-delete-null-pointer-checks   -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DBIG_TIME -I. -c /home/afresh1/perl/perl-5.24.1/utf8.c -o utf8.o
+/home/afresh1/perl/perl-5.24.1/utf8.c: In function 'Perl_swash_fetch':
+/home/afresh1/perl/perl-5.24.1/utf8.c:3030: warning: comparison is always false due to limited range of data type
+/home/afresh1/perl/perl-5.24.1/utf8.c: In function 'S_swash_scan_list_line':
+/home/afresh1/perl/perl-5.24.1/utf8.c:4537: internal compiler error: Bus error
+Please submit a full bug report,
+with preprocessed source if appropriate.
+See <URL:http://gcc.gnu.org/bugs.html> for instructions.
+*** Error 1 in /home/afresh1/perl/perl-5.24.1 (<bsd.lib.mk>:41 'utf8.o': @cc -O2 -pipe -g -fno-strict-aliasing -fno-delete-null-pointer-chec...)
+Testing
+make -j1 -f Makefile.bsd-wrapper test
+make: don't know how to make libperl.so.17.99 (prerequisite of: perl lib/auto/B/B.so lib/auto/Compress/Raw/Bzip2/Bzip2.so lib/auto/Compress/Raw/Zlib/Zlib.so lib/auto/Cwd/Cwd.so lib/auto/DB_File/DB_File.so lib/auto/Data/Dumper/Dumper.so lib/auto/Devel/PPPort/PPPort.so lib/auto/Devel/Peek/Peek.so lib/auto/Digest/MD5/MD5.so lib/auto/Digest/SHA/SHA.so lib/auto/Encode/Encode.so lib/auto/Fcntl/Fcntl.so lib/auto/File/DosGlob/DosGlob.so lib/auto/File/Glob/Glob.so lib/auto/Filter/Util/Call/Call.so lib/auto/Hash/Util/Util.so lib/auto/Hash/Util/FieldHash/FieldHash.so lib/auto/I18N/Langinfo/Langinfo.so lib/auto/IO/IO.so lib/auto/IPC/SysV/SysV.so lib/auto/List/Util/Util.so lib/auto/MIME/Base64/Base64.so lib/auto/Math/BigInt/FastCalc/FastCalc.so lib/auto/NDBM_File/NDBM_File.so lib/auto/Opcode/Opcode.so lib/auto/OpenBSD/MkTemp/MkTemp.so lib/auto/OpenBSD/Pledge/Pledge.so lib/auto/POSIX/POSIX.so lib/auto/PerlIO/encoding/encoding.so lib/auto/PerlIO/mmap/mmap.so lib/auto/PerlIO/scalar/scalar.so lib/auto/PerlIO/via/via.so lib/auto/SDBM_File/SDBM_File.so lib/auto/Socket/Socket.so lib/auto/Storable/Storable.so lib/auto/Sys/Hostname/Hostname.so lib/auto/Sys/Syslog/Syslog.so lib/auto/Term/ReadKey/ReadKey.so lib/auto/Tie/Hash/NamedCapture/NamedCapture.so lib/auto/Time/HiRes/HiRes.so lib/auto/Time/Piece/Piece.so lib/auto/Unicode/Collate/Collate.so lib/auto/Unicode/Normalize/Normalize.so lib/auto/XS/APItest/APItest.so lib/auto/XS/Typemap/Typemap.so lib/auto/arybase/arybase.so lib/auto/attributes/attributes.so lib/auto/mro/mro.so lib/auto/re/re.so lib/auto/threads/threads.so lib/auto/threads/shared/shared.so)
+Stop in obj
+*** Error 2 in target 'test' (ignored)
+Sat Jan 14 17:35:06 PST 2017
