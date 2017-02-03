@@ -32,6 +32,11 @@ cd $OLDPWD
 # remove any patch cruft
 find $PERL_BASE \( -name '*.orig' \) -exec rm -f {} \+
 
+# We skip deleting all files are going to add and all unicore files
+export SKIP_LIST="$( cd $PERL_BASE && find . -type f \
+    ! -exec test -e ../${PERL_BASE}.dist/{} \; -print
+) $UNICORE_FILES"
+
 # Import vendor version perl
 TAG=`echo $PERL_BASE | tr 'a-z.-' 'A-Z_'`
 if [ -n "$AUTOCOMMIT" ]; then
@@ -50,7 +55,7 @@ fi
 cvs checkout -jPERL:yesterday -jPERL $PERLCVS
 
 # Get us even with vendor perl
-SKIP_FILES=1 SKIP_UNICORE_PATCH=1 cvs_rm_add ${PERL_BASE}.dist $PERLCVS
+cvs_rm_add ${PERL_BASE}.dist $PERLCVS
 
 if [ -n "$AUTOCOMMIT" ]; then
     cvs commit -m"Fix merge issues, remove excess files - match $PERL_BASE dist" $PERLCVS
@@ -64,8 +69,11 @@ fi
 ( cd $PERLCVS && cvs admin -kb $( find cpan/Term-ReadKey -type f ! -path '*/CVS/*' ) )
 cvs up -P $PERLCVS/cpan/Term-ReadKey
 
+# Now we only want to skip the unicore files
+SKIP_LIST="$UNICORE_FILES"
+
 # Add patches and remove anything we removed
-SKIP_UNICORE_PATCH=1 cvs_rm_add $PERL_BASE $PERLCVS
+cvs_rm_add $PERL_BASE $PERLCVS
 
 # Verify it looks good, then cvs commit
 if [ -n "$AUTOCOMMIT" ]; then
@@ -80,6 +88,9 @@ for f in $( cd $SRCDIR/files && find . -type f ); do
     cp $PERLCVS/$f $PERL_BASE/$f
     #cp $PERLCVS/$f $SRCDIR/files/$f
 done
+
+# Now we don't skip anything
+SKIP_LIST=""
 
 # Now apply unicore patches
 patch -fEp0 -d $PERL_BASE -i $UNICORE_PATCH.tmp

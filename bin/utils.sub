@@ -108,35 +108,17 @@ cvs_rm_add() {
     find $dst -name '.#*' -exec rm -f {} \+
 
     local skip_files="! -name CVS ! -path */CVS/*"
-    if [ -n "$SKIP_FILES" ]; then
-        cd $SRCDIR/files
-        for f in $( find . -type f | sed -e 's/^\./\*/' ); do
-            skip_files="$skip_files ! -path $f"
+    if [ -n "$SKIP_LIST" ]; then
+        for f in $SKIP_LIST; do
+             [ -e $src/$f ] && continue
+             skip_files="$skip_files ! -path $f";
         done
-        cd $OLDPWD
-    fi
-
-    local not_unicore=''
-    if [ -n "$SKIP_UNICORE_PATCH" ]; then
-        not_unicore="! -path */unicore/lib ! -path */unicore/lib/*"
-        not_unicore="! -path */unicore/To  ! -path */unicore/To/* $not_unicore"
-        for f in \
-            CombiningClass.pl \
-            Decomposition.pl \
-            Heavy.pl \
-            Name.pl \
-            Name.pm \
-            TestProp.pl \
-            UCD.pl \
-            perluniprops.pod \
-            mktables.lst \
-        ; do not_unicore="$not_unicore ! -name $f"; done
     fi
 
     # remove any files that are not in the new perl
     # Need to cd into $dst so `test -e` sees the correct path
     cd $dst
-    find . -type f $skip_files $not_unicore \
+    find . -type f $skip_files \
         ! -exec test -e $OLDPWD/$src/{} \; \
     -exec cvs rm -f {} \+
     cd $OLDPWD
@@ -147,12 +129,12 @@ cvs_rm_add() {
     set -f
 
     # add any directories that aren't in CVS
-    find $dst -type d $skip_files $not_unicore \
+    find $dst -type d $skip_files \
         ! -exec test -e {}/CVS \; \
     -exec cvs add {} \+
 
     # Add any files that aren't in CVS
-    find $dst -type f $skip_files $not_unicore \
+    find $dst -type f $skip_files \
         ! -execdir grep -q /{}/ CVS/Entries \; \
     -exec cvs add -kb {} \+
 }
