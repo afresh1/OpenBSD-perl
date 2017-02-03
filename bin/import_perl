@@ -19,8 +19,10 @@ rm -rf ${PERL_BASE}.dist
 cp -r $PERL_BASE ${PERL_BASE}.dist
 
 # Put unicore off until later
-mv $SRCDIR/patches/GOOD/pre_built_unicore.patch ${WRKDIR} || exit
-trap "mv ${WRKDIR}/pre_built_unicore.patch $SRCDIR/patches/GOOD/" 0 1 2 15
+UNICORE_PATCH=$SRCDIR/patches/GOOD/pre_built_unicore.patch
+UNICORE_FILES=$( tr '\t' '#' < $UNICORE_PATCH | sed -ne 's/#.*//;s,^\+\+\+ ,,p'  )
+mv $UNICORE_PATCH $UNICORE_PATCH.tmp || exit
+trap "mv $UNICORE_PATCH.tmp $UNICORE_PATCH" 0 1 2 15
 
 # Apply our local patches
 cd $PERL_BASE
@@ -80,7 +82,7 @@ for f in $( cd $SRCDIR/files && find . -type f ); do
 done
 
 # Now apply unicore patches
-patch -fEp0 -d $PERL_BASE -i ${WRKDIR}/pre_built_unicore.patch
+patch -fEp0 -d $PERL_BASE -i $UNICORE_PATCH.tmp
 
 # remove any patch cruft
 find $PERL_BASE \( -name '*.orig' \) -exec rm -f {} \+
