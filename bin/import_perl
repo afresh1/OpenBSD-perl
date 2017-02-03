@@ -1,6 +1,8 @@
 #!/bin/sh
 # Some of this was based on portimport
 
+set -e
+
 BINDIR=$( readlink -f $(dirname $0) )
 . $BINDIR/utils.sub
 
@@ -41,7 +43,7 @@ export SKIP_LIST="$( cd $PERL_BASE && find . -type f \
 TAG=`echo $PERL_BASE | tr 'a-z.-' 'A-Z_'`
 if [ -n "$AUTOCOMMIT" ]; then
     cd ${PERL_BASE}.dist
-    cvs import -kb -m"Import $PERL_BASE" $PERLCVS PERL $TAG
+    cvs import -kb -m"Import $PERL_BASE" $PERLCVS PERL $TAG || true
     cd $OLDPWD
 else
     echo "Ready to import, use this command, then fg to continue:"
