@@ -59,6 +59,10 @@ else
     kill -STOP $$
 fi
 
+# Fix some files that didn't get added properly with -kb
+( cd $PERLCVS && cvs admin -kb $( find cpan/Term-ReadKey -type f ! -path '*/CVS/*' ) )
+cvs up -P $PERLCVS/cpan/Term-ReadKey
+
 # Add patches and remove anything we removed
 SKIP_UNICORE_PATCH=1 cvs_rm_add $PERL_BASE $PERLCVS
 
