@@ -71,6 +71,11 @@ else
     kill -STOP $$
 fi
 
+for f in $( cd $SRCDIR/files && find . -type f ); do
+    cp $PERLCVS/$f $PERL_BASE/$f
+    #cp $PERLCVS/$f $SRCDIR/files/$f
+done
+
 # Now apply unicore patches
 patch -fEp0 -d $PERL_BASE -i ${WRKDIR}/pre_built_unicore.patch
 
