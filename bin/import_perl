@@ -46,7 +46,6 @@ fi
 
 # Checkout the tree to fix the merge errors
 cvs checkout -jPERL:yesterday -jPERL $PERLCVS
-chmod -R u+w $PERLCVS
 
 # Get us even with vendor perl
 SKIP_FILES=1 SKIP_UNICORE_PATCH=1 cvs_rm_add ${PERL_BASE}.dist $PERLCVS

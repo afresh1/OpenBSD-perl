@@ -102,6 +102,8 @@ cvs_rm_add() {
     # Because we pass wildcards to find in a variable
     set -f
 
+    chmod -R u+w $dst
+
     # Remove merge cruft, we know what we want
     find $dst -name '.#*' -exec rm -f {} \+
 
