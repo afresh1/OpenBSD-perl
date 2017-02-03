@@ -97,13 +97,10 @@ else
     kill -STOP $$
 fi
 
-
-cd $PERLCVS
-cvs up -PAd
-cd $OLDPWD
+cvs up -PAd $PERLCVS
 
 mv ${PERLCVS%%/*} ${PERLCVS%%/*}.imported
 cvs checkout -P $PERLCVS
 
 set -x
-diff -x CVS -ru $PERL_BASE $PERLCVS
+diff -x CVS -Nru $PERL_BASE $PERLCVS
