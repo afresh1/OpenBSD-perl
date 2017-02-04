@@ -125,7 +125,7 @@ cvs_rm_add() {
 
     # copy in the new files
     set +f # need to glob *this*
-    cp -r $src/* $dst
+    cp -r $src/.* $src/* $dst
     set -f
 
     # add any directories that aren't in CVS
