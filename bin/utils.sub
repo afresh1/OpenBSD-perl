@@ -136,7 +136,7 @@ cvs_rm_add() {
     # Add any files that aren't in CVS
     find $dst -type f $skip_files \
         ! -execdir grep -q /{}/ CVS/Entries \; \
-    -exec cvs add -kb {} \+
+    -exec cvs add -ko {} \+
 }
 
 # Extract a relatively up-to-date perl cvs tree

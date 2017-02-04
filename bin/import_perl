@@ -54,12 +54,12 @@ export SKIP_LIST="$( cd $PERL_BASE && find . -type f \
 TAG=`echo $PERL_BASE | tr 'a-z.-' 'A-Z_'`
 if [ -n "$AUTOCOMMIT" ]; then
     cd ${PERL_BASE}.dist
-    cvs import -kb -m"Import $PERL_BASE" $PERLCVS PERL $TAG || true
+    cvs import -ko -m"Import $PERL_BASE" $PERLCVS PERL $TAG || true
     cd $OLDPWD
 else
     echo "Ready to import, use this command, then fg to continue:"
     echo cd ${PERL_BASE}.dist
-    echo "cvs -d $CVSROOT import -kb -m\"Import $PERL_BASE\" $PERLCVS PERL $TAG"
+    echo "cvs -d $CVSROOT import -ko -m\"Import $PERL_BASE\" $PERLCVS PERL $TAG"
     echo cd \$OLDPWD
     kill -STOP $$
 fi
@@ -78,8 +78,8 @@ else
     kill -STOP $$
 fi
 
-# Fix some files that didn't get added properly with -kb
-( cd $PERLCVS && cvs admin -kb $( find cpan/Term-ReadKey -type f ! -path '*/CVS/*' ) )
+# Fix some files that didn't get added properly with -ko
+( cd $PERLCVS && cvs admin -ko $( find cpan/Term-ReadKey -type f ! -path '*/CVS/*' ) )
 cvs up -P $PERLCVS/cpan/Term-ReadKey
 
 # Now we only want to skip the unicore files
