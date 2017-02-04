@@ -3,47 +3,19 @@
 
 set -e
 
-BINDIR=$( readlink -f $(dirname $0) )
+if [ -e ./bin/utils.sub ]; then
+    BINDIR=./bin
+else
+    BINDIR=$( readlink -f $(dirname $0) )
+fi
 . $BINDIR/utils.sub
 
-# Keeps me from accidentially committing someplace I shouldn't
-CVSROOT=
-
-setup_cvsroot
-
+export CVSROOT=${PWD}/cvs
 PERLCVS=src/gnu/usr.bin/perl
 
-# Now we need a clean version of perl, fresh from the vendor
-do_extract_perl
-
-# Copy the clean version to use for the import
-rm -rf ${PERL_BASE}.dist
-cp -r $PERL_BASE ${PERL_BASE}.dist
-
-# Put unicore off until later
-UNICORE_PATCH=$SRCDIR/patches/GOOD/pre_built_unicore.patch
-mv $UNICORE_PATCH $UNICORE_PATCH.tmp || exit
-trap "mv $UNICORE_PATCH.tmp $UNICORE_PATCH" 0 1 2 15
-
-# Apply local patches, except unicore
-cd $PERL_BASE
-do_patch_perl
-cd $OLDPWD
-
-# remove any patch cruft
-find $PERL_BASE \( -name '*.orig' \) -exec rm -f {} \+
-
-# now copy that to a holding place, for when we commit without the unicore updates
-rm -rf ${PERL_BASE}.no_unicore
-cp -r $PERL_BASE ${PERL_BASE}.no_unicore
-
-# Now apply unicore patches
-patch -fEp0 -d $PERL_BASE -i $UNICORE_PATCH.tmp
-
-# remove any patch cruft
-find $PERL_BASE \( -name '*.orig' \) -exec rm -f {} \+
-
-### END PREPARE # BEGIN IMPORT ###
+for d in $CVSROOT $PERL_BASE{.dist,.no_unicore,}; do
+    [ -d $d ] || ( print "Missing $d!" >&2 ; exit 1 )
+done
 
 # We skip deleting all files are going to add and all unicore files
 export SKIP_LIST="$( cd $PERL_BASE && find . -type f \
@@ -105,7 +77,11 @@ else
     kill -STOP $$
 fi
 
-for f in $( cd $SRCDIR/files && find . -type f ); do
+# Copy anything we've just added from the no_unicore directory
+# to the final directory, so we get the updated RCS Ids.
+for f in $( cd $PERL_BASE.no_unicore && find . -type f \
+    ! -exec test -e ../${PERL_BASE}.dist/{} \; -print
+); do
     cp $PERLCVS/$f $PERL_BASE/$f
     #cp $PERLCVS/$f $SRCDIR/files/$f
 done
