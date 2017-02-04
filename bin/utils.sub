@@ -4,11 +4,6 @@ SRCDIR=$( dirname $BINDIR )
 WRKDIR=$( pwd )
 PERL_BASE=perl-5.24.1
 
-if [ ! -e ${SRCDIR}/${PERL_BASE}.tar.gz ]; then
-    echo Please put ${PERL_BASE}.tar.gz in $SRCDIR >&2
-    exit 255
-fi
-
 install_local_files() {
     cp -Rf ${SRCDIR}/files/* ./
 }
@@ -28,6 +23,11 @@ apply_good_patches() {
 }
 
 do_extract_perl() {
+    if [ ! -e ${SRCDIR}/${PERL_BASE}.tar.gz ]; then
+        echo Please put ${PERL_BASE}.tar.gz in $SRCDIR >&2
+        exit 255
+    fi
+
     if [ -e "$PERL_BASE" ]; then
         echo "Removing old perl srcdir"
         mkdir -p old
