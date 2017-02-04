@@ -22,11 +22,10 @@ cp -r $PERL_BASE ${PERL_BASE}.dist
 
 # Put unicore off until later
 UNICORE_PATCH=$SRCDIR/patches/GOOD/pre_built_unicore.patch
-UNICORE_FILES=$( tr '\t' '#' < $UNICORE_PATCH | sed -ne 's/#.*//;s,^\+\+\+ ,,p'  )
 mv $UNICORE_PATCH $UNICORE_PATCH.tmp || exit
 trap "mv $UNICORE_PATCH.tmp $UNICORE_PATCH" 0 1 2 15
 
-# Apply our local patches
+# Apply local patches, except unicore
 cd $PERL_BASE
 do_patch_perl
 cd $OLDPWD
@@ -34,10 +33,22 @@ cd $OLDPWD
 # remove any patch cruft
 find $PERL_BASE \( -name '*.orig' \) -exec rm -f {} \+
 
+# now copy that to a holding place, for when we commit without the unicore updates
+rm -rf ${PERL_BASE}.no_unicore
+cp -r $PERL_BASE ${PERL_BASE}.no_unicore
+
+# Now apply unicore patches
+patch -fEp0 -d $PERL_BASE -i $UNICORE_PATCH.tmp
+
+# remove any patch cruft
+find $PERL_BASE \( -name '*.orig' \) -exec rm -f {} \+
+
+### END PREPARE # BEGIN IMPORT ###
+
 # We skip deleting all files are going to add and all unicore files
 export SKIP_LIST="$( cd $PERL_BASE && find . -type f \
     ! -exec test -e ../${PERL_BASE}.dist/{} \; -print
-) $UNICORE_FILES"
+)"
 
 # Import vendor version perl
 TAG=`echo $PERL_BASE | tr 'a-z.-' 'A-Z_'`
@@ -72,10 +83,12 @@ fi
 cvs up -P $PERLCVS/cpan/Term-ReadKey
 
 # Now we only want to skip the unicore files
-SKIP_LIST="$UNICORE_FILES"
+export SKIP_LIST="$( cd $PERL_BASE && find . -type f \
+    ! -exec test -e ../${PERL_BASE}.no_unicore/{} \; -print
+)"
 
 # Add patches and remove anything we removed
-cvs_rm_add $PERL_BASE $PERLCVS
+cvs_rm_add ${PERL_BASE}.no_unicore $PERLCVS
 
 # Verify it looks good, then cvs commit
 if [ -n "$AUTOCOMMIT" ]; then
@@ -93,12 +106,6 @@ done
 
 # Now we don't skip anything
 SKIP_LIST=""
-
-# Now apply unicore patches
-patch -fEp0 -d $PERL_BASE -i $UNICORE_PATCH.tmp
-
-# remove any patch cruft
-find $PERL_BASE \( -name '*.orig' \) -exec rm -f {} \+
 
 # Add unicore patches and remove anything we removed
 cvs_rm_add $PERL_BASE $PERLCVS
