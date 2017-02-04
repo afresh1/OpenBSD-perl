@@ -53,8 +53,10 @@ export SKIP_LIST="$( cd $PERL_BASE && find . -type f \
 # Import vendor version perl
 TAG=`echo $PERL_BASE | tr 'a-z.-' 'A-Z_'`
 if [ -n "$AUTOCOMMIT" ]; then
+    msg=-m"Import $PERL_BASE"
+    [ -e $SRCDIR/commit_message.import ] && msg=-F$SRCDIR/commit_message.import
     cd ${PERL_BASE}.dist
-    cvs import -ko -m"Import $PERL_BASE" $PERLCVS PERL $TAG || true
+    cvs import -ko $msg $PERLCVS PERL $TAG || true
     cd $OLDPWD
 else
     echo "Ready to import, use this command, then fg to continue:"
@@ -71,7 +73,9 @@ cvs checkout -jPERL:yesterday -jPERL $PERLCVS
 cvs_rm_add ${PERL_BASE}.dist $PERLCVS
 
 if [ -n "$AUTOCOMMIT" ]; then
-    cvs commit -m"Fix merge issues, remove excess files - match $PERL_BASE dist" $PERLCVS
+    msg=-m"Fix merge issues, remove excess files - match $PERL_BASE dist"
+    [ -e $SRCDIR/commit_message.dist ] && msg=-F$SRCDIR/commit_message.dist
+    cvs commit $msg $PERLCVS
 else
     echo "Verify we match upstream, commit, and fg to continue"
     echo "cvs -d $CVSROOT commit $PERLCVS"
@@ -92,7 +96,9 @@ cvs_rm_add ${PERL_BASE}.no_unicore $PERLCVS
 
 # Verify it looks good, then cvs commit
 if [ -n "$AUTOCOMMIT" ]; then
-    cvs commit -m"Apply local patches, remove excess files - $PERL_BASE" $PERLCVS
+    msg=-m"Apply local patches, remove excess files - $PERL_BASE"
+    [ -e $SRCDIR/commit_message.patched ] && msg=-F$SRCDIR/commit_message.patched
+    cvs commit $msg $PERLCVS
 else
     echo "Verify local patches look good, then commit and fg to continue"
     echo "cvs -d $CVSROOT commit $PERLCVS"
@@ -112,7 +118,9 @@ cvs_rm_add $PERL_BASE $PERLCVS
 
 # Verify it looks good, then cvs commit
 if [ -n "$AUTOCOMMIT" ]; then
-    cvs commit -m"Apply pre-built unicore patch, remove excess files - $PERL_BASE" $PERLCVS
+    msg=-m"Apply pre-built unicore patch, remove excess files - $PERL_BASE"
+    [ -e $SRCDIR/commit_message.unicore ] && msg=-F$SRCDIR/commit_message.unicore
+    cvs commit $msg $PERLCVS
 else
     echo "Verify unicore look good, then commit and fg to continue"
     echo "cvs -d $CVSROOT commit $PERLCVS"
