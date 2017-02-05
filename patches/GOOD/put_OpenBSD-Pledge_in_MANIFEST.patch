@@ -1,12 +1,11 @@
 --- MANIFEST.orig	Mon Nov 23 18:36:24 2015
 +++ MANIFEST	Mon Nov 23 18:37:10 2015
-@@ -1682,6 +1682,10 @@
+@@ -1682,6 +1682,9 @@
  cpan/OpenBSD-MkTemp/MkTemp.xs	OpenBSD::MkTemp
  cpan/OpenBSD-MkTemp/README	OpenBSD::MkTemp Readme
  cpan/OpenBSD-MkTemp/t/OpenBSD-MkTemp.t	OpenBSD::MkTemp test file
 +cpan/OpenBSD-Pledge/lib/OpenBSD/Pledge.pm	OpenBSD::Pledge
 +cpan/OpenBSD-Pledge/Pledge.xs	OpenBSD::Pledge
-+cpan/OpenBSD-Pledge/README	OpenBSD::Pledge Readme
 +cpan/OpenBSD-Pledge/t/OpenBSD-Pledge.t	OpenBSD::Pledge test file
  cpan/Params-Check/lib/Params/Check.pm	Params::Check
  cpan/Params-Check/t/01_Params-Check.t	Params::Check tests
