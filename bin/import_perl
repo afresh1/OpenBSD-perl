@@ -26,7 +26,8 @@ export SKIP_LIST="$( cd $PERL_BASE && find . -type f \
 TAG=`echo $PERL_BASE | tr 'a-z.-' 'A-Z_'`
 if [ -n "$AUTOCOMMIT" ]; then
     msg=-m"Import $PERL_BASE"
-    [ -e $SRCDIR/commit_message.import ] && msg=-F$SRCDIR/commit_message.import
+    # Apparently "import" doesn't support -F :-(
+    #[ -e $SRCDIR/commit_message.import ] && msg=-F$SRCDIR/commit_message.import
     cd ${PERL_BASE}.dist
     cvs import -ko $msg $PERLCVS PERL $TAG || true
     cd $OLDPWD
