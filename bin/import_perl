@@ -31,7 +31,7 @@ if [ -n "$AUTOCOMMIT" ]; then
     cd ${PERL_BASE}.dist
     import_log=$( mktemp import_log-XXXXXXXXX )
     trap "rm -f $import_log" 0 1 2 15
-    cvs import -ko $msg $PERLCVS PERL $TAG | tee $import_log
+    cvs import -ko "$msg" $PERLCVS PERL $TAG | tee $import_log
     tail -2 $import_log | head -1 | grep 'cvs checkout'
     rm -f $import_log
     cd $OLDPWD
@@ -52,7 +52,7 @@ cvs_rm_add ${PERL_BASE}.dist $PERLCVS
 if [ -n "$AUTOCOMMIT" ]; then
     msg=-m"Fix merge issues, remove excess files - match $PERL_BASE dist"
     [ -e $SRCDIR/commit_message.dist ] && msg=-F$SRCDIR/commit_message.dist
-    cvs commit $msg $PERLCVS
+    cvs commit "$msg" $PERLCVS
 else
     echo "Verify we match upstream, commit, and fg to continue"
     echo "cvs -d $CVSROOT commit $PERLCVS"
@@ -75,7 +75,7 @@ cvs_rm_add ${PERL_BASE}.no_unicore $PERLCVS
 if [ -n "$AUTOCOMMIT" ]; then
     msg=-m"Apply local patches, remove excess files - $PERL_BASE"
     [ -e $SRCDIR/commit_message.patched ] && msg=-F$SRCDIR/commit_message.patched
-    cvs commit $msg $PERLCVS
+    cvs commit "$msg" $PERLCVS
 else
     echo "Verify local patches look good, then commit and fg to continue"
     echo "cvs -d $CVSROOT commit $PERLCVS"
@@ -101,7 +101,7 @@ cvs_rm_add $PERL_BASE $PERLCVS
 if [ -n "$AUTOCOMMIT" ]; then
     msg=-m"Apply pre-built unicore patch, remove excess files - $PERL_BASE"
     [ -e $SRCDIR/commit_message.unicore ] && msg=-F$SRCDIR/commit_message.unicore
-    cvs commit $msg $PERLCVS
+    cvs commit "$msg" $PERLCVS
 else
     echo "Verify unicore look good, then commit and fg to continue"
     echo "cvs -d $CVSROOT commit $PERLCVS"
