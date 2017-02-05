@@ -40,6 +40,7 @@ cp lists/man/mi{,.orig}
 
 arch_map="armv7:arm \
     armish:arm \
+    arm64:aarch64 \
     landisk:sh \
     loongson:mips64el \
     luna88k:m88k \
