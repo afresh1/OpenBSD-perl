@@ -42,5 +42,5 @@ find $PERL_BASE \( -name '*.orig' \) -exec rm -f {} \+
 
 # Copy some file's we're going to need to do the import
 mkdir -p $WRKDIR/bin
-cp $SRCDIR/commit_message* $WRKDIR
 cp $BINDIR/{utils.sub,import_perl} $WRKDIR/bin/
+cp $SRCDIR/commit_message* $WRKDIR || true # may not have any
