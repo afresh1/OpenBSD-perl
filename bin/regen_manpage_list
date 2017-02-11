@@ -16,8 +16,18 @@ my ($bsdwrapper) = grep { -e } 'Makefile.bsd-wrapper1',
 die "Couldn't find Makefile.bsd-wrapper1" unless $bsdwrapper;
 
 my %proper_page = (
-    'utils/splain' => 'splain',
+    'utils/splain'          => 'splain',
+    'libnetFAQ'             => 'Net::libnetFAQ',
+    'Test::Harness::Beyond' => 'TAP::Harness::Beyond',
 );
+
+my %sections = (
+    CORE        => '3p',
+    perlfaq     => '1',
+    perl5db     => '3p',
+    perldebguts => '3p',
+);
+
 my %skip_page = map { $_ => 1 } qw(
     json_pp
     ptardiff
@@ -34,10 +44,12 @@ my %skip_page = map { $_ => 1 } qw(
     installhtml
     make_patchnum
     mkppport
+    perlartistic
     perlcn
     perldtrace
     perlebcdic
     perlglobbat
+    perlgpl
     perljp
     perlko
     perltw
@@ -76,6 +88,8 @@ my %skip_page = map { $_ => 1 } qw(
     perlwin32
 
     Encode::_Name_
+    Encode::MIME::NAME
+    Haiku
     OS2::DLL
     OS2::ExtAttr
     OS2::PrfDB
@@ -135,6 +149,10 @@ my $wanted = sub {
     return if $file =~ m{^hints/};
     return if $file =~ m{^Cross/};
 
+    my $pm = $_;
+    $pm =~ s/\.pod$/\.pm/;
+    $pm = $_ unless -e $pm;
+
     my $page;
 
     if ($proper_page{$file}) {
@@ -171,13 +189,18 @@ my $wanted = sub {
     }
 
     return unless $page;
+    $page = $proper_page{$page} if $proper_page{$page};
+
     $seen_skip{$page}++ if $skip_page{$page};
     return if $skip_page{$page};
 
     my $section
-        = exists $old_pod{$page} ? $old_pod{$page}{section}
-        : $file =~ /\.pm$/       ? '3p'
-        :                          '1';
+        = exists $sections{$page} ? $sections{$page}
+        : $pm =~ /\.pm$/          ? '3p'
+        : $page =~ /::/           ? '3p'
+        : $file =~ m{^utils/}     ? '1'
+        : $file =~ m{/scripts?/}  ? '1'
+        :                           '1';
 
     # Sometimes we want to pull the pod from a page other than
     # where we find it by default.  If we did, and it still exists
