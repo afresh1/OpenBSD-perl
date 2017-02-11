@@ -117,6 +117,7 @@ close $fh;
 
 
 my %new_pod;
+my %seen_skip;
 my $wanted = sub {
     my $look_in = shift;
     my $file = $File::Find::name;
@@ -182,6 +183,7 @@ my $wanted = sub {
     }
 
     return unless $page;
+    $seen_skip{$page}++ if $skip_page{$page};
     return if $skip_page{$page};
 
     my $section
@@ -225,6 +227,11 @@ foreach my $page (sort {
         say "Lost page: $page [$old_pod{$page}{file}][$old_pod{$page}{section}]";
         $changed++;
     }
+}
+
+foreach my $page (keys %skip_page) {
+    next if $seen_skip{$page};
+    print "Can remove $page from \%skip_page\n";
 }
 
 unless ($changed) {
