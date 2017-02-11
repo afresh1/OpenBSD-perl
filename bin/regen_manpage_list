@@ -20,12 +20,10 @@ my %proper_page = (
 );
 my %skip_page = map { $_ => 1 } qw(
     json_pp
-    ptar
     ptardiff
     ptargrep
     shasum
     zipdetails
-
 
     Changes
     HACKERS
@@ -51,10 +49,10 @@ my %skip_page = map { $_ => 1 } qw(
 
     perlaix
     perlamiga
+    perlandroid
     perlbs2000
     perlce
     perlcygwin
-    perldgux
     perldos
     perlfreebsd
     perlhaiku
@@ -70,25 +68,14 @@ my %skip_page = map { $_ => 1 } qw(
     perlos400
     perlplan9
     perlqnx
-    perlricos
+    perlriscos
     perlsolaris
-    perltrue64
+    perltru64
     perlvms
     perlvos
     perlwin32
-    GDBM_File
-    Module::Build::Platform::Amiga
-    Module::Build::Platform::EBCDIC
-    Module::Build::Platform::MPEiX
-    Module::Build::Platform::MacOS
-    Module::Build::Platform::RiscOS
-    Module::Build::Platform::VMS
-    Module::Build::Platform::VOS
-    Module::Build::Platform::Windows
-    Module::Build::Platform::aix
-    Module::Build::Platform::cygwin
-    Module::Build::Platform::darwin
-    Module::Build::Platform::os2
+
+    Encode::_Name_
     OS2::DLL
     OS2::ExtAttr
     OS2::PrfDB
@@ -97,6 +84,7 @@ my %skip_page = map { $_ => 1 } qw(
     Sys::Syslog::Win32
     Win32
     Win32API::File
+    pod_file
 );
 
 open my $fh, '<', $bsdwrapper or die "Couldn't open $bsdwrapper: $!";

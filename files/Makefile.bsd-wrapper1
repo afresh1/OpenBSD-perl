@@ -94,7 +94,6 @@ _quick3p=
     perl589delta 1			pod/perl589delta.pod \
     perl58delta 1			pod/perl58delta.pod \
     perl5db 1				lib/perl5db.pl \
-    perlandroid 1			pod/perlandroid.pod \
     perlapi 1				pod/perlapi.pod \
     perlapio 1				pod/perlapio.pod \
     perlartistic 1			pod/perlartistic.pod \
@@ -179,7 +178,6 @@ _quick3p=
     perlrequick 1			pod/perlrequick.pod \
     perlreref 1				pod/perlreref.pod \
     perlretut 1				pod/perlretut.pod \
-    perlriscos 1			pod/perlriscos.pod \
     perlrun 1				pod/perlrun.pod \
     perlsec 1				pod/perlsec.pod \
     perlsource 1			pod/perlsource.pod \
@@ -194,7 +192,6 @@ _quick3p=
     perltooc 1				pod/perltooc.pod \
     perltoot 1				pod/perltoot.pod \
     perltrap 1				pod/perltrap.pod \
-    perltru64 1				pod/perltru64.pod \
     perlunicode 1			pod/perlunicode.pod \
     perlunicook 1			pod/perlunicook.pod \
     perlunifaq 1			pod/perlunifaq.pod \
@@ -212,7 +209,6 @@ _quick3p=
     pod2man 1				cpan/podlators/blib/script/pod2man \
     pod2text 1				cpan/podlators/blib/script/pod2text \
     pod2usage 1				cpan/Pod-Usage/blib/script/pod2usage \
-    pod_file 1				lib/unicore/mktables \
     podchecker 1			cpan/Pod-Checker/blib/script/podchecker \
     podselect 1				cpan/Pod-Parser/blib/script/podselect \
     prove 1				utils/prove \
@@ -316,7 +312,6 @@ _quick3p=
     Dumpvalue 3p			lib/Dumpvalue.pm \
     DynaLoader 3p			lib/DynaLoader.pm \
     Encode 3p				lib/Encode.pm \
-    Encode::_Name_ 3p			lib/Encode/_PM.e2x \
     Encode::Alias 3p			lib/Encode/Alias.pm \
     Encode::Byte 3p			lib/Encode/Byte.pm \
     Encode::CJKConstants 3p		lib/Encode/CJKConstants.pm \
