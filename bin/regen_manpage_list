@@ -172,9 +172,9 @@ my $wanted = sub {
             }
 
             next unless $found_pod;
-            last if /^=\w+/;
+            last if /^=head/;
 
-            if (/^(\S+)/) {
+            if (/^(\S+)\s.*-+\s/) {
                 $page = $1;
                 last;
             }
