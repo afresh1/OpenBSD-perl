@@ -87,6 +87,7 @@ my %skip_page = map { $_ => 1 } qw(
     perlvos
     perlwin32
 
+    Configure
     Encode::_Name_
     Encode::MIME::NAME
     Haiku
