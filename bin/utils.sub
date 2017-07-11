@@ -59,10 +59,6 @@ do_build_perl() {
         echo "make $J -f Makefile.bsd-wrapper obj"
         make $J -f Makefile.bsd-wrapper obj
 
-        echo Configure
-        echo "make $J -f Makefile.bsd-wrapper depend"
-        make $J -f Makefile.bsd-wrapper depend
-
         echo Building
         echo "make $J -f Makefile.bsd-wrapper all"
         make $J -f Makefile.bsd-wrapper all
