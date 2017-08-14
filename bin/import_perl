@@ -29,7 +29,7 @@ if [ -n "$AUTOCOMMIT" ]; then
     # Apparently "import" doesn't support -F :-(
     #[ -e $SRCDIR/commit_message.import ] && msg=-F$SRCDIR/commit_message.import
     cd ${PERL_BASE}.dist
-    import_log=$( mktemp import_log-XXXXXXXXX )
+    import_log=$( mktemp -p $WRKDIR import_log-XXXXXXXXX )
     trap "rm -f $import_log" 0 1 2 15
     cvs import -ko "$msg" $PERLCVS PERL $TAG | tee $import_log
     tail -2 $import_log | head -1 | grep 'cvs checkout'
