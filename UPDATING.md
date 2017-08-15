@@ -33,6 +33,7 @@ This is still an art, not as yet a complete doc, but a start.
     * and building packages
     * and using dpb
 * Double check that we got results from all archs, or at least enough
+* Run bin/find_base_perl_ports to see what can be removed
 
 ### Updating in CVS
 See bin/import_perl for most of the notes related to importing. That script
