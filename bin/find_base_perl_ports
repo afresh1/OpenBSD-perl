@@ -1,0 +1,37 @@
+#!/usr/bin/perl
+use 5.020;
+use warnings;
+
+use File::Find qw();
+
+my @set_lists = (
+	'/usr/src/distrib/sets/lists/base/mi',
+	glob( '/usr/src/distrib/sets/lists/base/md.*' ),
+);
+my $ports_dir = '/usr/ports';
+
+my %modules;
+
+foreach my $set_list (@set_lists) {
+	open my $fh, "<", $set_list or die "Unable to open $set_list: $!";
+	while (readline($fh)) {
+		if (/libdata\/perl5\/(?:\w+-openbsd\/)?(.*)$/) {
+			$modules{$1} = 1;
+		}
+
+	}
+	close $fh;
+}
+
+File::Find::find( sub {
+	return unless /^PLIST/;
+	my ($name) = $File::Find::name =~ m{^$ports_dir/(.*)/pkg/PLIST$};
+	open my $fh, '<', $_ or die "Unable to open $_: $!";
+	while (readline($fh)) {
+		if (/\$\{P5(?:SITE|ARCH)\}\/(.*)$/ && $modules{$1}) {
+			say "[$name] $1";
+		}
+	}
+	close $fh;
+	#warn $File::Find::name;
+}, $ports_dir);
