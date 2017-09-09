@@ -38,27 +38,8 @@ pledgenames()
 	XSRETURN(i);
 
 int
-_pledge(const char * promises, SV * paths)
-    INIT:
-	SSize_t numpaths = 0, n;
-
+_pledge(const char * promises)
     CODE:
-	if (SvOK(paths)) {
-		if (SvTYPE(SvRV(paths)) != SVt_PVAV)
-			croak("not an ARRAY reference");
-
-		numpaths = av_top_index((AV *)SvRV(paths));
-
-		const char *pledge_paths[ numpaths + 1 ];
-		pledge_paths[ numpaths + 1 ] = NULL;
-
-		for (n = 0; n <= numpaths; n++)
-			pledge_paths[n]
-			    = SvPV_nolen(*av_fetch((AV *)SvRV(paths), n, 0));
-
-		RETVAL = pledge(promises, pledge_paths) != -1;
-	}
-	else
-		RETVAL = pledge(promises, NULL) != -1;
+	RETVAL = pledge(promises, NULL) != -1;
     OUTPUT:
 	RETVAL
