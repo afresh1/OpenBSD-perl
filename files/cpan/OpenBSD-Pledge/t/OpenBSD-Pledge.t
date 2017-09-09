@@ -1,4 +1,4 @@
-#	$OpenBSD: OpenBSD-Pledge.t,v 1.2 2016/07/03 01:07:58 afresh1 Exp $	#
+#	$OpenBSD: OpenBSD-Pledge.t,v 1.3 2017/09/09 14:53:57 afresh1 Exp $	#
 ## no critic 'version'
 ## no critic 'package'
 # Before 'make install' is performed this script should be runnable with

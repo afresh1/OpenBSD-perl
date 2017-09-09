@@ -1,4 +1,4 @@
-#	$OpenBSD: Pledge.pm,v 1.2 2016/07/03 01:07:57 afresh1 Exp $	#
+#	$OpenBSD: Pledge.pm,v 1.3 2017/09/09 14:53:57 afresh1 Exp $	#
 package OpenBSD::Pledge;
 
 use 5.020002;

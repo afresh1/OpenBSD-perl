@@ -1,4 +1,4 @@
-/*	$OpenBSD: Pledge.xs,v 1.1 2015/11/29 19:01:27 afresh1 Exp $	*/
+/*	$OpenBSD: Pledge.xs,v 1.2 2017/09/09 14:53:57 afresh1 Exp $	*/
 
 /*
  * Copyright (c) 2015 Andrew Fresh <afresh1@openbsd.org>
