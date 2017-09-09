@@ -1,0 +1,40 @@
+From d4857ae370c5a111b5f0ae61c3ae05e0b99e2237 Mon Sep 17 00:00:00 2001
+From: Karl Williamson <khw@cpan.org>
+Date: Fri, 25 Aug 2017 11:33:58 -0600
+Subject: [PATCH 2/2] PATCH: [perl #131598]
+
+The cause of this is that the vFAIL macro uses RExC_parse, and that
+variable has just been changed in preparation for code after the vFAIL.
+The solution is to not change RExC_parse until after the vFAIL.
+
+This is a case where the macro hides stuff that can bite you.
+---
+ regcomp.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git regcomp.c regcomp.c
+index 6a07bf2c70..4eff83e50e 100644
+--- regcomp.c
++++ regcomp.c
+@@ -12199,14 +12199,16 @@ S_grok_bslash_N(pTHX_ RExC_state_t *pRExC_state,
+ 	}
+         sv_catpv(substitute_parse, ")");
+ 
+-        RExC_parse = RExC_start = RExC_adjusted_start = SvPV(substitute_parse,
+-                                                             len);
++        len = SvCUR(substitute_parse);
+ 
+ 	/* Don't allow empty number */
+ 	if (len < (STRLEN) 8) {
+             RExC_parse = endbrace;
+ 	    vFAIL("Invalid hexadecimal number in \\N{U+...}");
+ 	}
++
++        RExC_parse = RExC_start = RExC_adjusted_start
++                                              = SvPV_nolen(substitute_parse);
+ 	RExC_end = RExC_parse + len;
+ 
+         /* The values are Unicode, and therefore not subject to recoding, but
+-- 
+2.11.0
+

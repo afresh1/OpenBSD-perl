@@ -1,0 +1,91 @@
+From 35ce250032264068ed8f95410e9fbf81873d75b9 Mon Sep 17 00:00:00 2001
+From: Tony Cook <tony@develop-help.com>
+Date: Thu, 27 Jul 2017 10:12:02 +1000
+Subject: (perl #131665) avoid a buffer overflow in a buffer we didn't need
+
+since Lookup() treats its argument as NUL or '=' terminated.
+
+Previously environment variable names longer than the size of the
+buffer would result in a buffer overflow.
+---
+ t/win32/runenv.t | 21 ++++++++++++++++-----
+ win32/perlhost.h | 10 ++--------
+ 2 files changed, 18 insertions(+), 13 deletions(-)
+
+diff --git t/win32/runenv.t b/t/win32/runenv.t
+index 514eda0..4746afa 100644
+--- t/win32/runenv.t
++++ t/win32/runenv.t
+@@ -14,10 +14,10 @@ BEGIN {
+     require Win32;
+     ($::os_id, $::os_major) = ( Win32::GetOSVersion() )[ 4, 1 ];
+     if ($::os_id == 2 and $::os_major == 6) {    # Vista, Server 2008 (incl R2), 7
+-	$::tests = 43;
++	$::tests = 45;
+     }
+     else {
+-	$::tests = 40;
++	$::tests = 42;
+     }
+ 
+     require './test.pl';
+@@ -70,11 +70,12 @@ sub runperl_and_capture {
+ }
+ 
+ sub try {
+-  my ($env, $args, $stdout, $stderr) = @_;
++  my ($env, $args, $stdout, $stderr, $name) = @_;
+   my ($actual_stdout, $actual_stderr) = runperl_and_capture($env, $args);
++  $name ||= "";
+   local $::Level = $::Level + 1;
+-  is $actual_stdout, $stdout;
+-  is $actual_stderr, $stderr;
++  is $actual_stdout, $stdout, "$name - stdout";
++  is $actual_stderr, $stderr, "$name - stderr";
+ }
+ 
+ #  PERL5OPT    Command-line options (switches).  Switches in
+@@ -196,6 +197,16 @@ try({PERL5LIB => "foo",
+     '',
+     '');
+ 
++{
++    # 131665
++    # crashes without the fix
++    my $longname = "X" x 2048;
++    try({ $longname => 1 },
++        [ '-e', '"print q/ok/"' ],
++        'ok', '',
++        'very long env var names' );
++}
++
+ # Tests for S_incpush_use_sep():
+ 
+ my @dump_inc = ('-e', '"print \"$_\n\" foreach @INC"');
+diff --git win32/perlhost.h b/win32/perlhost.h
+index 84b08c9..3260f62 100644
+--- win32/perlhost.h
++++ win32/perlhost.h
+@@ -2177,17 +2177,11 @@ compare(const void *arg1, const void *arg2)
+ void
+ CPerlHost::Add(LPCSTR lpStr)
+ {
+-    char szBuffer[1024];
+     LPSTR *lpPtr;
+-    int index, length = strlen(lpStr)+1;
+-
+-    for(index = 0; lpStr[index] != '\0' && lpStr[index] != '='; ++index)
+-	szBuffer[index] = lpStr[index];
+-
+-    szBuffer[index] = '\0';
++    STRLEN length = strlen(lpStr)+1;
+ 
+     // replacing ?
+-    lpPtr = Lookup(szBuffer);
++    lpPtr = Lookup(lpStr);
+     if (lpPtr != NULL) {
+ 	// must allocate things via host memory allocation functions 
+ 	// rather than perl's Renew() et al, as the perl interpreter
+-- 
+2.7.0.windows.1
+
