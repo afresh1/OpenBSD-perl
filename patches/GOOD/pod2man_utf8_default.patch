@@ -19,9 +19,14 @@ the build systems instead?
 Yours,
   Ingo
 
---- cpan/podlators/scripts/pod2man.PL.orig	Tue Mar  1 04:33:02 2016
-+++ cpan/podlators/scripts/pod2man.PL	Thu Sep  1 10:32:44 2016
-@@ -77,7 +77,7 @@
+--- ./cpan/podlators/scripts/pod2man.PL.orig	Fri Jun 30 14:03:22 2017
++++ ./cpan/podlators/scripts/pod2man.PL	Fri Sep 29 08:43:12 2017
+@@ -73,11 +73,12 @@ my $stdin;
+ # Parse our options, trying to retain backward compatibility with pod2man but
+ # allowing short forms as well.  --lax is currently ignored.
+ my %options;
++$options{utf8} = 1;
+ Getopt::Long::config ('bundling_override');
  GetOptions (\%options, 'center|c=s', 'date|d=s', 'errors=s', 'fixed=s',
              'fixedbold=s', 'fixeditalic=s', 'fixedbolditalic=s', 'help|h',
              'lax|l', 'name|n=s', 'nourls', 'official|o', 'quotes|q=s',
@@ -30,7 +35,7 @@ Yours,
      or exit 1;
  pod2usage (0) if $options{help};
  
-@@ -123,7 +123,7 @@
+@@ -123,7 +124,7 @@ exit $status;
  __END__
  
  =for stopwords
@@ -39,7 +44,7 @@ Yours,
  URL troff troff-specific formatters uppercased Christiansen --nourls UTC
  prepend
  
-@@ -137,7 +137,7 @@
+@@ -137,7 +138,7 @@ pod2man [B<--center>=I<string>] [B<--date>=I<string>] 
      [B<--fixed>=I<font>] [B<--fixedbold>=I<font>] [B<--fixeditalic>=I<font>]
      [B<--fixedbolditalic>=I<font>] [B<--name>=I<name>] [B<--nourls>]
      [B<--official>] [B<--quotes>=I<quotes>] [B<--release>=I<version>]
@@ -48,7 +53,7 @@ Yours,
      [I<input> [I<output>] ...]
  
  pod2man B<--help>
-@@ -323,19 +323,10 @@
+@@ -323,19 +324,10 @@ to C<--errors=stderr> and is supported for backward co
  
  =item B<-u>, B<--utf8>
  
