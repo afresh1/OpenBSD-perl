@@ -3,11 +3,7 @@
 
 set -e
 
-if [ -e ./bin/utils.sub ]; then
-    BINDIR=./bin
-else
-    BINDIR=$( readlink -f $(dirname $0) )
-fi
+BINDIR=$( readlink -f $(dirname $0) )
 . $BINDIR/utils.sub
 
 export CVSROOT=${PWD}/cvs
