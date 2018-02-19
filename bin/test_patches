@@ -6,7 +6,7 @@ BINDIR=$( readlink -f $(dirname $0) )
 NAME=${1:-*.patch}
 
 mkdir -p /tmp/buildlogs
-find ${SRCDIR}/patches/RESEARCH -name "$NAME" | {
+find ${SRCDIR}/patches/RESEARCH -name "$NAME" | sort | {
     while read patch; do
         echo Testing $patch
 
