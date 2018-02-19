@@ -31,9 +31,9 @@ do_extract_perl() {
     if [ -e "$PERL_BASE" ]; then
         echo "Removing old perl srcdir"
         mkdir -p old
-        chmod +w $PERL_BASE # so we are allowed to move
+        chmod u=rwx $PERL_BASE # so we are allowed to move
         mv -f $PERL_BASE old
-        chmod -R +w old  # so we are allowed to rm
+        chmod -R u+rwX old  # so we are allowed to rm
         rm -rf old &
     fi
 
