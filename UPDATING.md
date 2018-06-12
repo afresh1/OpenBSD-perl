@@ -9,11 +9,16 @@ This is still an art, not as yet a complete doc, but a start.
 * Update files/shlib_version
 * mv patches/GOOD patches/GOOD.orig and run `bin/cp_good_research`
 * Change to a temporary directory and run `NO_LOCAL_PATCHES=1 build_local_perl`
-* See if it runs successfully, it generally should
+  * See if it runs successfully, it generally should
 * Run `test_patches` to update and test all patches
-* You may need to rerun `bin/cp_good_research` and re-run
-  `test_patches` a few times as some patches depend on other patches
-* Likely you will need to set NO_BSD_WRAPPER for the first few rounds
+  * Updating patches in `patches/RESEARCH` as necessary to get them to apply
+    or removing patches that are no longer needed.
+  * From time-to time you may need to start over with `cp_good_research`
+  * First with `NO_LOCAL_PATCHES=1` until they all apply
+  * Then with `NO_BSD_WRAPPER=1` to get patches that rely on each othe
+  * Finally run without any environment variables either variable set
+  * You may want to adjust `test_patches` to exit after the first
+    failed build to make it go faster.
 * After you do get to use Makefile.bsdwrapper, you probably will need
     * NO_LOCALE_test_fixes.patch will need to be applied
     * While doing this, won't pass without put_OpenBSD-MkTemp_in_MANIFEST.patch
