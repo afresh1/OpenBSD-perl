@@ -16,6 +16,11 @@ find "$SRC" | while read from; do
 		mkdir -p "$to"
 	elif [ ! -e "$WRK/${from#$SRC/}" ]; then
 		echo "$to"
-		cp "$from" "$to"
+		old="$to.old"
+		if [ -e "$old" ]; then
+			mv "$old" "$to"
+		else
+			cp "$from" "$to"
+		fi
 	fi
 done
