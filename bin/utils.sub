@@ -8,18 +8,28 @@ install_local_files() {
     cp -Rf ${SRCDIR}/files/* ./
 }
 
-
-apply_good_patches() {
-    local name=${1:-*.patch}
+apply_patches_in_dir() {
+    local dir=$1
+    local name=${2:-*.patch}
     local _file;
 
-    find ${SRCDIR}/patches/GOOD -name "$name" -print | sort | while read _file; do
+    find $dir -name "$name" -print | sort | while read _file; do
         patch -fEp0 -i $_file
 	if [ $( find . -name '*.rej' | wc -l ) -ne 0 ]; then
 		echo $_file failed!
 		exit 1;
 	fi
     done
+}
+
+apply_good_patches() {
+	apply_patches_in_dir ${SRCDIR}/patches/GOOD "$@"
+}
+
+apply_required_patches() {
+	dir="${SRCDIR}/patches/REQUIRED"
+	[ -d "$dir" ] && return apply_patches_in_dir "$dir"
+	true
 }
 
 do_extract_perl() {
@@ -42,6 +52,8 @@ do_extract_perl() {
 }
 
 do_patch_perl() {
+    apply_required_patches || exit 1
+
     [ "$NO_LOCAL_PATCHES" ] && return
 
     echo Copying local files

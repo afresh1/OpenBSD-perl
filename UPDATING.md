@@ -10,6 +10,7 @@ This is still an art, not as yet a complete doc, but a start.
 * mv patches/GOOD patches/GOOD.orig and run `bin/cp_good_research`
 * Change to a temporary directory and run `NO_LOCAL_PATCHES=1 build_local_perl`
   * See if it runs successfully, it generally should
+  * If not, you can add patches to patches/REQUIRED to get it building
 * Run `test_patches` to update and test all patches
   * Updating patches in `patches/RESEARCH` as necessary to get them to apply
     or removing patches that are no longer needed.
