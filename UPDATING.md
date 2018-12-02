@@ -13,6 +13,8 @@ This is still an art, not as yet a complete doc, but a start.
 * Run `test_patches` to update and test all patches
   * Updating patches in `patches/RESEARCH` as necessary to get them to apply
     or removing patches that are no longer needed.
+  * You probably need to move files/cpan out of the way until you get to
+    the patches that put them in the Makefile.
   * From time-to time you may need to start over with `cp_good_research`
   * First with `NO_LOCAL_PATCHES=1` until they all apply
   * Then with `NO_BSD_WRAPPER=1` to get patches that rely on each othe
@@ -27,6 +29,11 @@ This is still an art, not as yet a complete doc, but a start.
     * as well as dont_rebuild_libperl.patch
 * At some point you won't get any better results and you will actually have to
   look at the logs and update patches.
+* You may need to regenerate Makefile.SH. You can do this by running
+  regen/lib_cleanup.pl -v with the system perl
+  after applying just the single patch you need to regen.
+  Pay attention to what *doesn't* stay the same and make sure there
+  was a .orig for each of those files.
 * Once all the patches have been regenerated run the `update_unicore` script
 * Eventually everything will build and tests will pass.
 * After this, use `make_patched_perl` to build a patched perl directory
