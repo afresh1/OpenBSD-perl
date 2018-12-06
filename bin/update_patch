@@ -1,0 +1,7 @@
+#!/bin/sh
+
+find . -name '*.orig' | (
+    while read o; do
+        diff -uNp $o ${o%.orig}
+    done
+)
