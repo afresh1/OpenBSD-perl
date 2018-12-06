@@ -1,6 +1,6 @@
---- ./installperl.orig	Wed May 13 13:19:29 2015
-+++ ./installperl	Fri Sep 18 01:24:02 2015
-@@ -245,9 +245,9 @@ else {
+--- ./installperl.orig	Mon May 21 05:29:23 2018
++++ ./installperl	Mon Nov 26 20:28:41 2018
+@@ -253,9 +253,9 @@ else {
      }
  }
  

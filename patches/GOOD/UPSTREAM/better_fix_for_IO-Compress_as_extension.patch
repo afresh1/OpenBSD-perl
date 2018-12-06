@@ -1,6 +1,6 @@
---- ./installperl.orig	Wed May 13 13:19:29 2015
-+++ ./installperl	Thu Sep 17 19:35:47 2015
-@@ -145,7 +145,7 @@ if ((-e "testcompile") && (defined($ENV{'COMPILE'}))) 
+--- ./installperl.orig	Mon May 21 05:29:23 2018
++++ ./installperl	Mon Nov 26 09:06:26 2018
+@@ -153,7 +153,7 @@ if ((-e "testcompile") && (defined($ENV{'COMPILE'}))) 
  }
  
  # Exclude nonxs extensions that are not architecture dependent

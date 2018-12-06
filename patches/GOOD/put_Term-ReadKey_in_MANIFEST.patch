@@ -5,15 +5,10 @@ millert@ suggested Term::ReadKey, which looks indeed like a good choice.
 
 Here's the glue + distrib from cpan. Comments welcome.
 
-Index: MANIFEST
-===================================================================
-RCS file: /data/openbsd/cvs/src/gnu/usr.bin/perl/MANIFEST,v
-retrieving revision 1.37
-diff -u -p -r1.37 MANIFEST
---- MANIFEST	10 Dec 2015 01:36:25 -0000	1.37
-+++ MANIFEST	4 May 2016 15:46:16 -0000
-@@ -2163,6 +2163,17 @@ cpan/Term-ANSIColor/t/stringify.t		Tests
- cpan/Term-ANSIColor/t/taint.t
+--- ./MANIFEST.orig	Wed May 23 06:29:56 2018
++++ ./MANIFEST	Tue Nov 27 11:53:00 2018
+@@ -2054,6 +2054,17 @@ cpan/Term-ANSIColor/t/module/stringify.t
+ cpan/Term-ANSIColor/t/taint/basic.t
  cpan/Term-Cap/Cap.pm			Perl module supporting termcap usage
  cpan/Term-Cap/test.pl			See if Term::Cap works
 +cpan/Term-ReadKey/Changes			Term::ReadKey
@@ -30,10 +25,9 @@ diff -u -p -r1.37 MANIFEST
  cpan/Test-Harness/bin/prove				The prove harness utility
  cpan/Test-Harness/lib/App/Prove.pm			Gubbins for the prove utility
  cpan/Test-Harness/lib/App/Prove/State.pm		Gubbins for the prove utility
-Index: Makefile.bsd-wrapper1
---- regen/lib_cleanup.pl.orig	Thu May  5 13:12:30 2016
-+++ regen/lib_cleanup.pl	Thu May  5 13:13:40 2016
-@@ -74,6 +74,12 @@
+--- ./regen/lib_cleanup.pl.orig	Mon May 21 05:29:23 2018
++++ ./regen/lib_cleanup.pl	Tue Nov 27 11:53:00 2018
+@@ -74,6 +74,12 @@ foreach my $file (@ext) {
                  $package = $1;
                  last;
              }

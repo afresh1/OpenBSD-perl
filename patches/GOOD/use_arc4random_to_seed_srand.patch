@@ -18,9 +18,9 @@ rand() without previously seeding it.)
 
 Yay/nay?
 
---- ./util.c.orig	Wed May 13 13:19:31 2015
-+++ ./util.c	Fri Oct  2 22:49:22 2015
-@@ -4487,6 +4487,9 @@ Perl_parse_unicode_opts(pTHX_ const char **popt)
+--- ./util.c.orig	Mon May 21 05:29:23 2018
++++ ./util.c	Mon Nov 26 21:42:36 2018
+@@ -4391,6 +4391,9 @@ Perl_parse_unicode_opts(pTHX_ const char **popt)
  U32
  Perl_seed(pTHX)
  {
@@ -30,7 +30,7 @@ Yay/nay?
      /*
       * This is really just a quick hack which grabs various garbage
       * values.  It really should be a real hash algorithm which
-@@ -4562,6 +4565,7 @@ Perl_seed(pTHX)
+@@ -4459,6 +4462,7 @@ Perl_seed(pTHX)
      u += SEED_C5 * (U32)PTR2UV(&when);
  #endif
      return u;

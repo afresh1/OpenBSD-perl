@@ -1,10 +1,5 @@
-Index: installperl
-===================================================================
-RCS file: /cvs/src/gnu/usr.bin/perl/installperl,v
-retrieving revision 1.39
-diff -u -p -r1.39 installperl
---- installperl	5 Feb 2017 00:33:38 -0000	1.39
-+++ installperl	16 Feb 2017 02:59:55 -0000
+--- ./installperl.orig	Sun Dec  9 09:09:46 2018
++++ ./installperl	Sun Dec  9 09:12:33 2018
 @@ -307,6 +307,7 @@ if ($Is_VMS) {
  }
  elsif ($^O ne 'dos') {
@@ -13,7 +8,7 @@ diff -u -p -r1.39 installperl
  	install("perl$exe_ext", "$installbin/$perl_verbase$ver$exe_ext", "0755");
      }
      else {
-@@ -410,7 +411,8 @@ if ($Is_W32) { #linking lib isn't made i
+@@ -410,7 +411,8 @@ if ($Is_W32) { #linking lib isn't made in root but in 
  # Install main perl executables
  # Make links to ordinary names if installbin directory isn't current directory.
  

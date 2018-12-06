@@ -1,6 +1,6 @@
---- ./Configure.orig	Wed May 13 13:19:28 2015
-+++ ./Configure	Sun Oct 11 21:38:40 2015
-@@ -20345,9 +20345,9 @@ case "$ccflags" in
+--- ./Configure.orig	Mon May 21 05:29:23 2018
++++ ./Configure	Mon Nov 26 22:07:31 2018
+@@ -20351,9 +20351,9 @@ case "$ccflags" in
  	;;
  esac
  
@@ -13,9 +13,9 @@
  randbits=48
  randseedtype=U32
  
---- ./pp.c.orig	Wed May 13 13:19:30 2015
-+++ ./pp.c	Sun Oct 11 21:38:40 2015
-@@ -2927,12 +2927,13 @@ PP(pp_srand)
+--- ./pp.c.orig	Mon May 21 05:29:23 2018
++++ ./pp.c	Mon Nov 26 22:07:31 2018
+@@ -2941,12 +2941,13 @@ PP(pp_srand)
                               "Integer overflow in srand");
              anum = UV_MAX;
          }

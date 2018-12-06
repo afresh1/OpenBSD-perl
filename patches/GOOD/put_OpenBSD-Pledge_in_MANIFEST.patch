@@ -1,6 +1,6 @@
---- MANIFEST.orig	Mon Nov 23 18:36:24 2015
-+++ MANIFEST	Mon Nov 23 18:37:10 2015
-@@ -1682,6 +1682,9 @@
+--- MANIFEST.orig	Sat Dec  1 17:32:57 2018
++++ MANIFEST	Sat Dec  1 17:32:07 2018
+@@ -1555,6 +1555,9 @@
  cpan/OpenBSD-MkTemp/MkTemp.xs	OpenBSD::MkTemp
  cpan/OpenBSD-MkTemp/README	OpenBSD::MkTemp Readme
  cpan/OpenBSD-MkTemp/t/OpenBSD-MkTemp.t	OpenBSD::MkTemp test file

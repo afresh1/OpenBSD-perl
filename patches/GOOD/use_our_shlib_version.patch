@@ -1,5 +1,5 @@
---- ./hints/openbsd.sh.orig	Wed May 13 13:19:29 2015
-+++ ./hints/openbsd.sh	Fri Sep 18 02:51:03 2015
+--- ./hints/openbsd.sh.orig	Tue Mar 20 13:06:36 2018
++++ ./hints/openbsd.sh	Mon Nov 26 22:32:30 2018
 @@ -143,9 +143,9 @@ case "$openbsd_distribution" in
  	locincpth='/usr/local/include'
  	loclibpth='/usr/local/lib'

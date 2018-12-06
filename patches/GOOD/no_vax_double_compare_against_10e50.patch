@@ -1,13 +1,16 @@
---- t/porting/customized.dat.orig	Thu Apr  7 04:44:45 2016
-+++ t/porting/customized.dat	Sat Sep 24 19:54:02 2016
-@@ -55,3 +55,4 @@
- Socket cpan/Socket/Socket.xs edd4fed212785f11c5c2095a75941dad27d586d9
+--- ./t/porting/customized.dat.orig	Mon May 21 05:29:23 2018
++++ ./t/porting/customized.dat	Mon Nov 26 21:18:22 2018
+@@ -25,6 +25,7 @@ autodie cpan/autodie/t/exceptions.t ad315a208f875e06b0
+ autodie cpan/autodie/t/lib/Hints_pod_examples.pm 6944c218e9754b3613c8d0c90a5ae8aceccb5c99
  autodie cpan/autodie/t/mkdir.t 9e70d2282a3cc7d76a78bf8144fccba20fb37dac
- version cpan/version/lib/version.pm ff75e2076be10bd4c05133cd979fda0b38ca8653
+ experimental cpan/experimental/t/basic.t a073ea03ccc98dec496569f3648ab01a5fe1c7a0
 +version vutil.c 45ff345c3d8424ba63e130a223848f5b336bd87b
---- ./vutil.c.orig	Wed May 13 13:19:31 2015
-+++ ./vutil.c	Sat Oct  3 13:03:58 2015
-@@ -589,7 +589,11 @@ VER_NV:
+ perlfaq cpan/perlfaq/lib/perlfaq5.pod bcc1b6af3b6dff3973643acf8d5e741463374123
+ perlfaq cpan/perlfaq/lib/perlfaq8.pod bffbc0c8fa828aead24e0891a5e789369a8e0743
+ podlators pod/perlpodstyle.pod c6500c9950b46e8228d4adbc09a3ee2ef23de2d0
+--- ./vutil.c.orig	Mon May 21 05:29:23 2018
++++ ./vutil.c	Mon Nov 26 21:18:22 2018
+@@ -609,7 +609,11 @@ VER_NV:
  
  	/* may get too much accuracy */ 
  	char tbuf[64];
@@ -17,5 +20,5 @@
  	SV *sv = SvNVX(ver) > 10e50 ? newSV(64) : 0;
 +#endif
  	char *buf;
- #ifdef USE_LOCALE_NUMERIC
-         const char * const cur_numeric = setlocale(LC_NUMERIC, NULL);
+ 
+ #if PERL_VERSION_GE(5,19,0)

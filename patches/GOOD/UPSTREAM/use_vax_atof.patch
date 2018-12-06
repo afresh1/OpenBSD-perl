@@ -1,5 +1,5 @@
---- ./hints/openbsd.sh.orig	Wed May 13 13:19:29 2015
-+++ ./hints/openbsd.sh	Thu Sep 17 23:02:19 2015
+--- ./hints/openbsd.sh.orig	Tue Mar 20 13:06:36 2018
++++ ./hints/openbsd.sh	Mon Nov 26 12:47:53 2018
 @@ -101,6 +101,13 @@ m88k-3.4)
     ;;
  esac

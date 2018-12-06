@@ -1,6 +1,6 @@
---- ./installperl.orig	Wed May 13 13:19:29 2015
-+++ ./installperl	Thu Sep 17 19:52:56 2015
-@@ -273,6 +273,10 @@ if (($Is_W32 and ! $Is_NetWare) or $Is_Cygwin) {
+--- ./installperl.orig	Mon May 21 05:29:23 2018
++++ ./installperl	Mon Nov 26 09:29:44 2018
+@@ -281,6 +281,10 @@ if (($Is_W32 and ! $Is_NetWare) or $Is_Cygwin) {
      $packlist->{"$Config{installbin}/$perldll"} = { type => 'file' };
  } # if (($Is_W32 and ! $Is_NetWare) or $Is_Cygwin)
  
@@ -11,7 +11,7 @@
  # First we install the version-numbered executables.
  
  if ($Is_VMS) {
-@@ -293,10 +297,7 @@ if ($Is_VMS) {
+@@ -301,10 +305,7 @@ if ($Is_VMS) {
  }
  elsif ($^O ne 'dos') {
      if (!$Is_NetWare) {
@@ -23,7 +23,7 @@
      }
      else {
  	# If installing onto a NetWare server
-@@ -616,6 +617,21 @@ sub copy {
+@@ -594,6 +595,21 @@ sub copy {
  	    unless -f $to and (chmod(0666, $to), unlink $to)
  		   and File::Copy::copy($from, $to);
      }

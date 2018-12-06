@@ -1,5 +1,5 @@
---- ./cpan/Pod-Parser/lib/Pod/PlainText.pm.orig	Wed May 13 13:19:29 2015
-+++ ./cpan/Pod-Parser/lib/Pod/PlainText.pm	Sat Oct  3 12:27:52 2015
+--- ./cpan/Pod-Parser/lib/Pod/PlainText.pm.orig	Tue Mar 20 13:06:36 2018
++++ ./cpan/Pod-Parser/lib/Pod/PlainText.pm	Mon Nov 26 10:17:02 2018
 @@ -139,6 +139,19 @@ sub initialize {
      return $self->SUPER::initialize;
  }
@@ -20,8 +20,8 @@
  
  ############################################################################
  # Core overrides
---- ./cpan/Pod-Parser/t/unbalanced.t.orig	Sat Oct  3 12:27:52 2015
-+++ ./cpan/Pod-Parser/t/unbalanced.t	Sat Oct  3 12:27:52 2015
+--- ./cpan/Pod-Parser/t/unbalanced.t.orig	Mon Nov 26 10:17:02 2018
++++ ./cpan/Pod-Parser/t/unbalanced.t	Mon Nov 26 10:17:02 2018
 @@ -0,0 +1,51 @@
 +#!/usr/bin/perl
 +use strict;

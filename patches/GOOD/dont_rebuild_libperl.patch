@@ -1,5 +1,5 @@
---- ./ext/DynaLoader/Makefile.PL.orig	Wed May 13 13:19:29 2015
-+++ ./ext/DynaLoader/Makefile.PL	Fri Oct  2 20:57:08 2015
+--- ./ext/DynaLoader/Makefile.PL.orig	Tue Mar 20 13:06:36 2018
++++ ./ext/DynaLoader/Makefile.PL	Wed Nov 28 22:04:09 2018
 @@ -65,8 +65,8 @@ sub MY::static {
  
      return "
@@ -11,9 +11,9 @@
  
  static :: $object
  ";
---- Makefile.SH.orig	Thu Sep  1 09:49:31 2016
-+++ Makefile.SH	Thu Sep  1 09:55:02 2016
-@@ -782,11 +782,11 @@
+--- ./Makefile.SH.orig	Mon May 21 06:22:09 2018
++++ ./Makefile.SH	Wed Nov 28 22:04:09 2018
+@@ -808,11 +808,11 @@ CCDLFLAGS		= `echo $ccdlflags|sed -e 's@-bE:.*/perl\.e
  LIBPERL_NONSHR		= libperl_nonshr$(LIB_EXT)
  MINIPERL_NONSHR		= miniperl_nonshr$(EXE_EXT)
  
@@ -29,11 +29,12 @@
  	$(CC) $(LDFLAGS) -o $(MINIPERL_NONSHR) miniperlmain$(OBJ_EXT) \
  	    opmini$(OBJ_EXT) perlmini$(OBJ_EXT) $(LIBPERL_NONSHR) $(LIBS)
  
-@@ -873,33 +873,33 @@
+@@ -911,33 +911,33 @@ $(DTRACE_MAIN_O): perldtrace.d perlmain$(OBJ_EXT)
+ !NO!SUBS!
  		;;
      esac
- 	$spitshell >>$Makefile <<'!NO!SUBS!'
--$(LIBPERL): $& $(perllib_objs) $(DYNALOADER) $(LIBPERLEXPORT)
+-	$spitshell >>$Makefile <<'!NO!SUBS!'
+-$(LIBPERL): $& $(perllib_dep) $(DYNALOADER) $(LIBPERLEXPORT)
 -!NO!SUBS!
 -	case "$useshrplib" in
 -	true)
@@ -59,8 +60,8 @@
 -!NO!SUBS!
 -		;;
 -	esac
--	$spitshell >>$Makefile <<'!NO!SUBS!'
-+#$(LIBPERL): $& $(perllib_objs) $(DYNALOADER) $(LIBPERLEXPORT)
++#	$spitshell >>$Makefile <<'!NO!SUBS!'
++#$(LIBPERL): $& $(perllib_dep) $(DYNALOADER) $(LIBPERLEXPORT)
 +#!NO!SUBS!
 +#	case "$useshrplib" in
 +#	true)
@@ -86,7 +87,6 @@
 +#!NO!SUBS!
 +#		;;
 +#	esac
-+#	$spitshell >>$Makefile <<'!NO!SUBS!'
+ 	$spitshell >>$Makefile <<'!NO!SUBS!'
  
  # How to build executables.
- 

@@ -1,5 +1,5 @@
---- ./cpan/Digest-MD5/MD5.xs.orig	Wed May 13 13:19:28 2015
-+++ ./cpan/Digest-MD5/MD5.xs	Sat Oct 10 19:19:54 2015
+--- ./cpan/Digest-MD5/MD5.xs.orig	Mon May 21 03:44:04 2018
++++ ./cpan/Digest-MD5/MD5.xs	Thu Nov 29 10:22:00 2018
 @@ -39,6 +39,8 @@ extern "C" {
  #include "EXTERN.h"
  #include "perl.h"
@@ -71,7 +71,7 @@
  #if defined(USE_ITHREADS) && defined(MGf_DUP)
  STATIC int dup_md5_ctx(pTHX_ MAGIC *mg, CLONE_PARAMS *params)
  {
-@@ -179,325 +126,6 @@ const STATIC struct {
+@@ -179,325 +126,6 @@ STATIC const struct {
  };
  #endif
  
@@ -455,19 +455,19 @@
  	XSRETURN(3);
  
  void
---- ./cpan/Digest-MD5/t/files.t.orig	Wed May 13 13:19:28 2015
-+++ ./cpan/Digest-MD5/t/files.t	Sat Oct 10 19:19:54 2015
+--- ./cpan/Digest-MD5/t/files.t.orig	Mon May 21 03:44:04 2018
++++ ./cpan/Digest-MD5/t/files.t	Thu Nov 29 10:22:00 2018
 @@ -21,7 +21,7 @@ EOT
      # This is the output of: 'md5sum README MD5.xs rfc1321.txt'
      $EXPECT = <<EOT;
  2f93400875dbb56f36691d5f69f3eba5  README
--0a0cf2512d18d24c6881d7d755e2b609  MD5.xs
-+5457ac1c3f0f33df96437555dc7eb172  MD5.xs
+-9572832f3628e3bebcdd54f47c43dc5a  MD5.xs
++641f5e20d5d53222c50ba99fbddabd15  MD5.xs
  754b9db19f79dbc4992f7166eb0f37ce  rfc1321.txt
  EOT
  }
---- ./cpan/Digest-MD5/t/context.t.orig	Sat Oct 10 19:19:54 2015
-+++ ./cpan/Digest-MD5/t/context.t	Sat Oct 10 19:19:54 2015
+--- ./cpan/Digest-MD5/t/context.t.orig	Thu Nov 29 10:22:00 2018
++++ ./cpan/Digest-MD5/t/context.t	Thu Nov 29 10:22:00 2018
 @@ -0,0 +1,43 @@
 +#!/usr/bin/perl
 +use strict;

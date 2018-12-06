@@ -1,6 +1,6 @@
---- Makefile.SH.orig	Thu Sep  1 09:59:38 2016
-+++ Makefile.SH	Thu Sep  1 10:03:33 2016
-@@ -964,10 +964,6 @@
+--- ./Makefile.SH.orig	Mon May 21 06:22:09 2018
++++ ./Makefile.SH	Mon Nov 26 17:58:24 2018
+@@ -1003,10 +1003,6 @@ NAMESPACEFLAGS = -force_flat_namespace
  		esac
  		$spitshell >>$Makefile <<'!NO!SUBS!'
  lib/buildcustomize.pl: $& $(miniperl_objs) write_buildcustomize.pl

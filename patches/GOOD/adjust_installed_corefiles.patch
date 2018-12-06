@@ -1,7 +1,7 @@
---- ./installperl.orig	Wed May 13 13:19:29 2015
-+++ ./installperl	Thu Sep 17 23:36:46 2015
-@@ -367,7 +367,9 @@ elsif ($Is_Cygwin) { # On Cygwin symlink it to CORE to
-     )
+--- ./installperl.orig	Mon May 21 05:29:23 2018
++++ ./installperl	Mon Nov 26 13:12:33 2018
+@@ -377,7 +377,9 @@ elsif ($Is_Cygwin) { # On Cygwin symlink it to CORE to
+     @corefiles = <*.h>;
  } else {
      # [als] hard-coded 'libperl' name... not good!
 -    @corefiles = <*.h libperl*.* perl*$Config{lib_ext}>;
