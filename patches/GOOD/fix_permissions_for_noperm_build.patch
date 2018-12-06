@@ -39,15 +39,6 @@
  print "  Installation complete\n" if $opts{verbose};
  
  exit 0;
-@@ -560,7 +567,7 @@ sub yn {
-     print STDERR $prompt;
-     chop($answer = <STDIN>);
-     $answer = $default if $answer =~ m/^\s*$/;
--    ($answer =~ m/^[yY]/);
-+    ($answer =~ m/^[yY]/
- }
- 
- sub safe_unlink {
 @@ -582,6 +589,7 @@ sub safe_unlink {
  
  sub copy {
