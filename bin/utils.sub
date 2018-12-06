@@ -2,7 +2,7 @@
 
 SRCDIR=$( dirname $BINDIR )
 WRKDIR=$( pwd )
-PERL_BASE=perl-5.24.3
+PERL_BASE=perl-5.28.1
 
 install_local_files() {
     cp -Rf ${SRCDIR}/files/* ./
