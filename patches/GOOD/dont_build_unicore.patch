@@ -1,6 +1,6 @@
---- ./Makefile.SH.orig	Sat Jul 16 03:52:42 2016
-+++ ./Makefile.SH	Wed Oct 12 20:13:20 2016
-@@ -1066,10 +1066,7 @@ $(CONFIGPOD): config.sh $(MINIPERL_EXE) configpm Porti
+--- ./Makefile.SH.orig	Sun Nov  4 12:39:04 2018
++++ ./Makefile.SH	Wed Dec  5 22:16:16 2018
+@@ -1106,10 +1106,7 @@ $(CONFIGPOD): config.sh $(MINIPERL_EXE) configpm Porti
  unidatafiles $(unidatafiles) pod/perluniprops.pod: uni.data
  
  uni.data: $(MINIPERL_EXE) $(CONFIGPM) lib/unicore/mktables $(nonxs_ext)
