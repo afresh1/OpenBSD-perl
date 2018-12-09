@@ -14,6 +14,7 @@ apply_patches_in_dir() {
     local _file;
 
     find $dir -name "$name" -print | sort | while read _file; do
+        echo "Applying $_file"
         patch -fEp0 -i $_file
 	if [ $( find . -name '*.rej' | wc -l ) -ne 0 ]; then
 		echo $_file failed!
