@@ -1,0 +1,31 @@
+From 78f7c09f0b2228c81b0f12f440ec41fa9652c19b Mon Sep 17 00:00:00 2001
+From: Karl Williamson <khw@cpan.org>
+Date: Thu, 29 Nov 2018 11:53:58 -0700
+Subject: [PATCH 2/3] locale.c: Don't use numeric unless LC_NUMERIC
+
+This commit #ifdef's a usage of a variable that isn't valid unless the
+system has LC_NUMERIC
+---
+ locale.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/locale.c b/locale.c
+index 0c94042c55..ea8b6f95b8 100644
+--- a/locale.c
++++ locale.c
+@@ -3322,8 +3322,12 @@ Perl_init_i18nl10n(pTHX_ int printwarn)
+ 
+ #  endif
+ 
++#  ifdef USE_LOCALE_NUMERIC
++
+     PL_numeric_radix_sv = newSVpvs(".");
+ 
++#  endif
++
+ #  if defined(USE_POSIX_2008_LOCALE) && ! defined(HAS_QUERYLOCALE)
+ 
+     /* Initialize our records.  If we have POSIX 2008, we have LC_ALL */
+-- 
+2.19.1
+

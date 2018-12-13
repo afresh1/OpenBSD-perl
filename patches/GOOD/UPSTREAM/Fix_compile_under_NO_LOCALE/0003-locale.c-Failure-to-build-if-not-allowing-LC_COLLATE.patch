@@ -1,0 +1,27 @@
+From 8203b3c38a1a9a17ebd860d8b87aba7091060a62 Mon Sep 17 00:00:00 2001
+From: Karl Williamson <khw@cpan.org>
+Date: Thu, 29 Nov 2018 11:55:09 -0700
+Subject: [PATCH 3/3] locale.c: Failure to build if not allowing LC_COLLATE
+
+This is part of [perl #133696].  A typo was causing a macro to be
+defined in terms of itself, hence an illegal recursive definition.
+---
+ locale.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/locale.c b/locale.c
+index ea8b6f95b8..0f40250700 100644
+--- a/locale.c
++++ locale.c
+@@ -331,7 +331,7 @@ S_category_name(const int category)
+ #    define LC_COLLATE_INDEX            _DUMMY_CTYPE + 1
+ #    define _DUMMY_COLLATE              LC_COLLATE_INDEX
+ #  else
+-#    define _DUMMY_COLLATE              _DUMMY_COLLATE
++#    define _DUMMY_COLLATE              _DUMMY_CTYPE
+ #  endif
+ #  ifdef USE_LOCALE_TIME
+ #    define LC_TIME_INDEX               _DUMMY_COLLATE + 1
+-- 
+2.19.1
+
