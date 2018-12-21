@@ -76,6 +76,9 @@ do_build_perl() {
         echo "make $J -f Makefile.bsd-wrapper all"
         make $J -f Makefile.bsd-wrapper all
 
+        # Some of my test machines are pretty slow
+        export PERL_TEST_TIME_OUT_FACTOR=20
+
         echo Testing
         echo "make $J -f Makefile.bsd-wrapper test"
         make $J -f Makefile.bsd-wrapper test
