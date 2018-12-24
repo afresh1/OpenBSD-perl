@@ -8,12 +8,18 @@ if [ -n "$NO_LOCAL_PATCHES" ]; then
     log=${log}-NO-PATCHES
 fi
 log=${log}-`machine`-`date +%Y%m%dT%H%M%S`.log
-uname -a > $log
+while read _line; do
+	echo `date` $_line >> $log
+	echo $_line >/dev/tty
+done |&
+exec 1>&p 2>&1
 
-do_extract_perl || exit 1 2>&1 | tee -a $log
+uname -a
+
+do_extract_perl || exit 1
 cd $PERL_BASE
 
-do_patch_perl || exit 1 2>&1 | tee -a $log
+do_patch_perl || exit 1
 
 if [ -z "$NO_READONLY_SRC"  \
   -a -z "$NO_LOCAL_PATCHES" \
@@ -24,11 +30,9 @@ if [ -z "$NO_READONLY_SRC"  \
     chmod -R -w .
 fi
 
-do_build_perl 2>&1 | tee -a $log
+do_build_perl
 
 cd $WRKDIR
-
-date >> $log
 
 # Did we win?
 if test_build_success $log; then
