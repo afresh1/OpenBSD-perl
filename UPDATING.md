@@ -38,6 +38,7 @@ This is still an art, not as yet a complete doc, but a start.
   was a .orig for each of those files.
 * Once all the patches have been regenerated run the `update_unicore` script
 * Eventually everything will build and tests will pass.
+* Check to see if a build or test run causes any new /var/log/messages
 * After this, use `make_patched_perl` to build a patched perl directory
 * Change into the perl build directory and run `regen_manpage_list`
 * Copy the new Makefile.bsdwrapper1 to the git repo
