@@ -1,0 +1,30 @@
+From e9f280b19afea106ad05cb0eb1c571bb1a1e39dc Mon Sep 17 00:00:00 2001
+From: Andrew Hewus Fresh <afresh1@openbsd.org>
+Date: Thu, 2 May 2019 09:35:34 -0700
+Subject: [PATCH] waitpid for the man process to exit
+
+Without waiting on the forked process, we may check the status of the
+wrong $?.
+
+from millert@openbsd
+---
+ lib/Pod/Perldoc/ToMan.pm | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/lib/Pod/Perldoc/ToMan.pm b/lib/Pod/Perldoc/ToMan.pm
+index bfcb5c4..d4d3c4d 100644
+--- a/lib/Pod/Perldoc/ToMan.pm
++++ b/lib/Pod/Perldoc/ToMan.pm
+@@ -358,6 +358,9 @@ sub _filter_through_nroff {
+ 		length $done
+ 		);
+ 
++	# wait for it to exit
++	waitpid( $pid, 0 );
++
+ 	if( $? ) {
+ 		$self->warn( "Error from pipe to $render!\n" );
+ 		$self->debug( 'Error: ' . do { local $/; <$err> } );
+-- 
+2.21.0
+

@@ -1,0 +1,27 @@
+Index: cpan/Pod-Perldoc/lib/Pod/Perldoc.pm
+===================================================================
+RCS file: /cvs/src/gnu/usr.bin/perl/cpan/Pod-Perldoc/lib/Pod/Perldoc.pm,v
+retrieving revision 1.4
+diff -u -p -r1.4 Perldoc.pm
+--- cpan/Pod-Perldoc/lib/Pod/Perldoc.pm	13 Feb 2019 21:15:14 -0000	1.4
++++ cpan/Pod-Perldoc/lib/Pod/Perldoc.pm	3 May 2019 04:39:47 -0000
+@@ -486,6 +486,8 @@ sub init_formatter_class_list {
+ 
+   $self->opt_M_with('Pod::Perldoc::ToPod');   # the always-there fallthru
+   $self->opt_o_with('text');
++  $self->opt_o_with('man')
++    if $ENV{TERM} && $ENV{TERM} !~ /dumb|emacs|none|unknown/i;
+ 
+   return;
+ }
+--- t/porting/customized.dat.orig	Fri May  3 08:26:30 2019
++++ t/porting/customized.dat	Fri May  3 08:26:49 2019
+@@ -19,7 +19,7 @@
+ Pod::Checker cpan/Pod-Checker/t/pod/selfcheck.t 8ce3cfd38e4b9bcf5bc7fe7f2a14195e49aed7d8
+ Pod::Checker cpan/Pod-Checker/t/pod/testcmp.pl a0cd5c8eca775c7753f4464eee96fa916e3d8a16
+ Pod::Checker cpan/Pod-Checker/t/pod/testpchk.pl b2072c7f4379fd050e15424175d7cac5facf5b3b
+-Pod::Perldoc cpan/Pod-Perldoc/lib/Pod/Perldoc.pm 582be34c077c9ff44d99914724a0cc2140bcd48c
++Pod::Perldoc cpan/Pod-Perldoc/lib/Pod/Perldoc.pm d97aa26b722e6e3120b19ee0d7cf9af04dfdfb7f
+ autodie cpan/autodie/lib/autodie/exception.pm b99e4e35a9ed36de94d54437888822ced4936207
+ autodie cpan/autodie/lib/autodie/hints.pm e1998fec61fb4e82fe46585bd82c73200be6f262
+ autodie cpan/autodie/t/exceptions.t ad315a208f875e06b0964012ce8d65daa438c036
