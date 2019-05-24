@@ -31,11 +31,18 @@ This is still an art, not as yet a complete doc, but a start.
     * as well as dont_rebuild_libperl.patch
 * At some point you won't get any better results and you will actually have to
   look at the logs and update patches.
-* You may need to regenerate Makefile.SH. You can do this by running
-  regen/lib_cleanup.pl -v with the system perl
-  after applying just the single patch you need to regen.
-  Pay attention to what *doesn't* stay the same and make sure there
-  was a .orig for each of those files.
+* When adding new modules to the dist, You need to regenerate some files
+  * use the "bin/make_patched_perl" script
+  * find . -name '*.orig' -exec rm -f {} +
+  * cp -a perl-* orig
+  * cd perl-*
+  * Add your new files to the MANIFEST
+  * if Porting/manicheck says it's not sorted properly
+  * run Porting/manisort --output MANIFEST.new && mv MANIFEST.new MANIFEST
+  * regen/lib_cleanup.pl -v with the system perl
+  * diff -ru ../orig . > .../OpenBSD-perl/patches/RESEARCH/put_My-Module_in_MANIFEST.patch
+  * cd .. && rm -rf -- ./*
+  * use bin/test_patches to make sure it works
 * Once all the patches have been regenerated run the `update_unicore` script
 * Eventually everything will build and tests will pass.
 * Check to see if a build or test run causes any new /var/log/messages
