@@ -1,0 +1,16 @@
+#!/bin/sh
+set -e
+
+BINDIR=$( readlink -f $(dirname $0) )
+#. $BINDIR/utils.sub
+
+SRCDIR=/usr/src/gnu/usr.bin/perl
+
+cd ${BINDIR}/../files
+find . -type f | while read dst; do
+	src="${SRCDIR}/$dst"
+	if [ -e "$src" ] && ! cmp "$src" "$dst"; then
+		echo "$dst"
+		cp "$src" "$dst"
+	fi
+done
