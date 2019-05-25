@@ -30,6 +30,7 @@ my %sections = (
 
 my %skip_page = map { $_ => 1 } qw(
     json_pp
+    ptar
     ptardiff
     ptargrep
     shasum
