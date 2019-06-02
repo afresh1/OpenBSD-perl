@@ -1,9 +1,9 @@
---- MANIFEST.orig	Sat Dec  1 17:32:57 2018
-+++ MANIFEST	Sat Dec  1 17:32:07 2018
-@@ -1555,6 +1555,9 @@
- cpan/OpenBSD-MkTemp/MkTemp.xs	OpenBSD::MkTemp
- cpan/OpenBSD-MkTemp/README	OpenBSD::MkTemp Readme
- cpan/OpenBSD-MkTemp/t/OpenBSD-MkTemp.t	OpenBSD::MkTemp test file
+--- MANIFEST.orig	Fri May 24 21:34:24 2019
++++ MANIFEST	Fri May 24 21:34:33 2019
+@@ -1496,6 +1496,9 @@
+ cpan/OpenBSD-MkTemp/MkTemp.xs		OpenBSD::MkTemp
+ cpan/OpenBSD-MkTemp/README		OpenBSD::MkTemp Readme
+ cpan/OpenBSD-MkTemp/t/OpenBSD-MkTemp.t		OpenBSD::MkTemp test file
 +cpan/OpenBSD-Pledge/lib/OpenBSD/Pledge.pm	OpenBSD::Pledge
 +cpan/OpenBSD-Pledge/Pledge.xs	OpenBSD::Pledge
 +cpan/OpenBSD-Pledge/t/OpenBSD-Pledge.t	OpenBSD::Pledge test file

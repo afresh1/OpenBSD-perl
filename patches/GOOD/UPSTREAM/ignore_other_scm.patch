@@ -1,6 +1,6 @@
---- ./Configure.orig	Mon May 21 05:29:23 2018
-+++ ./Configure	Mon Nov 26 11:57:51 2018
-@@ -23441,6 +23441,8 @@ esac
+--- ./Configure.orig	Sat May 11 02:50:20 2019
++++ ./Configure	Sun May 12 02:34:06 2019
+@@ -23664,6 +23664,8 @@ esac
  nonxs_ext=''
  for xxx in $nonxs_extensions ; do
  	case "$xxx" in

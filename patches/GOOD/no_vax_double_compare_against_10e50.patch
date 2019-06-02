@@ -1,16 +1,14 @@
---- ./t/porting/customized.dat.orig	Mon May 21 05:29:23 2018
-+++ ./t/porting/customized.dat	Mon Nov 26 21:18:22 2018
-@@ -25,6 +25,7 @@ autodie cpan/autodie/t/exceptions.t ad315a208f875e06b0
- autodie cpan/autodie/t/lib/Hints_pod_examples.pm 6944c218e9754b3613c8d0c90a5ae8aceccb5c99
- autodie cpan/autodie/t/mkdir.t 9e70d2282a3cc7d76a78bf8144fccba20fb37dac
- experimental cpan/experimental/t/basic.t a073ea03ccc98dec496569f3648ab01a5fe1c7a0
-+version vutil.c 45ff345c3d8424ba63e130a223848f5b336bd87b
- perlfaq cpan/perlfaq/lib/perlfaq5.pod bcc1b6af3b6dff3973643acf8d5e741463374123
- perlfaq cpan/perlfaq/lib/perlfaq8.pod bffbc0c8fa828aead24e0891a5e789369a8e0743
- podlators pod/perlpodstyle.pod c6500c9950b46e8228d4adbc09a3ee2ef23de2d0
---- ./vutil.c.orig	Mon May 21 05:29:23 2018
-+++ ./vutil.c	Mon Nov 26 21:18:22 2018
-@@ -609,7 +609,11 @@ VER_NV:
+--- ./t/porting/customized.dat.orig	Sun Jun  2 11:59:33 2019
++++ ./t/porting/customized.dat	Sun Jun  2 12:04:17 2019
+@@ -26,4 +26,4 @@ autodie cpan/autodie/t/mkdir.t 9e70d2282a3cc7d76a78bf8
+ autodie cpan/autodie/t/recv.t 63bea2daa330e44b67714527ddf701c1bf3a6954
+ experimental cpan/experimental/t/basic.t cb9da8dd05b854375809872a05dd32637508d5da
+ version cpan/version/lib/version.pm 7ef9219d1d5f1d71f08a79f3b0577df138b21b12
+-version vutil.c 105543ef1824fbc2429a7d5ebd19189c8081fede
++version vutil.c 074fb201e9a20a845764f671eb1021a6020ebea1
+--- ./vutil.c.orig	Sun Jun  2 11:59:33 2019
++++ ./vutil.c	Sun Jun  2 11:59:56 2019
+@@ -614,7 +614,11 @@ VER_NV:
  
  	/* may get too much accuracy */ 
  	char tbuf[64];

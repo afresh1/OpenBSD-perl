@@ -1,6 +1,6 @@
---- ./Makefile.SH.orig	Sun Nov  4 12:39:04 2018
-+++ ./Makefile.SH	Fri Nov 30 20:32:52 2018
-@@ -475,7 +475,7 @@ shextract=`SH_to_target $SH`
+--- ./Makefile.SH.orig	Sat May 11 12:55:31 2019
++++ ./Makefile.SH	Sun May 12 21:03:30 2019
+@@ -486,7 +486,7 @@ shextract=`SH_to_target $SH`
  ## In the following dollars and backticks do not need the extra backslash.
  $spitshell >>$Makefile <<!GROK!THIS!
  
@@ -9,7 +9,7 @@
  
  # Files to be built with variable substitution before miniperl
  # is available.
-@@ -634,16 +634,17 @@ $(MANIFEST_SRT):	MANIFEST $(PERL_EXE)
+@@ -645,16 +645,17 @@ $(MANIFEST_SRT):	MANIFEST $(PERL_EXE)
  
  .PHONY: all utilities
  
@@ -34,7 +34,7 @@
  !NO!SUBS!
  
  # Making utilities requires Cwd.  If we have dynamic
-@@ -1376,7 +1377,7 @@ _mopup:
+@@ -1381,7 +1382,7 @@ _mopup:
  	-rm -f *perl.xok
  	-rm -f cygwin.c libperl*.def libperl*.dll cygperl*.dll *.exe.stackdump
  	-rm -f $(PERL_EXE) $(MINIPERL_EXE) $(LIBPERL) libperl.* microperl
@@ -43,9 +43,9 @@
  
  _cleaner1:
  	-cd os2; rm -f Makefile
---- ./MANIFEST.orig	Sun Nov  4 12:39:04 2018
-+++ ./MANIFEST	Fri Nov 30 20:32:52 2018
-@@ -16,6 +16,7 @@ caretx.c		C file to create $^X
+--- ./MANIFEST.orig	Sat May 11 15:08:28 2019
++++ ./MANIFEST	Sun May 12 21:03:30 2019
+@@ -17,6 +17,7 @@ caretx.c		C file to create $^X
  cflags.SH		A script that emits C compilation flags per file
  Changes			Describe how to peruse changes between releases
  charclass_invlists.h	Compiled-in inversion lists
@@ -53,7 +53,7 @@
  config_h.SH		Produces config.h
  configpm		Produces lib/Config.pm
  Configure		Portability tool
-@@ -4460,6 +4461,7 @@ fakesdio.h			stdio in terms of PerlIO
+@@ -4411,6 +4412,7 @@ fakesdio.h			stdio in terms of PerlIO
  feature.h			Feature header
  form.h				Public declarations for formats
  generate_uudmap.c		Generate uudmap.h, the uuencode decoding map
@@ -61,7 +61,7 @@
  globals.c			File to declare global symbols (for shared library)
  globvar.sym			Global variables that need hiding when embedded
  gv.c				Glob value code
-@@ -4604,6 +4606,7 @@ lib/Class/Struct.t		See if Class::Struct works
+@@ -4556,6 +4558,7 @@ lib/Class/Struct.t		See if Class::Struct works
  lib/Config.t			See if Config works
  lib/Config/Extensions.pm	Convenient hash lookup for built extensions
  lib/Config/Extensions.t		See if Config::Extensions works
@@ -69,9 +69,9 @@
  lib/CORE.pod			document the CORE namespace
  lib/DB.pm			Debugger API (draft)
  lib/DB.t			See if DB works
---- ./Porting/Maintainers.pl.orig	Thu Nov  1 15:07:21 2018
-+++ ./Porting/Maintainers.pl	Fri Nov 30 20:32:52 2018
-@@ -1457,6 +1457,9 @@ use File::Glob qw(:case);
+--- ./Porting/Maintainers.pl.orig	Sat May 11 02:50:20 2019
++++ ./Porting/Maintainers.pl	Sun May 12 21:03:30 2019
+@@ -1423,6 +1423,9 @@ use File::Glob qw(:case);
                  lib/vmsish.{pm,t}
                  ],
      },

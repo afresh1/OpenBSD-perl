@@ -36,16 +36,16 @@ Yours,
      or exit 1;
  pod2usage (0) if $options{help};
  
-@@ -128,7 +129,7 @@ exit $status;
+@@ -126,7 +127,7 @@ exit $status;
  __END__
  
  =for stopwords
--en em --stderr stderr --utf8 UTF-8 overdo markup MT-LEVEL Allbery Solaris
-+en em --stderr stderr --no-utf8 UTF-8 overdo markup MT-LEVEL Allbery Solaris
- URL troff troff-specific formatters uppercased Christiansen --nourls UTC
- prepend lquote rquote
+-en em --stderr stderr --utf8 UTF-8 overdo markup MT-LEVEL Allbery Solaris URL
++en em --stderr stderr --no-utf8 UTF-8 overdo markup MT-LEVEL Allbery Solaris URL
+ troff troff-specific formatters uppercased Christiansen --nourls UTC prepend
+ lquote rquote
  
-@@ -143,7 +144,7 @@ pod2man [B<--center>=I<string>] [B<--date>=I<string>] 
+@@ -141,7 +142,7 @@ pod2man [B<--center>=I<string>] [B<--date>=I<string>] 
      [B<--fixedbolditalic>=I<font>] [B<--name>=I<name>] [B<--nourls>]
      [B<--official>] [B<--release>=I<version>] [B<--section>=I<manext>]
      [B<--quotes>=I<quotes>] [B<--lquote>=I<quote>] [B<--rquote>=I<quote>]
@@ -54,7 +54,7 @@ Yours,
  
  pod2man B<--help>
  
-@@ -346,19 +347,10 @@ to C<--errors=stderr> and is supported for backward co
+@@ -344,19 +345,10 @@ to C<--errors=stderr> and is supported for backward co
  
  =item B<-u>, B<--utf8>
  

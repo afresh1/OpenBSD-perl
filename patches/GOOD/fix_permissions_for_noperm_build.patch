@@ -1,5 +1,5 @@
---- ./installperl.orig	Wed Dec 12 19:37:11 2018
-+++ ./installperl	Wed Dec 12 19:38:04 2018
+--- ./installperl.orig	Sun Jun  2 11:48:07 2019
++++ ./installperl	Sun Jun  2 11:53:18 2019
 @@ -77,8 +77,8 @@ $opts{destdir} = '';
      my $usage = 0;
      if (!GetOptions(\%opts, 'notify|n', 'strip|s', 'silent|S',
@@ -29,7 +29,7 @@
  
  $versiononly = 1 if $Config{versiononly} && !defined $versiononly;
  my (@scripts, @tolink);
-@@ -544,6 +548,9 @@ if (!$opts{nopods} && (!$versiononly || ($installprivl
+@@ -545,6 +549,9 @@ if (!$opts{nopods} && (!$versiononly || ($installprivl
  
  
  $packlist->write() unless $opts{notify};
@@ -39,7 +39,7 @@
  print "  Installation complete\n" if $opts{verbose};
  
  exit 0;
-@@ -582,6 +589,7 @@ sub safe_unlink {
+@@ -583,6 +590,7 @@ sub safe_unlink {
  
  sub copy {
      my($from,$to) = @_;
@@ -47,7 +47,7 @@
  
      my $xto = $to;
      $xto =~ s/^\Q$opts{destdir}\E//;
-@@ -589,12 +597,15 @@ sub copy {
+@@ -590,12 +598,15 @@ sub copy {
  	unless $opts{silent};
      print "  creating new version of $xto\n"
  	if $Is_VMS and -e $to and !$opts{silent};
@@ -65,7 +65,7 @@
      $packlist->{$xto} = { type => 'file' };
  }
  
-@@ -604,6 +615,8 @@ sub install {
+@@ -605,6 +616,8 @@ sub install {
      my $xto = $to;
      my $cmd = join(' ', @installcmd);
      $cmd .= " -m $mode" if $mode;
@@ -74,8 +74,8 @@
      $cmd .= " -s" if $opts{strip};
      $cmd .= " $from $to";
      $xto =~ s/^\Q$opts{destdir}\E// if $opts{destdir};
---- ./install_lib.pl.orig	Wed Dec 12 19:36:45 2018
-+++ ./install_lib.pl	Wed Dec 12 19:37:19 2018
+--- ./install_lib.pl.orig	Wed Jun 27 04:17:56 2018
++++ ./install_lib.pl	Sun Jun  2 11:48:38 2019
 @@ -6,7 +6,7 @@
  use strict;
  use vars qw($Is_VMS $Is_W32 $Is_OS2 $Is_Cygwin $Is_Darwin $Is_NetWare $Is_AmigaOS

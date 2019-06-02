@@ -5,9 +5,9 @@ millert@ suggested Term::ReadKey, which looks indeed like a good choice.
 
 Here's the glue + distrib from cpan. Comments welcome.
 
---- ./MANIFEST.orig	Wed May 23 06:29:56 2018
-+++ ./MANIFEST	Tue Nov 27 11:53:00 2018
-@@ -2054,6 +2054,17 @@ cpan/Term-ANSIColor/t/module/stringify.t
+--- ./MANIFEST.orig	Sat May 11 15:08:28 2019
++++ ./MANIFEST	Sun May 12 23:16:18 2019
+@@ -2007,6 +2007,17 @@ cpan/Term-ANSIColor/t/module/stringify.t
  cpan/Term-ANSIColor/t/taint/basic.t
  cpan/Term-Cap/Cap.pm			Perl module supporting termcap usage
  cpan/Term-Cap/test.pl			See if Term::Cap works

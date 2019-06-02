@@ -16,8 +16,8 @@ Philip
 Index: hints/openbsd.sh
 ===================================================================
 RCS file: /cvs/src/gnu/usr.bin/perl/hints/openbsd.sh,v
---- ./hints/openbsd.sh.orig	Tue Mar 20 13:06:36 2018
-+++ ./hints/openbsd.sh	Tue Nov 27 12:18:30 2018
+--- ./hints/openbsd.sh.orig	Sat May 11 02:50:20 2019
++++ ./hints/openbsd.sh	Sun May 12 11:01:48 2019
 @@ -84,6 +84,8 @@ esac
  # around for old NetBSD binaries.
  libswanted=`echo $libswanted | sed 's/ crypt / /'`

@@ -29,7 +29,7 @@
  	$(CC) $(LDFLAGS) -o $(MINIPERL_NONSHR) miniperlmain$(OBJ_EXT) \
  	    opmini$(OBJ_EXT) perlmini$(OBJ_EXT) $(LIBPERL_NONSHR) $(LIBS)
  
-@@ -911,33 +911,33 @@ $(DTRACE_MAIN_O): perldtrace.d perlmain$(OBJ_EXT)
+@@ -922,33 +922,33 @@ $(DTRACE_MAIN_O): perldtrace.d perlmain$(OBJ_EXT)
  !NO!SUBS!
  		;;
      esac

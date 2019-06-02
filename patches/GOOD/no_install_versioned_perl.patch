@@ -1,5 +1,5 @@
---- ./installperl.orig	Sun Dec  9 09:09:46 2018
-+++ ./installperl	Sun Dec  9 09:12:33 2018
+--- ./installperl.orig	Sun Jun  2 11:40:49 2019
++++ ./installperl	Sun Jun  2 11:41:39 2019
 @@ -307,6 +307,7 @@ if ($Is_VMS) {
  }
  elsif ($^O ne 'dos') {
@@ -8,7 +8,7 @@
  	install("perl$exe_ext", "$installbin/$perl_verbase$ver$exe_ext", "0755");
      }
      else {
-@@ -410,7 +411,8 @@ if ($Is_W32) { #linking lib isn't made in root but in 
+@@ -411,7 +412,8 @@ if ($Is_W32) { #linking lib isn't made in root but in 
  # Install main perl executables
  # Make links to ordinary names if installbin directory isn't current directory.
  
