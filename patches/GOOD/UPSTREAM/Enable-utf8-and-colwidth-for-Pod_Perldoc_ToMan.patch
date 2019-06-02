@@ -1,0 +1,71 @@
+Hi Andrew,
+
+Andrew Fresh wrote on Fri, May 03, 2019 at 06:24:16PM -0700:
+
+> I committed this after moving the waitpid down a few lines, after the
+> last read from the filehandle.
+
+Oops.  Sorry for missing that, and thanks for committing it,
+and for catching that additional issue.
+
+> I will say that `perldoc -oterm unicook` looks a lot better with the
+> right fonts and LC_CTYPE=en_US.UTF-8 than the output from -oman, but it
+> looks a lot worse with LC_CTYPE=C so probably -oman is a better default.
+
+Specifically,
+
+  LC_CTYPE=en_US.UTF-8 LESS=-R perldoc -oterm  # produces UTF-8 (fine)
+  LC_CTYPE=en_US.UTF-8 perldoc -oman           # produces UTF-8 (fine)
+                                               # with the patch below
+
+  LC_CTYPE=C LESS=-R perldoc -oterm unicook    # produces UTF-8 (bad)
+  LC_CTYPE=C perldoc -oman unicook             # produces ASCII (good)
+
+So -oterm is definitely a bad default, and fixing it may be a waste
+of time.  I see no point in maintaining alternative output modes that
+provide little to no benefit.
+
+> Perhaps I can figure out how to get ToMan to do the right thing in the
+> right locale someday.
+
+The first chunk in the patch below seems to be all that is needed.
+
+IIRC, we already do a similar thing in pod2man(1).
+
+Of course, both chunks can be OK'ed / objected to independently,
+they are completely independent of each other.  I'm merely leaving
+both in place such that they don't get forgotten.
+
+Yours,
+  Ingo
+
+
+Index: ToMan.pm
+===================================================================
+RCS file: /cvs/src/gnu/usr.bin/perl/cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm,v
+retrieving revision 1.9
+diff -u -p -r1.9 ToMan.pm
+--- ./cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm.orig	Sat May 11 02:50:20 2019
++++ ./cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm	Sat May 11 22:05:30 2019
+@@ -144,7 +144,9 @@ sub _get_podman_switches {
+     #
+     # See RT #77465
+     #
+-    #push @switches, 'utf8' => 1;
++    # Then again, do *not* comment it out on OpenBSD:
++    # mandoc handles UTF-8 input just fine.
++    push @switches, 'utf8' => 1;
+ 
+ 	$self->debug( "Pod::Man switches are [@switches]\n" );
+ 
+@@ -225,6 +227,10 @@ sub _collect_nroff_switches {
+ 		my $c = $cols * 39 / 40;
+ 		$cols = $c > $cols - 2 ? $c : $cols -2;
+ 		push @render_switches, '-rLL=' . (int $c) . 'n' if $cols > 80;
++		}
++
++	if( $self->_is_mandoc ) {
++		push @render_switches, '-Owidth=' . $self->_get_columns;
+ 		}
+ 
+ 	# I hear persistent reports that adding a -c switch to $render
