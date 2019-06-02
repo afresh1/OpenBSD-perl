@@ -1,6 +1,6 @@
 #!/bin/sh
 
-find . -name '*.orig' | (
+find . -name '*.orig' | sort | (
     while read o; do
         diff -uNp $o ${o%.orig}
     done
