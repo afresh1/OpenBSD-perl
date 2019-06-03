@@ -7,6 +7,10 @@ mkdir -p $SRCDIR/patches/RESEARCH
 mv -f $SRCDIR/patches/GOOD/pre_built_unicore.patch{,.old}
 mv -f $SRCDIR/patches/{GOOD,RESEARCH}/dont_build_unicore.patch
 
+v=$( echo ${PERL_BASE#*-} | tr -d '.' )
+perl -pi -E "s/perl\d+delta/perl${v}delta/" \
+    $SRCDIR/patches/RESEARCH/dont_build_unicore.patch
+
 do_extract_perl
 cd $PERL_BASE
 do_patch_perl
