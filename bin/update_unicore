@@ -11,6 +11,9 @@ v=$( echo ${PERL_BASE#*-} | tr -d '.' )
 perl -pi -E "s/perl\d+delta/perl${v}delta/" \
     $SRCDIR/patches/RESEARCH/dont_build_unicore.patch
 
+rm -rf $WRKDIR/${PERL_BASE}.orig &
+orig_rm=$!
+
 do_extract_perl
 cd $PERL_BASE
 do_patch_perl
@@ -30,7 +33,7 @@ do_extract_perl
 cd $PERL_BASE
 do_patch_perl
 
-rm -rf $WRKDIR/${PERL_BASE}.orig
+wait $orig_rm
 cp -r  $WRKDIR/${PERL_BASE}{,.orig}
 
 chmod -R +w .
@@ -52,14 +55,13 @@ perl Porting/pod_rules.pl
 perl -i.old -naE 'print unless $SEEN{$F[0]}++' MANIFEST
 
 # Cleanup cruft
-find $WRKDIR/${PERL_BASE}.orig ./ \
-    \( -name '*.old' -o -name '*.rej' -o -name '*.orig' \) -exec rm -f {} \+
+find $WRKDIR/${PERL_BASE}.orig ./ \( -type f -a \
+    \( -name '*.old' -o -name '*.rej' -o -name '*.orig' \) \) -delete
 
 diff -ruN $WRKDIR/${PERL_BASE}.orig/ ./ \
-    > $SRCDIR/patches/RESEARCH/pre_built_unicore.patch
+    > $SRCDIR/patches/GOOD/pre_built_unicore.patch
 
 cd $WRKDIR
-rm -rf ${PERL_BASE}.orig
+rm -rf ${PERL_BASE}.orig &
 
-$BINDIR/test_patches pre_built_unicore.patch
-$BINDIR/test_patches
+$BINDIR/test_patches dont_build_unicore.patch
