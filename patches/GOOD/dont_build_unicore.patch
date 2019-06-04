@@ -12,3 +12,13 @@
  
  # $(PERL_EXE) and ext because pod_lib.pl needs Digest::MD5
  # But also this ensures that all extensions are built before we try to scan
+--- pod/perlmodlib.PL.orig	Mon Jun  3 20:48:47 2019
++++ pod/perlmodlib.PL	Mon Jun  3 20:48:49 2019
+@@ -64,6 +64,7 @@
+         die "p5p-controlled module $filename missing =head1 NAME\n"
+             if $filename !~ m{^(dist/|cpan/)}n # under our direct control
+             && $filename !~ m{/_[^/]+\z}       # not private
++            && $filename !~ m{/unicore/}       # not unicore
+             && $filename ne 'lib/meta_notation.pm'      # no pod
+             && $filename ne 'lib/overload/numbers.pm';  # no pod
+         warn "$filename missing =head1 NAME\n" unless $Quiet;
