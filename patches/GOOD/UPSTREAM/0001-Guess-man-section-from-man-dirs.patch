@@ -1,0 +1,48 @@
+From c170fd67d77fe9ce1708c1935997cce0329cd60d Mon Sep 17 00:00:00 2001
+From: Andrew Hewus Fresh <andrew@afresh1.com>
+Date: Sat, 6 Jul 2019 12:35:13 -0700
+Subject: [PATCH] Guess man section from man*dirs
+
+---
+ lib/ExtUtils/MM_Any.pm | 21 +++++++++++++++++++--
+ 1 file changed, 19 insertions(+), 2 deletions(-)
+
+diff --git a/lib/ExtUtils/MM_Any.pm b/lib/ExtUtils/MM_Any.pm
+index 3157df76..844ec05c 100644
+--- cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Any.pm.orig	Thu Nov  1 15:07:28 2018
++++ cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Any.pm	Sat Jul  6 12:39:58 2019
+@@ -1088,8 +1088,9 @@
+ END
+ 
+     my @man_cmds;
+-    foreach my $section (qw(1 3)) {
+-        my $pods = $self->{"MAN${section}PODS"};
++    foreach my $num (qw(1 3)) {
++        my $pods = $self->{"MAN${num}PODS"};
++        my $section = $self->{"MAN${num}SECTION"};
+         my $p2m = sprintf <<'CMD', $section, $] > 5.008 ? " -u" : "";
+ 	$(NOECHO) $(POD2MAN) --section=%s --perm_rw=$(PERM_RW)%s
+ CMD
+@@ -2176,6 +2177,22 @@
+ 
+         warn "  $Installvar == $self->{$Installvar}\n"
+           if $Verbose >= 2;
++    }
++
++    # logic similar to picking man${num}ext in perl's Configure script
++    foreach my $num (1,3) {
++        my $mandir
++            = $self->{ 'INSTALL' . uc $self->{INSTALLDIRS} . "MAN${num}DIR" };
++        my $section = $num;
++
++        foreach ($num, "${num}p", "${num}pm", qw< l n o C L >, "L$num") {
++            if ( $mandir =~ /$_$/ ) {
++                $section = $_;
++                last;
++            }
++        }
++
++        $self->{"MAN${num}SECTION"} = $section;
+     }
+ 
+     # Generate these if they weren't figured out.
