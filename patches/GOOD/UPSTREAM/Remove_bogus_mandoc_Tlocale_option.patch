@@ -1,0 +1,42 @@
+From 81203fd30940ed2bf252836c3192dac5f25bc4a9 Mon Sep 17 00:00:00 2001
+From: schwarze <schwarze@openbsd.org>
+Date: Fri, 14 Jun 2019 14:27:29 +0000
+Subject: [PATCH] Delete totally bogus code specifically targetted at mandoc
+ which tried to figure out whether mandoc supported UTF-8 output (which it has
+ been doing since 2011) and which passed the -T locale option (which has been
+ the default since 2014 and always will) but which required the -V option to
+ work (which was deleted half a decade ago and will not come back). Nowadays,
+ it is safe to assume that mandoc just works with UTF-8 on both the input and
+ output sides - in literally each and every operating system providing a
+ mandoc port or package, even those that are seriously lagging behind. This
+ patch will also be pushed upstream. OK tb@
+
+---
+ gnu/usr.bin/perl/cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm | 7 -------
+ 1 file changed, 7 deletions(-)
+
+diff --git cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm b/gnu/usr.bin/perl/cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm
+index 696c9dd2c31..d8e42b1703b 100644
+--- cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm.orig
++++ cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm
+@@ -211,12 +211,6 @@ sub _have_groff_with_utf8 {
+ 	$version ge $minimum_groff_version;
+ 	}
+ 
+-sub _have_mandoc_with_utf8 {
+-	my( $self ) = @_;
+-
+-       $self->_is_mandoc and not system 'mandoc -Tlocale -V > /dev/null 2>&1';
+-	}
+-
+ sub _collect_nroff_switches {
+ 	my( $self ) = shift;
+ 
+@@ -248,7 +242,6 @@ sub _get_device_switches {
+ 	   if( $self->_is_nroff  )             { qw()              }
+ 	elsif( $self->_have_groff_with_utf8 )  { qw(-Kutf8 -Tutf8) }
+ 	elsif( $self->_is_ebcdic )             { qw(-Tcp1047)      }
+-	elsif( $self->_have_mandoc_with_utf8 ) { qw(-Tlocale)      }
+ 	elsif( $self->_is_mandoc )             { qw()              }
+ 	else                                   { qw(-Tlatin1)      }
+ 	}
