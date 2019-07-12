@@ -50,7 +50,7 @@ copy the patch into /usr/src (or adjust the paths below)
 patch -p0 -E < ${PERL_BASE}.patch
 
 # Remove patch cruft
-find gnu/usr.bin/perl -name '*.orig' -exec rm -f {} \+
+find gnu/usr.bin/perl -name '*.orig' -delete
 
 # Add and remove binary and zero sized files that patch doesn't understand
 grep -B1 -e '^Index:' -e 'Binary files /tmp/.* and /dev/null differ' \\
