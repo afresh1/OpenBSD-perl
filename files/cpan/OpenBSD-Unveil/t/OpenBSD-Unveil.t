@@ -1,4 +1,4 @@
-#	$OpenBSD$	#
+#	$OpenBSD: OpenBSD-Unveil.t,v 1.1 2019/07/09 20:41:54 afresh1 Exp $	#
 ## no critic 'version'
 ## no critic 'package'
 # Before 'make install' is performed this script should be runnable with
