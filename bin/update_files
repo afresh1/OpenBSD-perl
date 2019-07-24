@@ -1,16 +1,19 @@
 #!/bin/sh
 set -e
-
 BINDIR=$( readlink -f $(dirname $0) )
-#. $BINDIR/utils.sub
+. $BINDIR/utils.sub
 
-SRCDIR=/usr/src/gnu/usr.bin/perl
+setup_cvsroot
 
-cd ${BINDIR}/../files
-find . -type f | while read dst; do
-	src="${SRCDIR}/$dst"
-	if [ -e "$src" ] && ! cmp "$src" "$dst"; then
-		echo "$dst"
-		cp "$src" "$dst"
-	fi
+# And note the directory we want to diff
+PERLCVS=src/gnu/usr.bin/perl
+
+# Now checkout a clean copy of the existing perl
+cvs co -P $PERLCVS
+
+( cd "$SRCDIR/files" && find . -type f ) | while read f; do
+    if [ -e "$PERLCVS/$f" ]; then
+        echo "$f"
+        cp "$PERLCVS/$f" "$SRCDIR/files/$f"
+    fi
 done
