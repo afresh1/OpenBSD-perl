@@ -1,4 +1,4 @@
-/*	$OpenBSD$	*/
+/*	$OpenBSD: Unveil.xs,v 1.1 2019/07/09 20:41:54 afresh1 Exp $	*/
 
 /*
  * Copyright (c) 2019 Andrew Fresh <afresh1@openbsd.org>
