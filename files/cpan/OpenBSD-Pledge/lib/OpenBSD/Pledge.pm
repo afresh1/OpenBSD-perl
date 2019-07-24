@@ -79,8 +79,6 @@ Returns true on success, returns false and sets $! on failure
 
 Returns a list of the possible promises you can pass to L</pledge>.
 
-=back
-
 =head1 BUGS AND LIMITATIONS
 
 Perl is particularly fond of C<stdio> so that promise is always added by
