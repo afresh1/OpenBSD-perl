@@ -37,8 +37,8 @@ find $PERL_BASE -name '*.orig' -exec rm -f {} \+
 cvs_rm_add $PERL_BASE $PERLCVS
 
 # Finally generate a patch
-cd src 
-cvs diff -uNp gnu/usr.bin/perl > ../$PERL_BASE.patch 
+cd src
+cvs diff -auNp gnu/usr.bin/perl > ../$PERL_BASE.patch
 cd $OLDPWD
 
 cat <<EOL
@@ -47,7 +47,7 @@ Now you're ready to apply the patch!
 
 copy the patch into /usr/src (or adjust the paths below)
 
-patch -p0 -E < ${PERL_BASE}.patch
+patch -p0 -uNE < ${PERL_BASE}.patch
 
 # Remove patch cruft
 find gnu/usr.bin/perl -name '*.orig' -delete
