@@ -3,8 +3,7 @@
 # Build wrapper for Perl
 #
 
-
-CONFIGURE_ARGS= -dsE -Dopenbsd_distribution=defined -Dccflags='-DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE'
+CONFIGURE_ARGS=	-de -Dopenbsd_distribution=defined
 
 .if !exists(${.OBJDIR}/config.over)
 CONFIGURE_ARGS+= -Dmksymlinks
@@ -12,45 +11,15 @@ CONFIGURE_ARGS+= -Dmksymlinks
 
 .MAIN: all
 
-# Arguments passed to Configure...
-
-CPPFLAGS+= -DPERL_CORE -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE -DBIG_TIME -I.
-
-GEN_AFTER= 	bitcount.h config.h mg_data.h uudmap.h cflags makedepend \
-		myconfig Makefile Policy.sh pod/Makefile
-
-GENERATED=	config.sh ${GEN_AFTER}
-
-${GEN_AFTER}: config.sh
-
-CLEANFILES=	config.sh Policy.sh DynaLoader.c
-
-# nothing!
-depend:
-	@:
-
-depend.done: ${GENERATED}
-	cd ${.OBJDIR} && exec ${MAKE} depend
-	touch $@
+CLEANFILES=	config.sh
 
 config.sh:	${.CURDIR}/config.over
 	cd ${.OBJDIR} && PATH="/bin:/usr/bin:/sbin:/usr/sbin" \
 	    exec /bin/sh ${.CURDIR}/Configure ${CONFIGURE_ARGS}
 
-Makefile cflags makedepend makedir myconfig Policy.sh config.h:
-	cd ${.OBJDIR} && exec /bin/sh ${@:S/./_/}.SH
-
-pod/Makefile:
-	cd ${.OBJDIR}/pod && exec /bin/sh Makefile.SH
-
-uudmap.h: bitcount.h
-mg_data.h: bitcount.h
-
-bitcount.h: generate_uudmap
-	./generate_uudmap uudmap.h bitcount.h mg_data.h
-
-generate_uudmap: generate_uudmap.o
-	${CC} ${CPPFLAGS} ${CFLAGS} -o generate_uudmap generate_uudmap.o
+# nothing!
+depend:
+	@:
 
 test:
 	-@test -e Makefile && ${MAKE} test
@@ -67,8 +36,8 @@ cleandir:
 	fi
 	cd ${.CURDIR} && ${MAKE} -f Makefile.bsd-wrapper1 cleandir
 
-all:	depend.done
-	cd ${.CURDIR} && exec ${MAKE} -f Makefile.bsd-wrapper1 perl.build CPPFLAGS="${CPPFLAGS}" GENERATED="${GENERATED}"
+all:	config.sh
+	cd ${.CURDIR} && exec ${MAKE} -f Makefile.bsd-wrapper1 perl.build
 	cd ${.CURDIR} && exec ${MAKE} -f Makefile.bsd-wrapper1 mansrc.build
 
 install:
