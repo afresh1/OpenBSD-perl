@@ -1,0 +1,24 @@
+--- hints/openbsd.sh.orig	Sun Apr  5 16:55:11 2020
++++ hints/openbsd.sh	Sun Apr  5 17:00:28 2020
+@@ -47,7 +47,11 @@
+ 	test -z "$usedl" && usedl=$define
+ 	# We use -fPIC here because -fpic is *NOT* enough for some of the
+ 	# extensions like Tk on some OpenBSD platforms (ie: sparc)
+-	cccdlflags="-DPIC -fPIC $cccdlflags"
++	PICFLAG=-fPIC
++	if [ -e /usr/share/mk/bsd.own.mk ]; then
++		PICFLAG=`make -f /usr/share/mk/bsd.own.mk -V PICFLAG`
++	fi
++	cccdlflags="-DPIC ${PICFLAG} $cccdlflags"
+ 	case "$osvers" in
+ 	[01].*|2.[0-7]|2.[0-7].*)
+ 		lddlflags="-Bshareable $lddlflags"
+@@ -58,7 +62,7 @@
+ 		;;
+ 	*) # from 3.1 onwards
+ 		ld=${cc:-cc}
+-		lddlflags="-shared -fPIC $lddlflags"
++		lddlflags="-shared ${PICFLAG} $lddlflags"
+ 		libswanted=`echo $libswanted | sed 's/ dl / /'`
+ 		;;
+ 	esac
