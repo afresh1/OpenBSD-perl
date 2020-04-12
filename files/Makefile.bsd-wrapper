@@ -13,7 +13,7 @@ CONFIGURE_ARGS+= -Dmksymlinks
 
 CLEANFILES=	config.sh
 
-config.sh:	${.CURDIR}/config.over
+config.sh:	${.CURDIR}/config.over ${.CURDIR}/hints/openbsd.sh
 	cd ${.OBJDIR} && PATH="/bin:/usr/bin:/sbin:/usr/sbin" \
 	    exec /bin/sh ${.CURDIR}/Configure ${CONFIGURE_ARGS}
 
