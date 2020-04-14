@@ -1,0 +1,22 @@
+--- hints/openbsd.sh.orig	Mon Apr 13 20:16:06 2020
++++ hints/openbsd.sh	Mon Apr 13 20:16:08 2020
+@@ -184,4 +184,7 @@
+ # which is being fixed.  In the meantime, forbid POSIX 2008 locales
+ d_newlocale="$undef"
+ 
++# OpenBSD's locale support is not that complete yet
++ccflags="-DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE $ccflags"
++
+ # end
+--- numeric.c.orig	Thu Apr 16 19:19:08 2020
++++ numeric.c	Thu Apr 16 19:19:21 2020
+@@ -34,8 +34,8 @@
+ PERL_STATIC_INLINE NV
+ S_strtod(pTHX_ const char * const s, char ** e)
+ {
+-    DECLARATION_FOR_LC_NUMERIC_MANIPULATION;
+     NV result;
++    DECLARATION_FOR_LC_NUMERIC_MANIPULATION;
+ 
+     STORE_LC_NUMERIC_SET_TO_NEEDED();
+ 
