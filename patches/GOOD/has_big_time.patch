@@ -1,0 +1,17 @@
+--- hints/openbsd.sh.orig	Mon Apr 13 20:39:22 2020
++++ hints/openbsd.sh	Mon Apr 13 20:39:28 2020
+@@ -31,6 +31,14 @@
+ 	d_setruid=$undef
+ esac
+ 
++# OpenBSD 5.5 on has 64 bit time_t
++case "$osvers" in
++[0-4].*|5.[0-4]) ;;
++*)
++	cppflags="$cppflags -DBIG_TIME"
++	;;
++esac
++
+ #
+ # Not all platforms support dynamic loading...
+ # For the case of "$openbsd_distribution", the hints file
