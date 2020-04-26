@@ -8,15 +8,3 @@
 +ccflags="-DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE $ccflags"
 +
  # end
---- numeric.c.orig	Thu Apr 16 19:19:08 2020
-+++ numeric.c	Thu Apr 16 19:19:21 2020
-@@ -34,8 +34,8 @@
- PERL_STATIC_INLINE NV
- S_strtod(pTHX_ const char * const s, char ** e)
- {
--    DECLARATION_FOR_LC_NUMERIC_MANIPULATION;
-     NV result;
-+    DECLARATION_FOR_LC_NUMERIC_MANIPULATION;
- 
-     STORE_LC_NUMERIC_SET_TO_NEEDED();
- 
