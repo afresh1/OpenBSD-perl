@@ -8,12 +8,10 @@ use 5.010;
 
 my $root = getcwd;
 
+my $bsdwrapper = "$root/Makefile.bsd-wrapper1";
+die "Couldn't find Makefile.bsd-wrapper1" unless -e $bsdwrapper;
+
 chdir 'obj' if -d 'obj';  # Look in the obj dir if we have one
-
-my ($bsdwrapper) = grep { -e } 'Makefile.bsd-wrapper1',
-    "$root/Makefile.bsd-wrapper1";
-
-die "Couldn't find Makefile.bsd-wrapper1" unless $bsdwrapper;
 
 my %proper_page = (
     'utils/splain'          => 'splain',
