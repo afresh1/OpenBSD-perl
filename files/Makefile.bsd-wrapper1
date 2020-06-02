@@ -114,6 +114,7 @@ _quick3p=
     perl5300delta 1			pod/perl5300delta.pod \
     perl5301delta 1			pod/perl5301delta.pod \
     perl5302delta 1			pod/perl5302delta.pod \
+    perl5303delta 1			pod/perl5303delta.pod \
     perl561delta 1			pod/perl561delta.pod \
     perl56delta 1			pod/perl56delta.pod \
     perl581delta 1			pod/perl581delta.pod \
