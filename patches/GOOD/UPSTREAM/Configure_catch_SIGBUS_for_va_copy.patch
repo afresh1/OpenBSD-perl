@@ -1,0 +1,24 @@
+From 20d289b5b98feec663b37dcc4dc5660605573276 Mon Sep 17 00:00:00 2001
+From: bluhm <bluhm@openbsd.org>
+Date: Wed, 16 Sep 2020 08:35:17 +0000
+Subject: [PATCH] Avoid generating a core dump during make build.  The Perl
+ configure test program "try" already has a signal handler for SIGSEGV, but
+ OpenBSD generates a SIGBUS.  Also set a handler for the latter to exit
+ cleanly. from deraadt@; OK afresh1@
+
+---
+ gnu/usr.bin/perl/Configure | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/gnu/usr.bin/perl/Configure b/gnu/usr.bin/perl/Configure
+index 8b706bb4410..0ea2897d863 100644
+--- a/gnu/usr.bin/perl/Configure
++++ b/gnu/usr.bin/perl/Configure
+@@ -21440,6 +21440,7 @@ int
+ main(int ac, char **av)
+ {
+   signal(SIGSEGV, exit);
++  signal(SIGBUS, exit);
+ 
+   myprintf("%s%cs all right, then\n", "that", '\'');
+   exit(0);
