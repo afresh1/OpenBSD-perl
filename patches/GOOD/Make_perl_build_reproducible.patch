@@ -12,9 +12,9 @@ Index: perl.c
 RCS file: /home/cvs/src/gnu/usr.bin/perl/perl.c,v
 retrieving revision 1.25
 diff -u -p -u -r1.25 perl.c
---- perl.c.orig	Sun Apr 10 17:49:39 2016
-+++ perl.c	Sun Sep  4 05:04:49 2016
-@@ -1835,6 +1835,8 @@
+--- ./perl.c.orig      Fri Jan  8 13:20:36 2021
++++ ./perl.c   Sun Jan 10 17:51:55 2021
+@@ -2069,6 +2069,8 @@ S_Internals_V(pTHX_ CV *cv)
  #  endif
  #endif
  

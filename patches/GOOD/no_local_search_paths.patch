@@ -11,9 +11,9 @@
  	# Link perl with shared libperl
  	if [ "$usedl" = "$define" -a -r shlib_version ]; then
  		useshrplib=true
---- ./configpm.orig	Mon May 21 05:29:23 2018
-+++ ./configpm	Mon Nov 26 20:04:01 2018
-@@ -1130,6 +1130,18 @@ my $orig_heavy_txt = "";
+--- ./configpm.orig	Fri Dec 18 02:04:35 2020
++++ ./configpm	Tue Jan 12 08:19:44 2021
+@@ -1128,6 +1128,18 @@ my $orig_heavy_txt = "";
  }
  
  if ($orig_config_txt ne $config_txt or $orig_heavy_txt ne $heavy_txt) {
@@ -32,9 +32,9 @@
      open CONFIG, ">", $Config_PM or die "Can't open $Config_PM: $!\n";
      open CONFIG_HEAVY, ">", $Config_heavy or die "Can't open $Config_heavy: $!\n";
      print CONFIG $config_txt;
---- ./installperl.orig	Mon May 21 05:29:23 2018
-+++ ./installperl	Mon Nov 26 20:04:01 2018
-@@ -625,6 +625,10 @@ sub installlib {
+--- ./installperl.orig	Fri Dec 18 01:58:48 2020
++++ ./installperl	Tue Jan 12 08:19:44 2021
+@@ -627,6 +627,10 @@ sub installlib {
  	return;
      }
  

@@ -11,9 +11,9 @@
      eval 'sub multiline () {"multilinestring";}' unless defined(&multiline);
  }
  1;
---- ./utils/h2ph.PL.orig	Mon May 21 03:44:04 2018
-+++ ./utils/h2ph.PL	Sun Nov 25 19:02:38 2018
-@@ -573,7 +573,7 @@ sub next_line
+--- ./utils/h2ph.PL.orig	Fri Dec 18 02:04:36 2020
++++ ./utils/h2ph.PL	Sun Jan 10 16:15:34 2021
+@@ -576,7 +576,7 @@ sub next_line
                  $in =~ s/\?\?</{/g;                         # | ??<|  {|
                  $in =~ s/\?\?>/}/g;                         # | ??>|  }|
              }
@@ -22,7 +22,7 @@
  		# Tru64 disassembler.h evilness: mixed C and Pascal.
  		while (<IN>) {
  		    last if /^\#endif/;
-@@ -581,8 +581,8 @@ sub next_line
+@@ -584,8 +584,8 @@ sub next_line
  		$in = "";
  		next READ;
  	    }

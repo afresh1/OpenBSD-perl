@@ -14,9 +14,9 @@
  
  C. BUILD
  
---- ./Porting/pumpkin.pod.orig	Mon May 21 05:29:23 2018
-+++ ./Porting/pumpkin.pod	Mon Nov 26 20:53:30 2018
-@@ -544,9 +544,9 @@ Here's how I generate a new patch.  I'll use the hypot
+--- ./Porting/pumpkin.pod.orig	Fri Dec 18 01:57:53 2020
++++ ./Porting/pumpkin.pod	Tue Jan 12 13:08:06 2021
+@@ -543,9 +543,9 @@ Here's how I generate a new patch.  I'll use the hypot
  5.004_07 to 5.004_08 patch as an example.
  
  	# unpack perl5.004_07/

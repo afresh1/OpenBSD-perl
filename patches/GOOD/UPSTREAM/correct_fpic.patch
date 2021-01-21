@@ -1,6 +1,6 @@
---- hints/openbsd.sh.orig	Sun Apr  5 16:55:11 2020
-+++ hints/openbsd.sh	Sun Apr  5 17:00:28 2020
-@@ -47,7 +47,11 @@
+--- ./hints/openbsd.sh.orig	Fri Dec 18 01:58:48 2020
++++ ./hints/openbsd.sh	Mon Jan 11 06:21:33 2021
+@@ -47,7 +47,11 @@ alpha-2.[0-8]|mips-2.[0-8]|powerpc-2.[0-7]|m88k-[2-4].
  	test -z "$usedl" && usedl=$define
  	# We use -fPIC here because -fpic is *NOT* enough for some of the
  	# extensions like Tk on some OpenBSD platforms (ie: sparc)
@@ -13,7 +13,7 @@
  	case "$osvers" in
  	[01].*|2.[0-7]|2.[0-7].*)
  		lddlflags="-Bshareable $lddlflags"
-@@ -58,7 +62,7 @@
+@@ -58,7 +62,7 @@ alpha-2.[0-8]|mips-2.[0-8]|powerpc-2.[0-7]|m88k-[2-4].
  		;;
  	*) # from 3.1 onwards
  		ld=${cc:-cc}

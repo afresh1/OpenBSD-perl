@@ -1,6 +1,6 @@
---- hints/openbsd.sh.orig	Mon Apr 13 20:16:06 2020
-+++ hints/openbsd.sh	Mon Apr 13 20:16:08 2020
-@@ -184,4 +184,7 @@
+--- ./hints/openbsd.sh.orig	Fri Dec 18 01:58:48 2020
++++ ./hints/openbsd.sh	Tue Jan 12 09:56:17 2021
+@@ -155,4 +155,7 @@ esac
  # which is being fixed.  In the meantime, forbid POSIX 2008 locales
  d_newlocale="$undef"
  

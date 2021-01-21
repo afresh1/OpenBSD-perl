@@ -1,8 +1,8 @@
 # https://github.com/Perl/perl5/issues/17725
 # https://github.com/Perl/perl5/pull/17750
---- numeric.c.orig	Thu Apr 16 19:19:08 2020
-+++ numeric.c	Thu Apr 16 19:19:21 2020
-@@ -34,8 +34,8 @@
+--- ./numeric.c.orig	Sat Dec 26 07:18:12 2020
++++ ./numeric.c	Mon Jan 11 19:22:47 2021
+@@ -34,8 +34,8 @@ values, including such things as replacements for the 
  PERL_STATIC_INLINE NV
  S_strtod(pTHX_ const char * const s, char ** e)
  {

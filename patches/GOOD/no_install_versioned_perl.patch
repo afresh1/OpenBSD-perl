@@ -1,14 +1,14 @@
---- ./installperl.orig	Sun Jun  2 11:40:49 2019
-+++ ./installperl	Sun Jun  2 11:41:39 2019
-@@ -307,6 +307,7 @@ if ($Is_VMS) {
- }
- elsif ($^O ne 'dos') {
-     if (!$Is_NetWare) {
-+	my $ver = ''; # don't install a versioned perl binary
- 	install("perl$exe_ext", "$installbin/$perl_verbase$ver$exe_ext", "0755");
+--- ./installperl.orig	Fri Dec 18 01:58:48 2020
++++ ./installperl	Tue Jan 12 06:41:38 2021
+@@ -307,6 +307,7 @@ elsif ($^O ne 'dos') {
+ 	fix_dep_names("$installbin/$perl_verbase$ver$exe_ext");
+ 	chmod(0755, "$installbin/$perl_verbase$ver$exe_ext");
      }
++	my $ver = ''; # don't install a versioned perl binary
      else {
-@@ -411,7 +412,8 @@ if ($Is_W32) { #linking lib isn't made in root but in 
+ 	# If installing onto a NetWare server
+         if ($opts{netware}) {
+@@ -407,7 +408,8 @@ if ($Is_W32) { #linking lib isn't made in root but in 
  # Install main perl executables
  # Make links to ordinary names if installbin directory isn't current directory.
  

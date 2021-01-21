@@ -1,6 +1,6 @@
---- ./Configure.orig	Mon May 21 05:29:23 2018
-+++ ./Configure	Mon Nov 26 11:33:10 2018
-@@ -23204,6 +23204,7 @@ xs_extensions=''
+--- ./Configure.orig	Sat Dec 26 07:27:04 2020
++++ ./Configure	Mon Jan 11 11:20:06 2021
+@@ -23486,6 +23486,7 @@ xs_extensions=''
  find_extensions='
      for xxx in *; do
  	case "$xxx" in

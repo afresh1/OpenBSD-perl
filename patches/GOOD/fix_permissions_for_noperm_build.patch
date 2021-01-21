@@ -65,17 +65,17 @@
      $packlist->{$xto} = { type => 'file' };
  }
  
-@@ -605,6 +616,8 @@ sub install {
-     my $xto = $to;
-     my $cmd = join(' ', @installcmd);
-     $cmd .= " -m $mode" if $mode;
+@@ -605,6 +616,8 @@ sub installlib {
+ 
+     m!([^/]+)\z!;
+     my $name = $1;
 +    $cmd .= " -o $opts{uid}" if defined($opts{uid});
 +    $cmd .= " -g $opts{gid}" if defined($opts{gid});
-     $cmd .= " -s" if $opts{strip};
-     $cmd .= " $from $to";
-     $xto =~ s/^\Q$opts{destdir}\E// if $opts{destdir};
---- ./install_lib.pl.orig	Wed Jun 27 04:17:56 2018
-+++ ./install_lib.pl	Sun Jun  2 11:48:38 2019
+ 
+     # This remains ugly, and in need of refactoring.
+ 
+--- ./install_lib.pl.orig	Fri Dec 18 01:58:48 2020
++++ ./install_lib.pl	Tue Jan 12 03:27:06 2021
 @@ -6,7 +6,7 @@
  use strict;
  use vars qw($Is_VMS $Is_W32 $Is_OS2 $Is_Cygwin $Is_Darwin $Is_NetWare $Is_AmigaOS
@@ -122,9 +122,9 @@
  }
  
  sub unixtoamiga
---- ./cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Unix.pm.orig	Wed Dec 12 19:36:45 2018
-+++ ./cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Unix.pm	Wed Dec 12 19:37:19 2018
-@@ -2134,7 +2134,8 @@ Called by init_main.  Initializes PERL_*
+--- ./cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Unix.pm.orig	Fri Dec 18 02:04:35 2020
++++ ./cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Unix.pm	Tue Jan 12 03:27:06 2021
+@@ -2214,7 +2214,8 @@ Called by init_main.  Initializes PERL_*
  sub init_PERM {
      my($self) = shift;
  

@@ -21,7 +21,7 @@ Yours,
 
 --- ./cpan/podlators/scripts/pod2man.PL.orig	Mon May 21 05:29:23 2018
 +++ ./cpan/podlators/scripts/pod2man.PL	Thu Nov 29 11:26:04 2018
-@@ -73,12 +73,13 @@ my $stdin;
+@@ -71,12 +71,13 @@ my $stdin;
  # Parse our options, trying to retain backward compatibility with pod2man but
  # allowing short forms as well.  --lax is currently ignored.
  my %options;

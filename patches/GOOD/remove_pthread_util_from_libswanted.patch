@@ -28,7 +28,7 @@ RCS file: /cvs/src/gnu/usr.bin/perl/hints/openbsd.sh,v
  # Configure can't figure this out non-interactively
  d_suidsafe=$define
  
-@@ -122,6 +124,9 @@ $define|true|[yY]*)
+@@ -122,6 +125,9 @@ $define|true|[yY]*)
          	# Broken up to OpenBSD 3.6, fixed in OpenBSD 3.7
  		d_getservbyname_r=$undef ;;
  	esac

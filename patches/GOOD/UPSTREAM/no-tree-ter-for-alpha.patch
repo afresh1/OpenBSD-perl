@@ -1,7 +1,7 @@
---- hints/openbsd.sh.orig	Sun Apr  5 14:30:24 2020
-+++ hints/openbsd.sh	Sun Apr  5 14:34:51 2020
-@@ -110,6 +110,18 @@
-     ;;
+--- ./hints/openbsd.sh.orig	Fri Dec 18 01:58:48 2020
++++ ./hints/openbsd.sh	Mon Jan 11 16:09:49 2021
+@@ -101,6 +101,18 @@ m88k-3.4)
+    ;;
  esac
  
 +#
