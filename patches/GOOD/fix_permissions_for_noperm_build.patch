@@ -1,6 +1,6 @@
---- ./installperl.orig	Sun Jun  2 11:48:07 2019
-+++ ./installperl	Sun Jun  2 11:53:18 2019
-@@ -77,8 +77,8 @@ $opts{destdir} = '';
+--- ./installperl.orig	Tue Feb  2 09:20:23 2021
++++ ./installperl	Tue Feb  2 09:21:01 2021
+@@ -78,8 +78,8 @@ $opts{destdir} = '';
      my $usage = 0;
      if (!GetOptions(\%opts, 'notify|n', 'strip|s', 'silent|S',
                      'skip-otherperls|o', 'force|f', 'verbose|V', 'archname|A',
@@ -11,7 +11,7 @@
                          if ($_[0] eq '+v') {
                              $versiononly = 0;
                          } else {
-@@ -107,6 +107,8 @@ Usage $0: [switches]
+@@ -108,6 +108,8 @@ Usage $0: [switches]
    -A        Also install perl with the architecture's name in the perl binary's
              name.
    -p        Don't install the pod files. [This will break use diagnostics;]
@@ -20,7 +20,7 @@
    -netware  Install correctly on a Netware server.
    -destdir  Prefix installation directories by this string.
    -h        Display this help message.
-@@ -114,6 +116,8 @@ EOT
+@@ -115,6 +117,8 @@ EOT
          exit $usage;
      }
  }
@@ -29,7 +29,7 @@
  
  $versiononly = 1 if $Config{versiononly} && !defined $versiononly;
  my (@scripts, @tolink);
-@@ -545,6 +549,9 @@ if (!$opts{nopods} && (!$versiononly || ($installprivl
+@@ -548,6 +552,9 @@ if (!$opts{nopods} && (!$versiononly || ($installprivl
  
  
  $packlist->write() unless $opts{notify};
@@ -39,7 +39,7 @@
  print "  Installation complete\n" if $opts{verbose};
  
  exit 0;
-@@ -583,6 +590,7 @@ sub safe_unlink {
+@@ -586,6 +593,7 @@ sub safe_unlink {
  
  sub copy {
      my($from,$to) = @_;
@@ -47,7 +47,7 @@
  
      my $xto = $to;
      $xto =~ s/^\Q$opts{destdir}\E//;
-@@ -590,12 +598,15 @@ sub copy {
+@@ -593,12 +601,15 @@ sub copy {
  	unless $opts{silent};
      print "  creating new version of $xto\n"
  	if $Is_VMS and -e $to and !$opts{silent};
@@ -65,17 +65,17 @@
      $packlist->{$xto} = { type => 'file' };
  }
  
-@@ -605,6 +616,8 @@ sub installlib {
- 
-     m!([^/]+)\z!;
-     my $name = $1;
+@@ -610,6 +621,8 @@ sub install {
+     $cmd .= " -m $mode" if $mode;
+     $cmd .= " -s" if $opts{strip};
+     $cmd .= " $from $to";
 +    $cmd .= " -o $opts{uid}" if defined($opts{uid});
 +    $cmd .= " -g $opts{gid}" if defined($opts{gid});
- 
-     # This remains ugly, and in need of refactoring.
- 
---- ./install_lib.pl.orig	Fri Dec 18 01:58:48 2020
-+++ ./install_lib.pl	Tue Jan 12 03:27:06 2021
+     $xto =~ s/^\Q$opts{destdir}\E// if $opts{destdir};
+     print $opts{verbose} ? "  install $from $xto\n" : "  $xto\n" unless $opts{silent};
+     system($cmd);
+--- ./install_lib.pl.orig	Tue Feb  2 09:20:23 2021
++++ ./install_lib.pl	Tue Feb  2 09:20:33 2021
 @@ -6,7 +6,7 @@
  use strict;
  use vars qw($Is_VMS $Is_W32 $Is_OS2 $Is_Cygwin $Is_Darwin $Is_NetWare $Is_AmigaOS
