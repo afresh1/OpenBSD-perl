@@ -68,9 +68,9 @@
 @@ -610,6 +621,8 @@ sub install {
      $cmd .= " -m $mode" if $mode;
      $cmd .= " -s" if $opts{strip};
-     $cmd .= " $from $to";
 +    $cmd .= " -o $opts{uid}" if defined($opts{uid});
 +    $cmd .= " -g $opts{gid}" if defined($opts{gid});
+     $cmd .= " $from $to";
      $xto =~ s/^\Q$opts{destdir}\E// if $opts{destdir};
      print $opts{verbose} ? "  install $from $xto\n" : "  $xto\n" unless $opts{silent};
      system($cmd);
