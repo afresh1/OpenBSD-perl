@@ -1,6 +1,15 @@
 #!/bin/sh
 
-wrkdir=`mktemp -d /tmp/_flist.XXXXXXXXXX` || exit 1
+if [ ! -e ./checkflist ]; then
+    if [ -e /usr/src/distrib/sets/checkflist ]; then
+        cd /usr/src/distrib/sets
+    else
+        echo Unable to find checkflist >&2
+	exit 2
+    fi
+fi
+
+wrkdir=`mktemp -t -d _flist.XXXXXXXXXX` || exit 1
 trap "rm -rf ${wrkdir}; exit 1" 1 2 3 13 15
 
 newflist=${wrkdir}/newflist
