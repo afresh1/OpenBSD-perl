@@ -1,0 +1,143 @@
+From f43079cb514e3d0be0036424695438ae3fb58451 Mon Sep 17 00:00:00 2001
+From: Yves Orton <demerphq@gmail.com>
+Date: Fri, 12 Feb 2021 23:13:56 +0100
+Subject: [PATCH] [#18555] Ensure that PL_hash_seed and PL_hash_state are word
+ aligned
+
+Replace PL_hash_seed and PL_hash_state with PL_hash_seed_w and
+PL_hash_state_w, and replace the old vars with defines that cast
+their replacements appropriately. This should force linkers to
+word align the data.
+---
+ hv_func.h           | 36 ++++++++++++++++++++++++------------
+ perlvars.h          |  4 ++--
+ t/porting/libperl.t |  2 +-
+ 3 files changed, 27 insertions(+), 15 deletions(-)
+
+diff --git a/hv_func.h b/hv_func.h
+index ac130c7fbde..7661f4076c8 100644
+--- hv_func.h.orig
++++ hv_func.h
+@@ -36,21 +36,24 @@
+ 
+ #if defined(PERL_HASH_FUNC_SIPHASH)
+ # define __PERL_HASH_FUNC "SIPHASH_2_4"
+-# define __PERL_HASH_WORD_SIZE sizeof(U64)
++# define __PERL_HASH_WORD_TYPE U64
++# define __PERL_HASH_WORD_SIZE sizeof(__PERL_HASH_WORD_TYPE)
+ # define __PERL_HASH_SEED_BYTES (__PERL_HASH_WORD_SIZE * 2)
+ # define __PERL_HASH_STATE_BYTES (__PERL_HASH_WORD_SIZE * 4)
+ # define __PERL_HASH_SEED_STATE(seed,state) S_perl_siphash_seed_state(seed,state)
+ # define __PERL_HASH_WITH_STATE(state,str,len) S_perl_hash_siphash_2_4_with_state((state),(U8*)(str),(len))
+ #elif defined(PERL_HASH_FUNC_SIPHASH13)
+ # define __PERL_HASH_FUNC "SIPHASH_1_3"
+-# define __PERL_HASH_WORD_SIZE sizeof(U64)
++# define __PERL_HASH_WORD_TYPE U64
++# define __PERL_HASH_WORD_SIZE sizeof(__PERL_HASH_WORD_TYPE)
+ # define __PERL_HASH_SEED_BYTES (__PERL_HASH_WORD_SIZE * 2)
+ # define __PERL_HASH_STATE_BYTES (__PERL_HASH_WORD_SIZE * 4)
+ # define __PERL_HASH_SEED_STATE(seed,state) S_perl_siphash_seed_state(seed,state)
+ # define __PERL_HASH_WITH_STATE(state,str,len) S_perl_hash_siphash_1_3_with_state((state),(U8*)(str),(len))
+ #elif defined(PERL_HASH_FUNC_STADTX)
+ # define __PERL_HASH_FUNC "STADTX"
+-# define __PERL_HASH_WORD_SIZE sizeof(U64)
++# define __PERL_HASH_WORD_TYPE U64
++# define __PERL_HASH_WORD_SIZE sizeof(__PERL_HASH_WORD_TYPE)
+ # define __PERL_HASH_SEED_BYTES (__PERL_HASH_WORD_SIZE * 2)
+ # define __PERL_HASH_STATE_BYTES (__PERL_HASH_WORD_SIZE * 4)
+ # define __PERL_HASH_SEED_STATE(seed,state) stadtx_seed_state(seed,state)
+@@ -58,7 +61,8 @@
+ # include "stadtx_hash.h"
+ #elif defined(PERL_HASH_FUNC_ZAPHOD32)
+ # define __PERL_HASH_FUNC "ZAPHOD32"
+-# define __PERL_HASH_WORD_SIZE sizeof(U32)
++# define __PERL_HASH_WORD_TYPE U32
++# define __PERL_HASH_WORD_SIZE sizeof(__PERL_HASH_WORD_TYPE)
+ # define __PERL_HASH_SEED_BYTES (__PERL_HASH_WORD_SIZE * 3)
+ # define __PERL_HASH_STATE_BYTES (__PERL_HASH_WORD_SIZE * 3)
+ # define __PERL_HASH_SEED_STATE(seed,state) zaphod32_seed_state(seed,state)
+@@ -82,6 +86,12 @@
+ */
+ #include "perl_siphash.h"
+ 
++#define __PERL_HASH_SEED_roundup(x, y)   ( ( ( (x) + ( (y) - 1 ) ) / (y) ) * (y) )
++#define _PERL_HASH_SEED_roundup(x) __PERL_HASH_SEED_roundup(x,__PERL_HASH_WORD_SIZE)
++
++#define PL_hash_seed ((U8 *)PL_hash_seed_w)
++#define PL_hash_state ((U8 *)PL_hash_state_w)
++
+ #if PERL_HASH_USE_SBOX32_ALSO != 1
+ # define _PERL_HASH_FUNC                        __PERL_HASH_FUNC
+ # define _PERL_HASH_SEED_BYTES                  __PERL_HASH_SEED_BYTES
+@@ -91,10 +101,8 @@
+ #else
+ 
+ #define _PERL_HASH_FUNC         "SBOX32_WITH_" __PERL_HASH_FUNC
+-#define __PERL_HASH_SEED_roundup(x, y)   ((((x)+((y)-1))/(y))*(y))
+-#define _PERL_HASH_SEED_roundup(x) __PERL_HASH_SEED_roundup(x,__PERL_HASH_WORD_SIZE)
+ /* note the 3 in the below code comes from the fact the seed to initialize the SBOX is 96 bits */
+-#define _PERL_HASH_SEED_BYTES   ( _PERL_HASH_SEED_roundup(__PERL_HASH_SEED_BYTES + (int)( 3 * sizeof(U32)) ) )
++#define _PERL_HASH_SEED_BYTES   ( __PERL_HASH_SEED_BYTES + (int)( 3 * sizeof(U32)) )
+ 
+ #define _PERL_HASH_STATE_BYTES  \
+     ( __PERL_HASH_STATE_BYTES + ( ( 1 + ( 256 * SBOX32_MAX_LEN ) ) * sizeof(U32) ) )
+@@ -115,11 +123,15 @@
+     (hash) = S_perl_hash_with_seed((const U8 *) seed, (const U8 *) str,len)
+ #define PERL_HASH_WITH_STATE(state,hash,str,len) \
+     (hash) = _PERL_HASH_WITH_STATE((state),(U8*)(str),(len))
++
+ #define PERL_HASH_SEED_STATE(seed,state) _PERL_HASH_SEED_STATE(seed,state)
+-#define PERL_HASH_SEED_BYTES _PERL_HASH_SEED_BYTES
+-#define PERL_HASH_STATE_BYTES _PERL_HASH_STATE_BYTES
++#define PERL_HASH_SEED_BYTES _PERL_HASH_SEED_roundup(_PERL_HASH_SEED_BYTES)
++#define PERL_HASH_STATE_BYTES _PERL_HASH_SEED_roundup(_PERL_HASH_STATE_BYTES)
+ #define PERL_HASH_FUNC        _PERL_HASH_FUNC
+ 
++#define PERL_HASH_SEED_WORDS (PERL_HASH_SEED_BYTES/__PERL_HASH_WORD_SIZE)
++#define PERL_HASH_STATE_WORDS (PERL_HASH_STATE_BYTES/__PERL_HASH_WORD_SIZE)
++
+ #ifdef PERL_USE_SINGLE_CHAR_HASH_CACHE
+ #define PERL_HASH(state,str,len) \
+     (hash) = ((len) < 2 ? ( (len) == 0 ? PL_hash_chars[256] : PL_hash_chars[(U8)(str)[0]] ) \
+@@ -160,9 +172,9 @@
+ 
+ PERL_STATIC_INLINE U32
+ S_perl_hash_with_seed(const U8 * seed, const U8 *str, STRLEN len) {
+-    U8 state[_PERL_HASH_STATE_BYTES];
+-    _PERL_HASH_SEED_STATE(seed,state);
+-    return _PERL_HASH_WITH_STATE(state,str,len);
++    __PERL_HASH_WORD_TYPE state[PERL_HASH_STATE_WORDS];
++    _PERL_HASH_SEED_STATE(seed,(U8*)state);
++    return _PERL_HASH_WITH_STATE((U8*)state,str,len);
+ }
+ 
+ #endif /*compile once*/
+diff --git a/perlvars.h b/perlvars.h
+index 0518c0fe4ab..c4a08e038bd 100644
+--- perlvars.h.orig
++++ perlvars.h
+@@ -264,9 +264,9 @@ PERLVAR(G, malloc_mutex, perl_mutex)	/* Mutex for malloc */
+ #endif
+ 
+ PERLVARI(G, hash_seed_set, bool, FALSE)	/* perl.c */
+-PERLVARA(G, hash_seed, PERL_HASH_SEED_BYTES, unsigned char) /* perl.c and hv.h */
++PERLVARA(G, hash_seed_w, PERL_HASH_SEED_WORDS, __PERL_HASH_WORD_TYPE) /* perl.c and hv.h */
+ #if defined(PERL_HASH_STATE_BYTES)
+-PERLVARA(G, hash_state, PERL_HASH_STATE_BYTES, unsigned char) /* perl.c and hv.h */
++PERLVARA(G, hash_state_w, PERL_HASH_STATE_WORDS, __PERL_HASH_WORD_TYPE) /* perl.c and hv.h */
+ #endif
+ #if defined(PERL_USE_SINGLE_CHAR_HASH_CACHE)
+ PERLVARA(G, hash_chars, (1+256) * sizeof(U32), unsigned char) /* perl.c and hv.h */
+diff --git a/t/porting/libperl.t b/t/porting/libperl.t
+index 9effa9ae1b0..c2d59f20ac3 100644
+--- t/porting/libperl.t.orig
++++ t/porting/libperl.t
+@@ -341,7 +341,7 @@ if ( !$symbols{data}{common} ) {
+     $symbols{data}{common} = $symbols{data}{bss};
+ }
+ 
+-ok($symbols{data}{common}{PL_hash_seed}{'globals.o'}, "has PL_hash_seed");
++ok($symbols{data}{common}{PL_hash_seed_w}{'globals.o'}, "has PL_hash_seed_w");
+ ok($symbols{data}{data}{PL_ppaddr}{'globals.o'}, "has PL_ppaddr");
+ 
+ # See the comments in the beginning for what "undefined symbols"
