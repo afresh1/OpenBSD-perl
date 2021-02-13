@@ -12,8 +12,8 @@ Subject: [PATCH] Avoid generating a core dump during make build.  The Perl
 
 diff --git a/gnu/usr.bin/perl/Configure b/gnu/usr.bin/perl/Configure
 index 8b706bb4410..0ea2897d863 100644
---- a/gnu/usr.bin/perl/Configure
-+++ b/gnu/usr.bin/perl/Configure
+--- Configure.orig
++++ Configure
 @@ -21440,6 +21440,7 @@ int
  main(int ac, char **av)
  {
