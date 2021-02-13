@@ -1,0 +1,34 @@
+From 14111b4444fd6c1122332ebc3b024320b6671f51 Mon Sep 17 00:00:00 2001
+From: deraadt <deraadt@openbsd.org>
+Date: Thu, 11 Feb 2021 17:02:39 +0000
+Subject: [PATCH] When clang was changed to -fcommon, perl's
+ P_hash_{seed,state} variables moved into BSS in the .o, with padding rules
+ following the types -- they are both char[].  Since P_hash_seed is
+ (system-dependent) not a multiple of 8, P_hash_state gets layed out
+ misaligned, which sucks because the hash functions demand 64-bit alignment
+ for both variables.  There is the possibility of using misalignment macros,
+ but this is not cheap.  Could also use kernel-trap fault repair, but the
+ performance would really suck for something so crucial. The correct fix would
+ be for upstream to declare these types as uint64[], we have requested that in
+ https://github.com/Perl/perl5/issues/18555 In the meantime, carry a diff to
+ roundup P_hash_seed to 64-bit alignment so that P_hash_state will land
+ aligned. ok afresh1
+
+---
+ gnu/usr.bin/perl/hv_func.h | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/gnu/usr.bin/perl/hv_func.h b/gnu/usr.bin/perl/hv_func.h
+index a519839d6c0..151aead9bf3 100644
+--- hv_func.h.orig
++++ hv_func.h
+@@ -83,7 +83,8 @@
+ 
+ #define _PERL_HASH_FUNC         "SBOX32_WITH_" __PERL_HASH_FUNC
+ 
+-#define _PERL_HASH_SEED_BYTES   ( __PERL_HASH_SEED_BYTES + (int)( 3 * sizeof(U32) ) )
++#define _PERL_HASH_SEED_roundup(x, y)   ((((x)+((y)-1))/(y))*(y))
++#define _PERL_HASH_SEED_BYTES   ( _PERL_HASH_SEED_roundup(__PERL_HASH_SEED_BYTES + (int)( 3 * sizeof(U32)), sizeof(U64) ) )
+ 
+ #define _PERL_HASH_STATE_BYTES  \
+     ( __PERL_HASH_STATE_BYTES + ( ( 1 + ( 256 * SBOX32_MAX_LEN ) ) * sizeof(U32) ) )
