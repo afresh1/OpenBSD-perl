@@ -14,10 +14,8 @@ word align the data.
  t/porting/libperl.t |  2 +-
  3 files changed, 27 insertions(+), 15 deletions(-)
 
-diff --git a/hv_func.h b/hv_func.h
-index ac130c7fbde..7661f4076c8 100644
---- hv_func.h.orig
-+++ hv_func.h
+--- ./hv_func.h.orig	Sat Feb 13 10:45:11 2021
++++ ./hv_func.h	Sat Feb 13 10:46:03 2021
 @@ -36,21 +36,24 @@
  
  #if defined(PERL_HASH_FUNC_SIPHASH)
@@ -56,9 +54,9 @@ index ac130c7fbde..7661f4076c8 100644
  # define __PERL_HASH_SEED_BYTES (__PERL_HASH_WORD_SIZE * 3)
  # define __PERL_HASH_STATE_BYTES (__PERL_HASH_WORD_SIZE * 3)
  # define __PERL_HASH_SEED_STATE(seed,state) zaphod32_seed_state(seed,state)
-@@ -82,6 +86,12 @@
- */
- #include "perl_siphash.h"
+@@ -77,6 +81,12 @@
+ #endif
+ 
  
 +#define __PERL_HASH_SEED_roundup(x, y)   ( ( ( (x) + ( (y) - 1 ) ) / (y) ) * (y) )
 +#define _PERL_HASH_SEED_roundup(x) __PERL_HASH_SEED_roundup(x,__PERL_HASH_WORD_SIZE)
@@ -69,7 +67,7 @@ index ac130c7fbde..7661f4076c8 100644
  #if PERL_HASH_USE_SBOX32_ALSO != 1
  # define _PERL_HASH_FUNC                        __PERL_HASH_FUNC
  # define _PERL_HASH_SEED_BYTES                  __PERL_HASH_SEED_BYTES
-@@ -91,10 +101,8 @@
+@@ -86,10 +96,8 @@
  #else
  
  #define _PERL_HASH_FUNC         "SBOX32_WITH_" __PERL_HASH_FUNC
@@ -92,10 +90,10 @@ index ac130c7fbde..7661f4076c8 100644
 +#define PERL_HASH_SEED_BYTES _PERL_HASH_SEED_roundup(_PERL_HASH_SEED_BYTES)
 +#define PERL_HASH_STATE_BYTES _PERL_HASH_SEED_roundup(_PERL_HASH_STATE_BYTES)
  #define PERL_HASH_FUNC        _PERL_HASH_FUNC
- 
++
 +#define PERL_HASH_SEED_WORDS (PERL_HASH_SEED_BYTES/__PERL_HASH_WORD_SIZE)
 +#define PERL_HASH_STATE_WORDS (PERL_HASH_STATE_BYTES/__PERL_HASH_WORD_SIZE)
-+
+ 
  #ifdef PERL_USE_SINGLE_CHAR_HASH_CACHE
  #define PERL_HASH(state,str,len) \
      (hash) = ((len) < 2 ? ( (len) == 0 ? PL_hash_chars[256] : PL_hash_chars[(U8)(str)[0]] ) \
@@ -128,16 +126,14 @@ index 0518c0fe4ab..c4a08e038bd 100644
  #endif
  #if defined(PERL_USE_SINGLE_CHAR_HASH_CACHE)
  PERLVARA(G, hash_chars, (1+256) * sizeof(U32), unsigned char) /* perl.c and hv.h */
-diff --git a/t/porting/libperl.t b/t/porting/libperl.t
-index 9effa9ae1b0..c2d59f20ac3 100644
---- t/porting/libperl.t.orig
-+++ t/porting/libperl.t
-@@ -341,7 +341,7 @@ if ( !$symbols{data}{common} ) {
-     $symbols{data}{common} = $symbols{data}{bss};
- }
+--- ./t/porting/libperl.t.orig	Sat Feb 13 10:45:11 2021
++++ ./t/porting/libperl.t	Sat Feb 13 10:46:27 2021
+@@ -444,7 +444,7 @@ if ($GSP) {
+         $symbols{data}{common} = $symbols{data}{bss};
+     }
  
--ok($symbols{data}{common}{PL_hash_seed}{'globals.o'}, "has PL_hash_seed");
-+ok($symbols{data}{common}{PL_hash_seed_w}{'globals.o'}, "has PL_hash_seed_w");
- ok($symbols{data}{data}{PL_ppaddr}{'globals.o'}, "has PL_ppaddr");
+-    ok($symbols{data}{common}{PL_hash_seed}{'globals.o'}, "has PL_hash_seed");
++    ok($symbols{data}{common}{PL_hash_seed_w}{'globals.o'}, "has PL_hash_seed_w");
+     ok($symbols{data}{data}{PL_ppaddr}{'globals.o'}, "has PL_ppaddr");
  
- # See the comments in the beginning for what "undefined symbols"
+     # None of the GLOBAL_STRUCT* business here.
