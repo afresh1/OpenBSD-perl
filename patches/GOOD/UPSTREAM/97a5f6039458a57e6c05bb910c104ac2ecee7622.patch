@@ -1,0 +1,58 @@
+From 97a5f6039458a57e6c05bb910c104ac2ecee7622 Mon Sep 17 00:00:00 2001
+From: jsg <jsg@openbsd.org>
+Date: Wed, 27 Oct 2021 02:27:34 +0000
+Subject: [PATCH] backport a perl patch to avoid excessive warnings with llvm
+ 13 clang
+
+originally from Tony Cook in
+skip using gcc brace groups for STMT_START/END
+7169efc77525df70484a824bff4ceebd1fafc760
+
+looks fine millert@ ok afresh1@
+---
+ gnu/usr.bin/perl/dist/Devel-PPPort/parts/inc/misc | 9 ++-------
+ gnu/usr.bin/perl/perl.h                           | 5 -----
+ 2 files changed, 2 insertions(+), 12 deletions(-)
+
+diff --git dist/Devel-PPPort/parts/inc/misc b/gnu/usr.bin/perl/dist/Devel-PPPort/parts/inc/misc
+index deb1fb87a63d..5e2e17cfe384 100644
+--- dist/Devel-PPPort/parts/inc/misc
++++ dist/Devel-PPPort/parts/inc/misc
+@@ -237,17 +237,12 @@ __UNDEF_NOT_PROVIDED__  PERL_GCC_BRACE_GROUPS_FORBIDDEN
+ 
+ #undef STMT_START
+ #undef STMT_END
+-#ifdef PERL_USE_GCC_BRACE_GROUPS
+-#  define STMT_START    (void)( /* gcc supports ``({ STATEMENTS; })'' */
+-#  define STMT_END      )
+-#else
+-#  if defined(VOIDFLAGS) && (VOIDFLAGS) && (defined(sun) || defined(__sun__)) && !defined(__GNUC__)
++#if defined(VOIDFLAGS) && (VOIDFLAGS) && (defined(sun) || defined(__sun__)) && !defined(__GNUC__)
+ #    define STMT_START  if (1)
+ #    define STMT_END    else (void)0
+-#  else
++#else
+ #    define STMT_START  do
+ #    define STMT_END    while (0)
+-#  endif
+ #endif
+ 
+ __UNDEFINED__  boolSV(b)    ((b) ? &PL_sv_yes : &PL_sv_no)
+diff --git perl.h b/gnu/usr.bin/perl/perl.h
+index b0d35e27c724..76f3ba151c65 100644
+--- perl.h
++++ perl.h
+@@ -662,13 +662,8 @@ out of them.
+  Trying to select a version that gives no warnings...
+ */
+ #if !(defined(STMT_START) && defined(STMT_END))
+-# ifdef PERL_USE_GCC_BRACE_GROUPS
+-#   define STMT_START	(void)(	/* gcc supports "({ STATEMENTS; })" */
+-#   define STMT_END	)
+-# else
+ #   define STMT_START	do
+ #   define STMT_END	while (0)
+-# endif
+ #endif
+ 
+ #ifndef BYTEORDER  /* Should never happen -- byteorder is in config.h */
