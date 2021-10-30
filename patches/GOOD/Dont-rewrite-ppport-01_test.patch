@@ -1,0 +1,29 @@
+From 74d96eee8bcd3d963e05905d713738ddf02a3912 Mon Sep 17 00:00:00 2001
+From: afresh1 <afresh1@openbsd.org>
+Date: Thu, 4 Mar 2021 01:13:11 +0000
+Subject: [PATCH] Never automatically rewrite
+ perl/dist/Devel-PPPort/t/01_test.t
+
+We are never going to update the files that generate this test and
+the interaction with "cvs up" means we can accidentally hit it when
+they hange between releases but permissions when building the system
+prevent us from writing the update and breaks the build.
+
+Found by naddy@, krw@, and deraadt@
+---
+ gnu/usr.bin/perl/dist/Devel-PPPort/Makefile.PL | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gnu/usr.bin/perl/dist/Devel-PPPort/Makefile.PL b/gnu/usr.bin/perl/dist/Devel-PPPort/Makefile.PL
+index bc5f502e98cd..12d6fe35d4e0 100644
+--- a/gnu/usr.bin/perl/dist/Devel-PPPort/Makefile.PL
++++ b/gnu/usr.bin/perl/dist/Devel-PPPort/Makefile.PL
+@@ -63,7 +63,7 @@ sub configure
+     'ppport_h.PL'  => 'ppport.h',
+     'PPPort_pm.PL' => 'PPPort.pm',
+     'RealPPPort_xs.PL' => 'RealPPPort.xs',
+-    'mktests.PL' => $t_01_test,
++    #'mktests.PL' => $t_01_test,
+   );
+   my @moreopts;
+ 
