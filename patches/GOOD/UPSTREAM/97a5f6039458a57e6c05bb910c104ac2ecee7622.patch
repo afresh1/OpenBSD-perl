@@ -14,7 +14,7 @@ looks fine millert@ ok afresh1@
  gnu/usr.bin/perl/perl.h                           | 5 -----
  2 files changed, 2 insertions(+), 12 deletions(-)
 
-diff --git dist/Devel-PPPort/parts/inc/misc b/gnu/usr.bin/perl/dist/Devel-PPPort/parts/inc/misc
+diff --git dist/Devel-PPPort/parts/inc/misc dist/Devel-PPPort/parts/inc/misc
 index deb1fb87a63d..5e2e17cfe384 100644
 --- dist/Devel-PPPort/parts/inc/misc
 +++ dist/Devel-PPPort/parts/inc/misc
@@ -38,7 +38,7 @@ index deb1fb87a63d..5e2e17cfe384 100644
  #endif
  
  __UNDEFINED__  boolSV(b)    ((b) ? &PL_sv_yes : &PL_sv_no)
-diff --git perl.h b/gnu/usr.bin/perl/perl.h
+diff --git perl.h perl.h
 index b0d35e27c724..76f3ba151c65 100644
 --- perl.h
 +++ perl.h

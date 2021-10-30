@@ -17,10 +17,10 @@ help and ok afresh1@
  gnu/usr.bin/perl/utf8.h | 5 +++++
  1 file changed, 5 insertions(+)
 
-diff --git a/gnu/usr.bin/perl/utf8.h b/gnu/usr.bin/perl/utf8.h
+diff --git utf8.h utf8.h
 index 01bf447a6149..97bccd086255 100644
---- a/gnu/usr.bin/perl/utf8.h
-+++ b/gnu/usr.bin/perl/utf8.h
+--- utf8.h
++++ utf8.h
 @@ -316,7 +316,12 @@ C<cp> is Unicode if above 255; otherwise is platform-native.
  
  =cut

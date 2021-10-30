@@ -9,10 +9,10 @@ feedback and okay afresh1@
  gnu/usr.bin/perl/lib/perl5db.pl | 26 +++++++++++++++++++++-----
  1 file changed, 21 insertions(+), 5 deletions(-)
 
-diff --git a/gnu/usr.bin/perl/lib/perl5db.pl b/gnu/usr.bin/perl/lib/perl5db.pl
+diff --git /lib/perl5db.pl /lib/perl5db.pl
 index 69a9bb6e643c..b4025116be43 100644
---- a/gnu/usr.bin/perl/lib/perl5db.pl
-+++ b/gnu/usr.bin/perl/lib/perl5db.pl
+--- /lib/perl5db.pl
++++ /lib/perl5db.pl
 @@ -1799,6 +1799,15 @@ =head2 DB
      @old_watch,
  );

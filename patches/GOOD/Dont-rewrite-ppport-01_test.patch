@@ -14,10 +14,10 @@ Found by naddy@, krw@, and deraadt@
  gnu/usr.bin/perl/dist/Devel-PPPort/Makefile.PL | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/gnu/usr.bin/perl/dist/Devel-PPPort/Makefile.PL b/gnu/usr.bin/perl/dist/Devel-PPPort/Makefile.PL
+diff --git dist/Devel-PPPort/Makefile.PL dist/Devel-PPPort/Makefile.PL
 index bc5f502e98cd..12d6fe35d4e0 100644
---- a/gnu/usr.bin/perl/dist/Devel-PPPort/Makefile.PL
-+++ b/gnu/usr.bin/perl/dist/Devel-PPPort/Makefile.PL
+--- dist/Devel-PPPort/Makefile.PL
++++ dist/Devel-PPPort/Makefile.PL
 @@ -63,7 +63,7 @@ sub configure
      'ppport_h.PL'  => 'ppport.h',
      'PPPort_pm.PL' => 'PPPort.pm',

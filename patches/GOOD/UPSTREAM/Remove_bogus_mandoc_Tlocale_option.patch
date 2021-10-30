@@ -15,7 +15,7 @@ Subject: [PATCH] Delete totally bogus code specifically targetted at mandoc
  gnu/usr.bin/perl/cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm | 7 -------
  1 file changed, 7 deletions(-)
 
-diff --git cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm b/gnu/usr.bin/perl/cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm
+diff --git cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm
 index 696c9dd2c31..d8e42b1703b 100644
 --- cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm.orig
 +++ cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm

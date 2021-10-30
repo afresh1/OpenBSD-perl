@@ -18,10 +18,10 @@ Addresses CVE-2021-36770
  gnu/usr.bin/perl/cpan/Encode/Encode.pm | 7 ++++---
  1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/gnu/usr.bin/perl/cpan/Encode/Encode.pm b/gnu/usr.bin/perl/cpan/Encode/Encode.pm
+diff --git cpan/Encode/Encode.pm cpan/Encode/Encode.pm
 index de06ba149ea2..e4a23d7a947e 100644
---- a/gnu/usr.bin/perl/cpan/Encode/Encode.pm
-+++ b/gnu/usr.bin/perl/cpan/Encode/Encode.pm
+--- cpan/Encode/Encode.pm
++++ cpan/Encode/Encode.pm
 @@ -7,7 +7,8 @@ use warnings;
  use constant DEBUG => !!$ENV{PERL_ENCODE_DEBUG};
  our $VERSION;
