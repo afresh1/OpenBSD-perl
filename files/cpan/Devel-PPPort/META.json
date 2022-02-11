@@ -1,0 +1,53 @@
+{
+   "abstract" : "Perl/Pollution/Portability",
+   "author" : [
+      "Marcus Holland-Moritz <mhx@cpan.org>"
+   ],
+   "dynamic_config" : 1,
+   "generated_by" : "ExtUtils::MakeMaker version 7.44, CPAN::Meta::Converter version 2.150010",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : 2
+   },
+   "name" : "Devel-PPPort",
+   "no_index" : {
+      "directory" : [
+         "t",
+         "inc"
+      ]
+   },
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "FindBin" : "0"
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "ExtUtils::MakeMaker" : "0"
+         }
+      }
+   },
+   "provides" : {
+      "Devel::PPPort" : {
+         "file" : "PPPort.pm",
+         "version" : "3.64"
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/Dual-Life/Devel-PPPort/issues"
+      },
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/Dual-Life/Devel-PPPort.git",
+         "web" : "https://github.com/Dual-Life/Devel-PPPort"
+      }
+   },
+   "version" : "3.64",
+   "x_serialization_backend" : "JSON::PP version 4.04"
+}
