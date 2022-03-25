@@ -1,0 +1,28 @@
+
+Build Perl module Compress::Raw::Zlib with zlib from /usr/lib/libz.so
+instead of the sources that are packaged with Perl.  This allows
+us to apply security fixes for userland base in one place.  Zlib.so
+is used with dlopen(3) and gets a new library dependency to libz.
+Before zlib objects from zlib-src were linked statically.
+OK tb@
+
+Index: cpan/Compress-Raw-Zlib/config.in
+===================================================================
+RCS file: /data/mirror/openbsd/cvs/src/gnu/usr.bin/perl/cpan/Compress-Raw-Zlib/config.in,v
+retrieving revision 1.1.1.2
+diff -u -p -r1.1.1.2 config.in
+--- cpan/Compress-Raw-Zlib/config.in	13 Feb 2019 21:10:49 -0000	1.1.1.2
++++ cpan/Compress-Raw-Zlib/config.in	24 Mar 2022 14:50:01 -0000
+@@ -16,9 +16,9 @@
+ #    Setting the Gzip OS Code
+ #
+ 
+-BUILD_ZLIB      = True
+-INCLUDE         = ./zlib-src
+-LIB             = ./zlib-src
++BUILD_ZLIB      = False
++INCLUDE         = /usr/include
++LIB             = /usr/lib
+ OLD_ZLIB        = False
+ GZIP_OS_CODE    = AUTO_DETECT
+ 
