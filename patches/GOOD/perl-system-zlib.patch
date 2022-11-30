@@ -1,0 +1,47 @@
+On Thu, Mar 24, 2022 at 08:27:12AM -0600, Theo de Raadt wrote:
+> Miod Vallat <miod@online.fr> wrote:
+> 
+> > > I think we should reduce the number of zlibs in userland.  Otherwise
+> > > security fixing becomes a nightmare.  I will have a look at Perl.
+> > 
+> > If you go this route, note that perl also contains a complete bzip2
+> > implementation. Since there has been concern, over a recent change
+> > proposed to tar, to only care about what's in base, we might want to
+> > add libbzip2 to base and link the perl module against it... (to be
+> > considered post-release)
+> 
+> And how many days or hours before someone says I want bzip2 support in
+> the bootblocks also (without any consideration their proposal blows up
+> 50% of the media, and will require a very significant amount of
+> development/test process).
+> 
+> I don't know why we limited ourselves to netinet.  We should bring back
+> netiso.  People should be able to depend upon is to supply them with
+> choice even when it is irrelevant.
+
+I don't want to start the discussion whether we want to import bzip2
+into base.
+
+The patch to use base zlib in Perl is rather simple.  I am building
+a release with it.
+
+Index: gnu/usr.bin/perl/cpan/Compress-Raw-Zlib/config.in
+===================================================================
+RCS file: /data/mirror/openbsd/cvs/src/gnu/usr.bin/perl/cpan/Compress-Raw-Zlib/config.in,v
+retrieving revision 1.1.1.2
+diff -u -p -r1.1.1.2 config.in
+--- cpan/Compress-Raw-Zlib/config.in	13 Feb 2019 21:10:49 -0000	1.1.1.2
++++ cpan/Compress-Raw-Zlib/config.in	24 Mar 2022 14:50:01 -0000
+@@ -16,9 +16,9 @@
+ #    Setting the Gzip OS Code
+ #
+ 
+-BUILD_ZLIB      = True
+-INCLUDE         = ./zlib-src
+-LIB             = ./zlib-src
++BUILD_ZLIB      = False
++INCLUDE         = /usr/include
++LIB             = /usr/lib
+ OLD_ZLIB        = False
+ GZIP_OS_CODE    = AUTO_DETECT
+ 
