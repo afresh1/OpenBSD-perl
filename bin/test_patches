@@ -15,8 +15,10 @@ find ${SRCDIR}/patches/RESEARCH -name "$NAME" | sort | {
         >$log # truncate
 
         echo Extracting perl
-        do_extract_perl
+        do_extract_perl || continue
         cd $PERL_BASE
+        do_patch_perl || continue
+        find . -name '*.orig' -delete
 
         echo Applying $patch 2>&1 | tee -a $log
         if ! patch -p0 -f -E -F 10 -Ni "$patch" 2>&1 | tee -a $log; then
@@ -24,7 +26,7 @@ find ${SRCDIR}/patches/RESEARCH -name "$NAME" | sort | {
             continue
         fi
 
-	[ $( find . -name '*.rej' | tee -a log | wc -l ) -gt 0 ] &&
+       [ $( find . -name '*.rej' | tee -a log | wc -l ) -gt 0 ] &&
             echo "Failed" 2>&1 | tee -a $log && continue
 
         new_patch=`echo "$patch" | sed -e "s/RESEARCH/APPLIES/"`
