@@ -13,7 +13,7 @@ apply_patches_in_dir() {
     local name=${2:-*.patch}
     local _file;
 
-    find $dir -name "$name" -print | sort | while read _file; do
+    find "$dir" -name "$name" -print | sort | while read _file; do
         echo "Applying $_file"
         patch -fEp0 -i $_file
 	if [ $( find . -name '*.rej' | wc -l ) -ne 0 ]; then
@@ -29,8 +29,8 @@ apply_good_patches() {
 
 apply_required_patches() {
 	dir="${SRCDIR}/patches/REQUIRED"
-	[ -d "$dir" ] && return apply_patches_in_dir "$dir"
-	true
+	[ -d "$dir" ] || return 0
+	apply_patches_in_dir "$dir"
 }
 
 do_extract_perl() {
