@@ -1,6 +1,6 @@
---- ./Configure.orig	Sat Dec 26 07:27:04 2020
-+++ ./Configure	Mon Jan 18 10:16:50 2021
-@@ -20630,9 +20630,9 @@ case "$ccflags" in
+--- ./Configure.orig	Thu May 19 17:01:22 2022
++++ ./Configure	Fri Dec  9 06:07:34 2022
+@@ -21024,9 +21024,9 @@ case "$ccflags" in
  	;;
  esac
  
@@ -13,9 +13,9 @@
  randbits=48
  randseedtype=U32
  
---- ./pp.c.orig	Fri Dec 18 02:04:36 2020
-+++ ./pp.c	Mon Jan 18 10:16:51 2021
-@@ -2926,12 +2926,13 @@ PP(pp_srand)
+--- ./pp.c.orig	Fri Mar 18 04:33:24 2022
++++ ./pp.c	Fri Dec  9 06:07:34 2022
+@@ -2963,12 +2963,13 @@ PP(pp_srand)
                               "Integer overflow in srand");
              anum = UV_MAX;
          }
@@ -29,4 +29,4 @@
 -    (void)seedDrand01((Rand_seed_t)anum);
      PL_srand_called = TRUE;
      if (anum)
- 	XPUSHu(anum);
+         XPUSHu(anum);

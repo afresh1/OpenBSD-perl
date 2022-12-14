@@ -1,5 +1,5 @@
---- ./hints/openbsd.sh.orig	Tue Mar 20 13:06:36 2018
-+++ ./hints/openbsd.sh	Mon Nov 26 20:04:01 2018
+--- ./hints/openbsd.sh.orig	Mon Sep 20 19:38:30 2021
++++ ./hints/openbsd.sh	Thu Dec  8 15:02:39 2022
 @@ -140,8 +140,8 @@ case "$openbsd_distribution" in
  	siteprefix='/usr/local'
  	siteprefixexp='/usr/local'
@@ -11,8 +11,8 @@
  	# Link perl with shared libperl
  	if [ "$usedl" = "$define" -a -r shlib_version ]; then
  		useshrplib=true
---- ./configpm.orig	Fri Dec 18 02:04:35 2020
-+++ ./configpm	Tue Jan 12 08:19:44 2021
+--- ./configpm.orig	Thu Apr 29 07:35:34 2021
++++ ./configpm	Thu Dec  8 15:02:39 2022
 @@ -1128,6 +1128,18 @@ my $orig_heavy_txt = "";
  }
  
@@ -32,9 +32,9 @@
      open CONFIG, ">", $Config_PM or die "Can't open $Config_PM: $!\n";
      open CONFIG_HEAVY, ">", $Config_heavy or die "Can't open $Config_heavy: $!\n";
      print CONFIG $config_txt;
---- ./installperl.orig	Fri Dec 18 01:58:48 2020
-+++ ./installperl	Tue Jan 12 08:19:44 2021
-@@ -627,6 +627,10 @@ sub installlib {
+--- ./installperl.orig	Wed Feb 23 18:35:27 2022
++++ ./installperl	Thu Dec  8 15:02:39 2022
+@@ -590,6 +590,10 @@ sub installlib {
  	return;
      }
  

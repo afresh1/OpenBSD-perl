@@ -1,6 +1,6 @@
---- ./pod/perlop.pod.orig	Sat Dec 26 07:29:34 2020
-+++ ./pod/perlop.pod	Sun Jan 10 14:39:01 2021
-@@ -1810,7 +1810,7 @@ and although they often accept just C<"\012">, they se
+--- ./pod/perlop.pod.orig	Sat May 14 06:28:57 2022
++++ ./pod/perlop.pod	Tue Dec  6 18:53:06 2022
+@@ -1833,7 +1833,7 @@ and although they often accept just C<"\012">, they se
  C<"\015">.  If you get in the habit of using C<"\n"> for networking,
  you may be burned some day.
  X<newline> X<line terminator> X<eol> X<end of line>

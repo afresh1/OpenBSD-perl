@@ -1,6 +1,6 @@
---- ./Configure.orig	Sat Dec 26 07:27:04 2020
-+++ ./Configure	Mon Jan 11 12:56:57 2021
-@@ -23723,6 +23723,8 @@ esac
+--- ./Configure.orig	Thu May 19 17:01:22 2022
++++ ./Configure	Wed Dec  7 18:37:14 2022
+@@ -24205,6 +24205,8 @@ esac
  nonxs_ext=''
  for xxx in $nonxs_extensions ; do
  	case "$xxx" in
@@ -9,8 +9,8 @@
  	VMS*)
  		;;
  	*)	nonxs_ext="$nonxs_ext $xxx"
---- ./cpan/Compress-Raw-Bzip2/private/MakeUtil.pm.orig	Tue Mar 20 13:06:35 2018
-+++ ./cpan/Compress-Raw-Bzip2/private/MakeUtil.pm	Mon Nov 26 11:57:51 2018
+--- ./cpan/Compress-Raw-Zlib/private/MakeUtil.pm.orig	Thu Apr 29 07:35:34 2021
++++ ./cpan/Compress-Raw-Zlib/private/MakeUtil.pm	Wed Dec  7 18:37:14 2022
 @@ -35,7 +35,8 @@ sub MY::libscan
      my $path = shift;
  
@@ -21,8 +21,8 @@
             $path =~ /\..*\.sw(o|p)$/  ||
             $path =~ /\B\.svn\b/;
  
---- ./cpan/Compress-Raw-Zlib/private/MakeUtil.pm.orig	Tue Mar 20 13:06:35 2018
-+++ ./cpan/Compress-Raw-Zlib/private/MakeUtil.pm	Mon Nov 26 11:57:51 2018
+--- ./cpan/IO-Compress/private/MakeUtil.pm.orig	Thu Apr 29 07:35:34 2021
++++ ./cpan/IO-Compress/private/MakeUtil.pm	Wed Dec  7 18:37:14 2022
 @@ -35,7 +35,8 @@ sub MY::libscan
      my $path = shift;
  
@@ -33,8 +33,8 @@
             $path =~ /\..*\.sw(o|p)$/  ||
             $path =~ /\B\.svn\b/;
  
---- ./cpan/IO-Compress/private/MakeUtil.pm.orig	Tue Mar 20 13:06:35 2018
-+++ ./cpan/IO-Compress/private/MakeUtil.pm	Mon Nov 26 11:57:51 2018
+--- ./cpan/Compress-Raw-Bzip2/private/MakeUtil.pm.orig	Thu Apr 29 07:35:34 2021
++++ ./cpan/Compress-Raw-Bzip2/private/MakeUtil.pm	Wed Dec  7 18:37:14 2022
 @@ -35,7 +35,8 @@ sub MY::libscan
      my $path = shift;
  

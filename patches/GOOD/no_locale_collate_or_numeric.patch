@@ -1,10 +1,12 @@
---- ./hints/openbsd.sh.orig	Fri Dec 18 01:58:48 2020
-+++ ./hints/openbsd.sh	Tue Jan 12 09:56:17 2021
-@@ -155,4 +155,7 @@ esac
+--- ./hints/openbsd.sh.orig	Mon Sep 20 19:38:30 2021
++++ ./hints/openbsd.sh	Thu Dec  8 16:43:06 2022
+@@ -155,6 +155,9 @@ esac
  # which is being fixed.  In the meantime, forbid POSIX 2008 locales
  d_newlocale="$undef"
  
 +# OpenBSD's locale support is not that complete yet
 +ccflags="-DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE $ccflags"
 +
- # end
+ # Seems that OpenBSD returns bogus values in _Thread_local variables in code in
+ # shared objects, so we need to disable it. See GH #19109
+ d_thread_local=undef

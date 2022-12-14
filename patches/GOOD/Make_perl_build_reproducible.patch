@@ -12,9 +12,9 @@ Index: perl.c
 RCS file: /home/cvs/src/gnu/usr.bin/perl/perl.c,v
 retrieving revision 1.25
 diff -u -p -u -r1.25 perl.c
---- ./perl.c.orig      Fri Jan  8 13:20:36 2021
-+++ ./perl.c   Sun Jan 10 17:51:55 2021
-@@ -2069,6 +2069,8 @@ S_Internals_V(pTHX_ CV *cv)
+--- ./perl.c.orig	Sat May 21 14:26:59 2022
++++ ./perl.c	Wed Dec  7 01:51:08 2022
+@@ -2025,6 +2025,8 @@ S_Internals_V(pTHX_ CV *cv)
  #  endif
  #endif
  
@@ -22,4 +22,4 @@ diff -u -p -u -r1.25 perl.c
 +
  #ifdef PERL_BUILD_DATE
      PUSHs(Perl_newSVpvn_flags(aTHX_
- 			      STR_WITH_LEN("Compiled at " PERL_BUILD_DATE),
+                               STR_WITH_LEN("Compiled at " PERL_BUILD_DATE),

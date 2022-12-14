@@ -1,6 +1,6 @@
---- ./installperl.orig	Fri Dec 18 01:58:48 2020
-+++ ./installperl	Wed Jan 13 20:46:59 2021
-@@ -378,7 +378,9 @@ elsif ($Is_Cygwin) { # On Cygwin symlink it to CORE to
+--- ./installperl.orig	Wed Feb 23 18:35:27 2022
++++ ./installperl	Thu Dec  8 06:22:07 2022
+@@ -339,7 +339,9 @@ elsif ($Is_Cygwin) { # On Cygwin symlink it to CORE to
      @corefiles = <*.h>;
  } else {
      # [als] hard-coded 'libperl' name... not good!

@@ -1,5 +1,5 @@
---- ./hints/openbsd.sh.orig	Fri Dec 18 01:58:48 2020
-+++ ./hints/openbsd.sh	Mon Jan 11 06:21:33 2021
+--- ./hints/openbsd.sh.orig	Mon Sep 20 19:38:30 2021
++++ ./hints/openbsd.sh	Fri Dec  9 16:16:57 2022
 @@ -47,7 +47,11 @@ alpha-2.[0-8]|mips-2.[0-8]|powerpc-2.[0-7]|m88k-[2-4].
  	test -z "$usedl" && usedl=$define
  	# We use -fPIC here because -fpic is *NOT* enough for some of the

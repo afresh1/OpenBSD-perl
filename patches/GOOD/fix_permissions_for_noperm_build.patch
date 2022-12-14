@@ -1,26 +1,23 @@
---- ./installperl.orig	Tue Feb  2 09:20:23 2021
-+++ ./installperl	Tue Feb  2 09:21:01 2021
-@@ -78,8 +78,8 @@ $opts{destdir} = '';
+--- ./installperl.orig	Fri Dec 23 09:57:35 2022
++++ ./installperl	Fri Dec 23 09:57:39 2022
+@@ -72,7 +72,7 @@ $opts{destdir} = '';
      my $usage = 0;
      if (!GetOptions(\%opts, 'notify|n', 'strip|s', 'silent|S',
                      'skip-otherperls|o', 'force|f', 'verbose|V', 'archname|A',
--                    'netware', 'nopods|p', 'destdir:s', 'help|h|?',
--                    'versiononly|v' => \$versiononly, '<>' => sub {
-+                    'netware', 'nopods|p', 'destdir:s', 'help|h|?', 'user|u:s',
-+		    'group|g:s', 'versiononly|v' => \$versiononly, '<>' => sub {
+-                    'nopods|p', 'destdir:s', 'help|h|?',
++                    'nopods|p', 'destdir:s', 'help|h|?', 'user|u:s', 'group|g:s',
+                     'versiononly|v' => \$versiononly, '<>' => sub {
                          if ($_[0] eq '+v') {
                              $versiononly = 0;
-                         } else {
-@@ -108,6 +108,8 @@ Usage $0: [switches]
+@@ -102,12 +102,16 @@ Usage $0: [switches]
    -A        Also install perl with the architecture's name in the perl binary's
              name.
    -p        Don't install the pod files. [This will break use diagnostics;]
 +  -g group  install files with the specified group
 +  -u user   install files with the specified user 
-   -netware  Install correctly on a Netware server.
    -destdir  Prefix installation directories by this string.
    -h        Display this help message.
-@@ -115,6 +117,8 @@ EOT
+ EOT
          exit $usage;
      }
  }
@@ -29,7 +26,7 @@
  
  $versiononly = 1 if $Config{versiononly} && !defined $versiononly;
  my (@scripts, @tolink);
-@@ -548,6 +552,9 @@ if (!$opts{nopods} && (!$versiononly || ($installprivl
+@@ -508,6 +512,9 @@ if (!$opts{nopods} && (!$versiononly || ($installprivl
  
  
  $packlist->write() unless $opts{notify};
@@ -39,7 +36,7 @@
  print "  Installation complete\n" if $opts{verbose};
  
  exit 0;
-@@ -586,6 +593,7 @@ sub safe_unlink {
+@@ -546,6 +553,7 @@ sub safe_unlink {
  
  sub copy {
      my($from,$to) = @_;
@@ -47,7 +44,7 @@
  
      my $xto = $to;
      $xto =~ s/^\Q$opts{destdir}\E//;
-@@ -593,12 +601,15 @@ sub copy {
+@@ -553,12 +561,15 @@ sub copy {
  	unless $opts{silent};
      print "  creating new version of $xto\n"
  	if $Is_VMS and -e $to and !$opts{silent};
@@ -65,7 +62,8 @@
      $packlist->{$xto} = { type => 'file' };
  }
  
-@@ -610,6 +621,8 @@ sub install {
+@@ -569,6 +580,8 @@ sub install {
+     my $cmd = join(' ', @installcmd);
      $cmd .= " -m $mode" if $mode;
      $cmd .= " -s" if $opts{strip};
 +    $cmd .= " -o $opts{uid}" if defined($opts{uid});
@@ -73,19 +71,18 @@
      $cmd .= " $from $to";
      $xto =~ s/^\Q$opts{destdir}\E// if $opts{destdir};
      print $opts{verbose} ? "  install $from $xto\n" : "  $xto\n" unless $opts{silent};
-     system($cmd);
---- ./install_lib.pl.orig	Tue Feb  2 09:20:23 2021
-+++ ./install_lib.pl	Tue Feb  2 09:20:33 2021
+--- ./install_lib.pl.orig	Tue Nov  2 11:05:59 2021
++++ ./install_lib.pl	Fri Dec 23 09:57:39 2022
 @@ -6,7 +6,7 @@
  use strict;
- use vars qw($Is_VMS $Is_W32 $Is_OS2 $Is_Cygwin $Is_Darwin $Is_NetWare $Is_AmigaOS
+ use vars qw($Is_VMS $Is_W32 $Is_OS2 $Is_Cygwin $Is_Darwin $Is_AmigaOS
  	    %opts $packlist);
 -use subs qw(unlink link chmod);
 +use subs qw(unlink link chmod chown);
  require File::Path;
  require File::Copy;
  
-@@ -99,6 +99,9 @@ sub link {
+@@ -98,6 +98,9 @@ sub link {
  		unless -f $to and (chmod(0666, $to), unlink $to)
  			and File::Copy::copy($from, $to) and ++$success;
  	}
@@ -95,7 +92,7 @@
  	$packlist->{$xto} = { type => 'file' };
      }
      $success;
-@@ -114,6 +117,16 @@ sub chmod {
+@@ -112,6 +115,16 @@ sub chmod {
        unless $opts{notify};
  }
  
@@ -112,7 +109,7 @@
  sub samepath {
      my($p1, $p2) = @_;
  
-@@ -145,7 +158,8 @@ sub safe_rename {
+@@ -143,7 +156,8 @@ sub safe_rename {
  }
  
  sub mkpath {
@@ -122,9 +119,9 @@
  }
  
  sub unixtoamiga
---- ./cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Unix.pm.orig	Fri Dec 18 02:04:35 2020
-+++ ./cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Unix.pm	Tue Jan 12 03:27:06 2021
-@@ -2214,7 +2214,8 @@ Called by init_main.  Initializes PERL_*
+--- ./cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Unix.pm.orig	Fri Jan 14 06:22:08 2022
++++ ./cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Unix.pm	Fri Dec 23 09:57:39 2022
+@@ -2225,7 +2225,8 @@ Called by init_main.  Initializes PERL_*
  sub init_PERM {
      my($self) = shift;
  
@@ -134,8 +131,8 @@
      $self->{PERM_RW}  = 644  unless defined $self->{PERM_RW};
      $self->{PERM_RWX} = 755  unless defined $self->{PERM_RWX};
  
---- ./cpan/Sys-Syslog/Makefile.PL.orig	Wed Dec 12 19:36:45 2018
-+++ ./cpan/Sys-Syslog/Makefile.PL	Wed Dec 12 19:37:19 2018
+--- ./cpan/Sys-Syslog/Makefile.PL.orig	Mon Feb 18 01:59:21 2019
++++ ./cpan/Sys-Syslog/Makefile.PL	Fri Dec 23 09:57:39 2022
 @@ -14,7 +14,7 @@ if ($] < 5.008) {
  }
  
@@ -145,9 +142,9 @@
  
  # virtual paths given to EU::MM
  my %virtual_path = ( 'Syslog.pm' => '$(INST_LIBDIR)/Syslog.pm' );
---- ./cpan/ExtUtils-Install/lib/ExtUtils/Install.pm.orig	Wed Dec 12 19:36:45 2018
-+++ ./cpan/ExtUtils-Install/lib/ExtUtils/Install.pm	Wed Dec 12 19:37:19 2018
-@@ -108,6 +108,7 @@ $INSTALL_QUIET = 1
+--- ./cpan/ExtUtils-Install/lib/ExtUtils/Install.pm.orig	Mon Dec 28 08:57:43 2020
++++ ./cpan/ExtUtils-Install/lib/ExtUtils/Install.pm	Fri Dec 23 09:57:39 2022
+@@ -104,6 +104,7 @@ $INSTALL_QUIET = 1
        $ENV{MAKEFLAGS} =~ /\b(s|silent|quiet)\b/);
  
  my $Curdir = File::Spec->curdir;
@@ -155,7 +152,7 @@
  
  sub _estr(@) {
      return join "\n",'!' x 72,@_,'!' x 72,'';
-@@ -799,7 +800,7 @@ sub install { #XXX OS-SPECIFIC
+@@ -769,7 +770,7 @@ sub install { #XXX OS-SPECIFIC
          _chdir($cwd);
      }
      foreach my $targetdir (sort keys %check_dirs) {
@@ -164,7 +161,7 @@
      }
      foreach my $found (@found_files) {
          my ($diff, $ffd, $origfile, $mode, $size, $atime, $mtime,
-@@ -813,7 +814,7 @@ sub install { #XXX OS-SPECIFIC
+@@ -783,7 +784,7 @@ sub install { #XXX OS-SPECIFIC
                      $targetfile= _unlink_or_rename( $targetfile, 'tryhard', 'install' )
                          unless $dry_run;
                  } elsif ( ! -d $targetdir ) {
@@ -173,7 +170,7 @@
                  }
                  print "Installing $targetfile\n";
  
-@@ -853,7 +854,7 @@ sub install { #XXX OS-SPECIFIC
+@@ -823,7 +824,7 @@ sub install { #XXX OS-SPECIFIC
  
      if ($pack{'write'}) {
          $dir = install_rooted_dir(dirname($pack{'write'}));
@@ -182,21 +179,21 @@
          print "Writing $pack{'write'}\n" if $verbose;
          $packlist->write(install_rooted_file($pack{'write'})) unless $dry_run;
      }
-@@ -1199,7 +1200,7 @@ environment variable will silence this output.
- sub pm_to_blib {
+@@ -1161,7 +1162,7 @@ sub pm_to_blib {
      my($fromto,$autodir,$pm_filter) = @_;
  
+     my %dirs;
 -    _mkpath($autodir,0,0755) if defined $autodir;
 +    _mkpath($autodir,0,$Perm_Dir) if defined $autodir;
      while(my($from, $to) = each %$fromto) {
          if( -f $to && -s $from == -s $to && -M $to < -M $from ) {
              print "Skip $to (unchanged)\n" unless $INSTALL_QUIET;
-@@ -1222,7 +1223,7 @@ sub pm_to_blib {
-             # we wont try hard here. its too likely to mess things up.
-             forceunlink($to);
+@@ -1186,7 +1187,7 @@ sub pm_to_blib {
          } else {
--            _mkpath(dirname($to),0,0755);
-+            _mkpath(dirname($to),0,$Perm_Dir);
+             my $dirname = dirname($to);
+             if (!$dirs{$dirname}++) {
+-                _mkpath($dirname,0,0755);
++                _mkpath($dirname,0,$Perm_Dir);
+             }
          }
          if ($need_filtering) {
-             run_filter($pm_filter, $from, $to);

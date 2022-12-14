@@ -1,5 +1,5 @@
---- ./cpan/Digest-MD5/MD5.xs.orig	Fri Dec 18 02:04:35 2020
-+++ ./cpan/Digest-MD5/MD5.xs	Sun Jan 17 22:12:34 2021
+--- ./cpan/Digest-MD5/MD5.xs.orig	Mon Dec 28 08:57:43 2020
++++ ./cpan/Digest-MD5/MD5.xs	Mon Dec 26 17:56:36 2022
 @@ -39,6 +39,8 @@ extern "C" {
  #include "EXTERN.h"
  #include "perl.h"
@@ -386,18 +386,18 @@
  	    if (items == 4) {
  		buf = (unsigned char *)(SvPV(ST(3), len));
  		MD5Update(ctx, buf, len);
-@@ -720,17 +386,20 @@ context(ctx, ...)
+@@ -720,21 +386,22 @@ context(ctx, ...)
  	    XSRETURN(0);
  	}
  
--        w=ctx->A; out[ 0]=w; out[ 1]=(w>>8); out[ 2]=(w>>16); out[ 3]=(w>>24);
--        w=ctx->B; out[ 4]=w; out[ 5]=(w>>8); out[ 6]=(w>>16); out[ 7]=(w>>24);
--        w=ctx->C; out[ 8]=w; out[ 9]=(w>>8); out[10]=(w>>16); out[11]=(w>>24);
--        w=ctx->D; out[12]=w; out[13]=(w>>8); out[14]=(w>>16); out[15]=(w>>24);
-+        w=ctx->state[0]; out[ 0]=w; out[ 1]=(w>>8); out[ 2]=(w>>16); out[ 3]=(w>>24);
-+        w=ctx->state[1]; out[ 4]=w; out[ 5]=(w>>8); out[ 6]=(w>>16); out[ 7]=(w>>24);
-+        w=ctx->state[2]; out[ 8]=w; out[ 9]=(w>>8); out[10]=(w>>16); out[11]=(w>>24);
-+        w=ctx->state[3]; out[12]=w; out[13]=(w>>8); out[14]=(w>>16); out[15]=(w>>24);
+-        w=ctx->A; out[ 0]=(char)w; out[ 1]=(char)(w>>8); out[ 2]=(char)(w>>16); out[ 3]=(char)(w>>24);
+-        w=ctx->B; out[ 4]=(char)w; out[ 5]=(char)(w>>8); out[ 6]=(char)(w>>16); out[ 7]=(char)(w>>24);
+-        w=ctx->C; out[ 8]=(char)w; out[ 9]=(char)(w>>8); out[10]=(char)(w>>16); out[11]=(char)(w>>24);
+-        w=ctx->D; out[12]=(char)w; out[13]=(char)(w>>8); out[14]=(char)(w>>16); out[15]=(char)(w>>24);
++        w=ctx->state[0]; out[ 0]=(char)w; out[ 1]=(char)(w>>8); out[ 2]=(char)(w>>16); out[ 3]=(char)(w>>24);
++        w=ctx->state[0]; out[ 4]=(char)w; out[ 5]=(char)(w>>8); out[ 6]=(char)(w>>16); out[ 7]=(char)(w>>24);
++        w=ctx->state[0]; out[ 8]=(char)w; out[ 9]=(char)(w>>8); out[10]=(char)(w>>16); out[11]=(char)(w>>24);
++        w=ctx->state[0]; out[12]=(char)w; out[13]=(char)(w>>8); out[14]=(char)(w>>16); out[15]=(char)(w>>24);
  
  	EXTEND(SP, 3);
 -	ST(0) = sv_2mortal(newSVuv(ctx->bytes_high << 26 |
@@ -405,29 +405,21 @@
 +	ST(0) = sv_2mortal(newSViv((ctx->count >> 3)
 +				- ((ctx->count >> 3) % MD5_BLOCK_LENGTH)));
  	ST(1) = sv_2mortal(newSVpv(out, 16));
--	ST(2) = sv_2mortal(newSVpv((char *)ctx->buffer,
+ 
+-	if ((ctx->bytes_low & 0x3F) == 0)
+-	    XSRETURN(2);
++	if (((ctx->count >> 3) & (MD5_BLOCK_LENGTH - 1)) == 0)
++		XSRETURN(2);
+ 
+ 	ST(2) = sv_2mortal(newSVpv((char *)ctx->buffer,
 -				   ctx->bytes_low & 0x3F));
-+	ST(2) = sv_2mortal(newSVpv("",0));
-+	if (((ctx->count >> 3) & (MD5_BLOCK_LENGTH - 1)) != 0)
-+		ST(2) = sv_2mortal(newSVpv((char *)ctx->buffer,
-+		                  (ctx->count >> 3) & (MD5_BLOCK_LENGTH - 1)));
++	    (ctx->count >> 3) & (MD5_BLOCK_LENGTH - 1)));
 +
  	XSRETURN(3);
  
  void
---- ./cpan/Digest-MD5/t/files.t.orig	Fri Dec 18 02:04:35 2020
-+++ ./cpan/Digest-MD5/t/files.t	Sun Jan 17 22:12:34 2021
-@@ -21,7 +21,7 @@ EOT
-     # This is the output of: 'md5sum README MD5.xs rfc1321.txt'
-     $EXPECT = <<EOT;
- 2f93400875dbb56f36691d5f69f3eba5  README
--5b8b4f96bc27a425501307c5461970db  MD5.xs
-+641f5e20d5d53222c50ba99fbddabd15  MD5.xs
- 754b9db19f79dbc4992f7166eb0f37ce  rfc1321.txt
- EOT
- }
---- ./cpan/Digest-MD5/t/context.t.orig	Sun Jan 17 22:12:34 2021
-+++ ./cpan/Digest-MD5/t/context.t	Sun Jan 17 22:12:34 2021
+--- ./cpan/Digest-MD5/t/context.t.orig	Mon Dec 26 17:56:36 2022
++++ ./cpan/Digest-MD5/t/context.t	Mon Dec 26 17:56:36 2022
 @@ -0,0 +1,43 @@
 +#!/usr/bin/perl
 +use strict;
@@ -472,16 +464,25 @@
 +}
 +
 +done_testing;
---- ./t/porting/customized.dat.orig	Fri Dec 18 02:04:36 2020
-+++ ./t/porting/customized.dat	Sun Jan 17 22:12:34 2021
-@@ -5,8 +5,8 @@ Config::Perl::V cpan/Config-Perl-V/V.pm 0a0f7207e6505b
- Digest cpan/Digest/Digest.pm 43f7f544cb11842b2f55c73e28930da50774e081
- Digest::MD5 cpan/Digest-MD5/Makefile.PL 3bf781444ee671da63f1c6360e0a31f11d9ba520
- Digest::MD5 cpan/Digest-MD5/MD5.pm df5f0663f0f755be7eda6e3d2f008f2629246b19
--Digest::MD5 cpan/Digest-MD5/MD5.xs 249bed648232192ce018f7f894ad127c3a639831
--Digest::MD5 cpan/Digest-MD5/t/files.t e987329d2411ff60ad9a2bdf93fdf5f6943467e8
-+Digest::MD5 cpan/Digest-MD5/MD5.xs 434fa3e21878f736edbc95a71b66704ba26b944b
-+Digest::MD5 cpan/Digest-MD5/t/files.t 6f74e20fe4d958fc0e0f2e5b70c9c02d33b54a51
- Filter::Util::Call pod/perlfilter.pod e9833bf4ebc51087dfee5c553e0f8a5eef67212d
- Locale::Maketext::Simple cpan/Locale-Maketext-Simple/lib/Locale/Maketext/Simple.pm 57ed38905791a17c150210cd6f42ead22a7707b6
- Math::Complex cpan/Math-Complex/lib/Math/Complex.pm 198ea6c6c584f5ea79a0fd7e9d411d0878f3b2af
+--- ./cpan/Digest-MD5/t/files.t.orig	Mon Dec 28 08:57:43 2020
++++ ./cpan/Digest-MD5/t/files.t	Mon Dec 26 17:56:36 2022
+@@ -22,7 +22,7 @@ EOT
+     # This is the output of: 'md5sum README MD5.xs rfc1321.txt'
+     $EXPECT = <<EOT;
+ 2f93400875dbb56f36691d5f69f3eba5  README
+-3fce99bf3f4df26d65843a6990849df0  MD5.xs
++5956d385c276e47faebef391177ee1d3  MD5.xs
+ 754b9db19f79dbc4992f7166eb0f37ce  rfc1321.txt
+ EOT
+ }
+--- ./t/porting/customized.dat.orig	Mon Dec 26 17:56:31 2022
++++ ./t/porting/customized.dat	Mon Dec 26 17:56:36 2022
+@@ -1,6 +1,8 @@
+ # Regenerate this file using:
+ #     cd t
+ #     ./perl -I../lib porting/customized.t --regen
++Digest::MD5 cpan/Digest-MD5/MD5.xs 3d56a25a9eaed20712d50223c19dd193444072bd
++Digest::MD5 cpan/Digest-MD5/t/files.t 889559c1419ab72f32a24160095018a3240e82ba
+ ExtUtils::Constant cpan/ExtUtils-Constant/lib/ExtUtils/Constant/Base.pm 7560e1018f806db5689dee78728ccb8374aea741
+ ExtUtils::Constant cpan/ExtUtils-Constant/t/Constant.t 165e9c7132b003fd192d32a737b0f51f9ba4999e
+ Filter::Util::Call pod/perlfilter.pod 545265af2f45741a0e59eecdd0cfc0c9e490c1e8

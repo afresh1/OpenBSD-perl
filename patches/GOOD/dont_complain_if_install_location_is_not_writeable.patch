@@ -6,14 +6,14 @@ Index: installperl
 RCS file: /cvs/src/gnu/usr.bin/perl/installperl,v
 retrieving revision 1.35
 diff -u -p -u -r1.35 installperl
---- ./installperl.orig	Sat May 11 02:50:20 2019
-+++ ./installperl	Sun May 12 05:16:17 2019
-@@ -239,8 +239,6 @@ if ($Is_VMS) {  # Hang in there until File::Spec hits 
+--- ./installperl.orig	Wed Feb 23 18:35:27 2022
++++ ./installperl	Thu Dec  8 08:19:42 2022
+@@ -220,8 +220,6 @@ if ($Is_VMS) {  # Hang in there until File::Spec hits 
     $installbin		|| die "No installbin directory in config.sh\n";
  -d $installbin	        || mkpath($installbin);
  -d $installbin		|| $opts{notify} || die "$installbin is not a directory\n";
 --w $installbin		|| $opts{notify} || die "$installbin is not writable by you\n"
 -	unless $installbin =~ m#^/afs/# || $opts{notify};
  
- if (!$Is_NetWare) {
  if (!$Is_VMS) {
+ -x 'perl' . $exe_ext	|| die "perl isn't executable!\n";

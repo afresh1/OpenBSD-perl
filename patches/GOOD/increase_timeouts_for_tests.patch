@@ -1,5 +1,5 @@
---- ./dist/threads-shared/t/stress.t.orig	Tue Mar 20 13:06:36 2018
-+++ ./dist/threads-shared/t/stress.t	Mon Nov 26 18:48:34 2018
+--- ./dist/threads-shared/t/stress.t.orig	Mon Dec 28 08:57:44 2020
++++ ./dist/threads-shared/t/stress.t	Thu Dec  8 11:40:53 2022
 @@ -83,7 +83,7 @@ use threads::shared;
          print "# Looping for $busycount iterations should take about 0.025s\n";
      }
@@ -9,8 +9,8 @@
  
      my $mutex = 1;
      share($mutex);
---- ./t/op/getppid.t.orig	Mon May 21 05:29:23 2018
-+++ ./t/op/getppid.t	Mon Nov 26 18:48:34 2018
+--- ./t/op/getppid.t.orig	Mon Feb 18 01:59:23 2019
++++ ./t/op/getppid.t	Thu Dec  8 11:40:53 2022
 @@ -100,7 +100,7 @@ sub fork_and_retrieve {
  		}
  	    } else {
@@ -20,8 +20,8 @@
  	    }
  	    my $ppid2 = getppid();
  	    print $w "$how,$ppid1,$ppid2\n";
---- ./t/re/speed.t.orig	Fri Dec 18 02:04:36 2020
-+++ ./t/re/speed.t	Sat Jan 16 17:37:49 2021
+--- ./t/re/speed.t.orig	Mon Dec 28 08:57:44 2020
++++ ./t/re/speed.t	Thu Dec  8 11:40:53 2022
 @@ -44,7 +44,7 @@ sub run_tests {
  
      watchdog(($ENV{PERL_TEST_TIME_OUT_FACTOR} || 1)

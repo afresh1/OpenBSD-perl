@@ -19,9 +19,9 @@ help and ok afresh1@
 
 diff --git utf8.h utf8.h
 index 01bf447a6149..97bccd086255 100644
---- utf8.h
-+++ utf8.h
-@@ -316,7 +316,12 @@ C<cp> is Unicode if above 255; otherwise is platform-native.
+--- ./utf8.h.orig	Sun Mar  6 07:58:33 2022
++++ ./utf8.h	Wed Dec  7 10:13:52 2022
+@@ -331,7 +331,12 @@ C<cp> is Unicode if above 255; otherwise is platform-n
  
  =cut
   */
@@ -32,5 +32,5 @@ index 01bf447a6149..97bccd086255 100644
  #define UVCHR_IS_INVARIANT(cp)  (OFFUNI_IS_INVARIANT(NATIVE_TO_UNI(cp)))
 +#endif
  
- /* Internal macro to be used only in this file to aid in constructing other
-  * publicly accessible macros.
+ /* This defines the 1-bits that are to be in the first byte of a multi-byte
+  * UTF-8 encoded character that mark it as a start byte and give the number of

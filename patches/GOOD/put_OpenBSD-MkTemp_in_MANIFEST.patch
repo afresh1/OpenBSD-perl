@@ -1,23 +1,23 @@
---- ./Makefile.SH.orig	Sun Jun  2 12:08:03 2019
-+++ ./Makefile.SH	Sun Jun  2 12:08:17 2019
-@@ -1443,10 +1443,10 @@ _cleaner2:
- 	-rmdir lib/Sys/Syslog lib/Sys lib/Sub lib/Search lib/Scalar
- 	-rmdir lib/Pod/Text lib/Pod/Simple lib/Pod/Perldoc lib/PerlIO/via
- 	-rmdir lib/PerlIO lib/Perl lib/Parse/CPAN lib/Parse lib/Params
--	-rmdir lib/Net/FTP lib/Module/Load lib/Module/CoreList lib/Module
--	-rmdir lib/Memoize lib/Math/BigInt lib/Math/BigFloat lib/Math lib/MIME
+--- ./Makefile.SH.orig	Thu Dec 15 21:46:31 2022
++++ ./Makefile.SH	Thu Dec 15 21:46:37 2022
+@@ -1428,10 +1428,10 @@ _cleaner2:
+ 	-rmdir lib/TAP/Formatter lib/TAP lib/Sys/Syslog lib/Sys lib/Sub
+ 	-rmdir lib/Search lib/Scalar lib/Pod/Text lib/Pod/Simple
+ 	-rmdir lib/Pod/Perldoc lib/Pod/Html lib/PerlIO/via lib/PerlIO lib/Perl
+-	-rmdir lib/Parse/CPAN lib/Parse lib/Params lib/Net/FTP lib/Module/Load
+-	-rmdir lib/Module/CoreList lib/Module lib/Memoize lib/Math/BigRat
+-	-rmdir lib/Math/BigInt lib/Math/BigFloat lib/Math lib/MIME
 -	-rmdir lib/Locale/Maketext lib/Locale lib/List/Util lib/List
--	-rmdir lib/JSON/PP lib/JSON lib/IPC lib/IO/Uncompress/Adapter
-+	-rmdir lib/OpenBSD lib/Net/FTP lib/Module/Load lib/Module/CoreList
-+	-rmdir lib/Module lib/Memoize lib/Math/BigInt lib/Math/BigFloat
-+	-rmdir lib/Math lib/MIME lib/Locale/Maketext lib/Locale lib/List/Util
-+	-rmdir lib/List lib/JSON/PP lib/JSON lib/IPC lib/IO/Uncompress/Adapter
++	-rmdir lib/Parse/CPAN lib/Parse lib/Params lib/OpenBSD lib/Net/FTP
++	-rmdir lib/Module/Load lib/Module/CoreList lib/Module lib/Memoize
++	-rmdir lib/Math/BigRat lib/Math/BigInt lib/Math/BigFloat lib/Math
++	-rmdir lib/MIME lib/Locale/Maketext lib/Locale lib/List/Util lib/List
+ 	-rmdir lib/JSON/PP lib/JSON lib/IPC lib/IO/Uncompress/Adapter
  	-rmdir lib/IO/Uncompress lib/IO/Socket lib/IO/Compress/Zlib
  	-rmdir lib/IO/Compress/Zip lib/IO/Compress/Gzip lib/IO/Compress/Base
- 	-rmdir lib/IO/Compress/Adapter lib/IO/Compress lib/IO
---- ./MANIFEST.orig	Sun Jun  2 12:08:03 2019
-+++ ./MANIFEST	Sun Jun  2 12:08:17 2019
-@@ -1492,6 +1492,10 @@ cpan/NEXT/t/dynamically_scoped_regex_vars.t	NEXT
+--- ./MANIFEST.orig	Thu Dec 15 21:46:31 2022
++++ ./MANIFEST	Thu Dec 15 21:46:38 2022
+@@ -1591,6 +1591,10 @@ cpan/NEXT/t/dynamically_scoped_regex_vars.t	NEXT
  cpan/NEXT/t/next.t		NEXT
  cpan/NEXT/t/stringify.t		NEXT
  cpan/NEXT/t/unseen.t		NEXT
@@ -28,9 +28,9 @@
  cpan/Params-Check/lib/Params/Check.pm	Params::Check
  cpan/Params-Check/t/01_Params-Check.t	Params::Check tests
  cpan/parent/lib/parent.pm			Establish an ISA relationship with base classes at compile time
---- ./win32/GNUmakefile.orig	Sun Jun  2 12:08:03 2019
-+++ ./win32/GNUmakefile	Sun Jun  2 12:08:17 2019
-@@ -1834,6 +1834,7 @@ distclean: realclean
+--- ./win32/GNUmakefile.orig	Sat May 21 14:27:09 2022
++++ ./win32/GNUmakefile	Thu Dec 15 21:46:37 2022
+@@ -1696,6 +1696,7 @@ distclean: realclean
  	-if exist $(LIBDIR)\MIME rmdir /s /q $(LIBDIR)\MIME
  	-if exist $(LIBDIR)\Module rmdir /s /q $(LIBDIR)\Module
  	-if exist $(LIBDIR)\Net\FTP rmdir /s /q $(LIBDIR)\Net\FTP
@@ -38,19 +38,9 @@
  	-if exist $(LIBDIR)\Params rmdir /s /q $(LIBDIR)\Params
  	-if exist $(LIBDIR)\Parse rmdir /s /q $(LIBDIR)\Parse
  	-if exist $(LIBDIR)\Perl rmdir /s /q $(LIBDIR)\Perl
---- ./win32/Makefile.orig	Sun Jun  2 12:08:03 2019
-+++ ./win32/Makefile	Sun Jun  2 12:08:17 2019
-@@ -1356,6 +1356,7 @@ distclean: realclean
- 	-if exist $(LIBDIR)\MIME rmdir /s /q $(LIBDIR)\MIME
- 	-if exist $(LIBDIR)\Module rmdir /s /q $(LIBDIR)\Module
- 	-if exist $(LIBDIR)\Net\FTP rmdir /s /q $(LIBDIR)\Net\FTP
-+	-if exist $(LIBDIR)\OpenBSD rmdir /s /q $(LIBDIR)\OpenBSD
- 	-if exist $(LIBDIR)\Params rmdir /s /q $(LIBDIR)\Params
- 	-if exist $(LIBDIR)\Parse rmdir /s /q $(LIBDIR)\Parse
- 	-if exist $(LIBDIR)\Perl rmdir /s /q $(LIBDIR)\Perl
---- win32/makefile.mk.old	Sat May 11 16:02:19 2019
-+++ win32/makefile.mk	Sun Jun  2 12:54:51 2019
-@@ -1751,6 +1751,7 @@
+--- ./win32/Makefile.orig	Sat May 21 14:27:09 2022
++++ ./win32/Makefile	Thu Dec 15 21:46:37 2022
+@@ -1229,6 +1229,7 @@ distclean: realclean
  	-if exist $(LIBDIR)\MIME rmdir /s /q $(LIBDIR)\MIME
  	-if exist $(LIBDIR)\Module rmdir /s /q $(LIBDIR)\Module
  	-if exist $(LIBDIR)\Net\FTP rmdir /s /q $(LIBDIR)\Net\FTP

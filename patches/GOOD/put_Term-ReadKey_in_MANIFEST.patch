@@ -5,9 +5,24 @@ millert@ suggested Term::ReadKey, which looks indeed like a good choice.
 
 Here's the glue + distrib from cpan. Comments welcome.
 
---- ./MANIFEST.orig	Sat May 11 15:08:28 2019
-+++ ./MANIFEST	Sun May 12 23:16:18 2019
-@@ -2007,6 +2007,17 @@ cpan/Term-ANSIColor/t/module/stringify.t
+--- ./regen/lib_cleanup.pl.orig	Thu Apr 29 07:35:34 2021
++++ ./regen/lib_cleanup.pl	Fri Dec 23 19:17:48 2022
+@@ -74,6 +74,12 @@ foreach my $file (@ext) {
+                 $package = $1;
+                 last;
+             }
++            elsif (/^\s*package\s*$/) {
++                # If they're hiding their package name, we ignore them
++                ++$ignore{"/$path"};
++                $package='';
++                last;
++            }
+         }
+         close $fh
+             or die "Can't close $file: $!";
+--- ./MANIFEST.orig	Fri Dec 23 19:17:46 2022
++++ ./MANIFEST	Fri Dec 23 19:17:49 2022
+@@ -2132,6 +2132,17 @@ cpan/Term-ANSIColor/t/module/true-color.t
  cpan/Term-ANSIColor/t/taint/basic.t
  cpan/Term-Cap/Cap.pm			Perl module supporting termcap usage
  cpan/Term-Cap/test.pl			See if Term::Cap works
@@ -25,25 +40,10 @@ Here's the glue + distrib from cpan. Comments welcome.
  cpan/Test-Harness/bin/prove				The prove harness utility
  cpan/Test-Harness/lib/App/Prove.pm			Gubbins for the prove utility
  cpan/Test-Harness/lib/App/Prove/State.pm		Gubbins for the prove utility
---- ./regen/lib_cleanup.pl.orig	Mon May 21 05:29:23 2018
-+++ ./regen/lib_cleanup.pl	Tue Nov 27 11:53:00 2018
-@@ -74,6 +74,12 @@ foreach my $file (@ext) {
-                 $package = $1;
-                 last;
-             }
-+            elsif (/^\s*package\s*$/) {
-+                # If they're hiding their package name, we ignore them
-+                ++$ignore{"/$path"};
-+                $package='';
-+                last;
-+            }
-         }
-         close $fh
-             or die "Can't close $file: $!";
---- Makefile.SH.orig	Tue Apr 14 09:09:57 2020
-+++ Makefile.SH	Tue Apr 14 09:16:47 2020
-@@ -198,6 +198,7 @@
- extra_dep='
+--- ./Makefile.SH.orig	Fri Dec 23 19:17:45 2022
++++ ./Makefile.SH	Fri Dec 23 19:17:48 2022
+@@ -209,6 +209,7 @@ extra_dep='
+ cpan/Pod-Simple/pm_to_blib: dist/if/pm_to_blib
  ext/Pod-Functions/pm_to_blib: cpan/Pod-Simple/pm_to_blib cpan/Pod-Escapes/pm_to_blib pod/perlfunc.pod
  cpan/IO-Compress/pm_to_blib: dist/lib/pm_to_blib
 +lib/auto/Term/ReadKey/ReadKey.so: lib/auto/Cwd/Cwd.so

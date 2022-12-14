@@ -1,6 +1,6 @@
---- ./installperl.orig	Mon May 21 05:29:23 2018
-+++ ./installperl	Mon Nov 26 20:28:41 2018
-@@ -253,9 +253,9 @@ else {
+--- ./installperl.orig	Wed Feb 23 18:35:27 2022
++++ ./installperl	Thu Dec  8 18:23:32 2022
+@@ -233,9 +233,9 @@ else {
      }
  }
  
@@ -10,6 +10,6 @@
 +#-f 't/rantests'		|| $Is_W32
 +#			|| warn "WARNING: You've never run 'make test' or",
 +#				" some tests failed! (Installing anyway.)\n";
- } #if (!$Is_NetWare)
  
  # This will be used to store the packlist
+ $packlist = ExtUtils::Packlist->new("$installarchlib/.packlist");

@@ -1,5 +1,5 @@
---- ./cpan/podlators/lib/Pod/Man.pm.orig	Fri Dec 18 01:58:27 2020
-+++ ./cpan/podlators/lib/Pod/Man.pm	Mon Jan 11 09:43:31 2021
+--- ./cpan/podlators/lib/Pod/Man.pm.orig	Mon Dec 28 08:57:43 2020
++++ ./cpan/podlators/lib/Pod/Man.pm	Wed Dec  7 15:15:44 2022
 @@ -900,6 +900,8 @@ sub devise_title {
                      $cut = $i + 1;
                      $cut++ if ($dirs[$i + 1] && $dirs[$i + 1] eq 'lib');

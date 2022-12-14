@@ -1,5 +1,5 @@
---- ./pod/perlmodinstall.pod.orig	Mon May 21 05:29:23 2018
-+++ ./pod/perlmodinstall.pod	Mon Nov 26 20:53:30 2018
+--- ./pod/perlmodinstall.pod.orig	Tue Nov  2 11:05:59 2021
++++ ./pod/perlmodinstall.pod	Thu Dec  8 20:03:56 2022
 @@ -79,11 +79,11 @@ You can get gzip from L<ftp://prep.ai.mit.edu/pub/gnu/
  
  Or, you can combine this step with the next to save disk space:
@@ -14,9 +14,9 @@
  
  C. BUILD
  
---- ./Porting/pumpkin.pod.orig	Fri Dec 18 01:57:53 2020
-+++ ./Porting/pumpkin.pod	Tue Jan 12 13:08:06 2021
-@@ -543,9 +543,9 @@ Here's how I generate a new patch.  I'll use the hypot
+--- ./Porting/pumpkin.pod.orig	Tue Nov  2 11:05:59 2021
++++ ./Porting/pumpkin.pod	Thu Dec  8 20:03:56 2022
+@@ -542,9 +542,9 @@ Here's how I generate a new patch.  I'll use the hypot
  5.004_07 to 5.004_08 patch as an example.
  
  	# unpack perl5.004_07/

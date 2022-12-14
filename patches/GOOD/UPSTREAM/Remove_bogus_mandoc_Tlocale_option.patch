@@ -17,8 +17,8 @@ Subject: [PATCH] Delete totally bogus code specifically targetted at mandoc
 
 diff --git cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm
 index 696c9dd2c31..d8e42b1703b 100644
---- cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm.orig
-+++ cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm
+--- ./cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm.orig	Mon Feb 18 01:59:21 2019
++++ ./cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm	Wed Dec  7 06:53:08 2022
 @@ -209,12 +209,6 @@ sub _have_groff_with_utf8 {
  	$version ge $minimum_groff_version;
  	}

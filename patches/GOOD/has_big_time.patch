@@ -1,5 +1,5 @@
---- ./hints/openbsd.sh.orig	Fri Dec 18 01:58:48 2020
-+++ ./hints/openbsd.sh	Tue Jan 12 05:03:15 2021
+--- ./hints/openbsd.sh.orig	Mon Sep 20 19:38:30 2021
++++ ./hints/openbsd.sh	Thu Dec  8 10:00:31 2022
 @@ -31,6 +31,14 @@ case "$osvers" in
  	d_setruid=$undef
  esac

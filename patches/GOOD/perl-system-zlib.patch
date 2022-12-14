@@ -30,8 +30,8 @@ Index: gnu/usr.bin/perl/cpan/Compress-Raw-Zlib/config.in
 RCS file: /data/mirror/openbsd/cvs/src/gnu/usr.bin/perl/cpan/Compress-Raw-Zlib/config.in,v
 retrieving revision 1.1.1.2
 diff -u -p -r1.1.1.2 config.in
---- cpan/Compress-Raw-Zlib/config.in	13 Feb 2019 21:10:49 -0000	1.1.1.2
-+++ cpan/Compress-Raw-Zlib/config.in	24 Mar 2022 14:50:01 -0000
+--- ./cpan/Compress-Raw-Zlib/config.in.orig	Thu Apr 29 07:35:34 2021
++++ ./cpan/Compress-Raw-Zlib/config.in	Thu Dec  8 23:24:26 2022
 @@ -16,9 +16,9 @@
  #    Setting the Gzip OS Code
  #

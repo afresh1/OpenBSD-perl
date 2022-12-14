@@ -1,5 +1,5 @@
---- ./ext/NDBM_File/Makefile.PL.orig	Mon May 21 05:29:23 2018
-+++ ./ext/NDBM_File/Makefile.PL	Mon Nov 26 18:23:25 2018
+--- ./ext/NDBM_File/Makefile.PL.orig	Mon Feb 18 01:59:22 2019
++++ ./ext/NDBM_File/Makefile.PL	Sat Dec 10 22:08:25 2022
 @@ -1,7 +1,7 @@
  use ExtUtils::MakeMaker;
  WriteMakefile(
@@ -9,8 +9,8 @@
      XSPROTOARG => '-noprototypes', 		# XXX remove later?
      VERSION_FROM => 'NDBM_File.pm',
  );
---- ./lib/AnyDBM_File.pm.orig	Tue Mar 20 13:06:36 2018
-+++ ./lib/AnyDBM_File.pm	Mon Nov 26 18:23:25 2018
+--- ./lib/AnyDBM_File.pm.orig	Mon Feb 18 01:59:23 2019
++++ ./lib/AnyDBM_File.pm	Sat Dec 10 22:08:25 2022
 @@ -22,8 +22,6 @@ __END__
  
  AnyDBM_File - provide framework for multiple DBMs
