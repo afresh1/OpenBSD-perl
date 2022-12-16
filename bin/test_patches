@@ -29,6 +29,9 @@ find ${SRCDIR}/patches/RESEARCH -name "$NAME" | sort | {
        [ $( find . -name '*.rej' | tee -a log | wc -l ) -gt 0 ] &&
             echo "Failed" 2>&1 | tee -a $log && continue
 
+        # In case the patch touched the MANIFEST, make sure it is sorted
+        perl ./Porting/manisort -o MANIFEST
+
         new_patch=`echo "$patch" | sed -e "s/RESEARCH/APPLIES/"`
         new_dir=`dirname "$new_patch"`
         mkdir -p "$new_dir"
