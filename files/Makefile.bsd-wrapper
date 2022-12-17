@@ -24,6 +24,9 @@ depend:
 test: all
 	${MAKE} test
 
+test_harness: all
+	${MAKE} test_harness
+
 clean:
 	-@test ! -e Makefile || ${MAKE} realclean
 
