@@ -1,7 +1,42 @@
-#!/bin/sh
+#!/usr/bin/perl
+use utf8;      # so literals and identifiers can be in UTF-8
+use v5.16;     # or later to get "strict" and "unicode_strings" features
+use strict;    # quote strings, declare variables
+use warnings;  # on by default
+use warnings  qw(FATAL utf8);    # fatalize encoding glitches
+use open      qw(:std :encoding(UTF-8)); # undeclared streams in UTF-8
 
-find . -name '*.orig' | sort | (
-    while read o; do
-        diff -uNp $o ${o%.orig}
-    done
-)
+use File::Find qw< find >;
+
+my $patchfile = shift;
+die "usage: $0 [$patchfile]\n" if @ARGV;
+
+my $prefix;
+if ($patchfile) {
+	open my $fh, '<', $patchfile or die "Unable top open $patchfile: $!";
+	while ($_ = $fh->getline) {
+		last if /^--- /;
+		$prefix .= $_;
+	}
+	close $fh;
+}
+
+my %files;
+find( {
+    no_chdir => 1,
+    wanted => sub {
+	/^(.*)\.orig$/ and -f $_ or return;
+	-f $1 or return;
+	$files{$1} = $_;
+    }
+}, '.');
+
+exit unless %files;
+
+print $prefix if defined $prefix;
+
+foreach my $new (sort keys %files) {
+	my $res = system( qw< diff -uNp >, $files{$new}, $new ) & 127;
+	die "Unable to spawn diff $files{$new} $new: $?"
+	    unless $res == 0 or $res == 1;
+}
