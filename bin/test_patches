@@ -32,11 +32,7 @@ find ${SRCDIR}/patches/RESEARCH -name "$NAME" | sort | {
         mkdir -p "$new_dir"
 
         echo Generating $new_patch
-        find . -name '*.orig' | (
-            while read o; do
-                diff -uNp $o ${o%.orig}
-            done
-        ) > "${new_patch}.new"
+	"$BINDIR"/update_patch "$patch" > "${new_patch}.new"
 
         if [ -z "$REGEN_PATCHES" ]; then
             do_patch_perl | tee -a $log
