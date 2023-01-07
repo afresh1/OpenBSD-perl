@@ -20,7 +20,7 @@ index 69a9bb6e643c..b4025116be43 100644
 +sub _DB__use_full_path
 +{
 +	# If running in the perl test suite, don't use old system libs
-+	return &{$_[0]} if $ENV{PERL_CORE} and $ENV{HARNESS_ACTIVE};
++	return &{$_[0]} if $ENV{PERL_CORE};
 +	local @INC = @INC;
 +	eval { require Config; };
 +	unshift(@INC, 
