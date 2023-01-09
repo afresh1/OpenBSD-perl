@@ -1,0 +1,11 @@
+--- cpan/IO-Compress/t/111const-deflate.t.orig	Sun Jan  8 12:55:04 2023
++++ cpan/IO-Compress/t/111const-deflate.t	Sun Jan  8 12:55:57 2023
+@@ -20,7 +20,7 @@
+     $extra = 1
+         if eval { require Test::NoWarnings ;  import Test::NoWarnings; 1 };
+ 
+-    plan tests => 355 + $extra ;
++    plan tests => 390 + $extra ;
+ }
+ 
+ 
