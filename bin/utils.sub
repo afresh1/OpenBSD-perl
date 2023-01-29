@@ -39,14 +39,24 @@ do_extract_perl() {
         exit 255
     fi
 
+    local old="$( mktemp -d "old-XXXXXXXXX" )";
+
     if [ -e "$PERL_BASE" ]; then
         echo "Removing old perl srcdir"
-        mkdir -p old
         chmod u=rwx $PERL_BASE # so we are allowed to move
-        mv -f $PERL_BASE old
-        chmod -R u+rwX old  # so we are allowed to rm
-        rm -rf old &
+        mv -f $PERL_BASE "$old"
     fi
+
+    if [ -z "$NO_LOCAL_PATCHES" ] \
+    && [ -z "$NO_BSD_WRAPPER" ] \
+    && [ -e obj ]; then
+        echo "Removing old obj dir"
+        chmod u=rwx obj # so we are allowed to move
+        mv -f obj "$old"
+    fi
+
+    chmod -R u+rwX "$old"  # so we are allowed to rm
+    rm -rf "$old" &
 
     echo Extracting ${PERL_BASE}.tar.gz
     tar xzf "$SRCDIR/${PERL_BASE}.tar.gz"
