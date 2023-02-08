@@ -37,9 +37,15 @@ this_arch=`arch -s`
 
 echo lists/base/mi
 cp lists/base/mi{,.orig}
-( grep -v -e ${this_arch}-openbsd -e '/man/' $add
+( grep -v -e ${this_arch}-openbsd -e '/man/' -e '/include/' $add
   fgrep -v -x -f $del lists/base/mi.orig
 ) | sort > lists/base/mi
+
+echo lists/comp/mi
+cp lists/comp/mi{,.orig}
+( grep '/include/' $add | fgrep -v -x -f lists/comp/mi
+  fgrep -v -x -f $del lists/comp/mi.orig
+) | sort > lists/comp/mi
 
 echo lists/man/mi
 cp lists/man/mi{,.orig}
