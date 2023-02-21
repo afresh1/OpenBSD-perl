@@ -62,18 +62,14 @@ my %skip_page = map { $_ => 1 } qw(
     perlamiga
     perlandroid
     perlbs2000
-    perlce
     perlcygwin
-    perldos
     perlfreebsd
     perlhaiku
     perlhpux
     perlhurd
     perlirix
     perllinux
-    perlmacos
     perlmacosx
-    perlnetware
     perlos2
     perlos390
     perlos400
