@@ -60,8 +60,13 @@ This is still an art, not as yet a complete doc, but a start.
 * Run bin/find_base_perl_ports to see what can be removed
 
 ### Updating in CVS
-See bin/import_perl for most of the notes related to importing. That script
-works to test importing into a local copy of a repo.
+The bin/make_src_patch script will generate a patch file that should be
+the full update, however sometimes /usr/bin/patch has some trouble with it.
+* See the notes in bin/utils.sh for creating openbsd-cvs-src.tar.gz
+
+See bin/prepare_import and bin/import_perl
+for most of the notes related to importing.
+Those scripts work to test importing into a local copy of a repo.
 
 The one note I am sure of is to remind someone that they should use "-k o"
 when importing into cvs so that keywords don't get expanded.

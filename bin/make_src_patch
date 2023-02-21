@@ -45,9 +45,10 @@ cat <<EOL
 
 Now you're ready to apply the patch!
 
-copy the patch into /usr/src (or adjust the paths below)
+copy the patch into your src checkout (or adjust the paths below)
 
-patch -p0 -uNE < ${PERL_BASE}.patch
+# This, unfortunately, requires devel/gpatch
+gpatch -p0 -uNE < ${PERL_BASE}.patch
 
 # Remove patch cruft
 find gnu/usr.bin/perl -name '*.orig' -delete
