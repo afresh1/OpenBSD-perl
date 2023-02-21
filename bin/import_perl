@@ -13,6 +13,9 @@ for d in $CVSROOT $PERL_BASE{.dist,.no_unicore,}; do
     [ -d $d ] || ( print "Missing $d!" >&2 ; exit 1 )
 done
 
+START="$( date "+%F %T" )"
+sleep 1 # should be a better way to be sure we don't change anything at $START
+
 # We skip deleting all files are going to add and all unicore files
 export SKIP_LIST="$( cd $PERL_BASE && find . -type f \
     ! -exec test -e ../${PERL_BASE}.dist/{} \; -print
@@ -39,7 +42,7 @@ else
 fi
 
 # Checkout the tree to fix the merge errors
-cvs checkout -jPERL:yesterday -jPERL $PERLCVS
+cvs checkout -jPERL:"$START" -jPERL $PERLCVS
 
 # Get us even with vendor perl
 cvs_rm_add ${PERL_BASE}.dist $PERLCVS
