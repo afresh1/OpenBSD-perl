@@ -133,7 +133,7 @@ my $wanted = sub {
 
     return if /\.t(?:xt)$/; # skip txt files and tests
     return if /\.orig$/;    # skip patch files
-    return if $file =~ m{\.t$} # skip test files
+    return if $file =~ m{\.t$}; # skip test files
     return if $file =~ m{/t/}; # or files in test dirs
     return if $file =~ m{/ext/}; # or in an ext dir
     return if $file =~ m{symbian}; # don't need that
