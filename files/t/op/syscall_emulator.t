@@ -1,0 +1,79 @@
+#!/usr/bin/perl
+BEGIN {
+    chdir 't' if -d 't';
+    require "./test.pl";
+    set_up_inc( qw(. ../lib lib ../dist/base/lib) );
+}
+
+use v5.36;
+
+use File::Temp;
+use POSIX qw< S_IRUSR S_IWUSR S_IRGRP S_IROTH O_CREAT O_WRONLY O_RDONLY >;
+
+my $dir = File::Temp->newdir("syscall_emulator-XXXXXXXXX");
+{
+	system("../utils/h2ph", '-d', $dir,
+	    "/usr/include/sys/syscall.h");
+	local @INC = ("$dir/usr/include", "$dir");
+	require 'sys/syscall.ph';
+}
+
+
+
+my $filename = "test.txt";
+my $file = "$dir/$filename";
+my $fd;
+my $out = "Hello World\n";
+my $in = "\0" x 32;
+my $sb = "\0\0\0\0";
+my $st_mode;
+
+my $perms = S_IRUSR|S_IWUSR|S_IRGRP|S_IROTH;
+
+plan tests => 9;
+
+ok(!
+    (($fd = syscall(SYS_open(), $file, O_CREAT|O_WRONLY, $perms)) < 0),
+    "Opened $filename for write/create"
+);
+ok(!
+    (syscall(SYS_write(), $fd, $out, length $out) <= 0),
+    "Wrote out to $filename"
+);
+ok(!
+    (syscall(SYS_close(), $fd) != 0),
+    "closed $filename"
+);
+
+
+ok(!
+    (syscall(SYS_stat(), $file, $sb) != 0),
+    "stat $filename"
+);
+
+# fortunately st_mode is the first unsigned long in stat struct
+$st_mode = unpack "L", $sb;
+
+ok( ($st_mode & 0777) == ($perms & 0777),
+    sprintf "new file %s has correct permissions (%o)",
+        $filename, $st_mode & 0777
+);
+
+ok(!
+    (($fd = syscall(SYS_open(), $file, O_RDONLY)) < 0),
+    "Opened $filename for read"
+);
+ok(!
+    (syscall(SYS_read(), $fd, $in, length $in) <= 0),
+    "read from $filename"
+);
+ok(!
+    (syscall(SYS_close(), $fd) != 0),
+    "closed $filename"
+);
+
+$in = unpack 'Z*', $in;
+
+ok( length($in) == length($out) && ($in eq $out),
+    "Read written content from $filename"
+);
