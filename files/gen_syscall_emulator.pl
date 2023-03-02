@@ -77,8 +77,8 @@ int
 syscall_emulator(int syscall, ...) {
 	int ret = -1;
 	va_list args;
-
 	va_start(args, syscall);
+
 	switch(syscall) {
 EOL
 
@@ -125,7 +125,7 @@ print <<"EOL";
 	return ret;
 }
 EOL
-	
+
 
 sub parse_syscalls ($syscall, $args) {
 	my %s = parse_syscall_h($syscall);
@@ -268,7 +268,7 @@ sub types_match ($l, $r) {
 	# my ($p_l, $p_r) = ($l, $r);
 	$l = $m{$l} //= $l;
 	$r = $m{$r} //= $r;
-	
+
 	#warn "    $p_l [$l] $p_r [$r] <'$f' '$s'>\n";
 	# return and use the original "right" value
 	# as it's from the function header and closer to what we need.
