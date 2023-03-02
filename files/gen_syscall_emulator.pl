@@ -65,7 +65,7 @@ foreach my $header (@headers) {
 			$s->{header} = $header;
 		}
 		elsif ($func_sig) {
-			$s->{mismatched_sig} = "<$header> $func_sig";
+			$s->{mismatched_sig} = "$func_sig <$header>";
 		}
 	}
 }
@@ -128,16 +128,19 @@ foreach my $name (
 		    if @args;
 	}
 
-	my $header = $s{header} ? " <$s{header}>" : '';
+	#my $header = $s{header} ? " <$s{header}>" : '';
 
 	my $indent = "\t";
 	say "$indent/* $s{skip}" if $s{skip};
 
 	$indent .= ' *' if $s{skip};
-	say "${indent}case $s{define}: // $s{id}";
-	say "${indent}\t// $s{signature}$header";
+	say "${indent}                  $s{signature} <sys/syscall.h>"
+	    if $s{skip} && $s{skip} =~ /Mismatch/;
+
+	say "${indent}case $s{define}:"; # // $s{id}";
 	say "${indent}\t{" if @defines;
 	say "${indent}\t$_" for @defines;
+	#say "${indent}\t// $s{signature}$header";
 	say "${indent}\t$ret $name(" . join(', ', @args) . ");$argname";
 	say "${indent}\t}" if @defines;
 	say "${indent}\tbreak;";
