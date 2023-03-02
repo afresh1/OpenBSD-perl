@@ -87,7 +87,7 @@ foreach my $name (
     ) {
 	my %s = %{ $syscalls{$name} };
 
-	# Some syscalls we can't emulate, wo we comment those out.
+	# Some syscalls we can't emulate, so we comment those out.
 	$s{skip} //= "Indirect syscalls not supported"
 	    if !$s{argtypes} && ($s{args}[-1] || '') eq '...';
 	$s{skip} //= "Mismatched func: $s{mismatched_sig}"
@@ -128,7 +128,7 @@ foreach my $name (
 		    if @args;
 	}
 
- 	my $header = $s{header} ? " <$s{header}>" : '';
+	my $header = $s{header} ? " <$s{header}>" : '';
 
 	my $indent = "\t";
 	say "$indent/* $s{skip}" if $s{skip};
