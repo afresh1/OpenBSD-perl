@@ -87,20 +87,46 @@ foreach my $name (
     ) {
 	my %s = %{ $syscalls{$name} };
 
-	my $ret = $s{ret} =~ /^void\b/ ? 'ret = 0;' : 'ret =';
-
-	my $arg_key = $s{argtypes} ? 'argtypes' : 'args';
-	my @args = map { ref $_ ? $_->{type} : $_ } @{ $s{$arg_key} || [] };
-	
-	my $args = join ', ', map { "va_arg(args,$_)" } @args;
-
 	# Some syscalls we can't emulate, wo we comment those out.
 	$s{skip} //= "Indirect syscalls not supported"
-	    if ($args[-1] || '') eq '...';
+	    if !$s{argtypes} && ($s{args}[-1] || '') eq '...';
 	$s{skip} //= "Mismatched func: $s{mismatched_sig}"
 	    if $s{mismatched_sig} and not $s{func};
 	$s{skip} //= "No signature found in headers"
 	    unless $s{header};
+
+	my $ret = $s{ret} =~ /^void\b/ ? 'ret = 0;' : 'ret =';
+
+	my (@args, @defines);
+	my $argname = '';
+	if ($s{argtypes}) {
+		if (@{ $s{argtypes} } > 1) {
+			@defines = map {
+			    my $t = $_->{type};
+			    my $n = $_->{name};
+			    $n = "_$n" if $n eq $name; # link :-/
+			    push @args, $n;
+			    "$t $n = va_arg(args, $t);"
+			} @{ $s{argtypes} };
+		}
+		else {
+			if (@{ $s{argtypes} }) {
+				$argname = " // " . join ', ',
+				    map { $_->{name} }
+				    @{ $s{argtypes} };
+			}
+			@args = map { "va_arg(args, $_->{type})" }
+			    @{ $s{argtypes} };
+		}
+	}
+	else {
+		@args = @{ $s{args} };
+
+		# If we didn't find args in syscallargs.h but have args
+		# we don't know how to write our function.
+		$s{skip} //= "Not found in sys/syscallargs.h"
+		    if @args;
+	}
 
  	my $header = $s{header} ? " <$s{header}>" : '';
 
@@ -110,7 +136,10 @@ foreach my $name (
 	$indent .= ' *' if $s{skip};
 	say "${indent}case $s{define}: // $s{id}";
 	say "${indent}\t// $s{signature}$header";
-	say "${indent}\t$ret $name($args);";
+	say "${indent}\t{" if @defines;
+	say "${indent}\t$_" for @defines;
+	say "${indent}\t$ret $name(" . join(', ', @args) . ");$argname";
+	say "${indent}\t}" if @defines;
 	say "${indent}\tbreak;";
 
 	say "\t */" if $s{skip};
