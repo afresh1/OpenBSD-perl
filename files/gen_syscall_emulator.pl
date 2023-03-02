@@ -16,6 +16,7 @@ my @headers = qw<
 	sys/syscall.h
 	sys/socket.h
 	stdarg.h
+	errno.h
 
 	dirent.h
 	fcntl.h
@@ -116,6 +117,8 @@ foreach my $name (
 }
 
 print <<"EOL";
+	default:
+		errno = ENOSYS;
 	}
 	va_end(args);
 
