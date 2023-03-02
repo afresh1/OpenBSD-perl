@@ -78,8 +78,7 @@ syscall_emulator(int syscall, ...) {
 	va_list args;
 
 	va_start(args, syscall);
-	switch(syscall)
-	{
+	switch(syscall) {
 EOL
 
 foreach my $name (
@@ -104,14 +103,16 @@ foreach my $name (
 
  	my $header = $s{header} ? " <$s{header}>" : '';
 
-	say "\t\t/* $s{skip}" if $s{skip};
-	print <<"EOL";
-		case $s{define}: // $s{id}
-			// $s{signature}$header
-			$ret $name($args);
-			break;
-EOL
-	say "\t\t*/" if $s{skip};
+	my $indent = "\t";
+	say "$indent/* $s{skip}" if $s{skip};
+
+	$indent .= ' *' if $s{skip};
+	say "${indent}case $s{define}: // $s{id}";
+	say "${indent}\t// $s{signature}$header";
+	say "${indent}\t$ret $name($args);";
+	say "${indent}\tbreak;";
+
+	say "\t */" if $s{skip};
 }
 
 print <<"EOL";
