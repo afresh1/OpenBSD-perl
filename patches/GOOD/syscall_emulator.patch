@@ -51,7 +51,7 @@
  
  #undef PERL_EFF_ACCESS	/* EFFective uid/gid ACCESS */
  
-+#ifdef HAS_SYSCALL
++#ifdef HAS_SYSCALL_EMULATOR
 +#include "syscall_emulator.h"
 +#define syscall syscall_emulator
 +#endif
