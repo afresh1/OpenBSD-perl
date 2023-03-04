@@ -1,2 +1,1 @@
-int
-syscall_emulator(int syscall, ...);
+int	syscall_emulator(int, ...);
