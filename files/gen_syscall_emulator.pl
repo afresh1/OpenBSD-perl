@@ -75,7 +75,7 @@ print <<"EOL";
 
 int
 syscall_emulator(int syscall, ...) {
-	int ret = -1;
+	int ret = 0;
 	va_list args;
 	va_start(args, syscall);
 
@@ -95,7 +95,7 @@ foreach my $name (
 	$s{skip} //= "No signature found in headers"
 	    unless $s{header};
 
-	my $ret = $s{ret} =~ /^void\b/ ? 'ret = 0;' : 'ret =';
+	my $ret = $s{ret} =~ /^void\b/ ? '' : 'ret = ';
 
 	my (@args, @defines);
 	my $argname = '';
@@ -139,7 +139,7 @@ foreach my $name (
 	say "${indent}\t{" if @defines;
 	say "${indent}\t$_" for @defines;
 	#say "${indent}\t// $s{signature}$header";
-	say "${indent}\t$ret $name(" . join(', ', @args) . ");$argname";
+	say "${indent}\t$ret$name(" . join(', ', @args) . ");$argname";
 	say "${indent}\t}" if @defines;
 	say "${indent}\tbreak;";
 
@@ -148,6 +148,7 @@ foreach my $name (
 
 print <<"EOL";
 	default:
+		ret = -1;
 		errno = ENOSYS;
 	}
 	va_end(args);

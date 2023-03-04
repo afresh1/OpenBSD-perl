@@ -32,7 +32,7 @@
 
 int
 syscall_emulator(int syscall, ...) {
-	int ret = -1;
+	int ret = 0;
 	va_list args;
 	va_start(args, syscall);
 
@@ -43,7 +43,7 @@ syscall_emulator(int syscall, ...) {
 	 *	break;
 	 */
 	case SYS_exit:
-		ret = 0; exit(va_arg(args, int)); // rval
+		exit(va_arg(args, int)); // rval
 		break;
 	case SYS_fork:
 		ret = fork();
@@ -264,7 +264,7 @@ syscall_emulator(int syscall, ...) {
 		}
 		break;
 	case SYS_sync:
-		ret = 0; sync();
+		sync();
 		break;
 	/* No signature found in headers
 	 *case SYS_msyscall:
@@ -354,7 +354,7 @@ syscall_emulator(int syscall, ...) {
 		int flags = va_arg(args, int);
 		int fd = va_arg(args, int);
 		off_t pos = va_arg(args, off_t);
-		ret = 0; mmap(addr, len, prot, flags, fd, pos);
+		mmap(addr, len, prot, flags, fd, pos);
 		}
 		break;
 	case SYS_setlogin:
@@ -546,7 +546,7 @@ syscall_emulator(int syscall, ...) {
 		int flags = va_arg(args, int);
 		int fd = va_arg(args, int);
 		off_t pos = va_arg(args, off_t);
-		ret = 0; mquery(addr, len, prot, flags, fd, pos);
+		mquery(addr, len, prot, flags, fd, pos);
 		}
 		break;
 	case SYS_getgroups:
@@ -1253,7 +1253,7 @@ syscall_emulator(int syscall, ...) {
 		int shmid = va_arg(args, int);
 		const void * shmaddr = va_arg(args, const void *);
 		int shmflg = va_arg(args, int);
-		ret = 0; shmat(shmid, shmaddr, shmflg);
+		shmat(shmid, shmaddr, shmflg);
 		}
 		break;
 	case SYS_shmdt:
@@ -1423,7 +1423,7 @@ syscall_emulator(int syscall, ...) {
 	 */
 	/* No signature found in headers
 	 *case SYS___threxit:
-	 *	ret = 0; __threxit(va_arg(args, pid_t *)); // notdead
+	 *	__threxit(va_arg(args, pid_t *)); // notdead
 	 *	break;
 	 */
 	/* No signature found in headers
@@ -1565,12 +1565,13 @@ syscall_emulator(int syscall, ...) {
 		}
 		break;
 	case SYS___set_tcb:
-		ret = 0; __set_tcb(va_arg(args, void *)); // tcb
+		__set_tcb(va_arg(args, void *)); // tcb
 		break;
 	case SYS___get_tcb:
-		ret = 0; __get_tcb();
+		__get_tcb();
 		break;
 	default:
+		ret = -1;
 		errno = ENOSYS;
 	}
 	va_end(args);
