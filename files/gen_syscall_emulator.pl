@@ -14,16 +14,10 @@ delete $syscalls{MAXSYSCALL}; # not an actual function
 # The ordered list of all the headers we need
 my @headers = qw<
 	sys/syscall.h
-	sys/socket.h
 	stdarg.h
 	errno.h
 
-	dirent.h
-	fcntl.h
-	sched.h
-	signal.h
-	stdlib.h
-	stdio.h
+	sys/socket.h
 	sys/event.h
 	sys/futex.h
 	sys/ioctl.h
@@ -42,6 +36,13 @@ my @headers = qw<
 	sys/time.h
 	sys/uio.h
 	sys/wait.h
+
+	dirent.h
+	fcntl.h
+	sched.h
+	signal.h
+	stdlib.h
+	stdio.h
 	tib.h
 	time.h
 	unistd.h
@@ -63,8 +64,7 @@ foreach my $header (@headers) {
 			    if $s->{header};
 			$s->{func} = $func_sig;
 			$s->{header} = $header;
-		}
-		elsif ($func_sig) {
+		} elsif ($func_sig) {
 			$s->{mismatched_sig} = "$func_sig <$header>";
 		}
 	}
@@ -108,8 +108,7 @@ foreach my $name (
 			    push @args, $n;
 			    "$t $n = va_arg(args, $t);"
 			} @{ $s{argtypes} };
-		}
-		else {
+		} else {
 			if (@{ $s{argtypes} }) {
 				$argname = " // " . join ', ',
 				    map { $_->{name} }
@@ -118,8 +117,7 @@ foreach my $name (
 			@args = map { "va_arg(args, $_->{type})" }
 			    @{ $s{argtypes} };
 		}
-	}
-	else {
+	} else {
 		@args = @{ $s{args} };
 
 		# If we didn't find args in syscallargs.h but have args
@@ -172,20 +170,19 @@ sub parse_syscall_h ($file) {
 	my %s;
 	open my $fh, '<', $file or die "Unable to open $file: $!";
 	while ($_ = $fh->getline) {
-	if (m{^/\*
-	    \s+ syscall: \s+ "(?<name>[^"]+)"
-	    \s+	 ret: \s+ "(?<ret> [^"]+)"
-	    \s+	args: \s+  (?<args>.*?)
-	    \s* \*/
-	  |
-	    ^\#define \s+ (?<define>SYS_(?<name>\S+)) \s+ (?<id>\d+)
-	}x) {
-		my $name        = $+{name};
-		$s{$name}{$_}   = $+{$_} for keys %+;
-		$s{$name}{args} = [ $+{args} =~ /"(.*?)"/g ]
-		    if exists $+{args};
-	}
-		#else { print }
+		if (m{^/\*
+		    \s+ syscall: \s+ "(?<name>[^"]+)"
+		    \s+	 ret: \s+ "(?<ret> [^"]+)"
+		    \s+	args: \s+  (?<args>.*?)
+		    \s* \*/
+		  |
+		    ^\#define \s+ (?<define>SYS_(?<name>\S+)) \s+ (?<id>\d+)
+		}x) {
+			my $name        = $+{name};
+			$s{$name}{$_}   = $+{$_} for keys %+;
+			$s{$name}{args} = [ $+{args} =~ /"(.*?)"/g ]
+			    if exists $+{args};
+		}
 	}
 	close $fh or die "Unable to close $file: $!";
 
