@@ -1,13 +1,7 @@
 #include <sys/syscall.h>
-#include <sys/socket.h>
 #include <stdarg.h>
 #include <errno.h>
-#include <dirent.h>
-#include <fcntl.h>
-#include <sched.h>
-#include <signal.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include <sys/socket.h>
 #include <sys/event.h>
 #include <sys/futex.h>
 #include <sys/ioctl.h>
@@ -26,6 +20,12 @@
 #include <sys/time.h>
 #include <sys/uio.h>
 #include <sys/wait.h>
+#include <dirent.h>
+#include <fcntl.h>
+#include <sched.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include <tib.h>
 #include <time.h>
 #include <unistd.h>
