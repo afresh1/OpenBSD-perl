@@ -45,17 +45,17 @@
  
  # split the objects into 3 exclusive sets: those used by both miniperl and
  # perl, and those used by just one or the other. Doesn't include the
---- ./pp_sys.c.orig	Sun Feb 26 15:16:40 2023
-+++ ./pp_sys.c	Sun Feb 26 15:17:21 2023
-@@ -188,6 +188,11 @@ void endservent(void);
- 
- #undef PERL_EFF_ACCESS	/* EFFective uid/gid ACCESS */
+--- ./perl.h.orig	Sat Mar  4 11:37:06 2023
++++ ./perl.h	Sat Mar  4 11:38:21 2023
+@@ -1152,6 +1152,11 @@ extern char **myenviron;
+ EXTERN_C int syscall(int, ...);
+ #endif
  
 +#ifdef HAS_SYSCALL_EMULATOR
 +#include "syscall_emulator.h"
 +#define syscall syscall_emulator
 +#endif
 +
- /* F_OK unused: if stat() cannot find it... */
- 
- #if !defined(PERL_EFF_ACCESS) && defined(HAS_ACCESS) && defined(EFF_ONLY_OK) && !defined(NO_EFF_ONLY_OK)
+ #if defined(HAS_USLEEP) && !defined(HAS_USLEEP_PROTO)
+ EXTERN_C int usleep(unsigned int);
+ #endif
