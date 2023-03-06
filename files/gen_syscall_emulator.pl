@@ -73,9 +73,9 @@ foreach my $header (@headers) {
 say "#include <$_>" for @headers;
 print <<"EOL";
 
-int
+long
 syscall_emulator(int syscall, ...) {
-	int ret = 0;
+	long ret = 0;
 	va_list args;
 	va_start(args, syscall);
 
