@@ -354,7 +354,7 @@ syscall_emulator(int syscall, ...) {
 		int flags = va_arg(args, int);
 		int fd = va_arg(args, int);
 		off_t pos = va_arg(args, off_t);
-		mmap(addr, len, prot, flags, fd, pos);
+		ret = (long)mmap(addr, len, prot, flags, fd, pos);
 		}
 		break;
 	case SYS_setlogin:
@@ -546,7 +546,7 @@ syscall_emulator(int syscall, ...) {
 		int flags = va_arg(args, int);
 		int fd = va_arg(args, int);
 		off_t pos = va_arg(args, off_t);
-		mquery(addr, len, prot, flags, fd, pos);
+		ret = (long)mquery(addr, len, prot, flags, fd, pos);
 		}
 		break;
 	case SYS_getgroups:
@@ -1253,7 +1253,7 @@ syscall_emulator(int syscall, ...) {
 		int shmid = va_arg(args, int);
 		const void * shmaddr = va_arg(args, const void *);
 		int shmflg = va_arg(args, int);
-		shmat(shmid, shmaddr, shmflg);
+		ret = (long)shmat(shmid, shmaddr, shmflg);
 		}
 		break;
 	case SYS_shmdt:
@@ -1568,7 +1568,7 @@ syscall_emulator(int syscall, ...) {
 		__set_tcb(va_arg(args, void *)); // tcb
 		break;
 	case SYS___get_tcb:
-		__get_tcb();
+		ret = (long)__get_tcb();
 		break;
 	default:
 		ret = -1;

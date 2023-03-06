@@ -95,7 +95,8 @@ foreach my $name (
 	$s{skip} //= "No signature found in headers"
 	    unless $s{header};
 
-	my $ret = $s{ret} =~ /^void\b/ ? '' : 'ret = ';
+	my $ret = $s{ret} eq 'void' ? '' : 'ret = ';
+	$ret .= '(long)' if $s{ret} eq 'void *';
 
 	my (@args, @defines);
 	my $argname = '';
