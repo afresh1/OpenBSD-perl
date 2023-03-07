@@ -29,13 +29,13 @@ my $file = "$dir/$filename";
 my $fd;
 my $out = "Hello World\n";
 my $in = "\0" x 32;
-my $in_p;
+my ($in_p, $in_v);
 my $sb = "\0\0\0\0";
 my $st_mode;
 
 my $perms = S_IRUSR|S_IWUSR|S_IRGRP|S_IROTH;
 
-plan tests => 14;
+plan tests => 13;
 
 ok(!
     (($fd = syscall(SYS_open(), $file, O_CREAT|O_WRONLY, $perms)) < 0),
@@ -91,10 +91,10 @@ ok(!
     "mmap fd"
 );
 
-ok $in_p =~ /^-?\d+$/, "The mmapped value ($in_p) looks like an integer";
+# From ingy's Pointer module
+$in_v = unpack "p*", pack "L!", $in_p;
 
-SKIP: { skip "No idea how to get dereference the pointer", 2;
-ok( length($in_p) == length($out) && ($in_p eq $out),
+ok( length($in_v) == length($out) && ($in_v eq $out),
     "Read written content from $filename"
 );
 
@@ -102,7 +102,6 @@ ok(!
     (syscall(SYS_munmap(), $in_p, length($out)) != 0),
     "munmap fd"
 );
-}
 
 ok(!
     (syscall(SYS_close(), $fd) != 0),
