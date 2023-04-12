@@ -85,6 +85,7 @@ foreach my $header (@headers) {
 	}
 }
 
+say "/*\n * Generated from gen_syscall_emulattor.pl\n */";
 say "#include <$_>" for @headers;
 print <<"EOL";
 
