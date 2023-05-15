@@ -34,7 +34,7 @@ use constant {
 
 my $dir = File::Temp->newdir("syscall_emulator-XXXXXXXXX");
 {
-	system("../utils/h2ph", '-d', $dir,
+	system($^X, "../utils/h2ph", '-d', $dir,
 	    "/usr/include/sys/syscall.h");
 	local @INC = ("$dir/usr/include", "$dir");
 	require 'sys/syscall.ph';
