@@ -34,6 +34,7 @@ use constant {
 
 my $dir = File::Temp->newdir("syscall_emulator-XXXXXXXXX");
 {
+	local $ENV{PERL5LIB} = join ':', @INC;
 	system($^X, "../utils/h2ph", '-d', $dir,
 	    "/usr/include/sys/syscall.h");
 	local @INC = ("$dir/usr/include", "$dir");
