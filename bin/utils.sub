@@ -2,7 +2,7 @@
 
 SRCDIR=$( dirname $BINDIR )
 WRKDIR=$( pwd )
-PERL_BASE=perl-5.36.0
+PERL_BASE=perl-5.36.1
 
 install_local_files() {
     cp -Rf ${SRCDIR}/files/* ./
@@ -173,6 +173,8 @@ cvs_rm_add() {
 # $ mkdir -p cvs/src/gnu/usr.bin
 # $ rsync -aP --delete rsync://obsdacvs.cs.toronto.edu/obsdcvs/src/gnu/usr.bin/perl cvs/src/gnu/usr.bin/
 # $ tar czf openbsd-cvs-src.tar.gz cvs
+# or
+# ssh openbsd.home.hewus.com 'cd / && tar czf - cvs/CVSROOT cvs/src/gnu/usr.bin/perl' > openbsd-cvs-src.tar.gz
 
 setup_cvsroot() {
 if [ ! "$CVSROOT" ]; then
