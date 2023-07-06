@@ -1,3 +1,6 @@
+/*
+ * Generated from gen_syscall_emulator.pl
+ */
 #include <sys/syscall.h>
 #include <stdarg.h>
 #include <errno.h>
