@@ -29,6 +29,7 @@
 #include <signal.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <syslog.h>
 #include <tib.h>
 #include <time.h>
 #include <unistd.h>
@@ -805,16 +806,14 @@ syscall_emulator(int syscall, ...) {
 	 *	ret = sigsuspend(va_arg(args, int)); // mask
 	 *	break;
 	 */
-	/* No signature found in headers
-	 *case SYS_sendsyslog:
-	 *	{
-	 *	const char * buf = va_arg(args, const char *);
-	 *	size_t nbyte = va_arg(args, size_t);
-	 *	int flags = va_arg(args, int);
-	 *	ret = sendsyslog(buf, nbyte, flags);
-	 *	}
-	 *	break;
-	 */
+	case SYS_sendsyslog:
+		{
+		const char * buf = va_arg(args, const char *);
+		size_t nbyte = va_arg(args, size_t);
+		int flags = va_arg(args, int);
+		ret = sendsyslog(buf, nbyte, flags);
+		}
+		break;
 	case SYS_unveil:
 		{
 		const char * path = va_arg(args, const char *);

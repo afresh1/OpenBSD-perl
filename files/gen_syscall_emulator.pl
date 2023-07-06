@@ -58,6 +58,7 @@ my @headers = qw<
 	signal.h
 	stdlib.h
 	stdio.h
+	syslog.h
 	tib.h
 	time.h
 	unistd.h
@@ -294,6 +295,7 @@ my %m; BEGIN { %m = (
     nfds_t          => 'u_int',
     idtype_t        => 'int',
     size_t          => 'u_int',
+    __size_t        => 'u_int',
 ) }
 sub types_match ($l, $r) {
 	$l //= '__undef__';
