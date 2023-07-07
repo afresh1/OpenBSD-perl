@@ -39,7 +39,7 @@ cleandir:
 	fi
 	cd ${.CURDIR} && ${MAKE} -f Makefile.bsd-wrapper1 cleandir
 
-all:	syscall_emulator.c config.sh
+all: syscall_emulator.c config.sh
 	cd ${.CURDIR} && exec ${MAKE} -f Makefile.bsd-wrapper1 perl.build
 	cd ${.CURDIR} && exec ${MAKE} -f Makefile.bsd-wrapper1 mansrc.build
 
