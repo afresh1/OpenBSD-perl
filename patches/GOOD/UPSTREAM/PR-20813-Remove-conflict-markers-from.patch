@@ -1,0 +1,143 @@
+From 78d44f19d274e1445f814a9ae2bdc27fa03e4977 Mon Sep 17 00:00:00 2001
+From: Andrew Hewus Fresh <afresh1@openbsd.org>
+Date: Wed, 15 Feb 2023 16:28:58 -0800
+Subject: [PATCH 1/4] Calculate conflict markers instead of hardcoding
+
+It turns out that some tooling (Game of Trees) has special handling for
+conflict markers and will continually mark files that have them.
+
+Since the test doesn't actually need them to be expanded,
+calculate them instead to not trigger the detection.
+---
+ t/comp/parser.t | 11 ++++-------
+ 1 file changed, 4 insertions(+), 7 deletions(-)
+
+diff --git t/comp/parser.t t/comp/parser.t
+index a2a432d8f9e5..dbd5ecc842bc 100644
+--- t/comp/parser.t
++++ t/comp/parser.t
+@@ -580,16 +580,13 @@ eval 'qq{@{0]}${}},{})';
+ is(1, 1, "RT #124207");
+ 
+ # RT #127993 version control conflict markers
++my @conflict_markers = map { $_ x 7 } qw( < = > );
+ " this should keep working
+-<<<<<<<
++$conflict_markers[0]
+ " =~ /
+->>>>>>>
++$conflict_markers[2]
+ /;
+-for my $marker (qw(
+-<<<<<<<
+-=======
+->>>>>>>
+-)) {
++for my $marker (@conflict_markers) {
+     eval "$marker";
+     like $@, qr/^Version control conflict marker at \(eval \d+\) line 1, near "$marker"/, "VCS marker '$marker' at beginning";
+     eval "\$_\n$marker";
+
+From faa93d00d04de1cf80222b5b5aaa8e84d6c4b8d6 Mon Sep 17 00:00:00 2001
+From: Yves Orton <demerphq@gmail.com>
+Date: Fri, 17 Feb 2023 11:58:36 +0100
+Subject: [PATCH 2/4] t/test.pl - support NOTE comments in code for
+ run_multiple_progs()
+
+These comments will be autoremoved from the code before it is executed.
+*Must* start the line, and have exactly one space between the comment
+char and the NOTE string, which must be uppercased.
+
+This will be used in the following patch.
+---
+ t/test.pl | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git t/test.pl t/test.pl
+index effb72870f13..e391d36236b3 100644
+--- t/test.pl
++++ t/test.pl
+@@ -1345,6 +1345,9 @@ sub run_multiple_progs {
+ 	if (s/^(\s*-\w+)//) {
+ 	    $switch = $1;
+ 	}
++
++        s/^# NOTE.*\n//mg; # remove any NOTE comments in the content
++
+ 	my ($prog, $expected) = split(/\nEXPECT(?:\n|$)/, $_, 2);
+ 
+ 	my %reason;
+
+From e91c670bf4a46498e5ec99a93ba015be417c6058 Mon Sep 17 00:00:00 2001
+From: Yves Orton <demerphq@gmail.com>
+Date: Fri, 17 Feb 2023 12:02:58 +0100
+Subject: [PATCH 3/4] t/test.pl - support obfu conflict markers for code via
+ run_multiple_progs()
+
+This was we dont have to have literal conflict markers in test code
+that is executed via run_multiple_progs(). For instance, t/lib/croak/toke
+patch for that will follow.
+---
+ t/test.pl | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git t/test.pl t/test.pl
+index e391d36236b3..c4a0cf7720d3 100644
+--- t/test.pl
++++ t/test.pl
+@@ -1348,6 +1348,11 @@ sub run_multiple_progs {
+ 
+         s/^# NOTE.*\n//mg; # remove any NOTE comments in the content
+ 
++        # unhide conflict markers - we hide them so that naive
++        # conflict marker detection logic doesn't get upset with our
++        # tests.
++        s/([<=>])CONFLICT\1/$1 x 7/ge;
++
+ 	my ($prog, $expected) = split(/\nEXPECT(?:\n|$)/, $_, 2);
+ 
+ 	my %reason;
+
+From 9afab7dcdb1db045348a9b97fc9dcd807eac9b11 Mon Sep 17 00:00:00 2001
+From: Yves Orton <demerphq@gmail.com>
+Date: Fri, 17 Feb 2023 12:06:12 +0100
+Subject: [PATCH 4/4] t/lib/croak/toke - hide conflict markers in test code
+
+This uses the previous two patches to add a NOTE comment
+to the test for conflict markers explaining that we are using
+the obfu style markers that run_multiple_progs() supports (now),
+so that picky tools don't think we have conflict markers in
+our files.
+---
+ t/lib/croak/toke | 15 ++++++++-------
+ 1 file changed, 8 insertions(+), 7 deletions(-)
+
+diff --git t/lib/croak/toke t/lib/croak/toke
+index f38dcbc0e2c7..083f35155746 100644
+--- t/lib/croak/toke
++++ t/lib/croak/toke
+@@ -410,16 +410,17 @@ BEGIN <>
+ EXPECT
+ Illegal declaration of subroutine BEGIN at - line 1.
+ ########
+-# NAME multiple conflict markers
+-<<<<<<< yours:sample.txt
++# NAME multiple conflict markers.
++# NOTE the <CONFLICT< style text is auto-replaced in test.pl run_multiple_progs
++<CONFLICT< yours:sample.txt
+ my $some_code;
+-=======
++=CONFLICT=
+ my $some_other_code;
+->>>>>>> theirs:sample.txt
++>CONFLICT> theirs:sample.txt
+ EXPECT
+-Version control conflict marker at - line 1, near "<<<<<<<"
+-Version control conflict marker at - line 3, near "======="
+-Version control conflict marker at - line 5, near ">>>>>>>"
++Version control conflict marker at - line 1, near "<CONFLICT<"
++Version control conflict marker at - line 3, near "=CONFLICT="
++Version control conflict marker at - line 5, near ">CONFLICT>"
+ Execution of - aborted due to compilation errors.
+ ########
+ # NAME (Might be a runaway multi-line...) with Latin-1 delimiters in utf8

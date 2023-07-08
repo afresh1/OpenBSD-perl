@@ -7,10 +7,10 @@ Now available from https://github.com/afresh1/OpenBSD-perl
 
 It's easy!
 
-* [download the patches and scripts](https://github.com/afresh1/OpenBSD-perl/archive/master.tar.gz)
+* [download the patches and scripts](https://github.com/afresh1/OpenBSD-perl/archive/blead.tar.gz)
 * extract someplace
-* download perl-5.36.0.tar.gz into the same directory
-    * https://cpan.metacpan.org/authors/id/R/RJ/RJBS/perl-5.36.0.tar.gz
+* download perl-5.36.1.tar.gz into the same directory
+    * https://cpan.metacpan.org/authors/id/S/SH/SHAY/perl-5.36.1.tar.gz
 * cd to someplace you have room
 * run /path/to/OpenBSD-perl/build_perl
 * wait
