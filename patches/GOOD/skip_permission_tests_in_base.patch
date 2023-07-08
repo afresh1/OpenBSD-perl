@@ -1,0 +1,70 @@
+From fd848f0d43b843c66aaf43c2861ba8e31cebc1e8 Mon Sep 17 00:00:00 2001
+From: bluhm <bluhm@openbsd.org>
+Date: Sat, 8 Jul 2023 14:49:55 +0000
+Subject: [PATCH] Fix Perl tests in OpenBSD regress.
+
+Disable Perl test t/porting/exec-bit.t as it only checks permissions.
+The x-bit in OpenBSD CVS tree does not match Perl distribution tar.
+This is known and accepted.
+
+Set permission of Test-Harness source.sh and source_args.sh to
+executable as Perl uses it to test module features.  Stay close to
+upstream.  During regress, set the x-bit of the files in obj
+directory.  Do not touch src tree, it might be read-only.
+
+discussed with anton@; OK afresh1@
+---
+ gnu/usr.bin/perl/t/porting/exec-bit.t |  4 ++++
+ regress/gnu/usr.bin/perl/Makefile     | 20 ++++++++++++--------
+ 2 files changed, 16 insertions(+), 8 deletions(-)
+
+diff --git a/gnu/usr.bin/perl/t/porting/exec-bit.t b/gnu/usr.bin/perl/t/porting/exec-bit.t
+index 3e80f844797..2dd2a662b57 100644
+--- t/porting/exec-bit.t
++++ t/porting/exec-bit.t
+@@ -30,6 +30,10 @@ if ( $^O eq "vos" ) {
+   skip_all( "VOS combines the read and execute permission bits." );
+ }
+ 
++if ( $^O eq "openbsd" ) {
++  skip_all( "OpenBSD CVS src tree execute permission bits do not match Perl distribution." );
++}
++
+ if ( $Config{usecrosscompile} ) {
+   skip_all( "Not all files are available during cross-compilation" );
+ }
+diff --git a/regress/gnu/usr.bin/perl/Makefile b/regress/gnu/usr.bin/perl/Makefile
+#index 9ca83dee61a..56ebf47f2fc 100644
+#--- a/regress/gnu/usr.bin/perl/Makefile
+#+++ b/regress/gnu/usr.bin/perl/Makefile
+#@@ -1,4 +1,4 @@
+#-# $OpenBSD: Makefile,v 1.3 2023/07/05 21:38:22 bluhm Exp $
+#+# $OpenBSD: Makefile,v 1.4 2023/07/08 14:49:55 bluhm Exp $
+# 
+# .if ! (make(clean) || make(cleandir) || make(obj))
+# NCPU !=		/sbin/sysctl -n hw.ncpuonline
+#@@ -12,13 +12,17 @@ build:
+# 
+# REGRESS_SETUP += permissions
+# permissions:
+#-	# The permissions in CVS tree are not as in the Perl distribution.
+#-	# Match expectations of t/porting/exec-bit.t and
+#-	# cpan/Test-Harness/t/source_tests/source.sh
+#-	awk '{print $$1}' ${BSDSRCDIR}/gnu/usr.bin/perl/MANIFEST |\
+#-	    ( cd ${BSDOBJDIR}/gnu/usr.bin/perl/ && xargs chmod -x )
+#-	grep -v '^#' ${BSDSRCDIR}/gnu/usr.bin/perl/Porting/exec-bit.txt |\
+#-	    ( cd ${BSDOBJDIR}/gnu/usr.bin/perl/ && xargs chmod +x )
+#+	# Permissions in CVS src tree are not as in the Perl distribution.
+#+	# Match expectations of cpan/Test-Harness/t/source_handler.t for
+#+	# cpan/Test-Harness/t/source_tests/source*.sh executalbe bits.
+#+	# Remove symlink and fix permissions of copy in obj directory.
+#+.for f in \
+#+    cpan/Test-Harness/t/source_tests/source.sh \
+#+    cpan/Test-Harness/t/source_tests/source_args.sh
+#+	rm -f ${BSDOBJDIR}/gnu/usr.bin/perl/$f
+#+	cp ${BSDSRCDIR}/gnu/usr.bin/perl/$f ${BSDOBJDIR}/gnu/usr.bin/perl/$f
+#+	chmod +x ${BSDOBJDIR}/gnu/usr.bin/perl/$f
+#+.endfor
+# 
+# REGRESS_TARGETS +=	test
+# test:
