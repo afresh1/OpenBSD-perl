@@ -39,11 +39,15 @@ cleandir:
 	fi
 	cd ${.CURDIR} && ${MAKE} -f Makefile.bsd-wrapper1 cleandir
 
-all:	config.sh
+all: syscall_emulator.c config.sh
 	cd ${.CURDIR} && exec ${MAKE} -f Makefile.bsd-wrapper1 perl.build
 	cd ${.CURDIR} && exec ${MAKE} -f Makefile.bsd-wrapper1 mansrc.build
 
 install:
 	cd ${.CURDIR} && exec ${MAKE} -f Makefile.bsd-wrapper1 install
+
+
+syscall_emulator.c: gen_syscall_emulator.pl /usr/include/sys/syscall.h /usr/include/sys/syscallargs.h
+	$(.CURDIR)/gen_syscall_emulator.pl > $@
 
 .include <bsd.obj.mk>
