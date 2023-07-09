@@ -255,7 +255,7 @@ sub parse_syscallargs_h ($file) {
 }
 
 sub find_func_sig ($content, $name, $s) {
-	my $re = qr{^
+	my $re = $s->{re} //= qr{^
 	    (?<ret> \S+ (?: [^\S\n]+ \S+)? ) [^\S\n]* \n?
 	    \b \Q$name\E \( (?<args> [^)]* ) \)
 	[^;]*;}xms;
