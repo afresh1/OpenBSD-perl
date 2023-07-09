@@ -332,7 +332,7 @@ sub types_match ($l, $r)
 }
 
 
-# Tests whether two funciton signatures match,
+# Tests whether two function signatures match,
 # expected to be left from syscall.h, right from the appopriate header.
 sub sigs_match ($l, $r)
 {
