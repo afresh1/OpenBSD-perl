@@ -35,7 +35,8 @@
 #include <unistd.h>
 
 long
-syscall_emulator(int syscall, ...) {
+syscall_emulator(int syscall, ...)
+{
 	long ret = 0;
 	va_list args;
 	va_start(args, syscall);

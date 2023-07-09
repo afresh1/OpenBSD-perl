@@ -90,7 +90,8 @@ say "#include <$_>" for @headers;
 print <<"EOL";
 
 long
-syscall_emulator(int syscall, ...) {
+syscall_emulator(int syscall, ...)
+{
 	long ret = 0;
 	va_list args;
 	va_start(args, syscall);
@@ -175,7 +176,8 @@ print <<"EOL";
 EOL
 
 
-sub parse_syscalls ($syscall, $args) {
+sub parse_syscalls ($syscall, $args)
+{
 	my %s = parse_syscall_h($syscall);
 
 	my %a = parse_syscallargs_h($args);
@@ -184,7 +186,8 @@ sub parse_syscalls ($syscall, $args) {
 	return %s;
 }
 
-sub parse_syscall_h ($file) {
+sub parse_syscall_h ($file)
+{
 	my %s;
 	open my $fh, '<', $file or die "Unable to open $file: $!";
 	while ($_ = $fh->getline) {
@@ -229,7 +232,8 @@ sub parse_syscall_h ($file) {
 	return %s;
 }
 
-sub _parse_syscallarg ($fh) {
+sub _parse_syscallarg ($fh)
+{
 	my @a;
 	while ($_ = $fh->getline) {
 		last if /^\s*\};\s*$/;
@@ -240,7 +244,8 @@ sub _parse_syscallarg ($fh) {
 	return \@a;
 }
 
-sub parse_syscallargs_h ($file) {
+sub parse_syscallargs_h ($file)
+{
 	my %a;
 	open my $fh, '<', $file or die "Unable to open $file; $!";
 	while ($_ = $fh->getline) {
@@ -253,7 +258,8 @@ sub parse_syscallargs_h ($file) {
 	return %a;
 }
 
-sub find_func_sig ($content, $name, $s) {
+sub find_func_sig ($content, $name, $s)
+{
 	my $re = $s->{re} //= qr{^
 	    (?<ret> \S+ (?: [^\S\n]+ \S+)? ) [^\S\n]* \n?
 	    \b \Q$name\E \( (?<args> [^)]* ) \)
@@ -296,7 +302,8 @@ my %m; BEGIN { %m = (
     size_t          => 'u_int',
     __size_t        => 'u_int',
 ) }
-sub types_match ($l, $r) {
+sub types_match ($l, $r)
+{
 	$l //= '__undef__';
 	$r //= '__undef__';
 
@@ -327,7 +334,8 @@ sub types_match ($l, $r) {
 
 # Tests whether two funciton signatures match,
 # expected to be left from syscall.h, right from the appopriate header.
-sub sigs_match ($l, $r) {
+sub sigs_match ($l, $r)
+{
 	return unless types_match( $l->{ret}, $l->{ret} );
 
 	my @l_args = @{ $l->{args} || [] };
