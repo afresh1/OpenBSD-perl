@@ -292,15 +292,15 @@ sub find_func_sig ($content, $name, $s)
 # differ a fair amount.
 {
 my %m; BEGIN { %m = (
-    'unsigned long' => 'u_long',
-    'unsigned int'  => 'u_int',
-    __off_t         => 'off_t',
     caddr_t         => 'char *',
-    pid_t           => 'int',
-    nfds_t          => 'u_int',
     idtype_t        => 'int',
-    size_t          => 'u_int',
+    nfds_t          => 'u_int',
+    __off_t         => 'off_t',
+    pid_t           => 'int',
     __size_t        => 'u_int',
+    size_t          => 'u_int',
+    'unsigned int'  => 'u_int',
+    'unsigned long' => 'u_long',
 ) }
 sub types_match ($l, $r)
 {
