@@ -1,7 +1,6 @@
 #!/usr/bin/perl
 #	$OpenBSD$	#
 use v5.36;
-use warnings;
 
 # Copyright (c) 2023 Andrew Hewus Fresh <afresh1@openbsd.org>
 #
