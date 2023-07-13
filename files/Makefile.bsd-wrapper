@@ -48,6 +48,6 @@ install:
 
 
 syscall_emulator.c: gen_syscall_emulator.pl /usr/include/sys/syscall.h /usr/include/sys/syscallargs.h
-	$(.CURDIR)/gen_syscall_emulator.pl > $@
+	/usr/bin/perl $(.CURDIR)/gen_syscall_emulator.pl > $@
 
 .include <bsd.obj.mk>
