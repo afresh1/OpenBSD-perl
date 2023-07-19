@@ -153,13 +153,13 @@ foreach my $name (
 	say "${indent}                  $s{signature} <sys/syscall.h>"
 	    if $s{skip} && $s{skip} =~ /Mismatch/;
 
-	say "${indent}case $s{define}:"; # // $s{id}";
-	say "${indent}\t{" if @defines;
+	my $brace = @defines ? " {" : "";
+	say "${indent}case $s{define}:$brace"; # // $s{id}";
 	say "${indent}\t$_" for @defines;
 	#say "${indent}\t// $s{signature}$header";
 	say "${indent}\t$ret$name(" . join(', ', @args) . ");$argname";
-	say "${indent}\t}" if @defines;
 	say "${indent}\tbreak;";
+	say "${indent}}" if $brace;
 
 	say "\t */" if $s{skip};
 }
