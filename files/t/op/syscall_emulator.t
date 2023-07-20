@@ -47,7 +47,7 @@ my $fd;
 my $out = "Hello World\n";
 my $in = "\0" x 32;
 my ($in_p, $in_v);
-my $sb = "\0\0\0\0";
+my $sb = "\0" x 4096;
 my $st_mode;
 
 my $perms = S_IRUSR|S_IWUSR|S_IRGRP|S_IROTH;
