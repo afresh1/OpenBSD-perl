@@ -881,12 +881,15 @@ syscall_emulator(int syscall, ...)
 		ret = adjtime(delta, olddelta);
 		break;
 	}
-	case SYS_getlogin_r: {
-		char * namebuf = va_arg(args, char *);
-		u_int namelen = va_arg(args, u_int);
-		ret = getlogin_r(namebuf, namelen);
-		break;
-	}
+	/* Mismatched func: int getlogin_r(char *, size_t); <unistd.h>
+	 *                  int getlogin_r(char *, u_int); <sys/syscall.h>
+	 *case SYS_getlogin_r: {
+	 *	char * namebuf = va_arg(args, char *);
+	 *	u_int namelen = va_arg(args, u_int);
+	 *	ret = getlogin_r(namebuf, namelen);
+	 *	break;
+	 *}
+	 */
 	case SYS_getthrname: {
 		pid_t tid = va_arg(args, pid_t);
 		char * name = va_arg(args, char *);

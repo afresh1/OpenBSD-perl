@@ -297,8 +297,8 @@ my %m; BEGIN { %m = (
     nfds_t          => 'u_int',
     __off_t         => 'off_t',
     pid_t           => 'int',
-    __size_t        => 'u_int',
-    size_t          => 'u_int',
+    __size_t        => 'u_long',
+    size_t          => 'u_long',
     'unsigned int'  => 'u_int',
     'unsigned long' => 'u_long',
 ) }
