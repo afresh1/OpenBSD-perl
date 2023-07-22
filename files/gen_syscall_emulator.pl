@@ -309,9 +309,9 @@ sub types_match($l, $r)
 	$l //= '__undef__';
 	$r //= '__undef__';
 
-	s/^volatile //     for $l, $r;
-	s/^const //        for $l, $r;
-	s/\s*\[\d*\]$/ \*/ for $l, $r;
+	s/\b volatile \s+//x  for $l, $r;
+	s/\b const    \s+//x  for $l, $r;
+	s/\s* \[\d*\] $/ \*/x for $l, $r;
 
 	my ($f, $s) = sort { length($a) <=> length($b) } $l, $r;
 	if (index($s, $f) == 0) {
