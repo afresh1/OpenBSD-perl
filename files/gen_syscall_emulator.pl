@@ -266,7 +266,7 @@ sub find_func_sig($content, $name, $s)
 		[^;]*;
 	    }xms;
 
-	$content =~ /$re/ || return;
+	$content =~ /$re/ || return !!0;
 	my $ret  = $+{ret};
 	my $args = $+{args};
 
@@ -333,7 +333,7 @@ sub types_match($l, $r)
 # expected to be left from syscall.h, right from the appopriate header.
 sub sigs_match($l, $r)
 {
-	return unless types_match( $l->{ret}, $l->{ret} );
+	return !!0 unless types_match( $l->{ret}, $l->{ret} );
 
 	my @l_args = @{ $l->{args} || [] };
 	my @r_args = @{ $r->{args} || [] };
@@ -343,9 +343,9 @@ sub sigs_match($l, $r)
 	}
 
 	for my $i ( 0 .. $#l_args ) {
-		return unless types_match($l_args[$i], $r_args[$i]);
+		return !!0 unless types_match($l_args[$i], $r_args[$i]);
 		last if $l_args[$i] eq '...';
 	}
 
-	return 1;
+	return !!1;
 }
