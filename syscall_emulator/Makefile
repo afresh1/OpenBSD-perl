@@ -6,6 +6,7 @@ $(OUT): syscall_user.c syscall_emulator.c
 	$(CC) -o $@ $>
 
 syscall_emulator.c: ../files/gen_syscall_emulator.pl syscall_emulator.h /usr/include/sys/syscall.h /usr/include/sys/syscallargs.h
+	[ -e "$@" ] && cp $@ $@.orig
 	/usr/bin/perl $(.CURDIR)/../files/gen_syscall_emulator.pl > $@
 
 syscall_emulator.h: ../files/syscall_emulator.h
