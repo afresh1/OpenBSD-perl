@@ -69,7 +69,6 @@ foreach my $header (@headers) {
 	my $content = do { local $/; readline $fh };
 	close $fh;
 
-	# Look for matching syscalls in this header
 	foreach my $name (sort keys %syscalls) {
 		my $s = $syscalls{$name};
 		my $func_sig = find_func_sig($content, $name, $s);
@@ -120,12 +119,12 @@ foreach my $name (
 	if ($s{argtypes}) {
 		if (@{ $s{argtypes} } > 1) {
 			@defines = map {
-			    my $t = $_->{type};
-			    my $n = $_->{name};
-			    $n = "_$n" if $n eq $name; # link :-/
-			    push @args, $n;
-			    "$t $n = va_arg(args, $t);"
-			} @{ $s{argtypes} };
+				my $t = $_->{type};
+				my $n = $_->{name};
+				$n = "_$n" if $n eq $name; # link :-/
+				push @args, $n;
+				"$t $n = va_arg(args, $t);"
+			    } @{ $s{argtypes} };
 		} else {
 			if (@{ $s{argtypes} }) {
 				$argname = " // " . join ', ',
@@ -176,7 +175,7 @@ print <<"EOL";
 EOL
 
 
-sub parse_syscalls ($syscall, $args)
+sub parse_syscalls($syscall, $args)
 {
 	my %s = parse_syscall_h($syscall);
 
@@ -186,7 +185,7 @@ sub parse_syscalls ($syscall, $args)
 	return %s;
 }
 
-sub parse_syscall_h ($file)
+sub parse_syscall_h($file)
 {
 	my %s;
 	open my $fh, '<', $file or die "Unable to open $file: $!";
@@ -198,7 +197,8 @@ sub parse_syscall_h ($file)
 		    \s* \*/
 		  |
 		    ^\#define \s+ (?<define>SYS_(?<name>\S+)) \s+ (?<id>\d+)
-		}x) {
+		}x)
+		{
 			my $name        = $+{name};
 			$s{$name}{$_}   = $+{$_} for keys %+;
 			$s{$name}{args} = [ $+{args} =~ /"(.*?)"/g ]
@@ -232,7 +232,7 @@ sub parse_syscall_h ($file)
 	return %s;
 }
 
-sub _parse_syscallarg ($fh)
+sub _parse_syscallarg($fh)
 {
 	my @a;
 	while ($_ = $fh->getline) {
@@ -244,7 +244,7 @@ sub _parse_syscallarg ($fh)
 	return \@a;
 }
 
-sub parse_syscallargs_h ($file)
+sub parse_syscallargs_h($file)
 {
 	my %a;
 	open my $fh, '<', $file or die "Unable to open $file; $!";
@@ -258,12 +258,13 @@ sub parse_syscallargs_h ($file)
 	return %a;
 }
 
-sub find_func_sig ($content, $name, $s)
+sub find_func_sig($content, $name, $s)
 {
 	my $re = $s->{re} //= qr{^
-	    (?<ret> \S+ (?: [^\S\n]+ \S+)? ) [^\S\n]* \n?
-	    \b \Q$name\E \( (?<args> [^)]* ) \)
-	[^;]*;}xms;
+		(?<ret> \S+ (?: [^\S\n]+ \S+)? ) [^\S\n]* \n?
+		\b \Q$name\E \( (?<args> [^)]* ) \)
+		[^;]*;
+	    }xms;
 
 	$content =~ /$re/ || return;
 	my $ret  = $+{ret};
@@ -281,7 +282,7 @@ sub find_func_sig ($content, $name, $s)
 	my %func_sig = ( ret => $ret, args => [ split /\s*,\s*/, $args ] );
 
 	return "$ret $name($args);" =~ s/\s+/ /gr
-	    unless sigs_match( $s, \%func_sig );
+	    unless sigs_match($s, \%func_sig);
 
 	return \%func_sig;
 }
@@ -302,7 +303,7 @@ my %m; BEGIN { %m = (
     'unsigned int'  => 'u_int',
     'unsigned long' => 'u_long',
 ) }
-sub types_match ($l, $r)
+sub types_match($l, $r)
 {
 	$l //= '__undef__';
 	$r //= '__undef__';
@@ -312,7 +313,7 @@ sub types_match ($l, $r)
 	s/\s*\[\d*\]$/ \*/ for $l, $r;
 
 	my ($f, $s) = sort { length($a) <=> length($b) } $l, $r;
-	if (index($s,$f) == 0) {
+	if (index($s, $f) == 0) {
 		$s =~ s/^\Q$f\E\s*//;
 		if ( $s && $s =~ /^\w+$/ ) {
 			#warn "prefix ['$f', '$s']\n";
@@ -320,13 +321,9 @@ sub types_match ($l, $r)
 		}
 	}
 
-	# my ($p_l, $p_r) = ($l, $r);
 	$l = $m{$l} //= $l;
 	$r = $m{$r} //= $r;
 
-	#warn "    $p_l [$l] $p_r [$r] <'$f' '$s'>\n";
-	# return and use the original "right" value
-	# as it's from the function header and closer to what we need.
 	return $l eq $r;
 }
 }
@@ -334,7 +331,7 @@ sub types_match ($l, $r)
 
 # Tests whether two function signatures match,
 # expected to be left from syscall.h, right from the appopriate header.
-sub sigs_match ($l, $r)
+sub sigs_match($l, $r)
 {
 	return unless types_match( $l->{ret}, $l->{ret} );
 
@@ -346,7 +343,7 @@ sub sigs_match ($l, $r)
 	}
 
 	for my $i ( 0 .. $#l_args ) {
-		return unless types_match( $l_args[$i], $r_args[$i] );
+		return unless types_match($l_args[$i], $r_args[$i]);
 		last if $l_args[$i] eq '...';
 	}
 
