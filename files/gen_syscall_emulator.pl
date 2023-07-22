@@ -22,7 +22,7 @@ my $includes = '/usr/include';
 my %syscalls = parse_syscalls(
     "$includes/sys/syscall.h",
     "$includes/sys/syscallargs.h",
-);
+)->%*;
 delete $syscalls{MAXSYSCALL}; # not an actual function
 
 # The ordered list of all the headers we need
@@ -177,12 +177,12 @@ EOL
 
 sub parse_syscalls($syscall, $args)
 {
-	my %s = parse_syscall_h($syscall);
+	my %s = parse_syscall_h($syscall)->%*;
 
-	my %a = parse_syscallargs_h($args);
+	my %a = parse_syscallargs_h($args)->%*;
 	$s{$_}{argtypes} = $a{$_} for grep { $a{$_} } keys %s;
 
-	return %s;
+	return \%s;
 }
 
 sub parse_syscall_h($filename)
@@ -229,7 +229,7 @@ sub parse_syscall_h($filename)
 		#print "    $s{$name}{signature}\n";
 	}
 
-	return %s;
+	return \%s;
 }
 
 sub _parse_syscallarg($fh)
@@ -255,7 +255,7 @@ sub parse_syscallargs_h($filename)
 		}
 	}
 	close $fh;
-	return %a;
+	return \%a;
 }
 
 sub find_func_sig($content, $name, $s)
