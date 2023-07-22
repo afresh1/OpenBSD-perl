@@ -64,8 +64,8 @@ my @headers = qw<
 >;
 
 foreach my $header (@headers) {
-	my $file = "$includes/$header";
-	open my $fh, '<', $file or die "Unable to open $file: $!";
+	my $filename = "$includes/$header";
+	open my $fh, '<', $filename or die "Unable to open $filename: $!";
 	my $content = do { local $/; readline $fh };
 	close $fh;
 
@@ -185,10 +185,10 @@ sub parse_syscalls($syscall, $args)
 	return %s;
 }
 
-sub parse_syscall_h($file)
+sub parse_syscall_h($filename)
 {
 	my %s;
-	open my $fh, '<', $file or die "Unable to open $file: $!";
+	open my $fh, '<', $filename or die "Unable to open $filename: $!";
 	while ($_ = $fh->getline) {
 		if (m{^/\*
 		    \s+ syscall: \s+ "(?<name>[^"]+)"
@@ -205,7 +205,7 @@ sub parse_syscall_h($file)
 			    if exists $+{args};
 		}
 	}
-	close $fh or die "Unable to close $file: $!";
+	close $fh or die "Unable to close $filename: $!";
 
 	foreach my $name (keys %s) {
 		my %d = %{ $s{$name} };
@@ -244,10 +244,10 @@ sub _parse_syscallarg($fh)
 	return \@a;
 }
 
-sub parse_syscallargs_h($file)
+sub parse_syscallargs_h($filename)
 {
 	my %a;
-	open my $fh, '<', $file or die "Unable to open $file; $!";
+	open my $fh, '<', $filename or die "Unable to open $filename; $!";
 	while ($_ = $fh->getline) {
 		if (/^struct sys_(\w+)_args \{/) {
 			my $name = $1;
