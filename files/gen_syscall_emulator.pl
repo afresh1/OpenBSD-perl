@@ -1,6 +1,7 @@
 #!/usr/bin/perl
 #	$OpenBSD$	#
 use v5.36;
+use autodie;
 
 # Copyright (c) 2023 Andrew Hewus Fresh <afresh1@openbsd.org>
 #
@@ -65,7 +66,7 @@ my @headers = qw<
 
 foreach my $header (@headers) {
 	my $filename = "$includes/$header";
-	open my $fh, '<', $filename or die "Unable to open $filename: $!";
+	open my $fh, '<', $filename;
 	my $content = do { local $/; readline $fh };
 	close $fh;
 
@@ -188,7 +189,7 @@ sub parse_syscalls($syscall, $args)
 sub parse_syscall_h($filename)
 {
 	my %s;
-	open my $fh, '<', $filename or die "Unable to open $filename: $!";
+	open my $fh, '<', $filename;
 	while ($_ = $fh->getline) {
 		if (m{^/\*
 		    \s+ syscall: \s+ "(?<name>[^"]+)"
@@ -205,7 +206,7 @@ sub parse_syscall_h($filename)
 			    if exists $+{args};
 		}
 	}
-	close $fh or die "Unable to close $filename: $!";
+	close $fh;
 
 	foreach my $name (keys %s) {
 		my %d = %{ $s{$name} };
@@ -247,7 +248,7 @@ sub _parse_syscallarg($fh)
 sub parse_syscallargs_h($filename)
 {
 	my %a;
-	open my $fh, '<', $filename or die "Unable to open $filename; $!";
+	open my $fh, '<', $filename;
 	while ($_ = $fh->getline) {
 		if (/^struct sys_(\w+)_args \{/) {
 			my $name = $1;
