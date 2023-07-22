@@ -291,20 +291,20 @@ sub find_func_sig($content, $name, $s)
 # Sometimes there are two ways to represent the same thing
 # and it seems the functions and the syscalls
 # differ a fair amount.
-{
-my %m; BEGIN { %m = (
-    caddr_t         => 'char *',
-    idtype_t        => 'int',
-    nfds_t          => 'u_int',
-    __off_t         => 'off_t',
-    pid_t           => 'int',
-    __size_t        => 'u_long',
-    size_t          => 'u_long',
-    'unsigned int'  => 'u_int',
-    'unsigned long' => 'u_long',
-) }
 sub types_match($l, $r)
 {
+	state %m = (
+	    caddr_t         => 'char *',
+	    idtype_t        => 'int',
+	    nfds_t          => 'u_int',
+	    __off_t         => 'off_t',
+	    pid_t           => 'int',
+	    __size_t        => 'u_long',
+	    size_t          => 'u_long',
+	    'unsigned int'  => 'u_int',
+	    'unsigned long' => 'u_long',
+	);
+
 	$l //= '__undef__';
 	$r //= '__undef__';
 
@@ -325,7 +325,6 @@ sub types_match($l, $r)
 	$r = $m{$r} //= $r;
 
 	return $l eq $r;
-}
 }
 
 
