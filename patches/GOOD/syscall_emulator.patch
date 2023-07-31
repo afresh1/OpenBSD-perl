@@ -1,14 +1,5 @@
 --- MANIFEST.orig	Mon Feb 27 19:02:11 2023
 +++ MANIFEST	Mon Feb 27 19:24:52 2023
-@@ -6150,6 +6150,8 @@
- sv.c				Scalar value code
- sv.h				Scalar value header
- sv_inline.h			Perl_newSV_type and required defs
-+syscall_emulator.c		Emulator to dispatch syscalls to libc
-+syscall_emulator.h		Emulator to dispatch syscalls to libc
- t/base/cond.t			See if conditionals work
- t/base/if.t			See if if works
- t/base/lex.t			See if lexical items work
 @@ -6604,6 +6606,7 @@
  t/op/svleak.t			See if stuff leaks SVs
  t/op/switch.t			See if switches (given/when) work
@@ -24,7 +15,7 @@
  h4 = regexp.h scope.h sv.h unixish.h util.h iperlsys.h thread.h
  h5 = utf8.h warnings.h mydtrace.h op_reg_common.h l1_char_class_tab.h
 -h6 = charclass_invlists.h
-+h6 = charclass_invlists.h syscall_emulator.h
++h6 = charclass_invlists.h
  h = $(h1) $(h2) $(h3) $(h4) $(h5) $(h6)
  
  c1 = av.c scope.c op.c doop.c doio.c dump.c gv.c hv.c mg.c reentr.c mro_core.c perl.c
@@ -45,17 +36,14 @@
  
  # split the objects into 3 exclusive sets: those used by both miniperl and
  # perl, and those used by just one or the other. Doesn't include the
---- ./perl.h.orig	Sat Mar  4 11:37:06 2023
-+++ ./perl.h	Sat Mar  4 11:38:21 2023
-@@ -1152,6 +1152,11 @@ extern char **myenviron;
- EXTERN_C int syscall(int, ...);
- #endif
- 
-+#ifdef HAS_SYSCALL_EMULATOR
+--- pp_sys.c.orig	Wed Jul 19 21:19:21 2023
++++ pp_sys.c	Wed Jul 19 21:21:22 2023
+@@ -30,6 +30,8 @@
+ #define PERL_IN_PP_SYS_C
+ #include "perl.h"
+ #include "time64.h"
 +#include "syscall_emulator.h"
 +#define syscall syscall_emulator
-+#endif
-+
- #if defined(HAS_USLEEP) && !defined(HAS_USLEEP_PROTO)
- EXTERN_C int usleep(unsigned int);
- #endif
+ 
+ #ifdef I_SHADOW
+ /* Shadow password support for solaris - pdo@cs.umd.edu

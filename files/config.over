@@ -67,7 +67,6 @@ ranlib='ranlib'
 
 # Enable the syscall emulator,
 # enabling syscall even if we don't have it
-ccflags="-DHAS_SYSCALL_EMULATOR $ccflags"
 d_syscall=define
 d_syscallproto=define
 

@@ -88,6 +88,7 @@ foreach my $header (@headers) {
 say "/*\n * Generated from gen_syscall_emulator.pl\n */";
 say "#include <$_>" for @headers;
 print <<"EOL";
+#include "syscall_emulator.h"
 
 long
 syscall_emulator(int syscall, ...)

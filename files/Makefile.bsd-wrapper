@@ -47,7 +47,10 @@ install:
 	cd ${.CURDIR} && exec ${MAKE} -f Makefile.bsd-wrapper1 install
 
 
-syscall_emulator.c: gen_syscall_emulator.pl /usr/include/sys/syscall.h /usr/include/sys/syscallargs.h
+syscall_emulator.c: gen_syscall_emulator.pl syscall_emulator.h /usr/include/sys/syscall.h /usr/include/sys/syscallargs.h
 	/usr/bin/perl $(.CURDIR)/gen_syscall_emulator.pl > $@
+
+syscall_emulator.h:
+	ln -sf $(.CURDIR)/$@ $@
 
 .include <bsd.obj.mk>
