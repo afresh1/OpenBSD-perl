@@ -101,6 +101,26 @@ ok(!
     "lseek on fd"
 );
 
+ok(!
+    (syscall(SYS_pread(), $fd, $in = "\0" x 32, 5, 3) < 0),
+    "pread on fd"
+);
+
+$in = unpack 'Z*', $in;
+
+ok( length($in) == 5 && ($in eq substr $out, 3, 5),
+    "Read written content from $filename ($in)"
+);
+
+ok(!
+    (syscall(SYS_lseek(), $fd, 0, SEEK_SET) < 0),
+    "lseek on fd"
+);
+
+ok(!
+    (syscall(SYS_lseek(), $fd, 0, SEEK_SET) < 0),
+    "lseek on fd"
+);
 
 ok(!
     (($in_p = syscall(SYS_mmap(), undef, length($out), PROT_READ, MAP_PRIVATE,

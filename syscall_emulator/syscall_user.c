@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <strings.h>
 #include <unistd.h>
 
 int
@@ -23,7 +24,7 @@ main(void) {
 
 	sb = malloc(sizeof(struct stat));
 
-	printf("%s\n", "1..13");
+	printf("%s\n", "1..14");
 
 	if ((fd = syscall_emulator(SYS_open, file, O_CREAT|O_WRONLY, perms)) < 0)
 		err(1, "Failed to open test.out for write/create");
@@ -53,6 +54,8 @@ main(void) {
 		err(1, "Failed to open test.out for reading");
 	printf("ok 6 Opened %s for read\n", file);
 
+	bzero(in, sizeof(in));
+
 	if ((syscall_emulator(SYS_read, fd, &in, sizeof(in)-1)) <= 0)
 		err(1, "Failed to read");
 	printf("ok 7 read %lu bytes from %s\n", strlen(in), file);
@@ -67,23 +70,34 @@ main(void) {
 		err(1, "Failed to lseek");
 	printf("ok 9 lseek on fd\n");
 
+	bzero(in, sizeof(in));
+
+	if (syscall_emulator(SYS_pread, fd, &in, 5, 3) != 5)
+		err(1, "Failed to pread");
+
+	if (strlen(in) == 5
+	 && strncmp(in, "lo Wo", 5) == 0)
+		printf("ok 10 pread written content from %s\n", file);
+	else
+		printf("not ok 10 pread written content from %s\n", file);
+
 	if ((in_p = (void *)syscall_emulator(SYS_mmap,
 	    NULL, sizeof(out), PROT_READ, MAP_PRIVATE,
 	    fd, 0)) == MAP_FAILED)
 		err(1, "mmap failed");
-	printf("ok 10 mmap fd\n");
+	printf("ok 11 mmap fd\n");
 
 	if (strncmp(in_p, out, sizeof(out)) == 0)
-		printf("ok 11 Read written content from %s via mmap\n", file);
+		printf("ok 12 Read written content from %s via mmap\n", file);
 	else
-		printf("not ok 11 Read written content from %s via mmap\n", file);
+		printf("not ok 12 Read written content from %s via mmap\n", file);
 	if (syscall_emulator(SYS_munmap, in_p, sizeof(out)) != 0)
 	    err(1, "munmap failed");
-	printf("ok 12 munmap fd\n");
+	printf("ok 13 munmap fd\n");
 
 	if (syscall_emulator(SYS_close, fd) != 0)
 		err(1, "Failed to close");
-	printf("ok 13 closed %s\n", file);
+	printf("ok 14 closed %s\n", file);
 
 	free(sb);
 
