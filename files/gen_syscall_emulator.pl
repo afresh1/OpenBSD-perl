@@ -191,7 +191,7 @@ sub parse_syscall_h($filename)
 {
 	my %s;
 	open my $fh, '<', $filename;
-	while ($_ = $fh->getline) {
+	while (readline $fh) {
 		if (m{^/\*
 		    \s+ syscall: \s+ "(?<name>[^"]+)"
 		    \s+	 ret: \s+ "(?<ret> [^"]+)"
@@ -237,7 +237,7 @@ sub parse_syscall_h($filename)
 sub _parse_syscallarg($fh)
 {
 	my @a;
-	while ($_ = $fh->getline) {
+	while (readline $fh) {
 		last if /^\s*\};\s*$/;
 		if (/syscallarg\( ( [^)]+  ) \) \s+ (\w+) \s* ;/x) {
 			push @a, { type => $1, name => $2 };
@@ -250,7 +250,7 @@ sub parse_syscallargs_h($filename)
 {
 	my %a;
 	open my $fh, '<', $filename;
-	while ($_ = $fh->getline) {
+	while (readline $fh) {
 		if (/^struct sys_(\w+)_args \{/) {
 			my $name = $1;
 			$a{$name} = _parse_syscallarg($fh);
