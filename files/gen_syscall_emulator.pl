@@ -19,6 +19,14 @@ use autodie;
 
 my $includes = '/usr/include';
 
+# Because perl uses a long for every syscall argument,
+# if we are building a syscall_emulator for use by perl,
+# taking that into account make things work more consistently
+# across different OpenBSD architectures.
+# Unfortunately there doesn't appear to be an easy way
+# to make everything work "the way it was".
+use constant PERL_LONG_ARGS => 1;
+
 # See also /usr/src/sys/kern/syscalls.master
 my %syscalls = parse_syscalls(
     "$includes/sys/syscall.h",
@@ -125,7 +133,9 @@ foreach my $name (
 				my $n = $_->{name};
 				$n = "_$n" if $n eq $name; # link :-/
 				push @args, $n;
-				"$t $n = va_arg(args, $t);"
+				PERL_LONG_ARGS
+				    ? "$t $n = ($t)va_arg(args, long);"
+				    : "$t $n = va_arg(args, $t);"
 			    } @{ $s{argtypes} };
 		} else {
 			if (@{ $s{argtypes} }) {
