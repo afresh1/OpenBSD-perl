@@ -52,7 +52,7 @@ my $st_mode;
 
 my $perms = S_IRUSR|S_IWUSR|S_IRGRP|S_IROTH;
 
-plan tests => 13;
+plan tests => 17;
 
 ok(!
     (($fd = syscall(SYS_open(), $file, O_CREAT|O_WRONLY, $perms)) < 0),
