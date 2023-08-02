@@ -33,6 +33,7 @@
 #include <tib.h>
 #include <time.h>
 #include <unistd.h>
+#include "syscall_emulator.h"
 
 long
 syscall_emulator(int syscall, ...)
