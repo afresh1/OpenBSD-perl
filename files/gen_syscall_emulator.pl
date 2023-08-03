@@ -244,30 +244,28 @@ sub parse_syscall_h($filename)
 	return \%s;
 }
 
-sub _parse_syscallarg($fh)
-{
-	my @a;
-	while (readline $fh) {
-		last if /^\s*\};\s*$/;
-		if (/syscallarg\( ( [^)]+  ) \) \s+ (\w+) \s* ;/x) {
-			push @a, { type => $1, name => $2 };
-		}
-	}
-	return \@a;
-}
-
 sub parse_syscallargs_h($filename)
 {
-	my %a;
+	my %args;
+
 	open my $fh, '<', $filename;
 	while (readline $fh) {
-		if (/^struct sys_(\w+)_args \{/) {
-			my $name = $1;
-			$a{$name} = _parse_syscallarg($fh);
+		if (my ($syscall) = /^struct \s+ sys_(\w+)_args \s+ \{/x) {
+			$args{$syscall} = [];
+			while (readline $fh) {
+				last if /^\s*\};\s*$/;
+				if (/syscallarg
+				    \(  (?<type> [^)]+ ) \)
+				    \s+ (?<name>   \w+ ) \s* ;
+				/x) {
+					push @{$args{$syscall}}, {%+};
+				}
+			}
 		}
 	}
 	close $fh;
-	return \%a;
+
+	return \%args;
 }
 
 sub find_func_sig($content, $name, $s)
