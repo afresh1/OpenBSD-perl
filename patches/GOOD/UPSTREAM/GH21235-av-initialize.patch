@@ -1,0 +1,113 @@
+https://github.com/Perl/perl5/issues/21235
+https://github.com/Perl/perl5/pull/21265
+https://github.com/Perl/perl5/pull/21265/commits/b451fd39a6f49cc9442c5c6ef000d00e7fe715d8
+
+From b451fd39a6f49cc9442c5c6ef000d00e7fe715d8 Mon Sep 17 00:00:00 2001
+From: Richard Leach <richardleach@users.noreply.github.com>
+Date: Tue, 18 Jul 2023 21:43:19 +0000
+Subject: [PATCH] Perl_av_extend_guts: Zero() trailing elements after unshift &
+ resize
+
+Since https://github.com/Perl/perl5/commit/399fef93c903aedee05a74de780b57eeeb571b32,
+trailing elements in an array that has been unshifted and resized
+might not be properly Zero() initialized. This is because of faulty
+arithmetic when calculating `to_null`, the number of elements to
+initialize, when the array was only partially shifted.
+
+This commit corrects the arithmetic, adds comments arount the
+calculation of `to_null`, and adds a test based upon the case
+provided in GH #21235.
+
+The test added segfaults more reliably for me - almost every time -
+than the originally supplied case. However, since it relies upon
+uninitialized memory, it's probably still not deterministic and
+somewhat dependent upon the choice of memory allocator.
+
+Closes #21235
+---
+ av.c         | 24 ++++++++++++++++++++----
+ t/op/array.t |  6 +++++-
+ 2 files changed, 25 insertions(+), 5 deletions(-)
+
+diff --git a/av.c b/av.c
+index d9868f44078b..1a8d33b6ac51 100644
+--- av.c
++++ av.c
+@@ -103,12 +103,19 @@ Perl_av_extend_guts(pTHX_ AV *av, SSize_t key, SSize_t *maxp, SV ***allocp,
+             "panic: av_extend_guts() negative count (%" IVdf ")", (IV)key);
+ 
+     if (key > *maxp) {
+-        SSize_t ary_offset = *maxp + 1;
+-        SSize_t to_null = 0;
++        SSize_t ary_offset = *maxp + 1; /* Start NULL initialization
++                                         * from this element */
++        SSize_t to_null = 0; /* How many elements to Zero */
+         SSize_t newmax  = 0;
+ 
+         if (av && *allocp != *arrayp) { /* a shifted SV* array exists */
++
++            /* to_null will contain the number of elements currently
++             * shifted and about to be unshifted. If the array has not
++             * been shifted to the maximum possible extent, this will be
++             * a smaller number than (*maxp - AvFILLp(av)). */
+             to_null = *arrayp - *allocp;
++
+             *maxp += to_null;
+             ary_offset = AvFILLp(av) + 1;
+ 
+@@ -116,6 +123,13 @@ Perl_av_extend_guts(pTHX_ AV *av, SSize_t key, SSize_t *maxp, SV ***allocp,
+ 
+             if (key > *maxp - 10) {
+                 newmax = key + *maxp;
++
++                /* Zero everything above AvFILLp(av), which could be more
++                 * elements than have actually been shifted. If we don't
++                 * do this, trailing elements at the end of the resized
++                 * array may not be correctly initialized. */
++                to_null = *maxp - AvFILLp(av);
++
+                 goto resize;
+             }
+         } else if (*allocp) { /* a full SV* array exists */
+@@ -167,7 +181,9 @@ Perl_av_extend_guts(pTHX_ AV *av, SSize_t key, SSize_t *maxp, SV ***allocp,
+ #ifdef Perl_safesysmalloc_size
+           resized:
+ #endif
+-            to_null += newmax - *maxp;
++            to_null += newmax - *maxp; /* Initialize all new elements
++                                        * (newmax - *maxp) in addition to
++                                        * any previously specified */
+             *maxp = newmax;
+ 
+             /* See GH#18014 for discussion of when this might be needed: */
+@@ -194,7 +210,7 @@ Perl_av_extend_guts(pTHX_ AV *av, SSize_t key, SSize_t *maxp, SV ***allocp,
+              * don't get any special treatment here.
+              * See https://github.com/Perl/perl5/pull/18690 for more detail */
+             ary_offset = 0;
+-            to_null = *maxp+1;
++            to_null = *maxp+1; /* Initialize all new array elements */
+             goto zero;
+         }
+ 
+diff --git a/t/op/array.t b/t/op/array.t
+index 188bedfecd02..ae2ac32be525 100644
+--- t/op/array.t
++++ t/op/array.t
+@@ -6,7 +6,7 @@ BEGIN {
+     set_up_inc('.', '../lib');
+ }
+ 
+-plan (194);
++plan (195);
+ 
+ #
+ # @foo, @bar, and @ary are also used from tie-stdarray after tie-ing them
+@@ -686,4 +686,8 @@ $#a = -1; $#a++;
+        'holes passed to sub do not lose their position (aelem, mg)';
+ }
+ 
++# GH #21235
++fresh_perl_is('my @x;$x[0] = 1;shift @x;$x[22] = 1;$x[25] = 1;','',
++  {}, 'unshifting and growing an array initializes trailing elements');
++
+ "We're included by lib/Tie/Array/std.t so we need to return something true";
