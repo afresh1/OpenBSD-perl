@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 #	$OpenBSD$	#
 use v5.36;
-use warnings;
+use autodie;
 
 # Copyright (c) 2023 Andrew Hewus Fresh <afresh1@openbsd.org>
 #
@@ -19,11 +19,19 @@ use warnings;
 
 my $includes = '/usr/include';
 
+# Because perl uses a long for every syscall argument,
+# if we are building a syscall_emulator for use by perl,
+# taking that into account make things work more consistently
+# across different OpenBSD architectures.
+# Unfortunately there doesn't appear to be an easy way
+# to make everything work "the way it was".
+use constant PERL_LONG_ARGS => 1;
+
 # See also /usr/src/sys/kern/syscalls.master
 my %syscalls = parse_syscalls(
     "$includes/sys/syscall.h",
     "$includes/sys/syscallargs.h",
-);
+)->%*;
 delete $syscalls{MAXSYSCALL}; # not an actual function
 
 # The ordered list of all the headers we need
@@ -65,12 +73,11 @@ my @headers = qw<
 >;
 
 foreach my $header (@headers) {
-	my $file = "$includes/$header";
-	open my $fh, '<', $file or die "Unable to open $file: $!";
+	my $filename = "$includes/$header";
+	open my $fh, '<', $filename;
 	my $content = do { local $/; readline $fh };
 	close $fh;
 
-	# Look for matching syscalls in this header
 	foreach my $name (sort keys %syscalls) {
 		my $s = $syscalls{$name};
 		my $func_sig = find_func_sig($content, $name, $s);
@@ -89,9 +96,11 @@ foreach my $header (@headers) {
 say "/*\n * Generated from gen_syscall_emulator.pl\n */";
 say "#include <$_>" for @headers;
 print <<"EOL";
+#include "syscall_emulator.h"
 
 long
-syscall_emulator(int syscall, ...) {
+syscall_emulator(int syscall, ...)
+{
 	long ret = 0;
 	va_list args;
 	va_start(args, syscall);
@@ -120,12 +129,14 @@ foreach my $name (
 	if ($s{argtypes}) {
 		if (@{ $s{argtypes} } > 1) {
 			@defines = map {
-			    my $t = $_->{type};
-			    my $n = $_->{name};
-			    $n = "_$n" if $n eq $name; # link :-/
-			    push @args, $n;
-			    "$t $n = va_arg(args, $t);"
-			} @{ $s{argtypes} };
+				my $t = $_->{type};
+				my $n = $_->{name};
+				$n = "_$n" if $n eq $name; # link :-/
+				push @args, $n;
+				PERL_LONG_ARGS
+				    ? "$t $n = ($t)va_arg(args, long);"
+				    : "$t $n = va_arg(args, $t);"
+			    } @{ $s{argtypes} };
 		} else {
 			if (@{ $s{argtypes} }) {
 				$argname = " // " . join ', ',
@@ -153,13 +164,13 @@ foreach my $name (
 	say "${indent}                  $s{signature} <sys/syscall.h>"
 	    if $s{skip} && $s{skip} =~ /Mismatch/;
 
-	say "${indent}case $s{define}:"; # // $s{id}";
-	say "${indent}\t{" if @defines;
+	my $brace = @defines ? " {" : "";
+	say "${indent}case $s{define}:$brace"; # // $s{id}";
 	say "${indent}\t$_" for @defines;
 	#say "${indent}\t// $s{signature}$header";
 	say "${indent}\t$ret$name(" . join(', ', @args) . ");$argname";
-	say "${indent}\t}" if @defines;
 	say "${indent}\tbreak;";
+	say "${indent}}" if $brace;
 
 	say "\t */" if $s{skip};
 }
@@ -176,19 +187,21 @@ print <<"EOL";
 EOL
 
 
-sub parse_syscalls ($syscall, $args) {
-	my %s = parse_syscall_h($syscall);
+sub parse_syscalls($syscall, $args)
+{
+	my %s = parse_syscall_h($syscall)->%*;
 
-	my %a = parse_syscallargs_h($args);
+	my %a = parse_syscallargs_h($args)->%*;
 	$s{$_}{argtypes} = $a{$_} for grep { $a{$_} } keys %s;
 
-	return %s;
+	return \%s;
 }
 
-sub parse_syscall_h ($file) {
+sub parse_syscall_h($filename)
+{
 	my %s;
-	open my $fh, '<', $file or die "Unable to open $file: $!";
-	while ($_ = $fh->getline) {
+	open my $fh, '<', $filename;
+	while (readline $fh) {
 		if (m{^/\*
 		    \s+ syscall: \s+ "(?<name>[^"]+)"
 		    \s+	 ret: \s+ "(?<ret> [^"]+)"
@@ -196,14 +209,15 @@ sub parse_syscall_h ($file) {
 		    \s* \*/
 		  |
 		    ^\#define \s+ (?<define>SYS_(?<name>\S+)) \s+ (?<id>\d+)
-		}x) {
+		}x)
+		{
 			my $name        = $+{name};
 			$s{$name}{$_}   = $+{$_} for keys %+;
 			$s{$name}{args} = [ $+{args} =~ /"(.*?)"/g ]
 			    if exists $+{args};
 		}
 	}
-	close $fh or die "Unable to close $file: $!";
+	close $fh;
 
 	foreach my $name (keys %s) {
 		my %d = %{ $s{$name} };
@@ -227,40 +241,42 @@ sub parse_syscall_h ($file) {
 		#print "    $s{$name}{signature}\n";
 	}
 
-	return %s;
+	return \%s;
 }
 
-sub _parse_syscallarg ($fh) {
-	my @a;
-	while ($_ = $fh->getline) {
-		last if /^\s*\};\s*$/;
-		if (/syscallarg\( ( [^)]+  ) \) \s+ (\w+) \s* ;/x) {
-			push @a, { type => $1, name => $2 };
-		}
-	}
-	return \@a;
-}
+sub parse_syscallargs_h($filename)
+{
+	my %args;
 
-sub parse_syscallargs_h ($file) {
-	my %a;
-	open my $fh, '<', $file or die "Unable to open $file; $!";
-	while ($_ = $fh->getline) {
-		if (/^struct sys_(\w+)_args \{/) {
-			my $name = $1;
-			$a{$name} = _parse_syscallarg($fh);
+	open my $fh, '<', $filename;
+	while (readline $fh) {
+		if (my ($syscall) = /^struct \s+ sys_(\w+)_args \s+ \{/x) {
+			$args{$syscall} = [];
+			while (readline $fh) {
+				last if /^\s*\};\s*$/;
+				if (/syscallarg
+				    \(  (?<type> [^)]+ ) \)
+				    \s+ (?<name>   \w+ ) \s* ;
+				/x) {
+					push @{$args{$syscall}}, {%+};
+				}
+			}
 		}
 	}
 	close $fh;
-	return %a;
+
+	return \%args;
 }
 
-sub find_func_sig ($content, $name, $s) {
-	my $re = qr{^
-	    (?<ret> \S+ (?: [^\S\n]+ \S+)? ) [^\S\n]* \n?
-	    \b \Q$name\E \( (?<args> [^)]* ) \)
-	[^;]*;}xms;
+sub find_func_sig($content, $name, $s)
+{
+	my $re = $s->{re} //= qr{^
+		(?<ret> \S+ (?: [^\S\n]+ \S+)? ) [^\S\n]* \n?
+		\b \Q$name\E \( (?<args> [^)]* ) \)
+		[^;]*;
+	    }xms;
 
-	$content =~ /$re/ || return;
+	$content =~ /$re/ || return !!0;
 	my $ret  = $+{ret};
 	my $args = $+{args};
 
@@ -276,7 +292,7 @@ sub find_func_sig ($content, $name, $s) {
 	my %func_sig = ( ret => $ret, args => [ split /\s*,\s*/, $args ] );
 
 	return "$ret $name($args);" =~ s/\s+/ /gr
-	    unless sigs_match( $s, \%func_sig );
+	    unless sigs_match($s, \%func_sig);
 
 	return \%func_sig;
 }
@@ -285,28 +301,29 @@ sub find_func_sig ($content, $name, $s) {
 # Sometimes there are two ways to represent the same thing
 # and it seems the functions and the syscalls
 # differ a fair amount.
+sub types_match($l, $r)
 {
-my %m; BEGIN { %m = (
-    'unsigned long' => 'u_long',
-    'unsigned int'  => 'u_int',
-    __off_t         => 'off_t',
-    caddr_t         => 'char *',
-    pid_t           => 'int',
-    nfds_t          => 'u_int',
-    idtype_t        => 'int',
-    size_t          => 'u_int',
-    __size_t        => 'u_int',
-) }
-sub types_match ($l, $r) {
+	state %m = (
+	    caddr_t         => 'char *',
+	    idtype_t        => 'int',
+	    nfds_t          => 'u_int',
+	    __off_t         => 'off_t',
+	    pid_t           => 'int',
+	    __size_t        => 'u_long',
+	    size_t          => 'u_long',
+	    'unsigned int'  => 'u_int',
+	    'unsigned long' => 'u_long',
+	);
+
 	$l //= '__undef__';
 	$r //= '__undef__';
 
-	s/^volatile //     for $l, $r;
-	s/^const //        for $l, $r;
-	s/\s*\[\d*\]$/ \*/ for $l, $r;
+	s/\b volatile \s+//x  for $l, $r;
+	s/\b const    \s+//x  for $l, $r;
+	s/\s* \[\d*\] $/ \*/x for $l, $r;
 
 	my ($f, $s) = sort { length($a) <=> length($b) } $l, $r;
-	if (index($s,$f) == 0) {
+	if (index($s, $f) == 0) {
 		$s =~ s/^\Q$f\E\s*//;
 		if ( $s && $s =~ /^\w+$/ ) {
 			#warn "prefix ['$f', '$s']\n";
@@ -314,22 +331,18 @@ sub types_match ($l, $r) {
 		}
 	}
 
-	# my ($p_l, $p_r) = ($l, $r);
 	$l = $m{$l} //= $l;
 	$r = $m{$r} //= $r;
 
-	#warn "    $p_l [$l] $p_r [$r] <'$f' '$s'>\n";
-	# return and use the original "right" value
-	# as it's from the function header and closer to what we need.
 	return $l eq $r;
 }
-}
 
 
-# Tests whether two funciton signatures match,
+# Tests whether two function signatures match,
 # expected to be left from syscall.h, right from the appopriate header.
-sub sigs_match ($l, $r) {
-	return unless types_match( $l->{ret}, $l->{ret} );
+sub sigs_match($l, $r)
+{
+	return !!0 unless types_match( $l->{ret}, $l->{ret} );
 
 	my @l_args = @{ $l->{args} || [] };
 	my @r_args = @{ $r->{args} || [] };
@@ -339,9 +352,9 @@ sub sigs_match ($l, $r) {
 	}
 
 	for my $i ( 0 .. $#l_args ) {
-		return unless types_match( $l_args[$i], $r_args[$i] );
+		return !!0 unless types_match($l_args[$i], $r_args[$i]);
 		last if $l_args[$i] eq '...';
 	}
 
-	return 1;
+	return !!1;
 }

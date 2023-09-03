@@ -35,8 +35,10 @@ use constant {
 my $dir = File::Temp->newdir("syscall_emulator-XXXXXXXXX");
 {
 	local $ENV{PERL5LIB} = join ':', @INC;
-	system($^X, "../utils/h2ph", '-d', $dir,
-	    "/usr/include/sys/syscall.h");
+	open(my $fh, '-|', $^X, "../utils/h2ph", '-d', $dir,
+	    "/usr/include/sys/syscall.h") or die "h2ph: $!";
+	note <$fh>;
+	close($fh) or die $! ? "h2ph: $!" : "h2ph: $?";
 	local @INC = ("$dir/usr/include", "$dir");
 	require 'sys/syscall.ph';
 }
@@ -47,12 +49,12 @@ my $fd;
 my $out = "Hello World\n";
 my $in = "\0" x 32;
 my ($in_p, $in_v);
-my $sb = "\0\0\0\0";
+my $sb = "\0" x 4096;
 my $st_mode;
 
 my $perms = S_IRUSR|S_IWUSR|S_IRGRP|S_IROTH;
 
-plan tests => 13;
+plan tests => 17;
 
 ok(!
     (($fd = syscall(SYS_open(), $file, O_CREAT|O_WRONLY, $perms)) < 0),
@@ -101,6 +103,26 @@ ok(!
     "lseek on fd"
 );
 
+ok(!
+    (syscall(SYS_pread(), $fd, $in = "\0" x 32, 5, 3) < 0),
+    "pread on fd"
+);
+
+$in = unpack 'Z*', $in;
+
+ok( length($in) == 5 && ($in eq substr $out, 3, 5),
+    "Read written content from $filename ($in)"
+);
+
+ok(!
+    (syscall(SYS_lseek(), $fd, 0, SEEK_SET) < 0),
+    "lseek on fd"
+);
+
+ok(!
+    (syscall(SYS_lseek(), $fd, 0, SEEK_SET) < 0),
+    "lseek on fd"
+);
 
 ok(!
     (($in_p = syscall(SYS_mmap(), undef, length($out), PROT_READ, MAP_PRIVATE,
