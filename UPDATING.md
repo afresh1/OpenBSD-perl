@@ -44,6 +44,12 @@ This is still an art, not as yet a complete doc, but a start.
   * cd .. && rm -rf -- ./*
   * use bin/test_patches to make sure it works
 * Once all the patches have been regenerated run the `update_unicore` script
+  * To find interesting bits, pipe the diff through:
+    | grep -ve '^ ' -e '^[+-]diff ' -e '[+-]\+\+\+ ' -e '[+-]\-\-\-' -e '^@@ '
+  * First commit everything
+  * Then you can `git reset HEAD~ patches && git checkout patches && git reset`
+  * and `git checkout -p` and find those interesting hunks and say yes
+  * then amend the commit to remove the uninteresting chunks
 * Eventually everything will build and tests will pass.
 * Check to see if a build or test run causes any new /var/log/messages
 * After this, use `make_patched_perl` to build a patched perl directory
