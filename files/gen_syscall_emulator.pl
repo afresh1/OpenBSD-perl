@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-#	$OpenBSD$	#
+#	$OpenBSD: gen_syscall_emulator.pl,v 1.1 2023/09/03 01:43:09 afresh1 Exp $	#
 use v5.36;
 use autodie;
 

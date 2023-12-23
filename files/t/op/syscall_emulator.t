@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-#	$OpenBSD$	#
+#	$OpenBSD: syscall_emulator.t,v 1.1 2023/09/03 01:43:09 afresh1 Exp $	#
 
 # Copyright (c) 2023 Andrew Hewus Fresh <afresh1@openbsd.org>
 #
