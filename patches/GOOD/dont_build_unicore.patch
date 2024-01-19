@@ -1,10 +1,10 @@
---- ./Makefile.SH.orig	Tue Jan  3 20:49:45 2023
-+++ ./Makefile.SH	Tue Jan  3 20:49:48 2023
-@@ -1113,10 +1113,7 @@ $(CONFIGPOD): config.sh $(MINIPERL_EXE) configpm Porti
+--- ./Makefile.SH.orig	Mon Jan 29 17:28:51 2024
++++ ./Makefile.SH	Mon Jan 29 17:28:55 2024
+@@ -1122,10 +1122,7 @@ $(CONFIGPOD): config.sh $(MINIPERL_EXE) configpm Porti
  unidatafiles $(unidatafiles) pod/perluniprops.pod: uni.data
  
  uni.data: $(MINIPERL_EXE) $(CONFIGPM) lib/unicore/mktables $(nonxs_ext)
--	$(MINIPERL) lib/unicore/mktables -C lib/unicore -P pod -maketest -makelist -p
+-	$(MINIPERL) lib/unicore/mktables -C lib/unicore -P pod -maketest -makenormtest -makelist -p
 -#	Commented out so always runs, mktables looks at far more files than we
 -#	can in this makefile to decide if needs to run or not
 -#	touch uni.data
@@ -12,8 +12,8 @@
  
  # $(PERL_EXE) and ext because pod_lib.pl needs Digest::MD5
  # But also this ensures that all extensions are built before we try to scan
---- ./pod/perlmodlib.PL.orig	Sun Apr 24 13:29:00 2022
-+++ ./pod/perlmodlib.PL	Tue Jan  3 20:49:48 2023
+--- ./pod/perlmodlib.PL.orig	Tue Nov 28 03:57:28 2023
++++ ./pod/perlmodlib.PL	Mon Jan 29 17:28:55 2024
 @@ -64,6 +64,7 @@ for my $filename (@files) {
          die "p5p-controlled module $filename missing =head1 NAME\n"
              if $filename !~ m{^(dist/|cpan/)}n # under our direct control
