@@ -1,6 +1,6 @@
---- ./installperl.orig	Sat Dec 17 13:03:59 2022
-+++ ./installperl	Sat Dec 17 13:04:04 2022
-@@ -258,6 +258,10 @@ if ($Is_W32 or $Is_Cygwin) {
+--- ./installperl.orig	Tue Nov 28 03:57:28 2023
++++ ./installperl	Sun Dec 24 10:04:53 2023
+@@ -260,6 +260,10 @@ if ($Is_W32 or $Is_Cygwin) {
      $packlist->{"$Config{installbin}/$perldll"} = { type => 'file' };
  } # if ($Is_W32 or $Is_Cygwin)
  
@@ -11,7 +11,7 @@
  # First we install the version-numbered executables.
  
  if ($Is_VMS) {
-@@ -277,11 +281,7 @@ if ($Is_VMS) {
+@@ -279,11 +283,7 @@ if ($Is_VMS) {
      }
  }
  else {

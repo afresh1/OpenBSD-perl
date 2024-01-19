@@ -1,5 +1,5 @@
---- ./dist/threads-shared/t/stress.t.orig	Mon Dec 28 08:57:44 2020
-+++ ./dist/threads-shared/t/stress.t	Thu Dec  8 11:40:53 2022
+--- ./dist/threads-shared/t/stress.t.orig	Tue Nov 28 03:57:28 2023
++++ ./dist/threads-shared/t/stress.t	Wed Jan  3 19:54:33 2024
 @@ -83,7 +83,7 @@ use threads::shared;
          print "# Looping for $busycount iterations should take about 0.025s\n";
      }
@@ -9,8 +9,8 @@
  
      my $mutex = 1;
      share($mutex);
---- ./t/op/getppid.t.orig	Mon Feb 18 01:59:23 2019
-+++ ./t/op/getppid.t	Thu Dec  8 11:40:53 2022
+--- ./t/op/getppid.t.orig	Tue Nov 28 03:57:28 2023
++++ ./t/op/getppid.t	Wed Jan  3 19:54:33 2024
 @@ -100,7 +100,7 @@ sub fork_and_retrieve {
  		}
  	    } else {
@@ -20,14 +20,14 @@
  	    }
  	    my $ppid2 = getppid();
  	    print $w "$how,$ppid1,$ppid2\n";
---- ./t/re/speed.t.orig	Mon Dec 28 08:57:44 2020
-+++ ./t/re/speed.t	Thu Dec  8 11:40:53 2022
-@@ -44,7 +44,7 @@ sub run_tests {
+--- ./t/re/speed.t.orig	Tue Nov 28 03:57:28 2023
++++ ./t/re/speed.t	Wed Jan  3 19:54:33 2024
+@@ -42,7 +42,7 @@ run_tests() unless caller;
+ sub run_tests {
  
-     watchdog(($ENV{PERL_TEST_TIME_OUT_FACTOR} || 1)
-              * (($::running_as_thread && $::running_as_thread)
--                ? 150 : 225));
-+                ? 150 : 540));
+ 
+-    watchdog((($::running_as_thread && $::running_as_thread) ? 150 : 225));
++    watchdog((($::running_as_thread && $::running_as_thread) ? 150 : 540));
  
      {
          # [perl #120446]

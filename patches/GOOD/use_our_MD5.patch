@@ -1,15 +1,15 @@
---- ./cpan/Digest-MD5/MD5.xs.orig	Mon Dec 28 08:57:43 2020
-+++ ./cpan/Digest-MD5/MD5.xs	Mon Dec 26 17:56:36 2022
-@@ -39,6 +39,8 @@ extern "C" {
+--- ./cpan/Digest-MD5/MD5.xs.orig	Tue Nov 28 03:57:27 2023
++++ ./cpan/Digest-MD5/MD5.xs	Wed Jan  3 14:49:28 2024
+@@ -36,6 +36,8 @@
  #include "EXTERN.h"
  #include "perl.h"
  #include "XSUB.h"
 +#include <sys/types.h>
 +#include <md5.h>
- #ifdef __cplusplus
- }
- #endif
-@@ -88,46 +90,6 @@ static MAGIC *THX_sv_magicext(pTHX_ SV *sv, SV *obj, i
+ 
+ #ifndef PERL_UNUSED_VAR
+ # define PERL_UNUSED_VAR(x) ((void)x)
+@@ -82,46 +84,6 @@ static MAGIC *THX_sv_magicext(pTHX_ SV *sv, SV *obj, i
  # define SvPVbyte(sv, lp) (sv_utf8_downgrade((sv), 0), SvPV((sv), (lp)))
  #endif
  
@@ -56,7 +56,7 @@
  #if defined(USE_ITHREADS) && defined(MGf_DUP)
  STATIC int dup_md5_ctx(pTHX_ MAGIC *mg, CLONE_PARAMS *params)
  {
-@@ -164,300 +126,6 @@ STATIC const struct {
+@@ -158,300 +120,6 @@ STATIC const struct {
  };
  #endif
  
@@ -357,7 +357,7 @@
  static MD5_CTX* get_md5_ctx(pTHX_ SV* sv)
  {
      MAGIC *mg;
-@@ -638,7 +306,7 @@ addfile(self, fh)
+@@ -632,7 +300,7 @@ addfile(self, fh)
  	InputStream fh
      PREINIT:
  	MD5_CTX* context = get_md5_ctx(aTHX_ self);
@@ -366,7 +366,7 @@
  #ifdef USE_HEAP_INSTEAD_OF_STACK
  	unsigned char* buffer;
  #else
-@@ -703,14 +371,12 @@ context(ctx, ...)
+@@ -697,14 +365,12 @@ context(ctx, ...)
      PPCODE:
  	if (items > 2) {
  	    STRLEN len;
@@ -386,7 +386,7 @@
  	    if (items == 4) {
  		buf = (unsigned char *)(SvPV(ST(3), len));
  		MD5Update(ctx, buf, len);
-@@ -720,21 +386,22 @@ context(ctx, ...)
+@@ -714,21 +380,22 @@ context(ctx, ...)
  	    XSRETURN(0);
  	}
  
@@ -418,8 +418,8 @@
  	XSRETURN(3);
  
  void
---- ./cpan/Digest-MD5/t/context.t.orig	Mon Dec 26 17:56:36 2022
-+++ ./cpan/Digest-MD5/t/context.t	Mon Dec 26 17:56:36 2022
+--- ./cpan/Digest-MD5/t/context.t.orig	Wed Jan  3 14:49:28 2024
++++ ./cpan/Digest-MD5/t/context.t	Wed Jan  3 14:49:28 2024
 @@ -0,0 +1,43 @@
 +#!/usr/bin/perl
 +use strict;
@@ -464,25 +464,25 @@
 +}
 +
 +done_testing;
---- ./cpan/Digest-MD5/t/files.t.orig	Mon Dec 28 08:57:43 2020
-+++ ./cpan/Digest-MD5/t/files.t	Mon Dec 26 17:56:36 2022
+--- ./cpan/Digest-MD5/t/files.t.orig	Tue Nov 28 03:57:27 2023
++++ ./cpan/Digest-MD5/t/files.t	Wed Jan  3 14:49:28 2024
 @@ -22,7 +22,7 @@ EOT
      # This is the output of: 'md5sum README MD5.xs rfc1321.txt'
      $EXPECT = <<EOT;
  2f93400875dbb56f36691d5f69f3eba5  README
--3fce99bf3f4df26d65843a6990849df0  MD5.xs
-+5956d385c276e47faebef391177ee1d3  MD5.xs
+-f8549bd328fa712f4af41430738c285a  MD5.xs
++16d90fd139c5eae51f786daa1ea6eb24  MD5.xs
  754b9db19f79dbc4992f7166eb0f37ce  rfc1321.txt
  EOT
  }
---- ./t/porting/customized.dat.orig	Mon Dec 26 17:56:31 2022
-+++ ./t/porting/customized.dat	Mon Dec 26 17:56:36 2022
-@@ -1,6 +1,8 @@
- # Regenerate this file using:
- #     cd t
- #     ./perl -I../lib porting/customized.t --regen
-+Digest::MD5 cpan/Digest-MD5/MD5.xs 3d56a25a9eaed20712d50223c19dd193444072bd
-+Digest::MD5 cpan/Digest-MD5/t/files.t 889559c1419ab72f32a24160095018a3240e82ba
+--- ./t/porting/customized.dat.orig	Wed Jan  3 14:49:14 2024
++++ ./t/porting/customized.dat	Wed Jan  3 14:49:28 2024
+@@ -6,7 +6,7 @@ Compress::Raw::Bzip2 cpan/Compress-Raw-Bzip2/Bzip2.xs 
+ Compress::Raw::Zlib cpan/Compress-Raw-Zlib/lib/Compress/Raw/Zlib.pm 4198f92e2880d36d6cef4f1be216005b6738ada8
+ Compress::Raw::Zlib cpan/Compress-Raw-Zlib/Zlib.xs 2ed95faab364703f6b93f7ffff6e0f2a2b2adedd
+ Digest::MD5 cpan/Digest-MD5/MD5.pm cf2fd9d327f3e314e9e66bb6ecb7a62b4ec72767
+-Digest::MD5 cpan/Digest-MD5/MD5.xs dc40839d25ba5e2d6f42fc9b81b409f1d0dbfb0e
++Digest::MD5 cpan/Digest-MD5/MD5.xs 288775759d20ddfb0a0cb02f2ea670afefe2ce6c
  ExtUtils::Constant cpan/ExtUtils-Constant/lib/ExtUtils/Constant/Base.pm 7560e1018f806db5689dee78728ccb8374aea741
  ExtUtils::Constant cpan/ExtUtils-Constant/t/Constant.t 165e9c7132b003fd192d32a737b0f51f9ba4999e
- Filter::Util::Call pod/perlfilter.pod 545265af2f45741a0e59eecdd0cfc0c9e490c1e8
+ Filter::Util::Call pod/perlfilter.pod d1e217d0bc6083755b9017050b8724472c58275a

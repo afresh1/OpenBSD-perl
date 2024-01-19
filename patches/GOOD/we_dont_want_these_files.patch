@@ -1,5 +1,5 @@
---- ./t/porting/dual-life.t.orig	Wed Feb 23 18:35:27 2022
-+++ ./t/porting/dual-life.t	Fri Dec  9 09:29:00 2022
+--- ./t/porting/dual-life.t.orig	Tue Nov 28 03:57:28 2023
++++ ./t/porting/dual-life.t	Tue Dec 26 13:55:42 2023
 @@ -24,6 +24,12 @@ use File::Spec::Functions;
  # Exceptions that are found in dual-life bin dirs but aren't
  # installed by default; some occur only during testing:
@@ -13,8 +13,8 @@
    \.\./cpan/Encode/bin/u(?:cm(?:2table|lint|sort)|nidump)
     |
    \.\./cpan/Module-(?:Metadata|Build)
---- ./utils/Makefile.PL.orig	Mon Dec 28 08:57:44 2020
-+++ ./utils/Makefile.PL	Fri Dec  9 09:29:00 2022
+--- ./utils/Makefile.PL.orig	Tue Nov 28 03:57:28 2023
++++ ./utils/Makefile.PL	Tue Dec 26 13:55:42 2023
 @@ -35,9 +35,9 @@ print $fh <<'EOT';
  # Files to be built with variable substitution after miniperl is
  # available.  Dependencies handled manually below (for now).
@@ -63,8 +63,8 @@
  
  streamzip:	streamzip.PL ../config.sh
  
---- ./utils/perlbug.PL.orig	Mon Dec 28 08:57:44 2020
-+++ ./utils/perlbug.PL	Fri Dec  9 09:29:00 2022
+--- ./utils/perlbug.PL.orig	Tue Nov 28 03:57:28 2023
++++ ./utils/perlbug.PL	Tue Dec 26 13:55:42 2023
 @@ -354,13 +354,12 @@ This program provides an easy way to send a thank-you 
  authors and maintainers of perl.
  
@@ -80,7 +80,7 @@
  
  The GitHub issue tracker at https://github.com/Perl/perl5/issues is the
  best place to submit your report so it can be tracked and resolved.
-@@ -1267,8 +1266,6 @@ S<[ B<-S> ]> S<[ B<-t> ]>  S<[ B<-d> ]>  S<[ B<-h> ]> 
+@@ -1289,8 +1288,6 @@ S<[ B<-S> ]> S<[ B<-t> ]>  S<[ B<-d> ]>  S<[ B<-h> ]> 
  B<perlbug> S<[ B<-v> ]> S<[ B<-r> I<returnaddress> ]>
   S<[ B<-ok> | B<-okay> | B<-nok> | B<-nokay> ]>
  
@@ -89,7 +89,7 @@
  =head1 DESCRIPTION
  
  
-@@ -1404,8 +1401,8 @@ by Perl's test suite).
+@@ -1426,8 +1423,8 @@ by Perl's test suite).
  
  =item Can you use C<perlbug> to submit a thank-you note?
  
@@ -100,8 +100,8 @@
  smile. 
  
  =back
---- ./utils.lst.orig	Mon Dec 28 08:57:44 2020
-+++ ./utils.lst	Fri Dec  9 09:29:00 2022
+--- ./utils.lst.orig	Tue Nov 28 03:57:28 2023
++++ ./utils.lst	Tue Dec 26 13:55:42 2023
 @@ -9,20 +9,14 @@ utils/encguess
  utils/h2ph
  utils/h2xs

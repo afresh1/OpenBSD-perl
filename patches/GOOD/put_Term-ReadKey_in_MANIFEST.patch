@@ -5,8 +5,8 @@ millert@ suggested Term::ReadKey, which looks indeed like a good choice.
 
 Here's the glue + distrib from cpan. Comments welcome.
 
---- ./regen/lib_cleanup.pl.orig	Thu Apr 29 07:35:34 2021
-+++ ./regen/lib_cleanup.pl	Fri Dec 23 19:17:48 2022
+--- ./regen/lib_cleanup.pl.orig	Tue Nov 28 03:57:28 2023
++++ ./regen/lib_cleanup.pl	Mon Jan  1 14:56:11 2024
 @@ -74,6 +74,12 @@ foreach my $file (@ext) {
                  $package = $1;
                  last;
@@ -20,9 +20,9 @@ Here's the glue + distrib from cpan. Comments welcome.
          }
          close $fh
              or die "Can't close $file: $!";
---- ./MANIFEST.orig	Fri Dec 23 19:17:46 2022
-+++ ./MANIFEST	Fri Dec 23 19:17:49 2022
-@@ -2132,6 +2132,17 @@ cpan/Term-ANSIColor/t/module/true-color.t
+--- ./MANIFEST.orig	Mon Jan  1 14:56:07 2024
++++ ./MANIFEST	Mon Jan  1 14:56:14 2024
+@@ -2325,6 +2325,17 @@ cpan/Term-ANSIColor/t/module/true-color.t
  cpan/Term-ANSIColor/t/taint/basic.t
  cpan/Term-Cap/Cap.pm			Perl module supporting termcap usage
  cpan/Term-Cap/test.pl			See if Term::Cap works
@@ -33,15 +33,15 @@ Here's the glue + distrib from cpan. Comments welcome.
 +cpan/Term-ReadKey/Makefile.PL			Term::ReadKey
 +cpan/Term-ReadKey/ppport.h			Term::ReadKey
 +cpan/Term-ReadKey/ReadKey.xs			Term::ReadKey
-+cpan/Term-ReadKey/ReadKey.pm.PL		Term::ReadKey
++cpan/Term-ReadKey/ReadKey.pm.PL			Term::ReadKey
 +cpan/Term-ReadKey/README			Term::ReadKey
 +cpan/Term-ReadKey/t/01_basic.t			Term::ReadKey
 +cpan/Term-ReadKey/t/02_terminal_functions.t	Term::ReadKey
- cpan/Test-Harness/bin/prove				The prove harness utility
- cpan/Test-Harness/lib/App/Prove.pm			Gubbins for the prove utility
- cpan/Test-Harness/lib/App/Prove/State.pm		Gubbins for the prove utility
---- ./Makefile.SH.orig	Fri Dec 23 19:17:45 2022
-+++ ./Makefile.SH	Fri Dec 23 19:17:48 2022
+ cpan/Test-Harness/bin/prove					The prove harness utility
+ cpan/Test-Harness/lib/App/Prove.pm				Gubbins for the prove utility
+ cpan/Test-Harness/lib/App/Prove/State.pm			Gubbins for the prove utility
+--- ./Makefile.SH.orig	Mon Jan  1 14:56:07 2024
++++ ./Makefile.SH	Mon Jan  1 14:56:11 2024
 @@ -209,6 +209,7 @@ extra_dep='
  cpan/Pod-Simple/pm_to_blib: dist/if/pm_to_blib
  ext/Pod-Functions/pm_to_blib: cpan/Pod-Simple/pm_to_blib cpan/Pod-Escapes/pm_to_blib pod/perlfunc.pod

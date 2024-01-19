@@ -1,6 +1,6 @@
---- ./Configure.orig	Thu May 19 17:01:22 2022
-+++ ./Configure	Wed Dec  7 11:54:19 2022
-@@ -5447,6 +5447,25 @@ default|recommended)
+--- ./Configure.orig	Tue Nov 28 03:57:27 2023
++++ ./Configure	Sun Dec 24 13:39:50 2023
+@@ -5452,6 +5452,25 @@ default|recommended)
  		eval $checkccflag
  		;;
  	esac

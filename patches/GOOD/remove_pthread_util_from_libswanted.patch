@@ -16,9 +16,9 @@ Philip
 Index: hints/openbsd.sh
 ===================================================================
 RCS file: /cvs/src/gnu/usr.bin/perl/hints/openbsd.sh,v
---- ./hints/openbsd.sh.orig	Sat Dec 24 14:58:07 2022
-+++ ./hints/openbsd.sh	Sat Dec 24 14:58:09 2022
-@@ -96,6 +96,9 @@ esac
+--- ./hints/openbsd.sh.orig	Tue Nov 28 03:57:28 2023
++++ ./hints/openbsd.sh	Tue Dec 26 04:49:36 2023
+@@ -84,6 +84,9 @@ esac
  # around for old NetBSD binaries.
  libswanted=`echo $libswanted | sed 's/ crypt / /'`
  
@@ -28,7 +28,7 @@ RCS file: /cvs/src/gnu/usr.bin/perl/hints/openbsd.sh,v
  # Configure can't figure this out non-interactively
  d_suidsafe=$define
  
-@@ -153,6 +156,9 @@ $define|true|[yY]*)
+@@ -122,6 +125,9 @@ $define|true|[yY]*)
          	# Broken up to OpenBSD 3.6, fixed in OpenBSD 3.7
  		d_getservbyname_r=$undef ;;
  	esac

@@ -12,9 +12,9 @@ Index: perl.c
 RCS file: /home/cvs/src/gnu/usr.bin/perl/perl.c,v
 retrieving revision 1.25
 diff -u -p -u -r1.25 perl.c
---- ./perl.c.orig	Sat May 21 14:26:59 2022
-+++ ./perl.c	Wed Dec  7 01:51:08 2022
-@@ -2025,6 +2025,8 @@ S_Internals_V(pTHX_ CV *cv)
+--- ./perl.c.orig	Tue Nov 28 03:57:28 2023
++++ ./perl.c	Sat Dec 23 23:20:11 2023
+@@ -2108,6 +2108,8 @@ S_Internals_V(pTHX_ CV *cv)
  #  endif
  #endif
  

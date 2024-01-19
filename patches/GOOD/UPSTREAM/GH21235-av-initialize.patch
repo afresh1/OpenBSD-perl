@@ -31,9 +31,9 @@ Closes #21235
 
 diff --git a/av.c b/av.c
 index d9868f44078b..1a8d33b6ac51 100644
---- av.c
-+++ av.c
-@@ -103,12 +103,19 @@ Perl_av_extend_guts(pTHX_ AV *av, SSize_t key, SSize_t *maxp, SV ***allocp,
+--- ./av.c.orig	Tue Nov 28 03:57:27 2023
++++ ./av.c	Sun Dec 24 04:42:35 2023
+@@ -103,12 +103,19 @@ Perl_av_extend_guts(pTHX_ AV *av, SSize_t key, SSize_t
              "panic: av_extend_guts() negative count (%" IVdf ")", (IV)key);
  
      if (key > *maxp) {
@@ -55,7 +55,7 @@ index d9868f44078b..1a8d33b6ac51 100644
              *maxp += to_null;
              ary_offset = AvFILLp(av) + 1;
  
-@@ -116,6 +123,13 @@ Perl_av_extend_guts(pTHX_ AV *av, SSize_t key, SSize_t *maxp, SV ***allocp,
+@@ -116,6 +123,13 @@ Perl_av_extend_guts(pTHX_ AV *av, SSize_t key, SSize_t
  
              if (key > *maxp - 10) {
                  newmax = key + *maxp;
@@ -69,7 +69,7 @@ index d9868f44078b..1a8d33b6ac51 100644
                  goto resize;
              }
          } else if (*allocp) { /* a full SV* array exists */
-@@ -167,7 +181,9 @@ Perl_av_extend_guts(pTHX_ AV *av, SSize_t key, SSize_t *maxp, SV ***allocp,
+@@ -167,7 +181,9 @@ Perl_av_extend_guts(pTHX_ AV *av, SSize_t key, SSize_t
  #ifdef Perl_safesysmalloc_size
            resized:
  #endif
@@ -80,7 +80,7 @@ index d9868f44078b..1a8d33b6ac51 100644
              *maxp = newmax;
  
              /* See GH#18014 for discussion of when this might be needed: */
-@@ -194,7 +210,7 @@ Perl_av_extend_guts(pTHX_ AV *av, SSize_t key, SSize_t *maxp, SV ***allocp,
+@@ -194,7 +210,7 @@ Perl_av_extend_guts(pTHX_ AV *av, SSize_t key, SSize_t
               * don't get any special treatment here.
               * See https://github.com/Perl/perl5/pull/18690 for more detail */
              ary_offset = 0;
@@ -89,10 +89,8 @@ index d9868f44078b..1a8d33b6ac51 100644
              goto zero;
          }
  
-diff --git a/t/op/array.t b/t/op/array.t
-index 188bedfecd02..ae2ac32be525 100644
---- t/op/array.t
-+++ t/op/array.t
+--- ./t/op/array.t.orig	Tue Nov 28 03:57:28 2023
++++ ./t/op/array.t	Sun Dec 24 04:42:35 2023
 @@ -6,7 +6,7 @@ BEGIN {
      set_up_inc('.', '../lib');
  }
@@ -102,12 +100,13 @@ index 188bedfecd02..ae2ac32be525 100644
  
  #
  # @foo, @bar, and @ary are also used from tie-stdarray after tie-ing them
-@@ -686,4 +686,8 @@ $#a = -1; $#a++;
+@@ -685,5 +685,9 @@ $#a = -1; $#a++;
+     is "[@a]", "[7 3 1]",
         'holes passed to sub do not lose their position (aelem, mg)';
  }
- 
++
 +# GH #21235
 +fresh_perl_is('my @x;$x[0] = 1;shift @x;$x[22] = 1;$x[25] = 1;','',
 +  {}, 'unshifting and growing an array initializes trailing elements');
-+
+ 
  "We're included by lib/Tie/Array/std.t so we need to return something true";

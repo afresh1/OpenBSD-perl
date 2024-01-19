@@ -1,5 +1,5 @@
---- ./installperl.orig	Fri Dec 23 09:57:35 2022
-+++ ./installperl	Fri Dec 23 09:57:39 2022
+--- ./installperl.orig	Mon Jan 29 17:46:13 2024
++++ ./installperl	Mon Jan 29 17:46:52 2024
 @@ -72,7 +72,7 @@ $opts{destdir} = '';
      my $usage = 0;
      if (!GetOptions(\%opts, 'notify|n', 'strip|s', 'silent|S',
@@ -26,7 +26,7 @@
  
  $versiononly = 1 if $Config{versiononly} && !defined $versiononly;
  my (@scripts, @tolink);
-@@ -508,6 +512,9 @@ if (!$opts{nopods} && (!$versiononly || ($installprivl
+@@ -510,6 +514,9 @@ if (!$opts{nopods} && (!$versiononly || ($installprivl
  
  
  $packlist->write() unless $opts{notify};
@@ -36,7 +36,7 @@
  print "  Installation complete\n" if $opts{verbose};
  
  exit 0;
-@@ -546,6 +553,7 @@ sub safe_unlink {
+@@ -548,6 +555,7 @@ sub safe_unlink {
  
  sub copy {
      my($from,$to) = @_;
@@ -44,7 +44,7 @@
  
      my $xto = $to;
      $xto =~ s/^\Q$opts{destdir}\E//;
-@@ -553,12 +561,15 @@ sub copy {
+@@ -555,12 +563,15 @@ sub copy {
  	unless $opts{silent};
      print "  creating new version of $xto\n"
  	if $Is_VMS and -e $to and !$opts{silent};
@@ -62,7 +62,7 @@
      $packlist->{$xto} = { type => 'file' };
  }
  
-@@ -569,6 +580,8 @@ sub install {
+@@ -571,6 +582,8 @@ sub install {
      my $cmd = join(' ', @installcmd);
      $cmd .= " -m $mode" if $mode;
      $cmd .= " -s" if $opts{strip};
@@ -71,8 +71,8 @@
      $cmd .= " $from $to";
      $xto =~ s/^\Q$opts{destdir}\E// if $opts{destdir};
      print $opts{verbose} ? "  install $from $xto\n" : "  $xto\n" unless $opts{silent};
---- ./install_lib.pl.orig	Tue Nov  2 11:05:59 2021
-+++ ./install_lib.pl	Fri Dec 23 09:57:39 2022
+--- ./install_lib.pl.orig	Mon Jan 29 17:46:13 2024
++++ ./install_lib.pl	Mon Jan 29 17:46:25 2024
 @@ -6,7 +6,7 @@
  use strict;
  use vars qw($Is_VMS $Is_W32 $Is_OS2 $Is_Cygwin $Is_Darwin $Is_AmigaOS
@@ -119,9 +119,9 @@
  }
  
  sub unixtoamiga
---- ./cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Unix.pm.orig	Fri Jan 14 06:22:08 2022
-+++ ./cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Unix.pm	Fri Dec 23 09:57:39 2022
-@@ -2225,7 +2225,8 @@ Called by init_main.  Initializes PERL_*
+--- ./cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Unix.pm.orig	Mon Jan 29 17:46:13 2024
++++ ./cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Unix.pm	Mon Jan 29 17:46:25 2024
+@@ -2229,7 +2229,8 @@ Called by init_main.  Initializes PERL_*
  sub init_PERM {
      my($self) = shift;
  
@@ -131,8 +131,8 @@
      $self->{PERM_RW}  = 644  unless defined $self->{PERM_RW};
      $self->{PERM_RWX} = 755  unless defined $self->{PERM_RWX};
  
---- ./cpan/Sys-Syslog/Makefile.PL.orig	Mon Feb 18 01:59:21 2019
-+++ ./cpan/Sys-Syslog/Makefile.PL	Fri Dec 23 09:57:39 2022
+--- ./cpan/Sys-Syslog/Makefile.PL.orig	Mon Jan 29 17:46:13 2024
++++ ./cpan/Sys-Syslog/Makefile.PL	Mon Jan 29 17:46:25 2024
 @@ -14,7 +14,7 @@ if ($] < 5.008) {
  }
  
@@ -142,8 +142,8 @@
  
  # virtual paths given to EU::MM
  my %virtual_path = ( 'Syslog.pm' => '$(INST_LIBDIR)/Syslog.pm' );
---- ./cpan/ExtUtils-Install/lib/ExtUtils/Install.pm.orig	Mon Dec 28 08:57:43 2020
-+++ ./cpan/ExtUtils-Install/lib/ExtUtils/Install.pm	Fri Dec 23 09:57:39 2022
+--- ./cpan/ExtUtils-Install/lib/ExtUtils/Install.pm.orig	Mon Jan 29 17:46:13 2024
++++ ./cpan/ExtUtils-Install/lib/ExtUtils/Install.pm	Mon Jan 29 17:46:25 2024
 @@ -104,6 +104,7 @@ $INSTALL_QUIET = 1
        $ENV{MAKEFLAGS} =~ /\b(s|silent|quiet)\b/);
  

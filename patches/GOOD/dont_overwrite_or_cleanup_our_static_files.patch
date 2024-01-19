@@ -1,6 +1,6 @@
---- ./Makefile.SH.orig	Sat May 21 14:27:09 2022
-+++ ./Makefile.SH	Thu Dec 15 19:21:16 2022
-@@ -496,7 +496,7 @@ shextract=`SH_to_target $SH`
+--- ./Makefile.SH.orig	Tue Jan  2 16:44:59 2024
++++ ./Makefile.SH	Tue Jan  2 16:45:02 2024
+@@ -497,7 +497,7 @@ shextract=`SH_to_target $SH`
  ## In the following dollars and backticks do not need the extra backslash.
  $spitshell >>$Makefile <<!GROK!THIS!
  
@@ -9,7 +9,7 @@
  
  # Files to be built with variable substitution before miniperl
  # is available.
-@@ -672,16 +672,17 @@ $(MANIFEST_SRT):	MANIFEST $(PERL_EXE)
+@@ -682,16 +682,17 @@ $(MANIFEST_SRT):	MANIFEST $(PERL_EXE)
  
  .PHONY: all utilities
  
@@ -34,7 +34,7 @@
  !NO!SUBS!
  
  # Making utilities requires Cwd.  If we have dynamic
-@@ -1362,7 +1363,7 @@ _mopup:
+@@ -1372,7 +1373,7 @@ _mopup:
  	-rm -f *perl.xok
  	-rm -f cygwin.c libperl*.def libperl*.dll cygperl*.dll *.exe.stackdump
  	-rm -f $(PERL_EXE) $(MINIPERL_EXE) $(LIBPERL) libperl.* microperl
@@ -43,35 +43,35 @@
  
  _cleaner1:
  	-cd os2; rm -f Makefile
---- ./MANIFEST.orig	Sat May 21 14:27:09 2022
-+++ ./MANIFEST	Thu Dec 15 19:21:17 2022
-@@ -20,6 +20,7 @@ cflags.SH		A script that emits C compilation flags per
- Changes			Describe how to peruse changes between releases
- charclass_invlists.h	Compiled-in inversion lists
- CODE_OF_CONDUCT.md	Information on where to find the Standards of Conduct
-+config.over		Site-specific overrides for Configure defaults
- config_h.SH		Produces config.h
- configpm		Produces lib/Config.pm
- Configure		Portability tool
-@@ -4732,6 +4733,7 @@ fakesdio.h			stdio in terms of PerlIO
- feature.h			Feature header
- form.h				Public declarations for formats
- generate_uudmap.c		Generate uudmap.h, the uuencode decoding map
-+git_version.h			Pre-generated git_version.h for OpenBSD
- globals.c			File to declare global symbols (for shared library)
- globvar.sym			Global variables that need hiding when embedded
- gv.c				Glob value code
-@@ -4877,6 +4879,7 @@ lib/Class/Struct.t		See if Class::Struct works
- lib/Config.t			See if Config works
- lib/Config/Extensions.pm	Convenient hash lookup for built extensions
- lib/Config/Extensions.t		See if Config::Extensions works
-+lib/Config_git.pl		Pre-generated Config_git.pl for OpenBSD
- lib/CORE.pod			document the CORE namespace
- lib/DB.pm			Debugger API (draft)
- lib/DB.t			See if DB works
---- ./Porting/Maintainers.pl.orig	Thu May 19 17:01:22 2022
-+++ ./Porting/Maintainers.pl	Thu Dec 15 19:21:16 2022
-@@ -1507,6 +1507,9 @@ use File::Glob qw(:case);
+--- ./MANIFEST.orig	Tue Jan  2 16:44:59 2024
++++ ./MANIFEST	Tue Jan  2 16:45:05 2024
+@@ -15,6 +15,7 @@ Changes					Describe how to peruse changes between rel
+ charclass_invlists.h			Compiled-in inversion lists
+ class.c					Internals of the `use feature 'class'` object system
+ CODE_OF_CONDUCT.md			Information on where to find the Standards of Conduct
++config.over				Site-specific overrides for Configure defaults
+ config_h.SH				Produces config.h
+ configpm				Produces lib/Config.pm
+ Configure				Portability tool
+@@ -38,6 +39,7 @@ fakesdio.h				stdio in terms of PerlIO
+ feature.h				Feature header
+ form.h					Public declarations for formats
+ generate_uudmap.c			Generate uudmap.h, the uuencode decoding map
++git_version.h				Pre-generated git_version.h for OpenBSD
+ globals.c				File to declare global symbols (for shared library)
+ globvar.sym				Global variables that need hiding when embedded
+ gv.c					Glob value code
+@@ -5102,6 +5104,7 @@ lib/Class/Struct.t			See if Class::Struct works
+ lib/Config.t				See if Config works
+ lib/Config/Extensions.pm		Convenient hash lookup for built extensions
+ lib/Config/Extensions.t			See if Config::Extensions works
++lib/Config_git.pl			Pre-generated Config_git.pl for OpenBSD
+ lib/CORE.pod				document the CORE namespace
+ lib/DB.pm				Debugger API (draft)
+ lib/DB.t				See if DB works
+--- ./Porting/Maintainers.pl.orig	Tue Nov 28 03:57:27 2023
++++ ./Porting/Maintainers.pl	Tue Jan  2 16:45:02 2024
+@@ -1485,6 +1485,9 @@ use File::Glob qw(:case);
                  lib/vmsish.{pm,t}
                  ],
      },
@@ -80,4 +80,4 @@
 +    },
  );
  
- # legacy CPAN flag
+ 

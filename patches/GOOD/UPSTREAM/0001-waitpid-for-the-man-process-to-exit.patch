@@ -13,8 +13,8 @@ from millert@openbsd
 
 diff --git a/lib/Pod/Perldoc/ToMan.pm b/lib/Pod/Perldoc/ToMan.pm
 index bfcb5c4..d4d3c4d 100644
---- ./cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm.orig	Mon Feb 18 01:59:21 2019
-+++ ./cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm	Wed Dec  7 03:31:32 2022
+--- ./cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm.orig	Tue Nov 28 03:57:27 2023
++++ ./cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm	Sun Dec 24 01:07:34 2023
 @@ -358,6 +358,9 @@ sub _filter_through_nroff {
  		length $done
  		);
@@ -25,6 +25,3 @@ index bfcb5c4..d4d3c4d 100644
  	if( $? ) {
  		$self->warn( "Error from pipe to $render!\n" );
  		$self->debug( 'Error: ' . do { local $/; <$err> } );
--- 
-2.21.0
-
