@@ -1,0 +1,26 @@
+From d635388b71e707340b5c73a2a98c208bc1fe72b9 Mon Sep 17 00:00:00 2001
+From: bluhm <bluhm@openbsd.org>
+Date: Fri, 17 May 2024 18:11:58 +0000
+Subject: [PATCH] Fix possible segmentation fault in Perl 5.38.2.
+
+When calling POSIX::setlocale() with unknown locale category, Perl
+could crash due to NULL dereference.
+
+found by sthen@ in smokeping build; OK afresh1@
+---
+ gnu/usr.bin/perl/locale.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gnu/usr.bin/perl/locale.c b/gnu/usr.bin/perl/locale.c
+index 92b6c1a6ec1e..59c79b06c585 100644
+--- locale.c.orig
++++ locale.c
+@@ -2858,7 +2858,7 @@ Perl_setlocale(const int category, const char * locale)
+ 
+     /* If the new locale is the same as the current one, nothing is actually
+      * being changed, so do nothing. */
+-    if (      strEQ(retval, locale)
++    if (      retval != NULL && strEQ(retval, locale)
+         && (   ! affects_LC_NUMERIC(category)
+ 
+ #  ifdef USE_LOCALE_NUMERIC
