@@ -599,8 +599,8 @@ diff -ruN /home/afresh1/OpenBSD-perl/OP/perl-5.38.2.orig/Makefile.SH ./Makefile.
  
  $spitshell >>$Makefile <<'!NO!SUBS!'
  
--perltoc_pod_prereqs = extra.pods pod/perl5382delta.pod pod/perlapi.pod pod/perlintern.pod pod/perlmodlib.pod pod/perluniprops.pod
-+perltoc_pod_prereqs = extra.pods pod/perl5382delta.pod pod/perlapi.pod pod/perlintern.pod pod/perlmodlib.pod
+-perltoc_pod_prereqs = extra.pods pod/perl5400delta.pod pod/perlapi.pod pod/perlintern.pod pod/perlmodlib.pod pod/perluniprops.pod
++perltoc_pod_prereqs = extra.pods pod/perl5400delta.pod pod/perlapi.pod pod/perlintern.pod pod/perlmodlib.pod
  generated_pods = pod/perltoc.pod $(perltoc_pod_prereqs)
  generated_headers = uudmap.h bitcount.h mg_data.h
  
