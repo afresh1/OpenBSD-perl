@@ -1,8 +1,10 @@
 #!/bin/sh
 
-WRK=patches/GOOD
-SRC=patches/GOOD.orig
-DST=patches/RESEARCH
+BASEDIR=$( dirname "$( readlink -f "$(dirname $0)" )" )/patches
+
+WRK=${BASEDIR}/GOOD
+SRC=${BASEDIR}/GOOD.orig
+DST=${BASEDIR}/RESEARCH
 
 if [ ! -e "$SRC" ]; then
 	echo "Before using this, 'mv $WRK $SRC'" >&2
