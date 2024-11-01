@@ -29,6 +29,9 @@ This is still an art, not as yet a complete doc, but a start.
     * Similarly with the put_OpenBSD_Pledge_in_MANIFEST.patch
     * unless you mv files/cpan out of the way, so need to do that.
     * as well as dont_rebuild_libperl.patch
+* For the syscall_emulator.patch
+    * You will need to fix dont_overwrite_or_cleanup_our_static_files.patch first
+    * but while you do that, the syscall defines in config.over need to be removed
 * At some point you won't get any better results and you will actually have to
   look at the logs and update patches.
 * When adding new modules to the dist, You need to regenerate some files
