@@ -37,11 +37,11 @@ diff -u -p -r1.1.1.2 config.in
  #
  
 -BUILD_ZLIB      = True
--INCLUDE         = ./zlib-src
--LIB             = ./zlib-src
+-ZLIB_INCLUDE    = ./zlib-src
+-ZLIB_LIB        = ./zlib-src
 +BUILD_ZLIB      = False
-+INCLUDE         = /usr/include
-+LIB             = /usr/lib
++ZLIB_INCLUDE    = /usr/include
++ZLIB_LIB        = /usr/lib
  OLD_ZLIB        = False
  GZIP_OS_CODE    = AUTO_DETECT
  USE_ZLIB_NG     = False
