@@ -34,7 +34,6 @@ my %skip_page = map { $_ => 1 } qw(
     shasum
     zipdetails
 
-    Changes
     HACKERS
     INSTALL
     TODO
