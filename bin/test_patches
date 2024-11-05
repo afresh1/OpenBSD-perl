@@ -31,6 +31,11 @@ find ${SRCDIR}/patches/RESEARCH -name "$NAME" | sort | {
 
         # In case the patch touched the MANIFEST, make sure it is sorted
         perl ./Porting/manisort -o MANIFEST
+	[ -e ./t/porting/customized.dat.orig ] ||
+	    cp t/porting/customized.dat t/porting/customized.dat.orig
+	( export LD_LIBRARY_PATH=${PWD} &&
+	    cd t &&
+	    ./perl -I ../lib porting/customized.t --regen  )
 
         new_patch=`echo "$patch" | sed -e "s/RESEARCH/APPLIES/"`
         new_dir=`dirname "$new_patch"`
