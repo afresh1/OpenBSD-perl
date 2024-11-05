@@ -1,6 +1,6 @@
---- ./Configure.orig	Mon Jan  1 20:36:12 2024
-+++ ./Configure	Mon Jan  1 20:36:25 2024
-@@ -21122,9 +21122,9 @@ case "$ccflags" in
+--- ./Configure.orig	Thu Apr 25 11:28:27 2024
++++ ./Configure	Thu Oct 24 05:32:52 2024
+@@ -21343,9 +21343,9 @@ case "$ccflags" in
  	;;
  esac
  
@@ -13,9 +13,9 @@
  randbits=48
  randseedtype=U32
  
---- ./pp.c.orig	Tue Nov 28 03:57:28 2023
-+++ ./pp.c	Mon Jan  1 20:36:25 2024
-@@ -2952,12 +2952,13 @@ PP(pp_rand)
+--- ./pp.c.orig	Tue Apr 16 10:11:42 2024
++++ ./pp.c	Thu Oct 24 05:32:52 2024
+@@ -3230,12 +3230,13 @@ PP_wrapped(pp_rand, MAXARG, 0)
              /* env var PERL_RAND_SEED has been set so the user wants
               * consistent srand() initialization. */
              PERL_SRAND_OVERRIDE_GET(s);
@@ -30,7 +30,7 @@
          PL_srand_called = TRUE;
      }
      {
-@@ -3014,18 +3015,20 @@ PP(pp_srand)
+@@ -3292,18 +3293,20 @@ PP_wrapped(pp_srand, MAXARG, 0)
                               "Integer overflow in srand");
              anum = UV_MAX;
          }

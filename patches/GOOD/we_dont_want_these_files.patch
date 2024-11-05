@@ -1,5 +1,5 @@
---- ./t/porting/dual-life.t.orig	Tue Nov 28 03:57:28 2023
-+++ ./t/porting/dual-life.t	Tue Dec 26 13:55:42 2023
+--- ./t/porting/dual-life.t.orig	Mon Feb 26 16:50:16 2024
++++ ./t/porting/dual-life.t	Thu Oct 24 09:10:00 2024
 @@ -24,6 +24,12 @@ use File::Spec::Functions;
  # Exceptions that are found in dual-life bin dirs but aren't
  # installed by default; some occur only during testing:
@@ -13,8 +13,8 @@
    \.\./cpan/Encode/bin/u(?:cm(?:2table|lint|sort)|nidump)
     |
    \.\./cpan/Module-(?:Metadata|Build)
---- ./utils/Makefile.PL.orig	Tue Nov 28 03:57:28 2023
-+++ ./utils/Makefile.PL	Tue Dec 26 13:55:42 2023
+--- ./utils/Makefile.PL.orig	Mon Feb 26 16:50:16 2024
++++ ./utils/Makefile.PL	Thu Oct 24 09:10:00 2024
 @@ -35,9 +35,9 @@ print $fh <<'EOT';
  # Files to be built with variable substitution after miniperl is
  # available.  Dependencies handled manually below (for now).
@@ -63,8 +63,8 @@
  
  streamzip:	streamzip.PL ../config.sh
  
---- ./utils/perlbug.PL.orig	Tue Nov 28 03:57:28 2023
-+++ ./utils/perlbug.PL	Tue Dec 26 13:55:42 2023
+--- ./utils/perlbug.PL.orig	Mon Feb 26 16:50:16 2024
++++ ./utils/perlbug.PL	Thu Oct 24 09:10:00 2024
 @@ -354,13 +354,12 @@ This program provides an easy way to send a thank-you 
  authors and maintainers of perl.
  
@@ -100,8 +100,8 @@
  smile. 
  
  =back
---- ./utils.lst.orig	Tue Nov 28 03:57:28 2023
-+++ ./utils.lst	Tue Dec 26 13:55:42 2023
+--- ./utils.lst.orig	Mon Feb 26 16:50:16 2024
++++ ./utils.lst	Thu Oct 24 09:10:00 2024
 @@ -9,20 +9,14 @@ utils/encguess
  utils/h2ph
  utils/h2xs

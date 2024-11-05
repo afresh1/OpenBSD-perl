@@ -1,8 +1,8 @@
---- ./hints/openbsd.sh.orig	Mon Sep 20 19:38:30 2021
-+++ ./hints/openbsd.sh	Thu Dec  8 16:43:06 2022
-@@ -155,6 +155,9 @@ esac
- # which is being fixed.  In the meantime, forbid POSIX 2008 locales
- d_newlocale="$undef"
+--- ./hints/openbsd.sh.orig	Tue Apr 16 10:11:38 2024
++++ ./hints/openbsd.sh	Wed Oct 23 20:02:56 2024
+@@ -163,6 +163,9 @@ ccflags="$ccflags -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLL
+ # ASCII characters which are a subset of C.UTF-8.
+ ccflags="$ccflags -DLIBC_HANDLES_MISMATCHED_CTYPE"
  
 +# OpenBSD's locale support is not that complete yet
 +ccflags="-DNO_LOCALE_NUMERIC -DNO_LOCALE_COLLATE $ccflags"

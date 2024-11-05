@@ -1,5 +1,5 @@
---- ./Makefile.SH.orig	Tue Jan  2 16:44:59 2024
-+++ ./Makefile.SH	Tue Jan  2 16:45:02 2024
+--- ./Makefile.SH.orig	Fri Nov  1 10:45:46 2024
++++ ./Makefile.SH	Fri Nov  1 10:45:49 2024
 @@ -497,7 +497,7 @@ shextract=`SH_to_target $SH`
  ## In the following dollars and backticks do not need the extra backslash.
  $spitshell >>$Makefile <<!GROK!THIS!
@@ -9,7 +9,7 @@
  
  # Files to be built with variable substitution before miniperl
  # is available.
-@@ -682,16 +682,17 @@ $(MANIFEST_SRT):	MANIFEST $(PERL_EXE)
+@@ -687,16 +687,17 @@ $(MANIFEST_SRT):	MANIFEST $(PERL_EXE)
  
  .PHONY: all utilities
  
@@ -34,18 +34,18 @@
  !NO!SUBS!
  
  # Making utilities requires Cwd.  If we have dynamic
-@@ -1372,7 +1373,7 @@ _mopup:
+@@ -1368,7 +1369,7 @@ _mopup:
  	-rm -f *perl.xok
  	-rm -f cygwin.c libperl*.def libperl*.dll cygperl*.dll *.exe.stackdump
- 	-rm -f $(PERL_EXE) $(MINIPERL_EXE) $(LIBPERL) libperl.* microperl
+ 	-rm -f $(PERL_EXE) $(MINIPERL_EXE) $(LIBPERL) libperl.*
 -	-rm -f config.arch config.over $(DTRACE_H)
 +	-rm -f $(DTRACE_H)
  
  _cleaner1:
  	-cd os2; rm -f Makefile
---- ./MANIFEST.orig	Tue Jan  2 16:44:59 2024
-+++ ./MANIFEST	Tue Jan  2 16:45:05 2024
-@@ -15,6 +15,7 @@ Changes					Describe how to peruse changes between rel
+--- ./MANIFEST.orig	Fri Nov  1 10:45:46 2024
++++ ./MANIFEST	Fri Nov  1 10:45:53 2024
+@@ -14,6 +14,7 @@ Changes					Describe how to peruse changes between rel
  charclass_invlists.h			Compiled-in inversion lists
  class.c					Internals of the `use feature 'class'` object system
  CODE_OF_CONDUCT.md			Information on where to find the Standards of Conduct
@@ -53,7 +53,7 @@
  config_h.SH				Produces config.h
  configpm				Produces lib/Config.pm
  Configure				Portability tool
-@@ -38,6 +39,7 @@ fakesdio.h				stdio in terms of PerlIO
+@@ -37,6 +38,7 @@ fakesdio.h				stdio in terms of PerlIO
  feature.h				Feature header
  form.h					Public declarations for formats
  generate_uudmap.c			Generate uudmap.h, the uuencode decoding map
@@ -61,7 +61,7 @@
  globals.c				File to declare global symbols (for shared library)
  globvar.sym				Global variables that need hiding when embedded
  gv.c					Glob value code
-@@ -5102,6 +5104,7 @@ lib/Class/Struct.t			See if Class::Struct works
+@@ -5353,6 +5355,7 @@ lib/Class/Struct.t			See if Class::Struct works
  lib/Config.t				See if Config works
  lib/Config/Extensions.pm		Convenient hash lookup for built extensions
  lib/Config/Extensions.t			See if Config::Extensions works
@@ -69,9 +69,9 @@
  lib/CORE.pod				document the CORE namespace
  lib/DB.pm				Debugger API (draft)
  lib/DB.t				See if DB works
---- ./Porting/Maintainers.pl.orig	Tue Nov 28 03:57:27 2023
-+++ ./Porting/Maintainers.pl	Tue Jan  2 16:45:02 2024
-@@ -1485,6 +1485,9 @@ use File::Glob qw(:case);
+--- ./Porting/Maintainers.pl.orig	Sun Apr 28 05:07:47 2024
++++ ./Porting/Maintainers.pl	Fri Nov  1 10:45:49 2024
+@@ -1517,6 +1517,9 @@ our %Modules = (
                  lib/vmsish.{pm,t}
                  ],
      },
@@ -80,4 +80,4 @@
 +    },
  );
  
- 
+ our %DistName;

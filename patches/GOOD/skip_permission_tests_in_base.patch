@@ -20,8 +20,8 @@ discussed with anton@; OK afresh1@
 
 diff --git a/gnu/usr.bin/perl/t/porting/exec-bit.t b/gnu/usr.bin/perl/t/porting/exec-bit.t
 index 3e80f844797..2dd2a662b57 100644
---- t/porting/exec-bit.t
-+++ t/porting/exec-bit.t
+--- ./t/porting/exec-bit.t.orig	Mon Feb 26 16:50:16 2024
++++ ./t/porting/exec-bit.t	Thu Oct 24 01:55:40 2024
 @@ -30,6 +30,10 @@ if ( $^O eq "vos" ) {
    skip_all( "VOS combines the read and execute permission bits." );
  }

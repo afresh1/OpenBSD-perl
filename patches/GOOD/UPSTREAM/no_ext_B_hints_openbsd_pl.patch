@@ -1,6 +1,6 @@
---- ./MANIFEST.orig	Mon Jan  1 21:49:24 2024
-+++ ./MANIFEST	Mon Jan  1 21:49:31 2024
-@@ -4490,7 +4490,6 @@ ext/B/B/Showlex.pm			Compiler Showlex backend
+--- ./MANIFEST.orig	Thu May 30 22:40:38 2024
++++ ./MANIFEST	Tue Oct 22 22:03:47 2024
+@@ -4720,7 +4720,6 @@ ext/B/B/Showlex.pm			Compiler Showlex backend
  ext/B/B/Terse.pm			Compiler Terse backend
  ext/B/B/Xref.pm				Compiler Xref backend
  ext/B/hints/darwin.pl			Hints for named architecture
