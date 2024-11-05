@@ -1,21 +1,21 @@
---- ./t/porting/customized.dat.orig	Thu Jan  4 15:27:59 2024
-+++ ./t/porting/customized.dat	Thu Jan  4 15:28:01 2024
-@@ -22,3 +22,4 @@ Win32API::File cpan/Win32API-File/File.pm 8fd212857f82
- Win32API::File cpan/Win32API-File/File.xs beb870fed4490d2faa547b4a8576b8d64d1d27c5
- version cpan/version/lib/version.pm a963b513cf812bd7f4d28b3422efd9904e70a34c
- version cpan/version/t/07locale.t b1cceee71544ce6b6c926d06656a52aabbfe8abf
+--- ./t/porting/customized.dat.orig	Mon Nov  4 17:16:14 2024
++++ ./t/porting/customized.dat	Mon Nov  4 17:16:35 2024
+@@ -22,3 +22,4 @@ podlators cpan/podlators/lib/Pod/Text/Color.pm 318662c
+ podlators cpan/podlators/lib/Pod/Text/Overstrike.pm ac9e6c6483aa785a4cd9b0ded64130a52e5178c9
+ podlators cpan/podlators/lib/Pod/Text/Termcap.pm dc5c03b6310febae555202480bdcf8877c16efa8
+ version cpan/version/lib/version.pm 8080cfe1fb21d5248c8ff5133b298d249d11e8e8
 +version vutil.c 8f1e65848649b125b6e2d3a91d54f5e147d12e41
---- ./vutil.c.orig	Tue Nov 28 03:57:28 2023
-+++ ./vutil.c	Thu Jan  4 15:28:01 2024
-@@ -609,7 +609,11 @@ VER_NV:
+--- ./vutil.c.orig	Tue Apr 16 10:11:38 2024
++++ ./vutil.c	Mon Nov  4 17:16:35 2024
+@@ -656,7 +656,11 @@ VER_NV:
  
- 	/* may get too much accuracy */ 
- 	char tbuf[64];
+         /* may get too much accuracy */
+         char tbuf[64];
 +#ifdef __vax__
 +	SV *sv = SvNVX(ver) > 10e37 ? newSV(64) : 0;
 +#else
- 	SV *sv = SvNVX(ver) > 10e50 ? newSV(64) : 0;
+         SV *sv = SvNVX(ver) > 10e50 ? newSV(64) : 0;
 +#endif
- 	char *buf;
+         char *buf;
  
  #if PERL_VERSION_GE(5,19,0)
