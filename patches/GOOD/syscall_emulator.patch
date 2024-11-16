@@ -1,6 +1,6 @@
---- ./MANIFEST.orig	Tue Jan  2 16:27:12 2024
-+++ ./MANIFEST	Tue Jan  2 16:30:56 2024
-@@ -6174,6 +6174,7 @@ t/op/svleak.pl				Test file for svleak.t
+--- ./MANIFEST.orig	Fri Nov  1 14:48:58 2024
++++ ./MANIFEST	Fri Nov  1 14:49:05 2024
+@@ -6443,6 +6443,7 @@ t/op/svleak.pl				Test file for svleak.t
  t/op/svleak.t				See if stuff leaks SVs
  t/op/switch.t				See if switches (given/when) work
  t/op/symbolcache.t			See if undef/delete works on stashes with functions
@@ -8,28 +8,28 @@
  t/op/sysio.t				See if sysread and syswrite work
  t/op/taint.t				See if tainting works
  t/op/threads.t				Misc. tests for perl features with threads
---- ./Makefile.SH.orig	Tue Jan  2 16:27:12 2024
-+++ ./Makefile.SH	Tue Jan  2 16:31:25 2024
-@@ -542,7 +542,7 @@ c2 = perly.c pp.c pp_hot.c pp_ctl.c pp_sys.c utf8.c sv
- c3 = taint.c toke.c util.c deb.c run.c builtin.c universal.c class.c pad.c globals.c keywords.c
- c4 = perlio.c numeric.c mathoms.c locale.c pp_pack.c pp_sort.c caretx.c dquote.c time64.c
- c5 = regcomp.c regcomp_debug.c regcomp_invlist.c regcomp_study.c regcomp_trie.c regexec.c
--c6 = $(mallocsrc)
-+c5 = $(mallocsrc) syscall_emulator.c
- c_base  = $(c1) $(c2) $(c3) $(c4) $(c5) $(c6)
+--- ./Makefile.SH.orig	Fri Nov  1 14:48:58 2024
++++ ./Makefile.SH	Fri Nov  1 14:49:02 2024
+@@ -545,7 +545,7 @@ c_base = \
+     pp.c pp_ctl.c pp_hot.c pp_pack.c pp_sort.c pp_sys.c \
+     reentr.c regcomp.c regcomp_debug.c regcomp_invlist.c regcomp_study.c \
+     regcomp_trie.c regexec.c run.c scope.c sv.c taint.c time64.c toke.c \
+-    universal.c utf8.c util.c \
++    universal.c utf8.c util.c syscall_emulator.c \
+     $(mallocsrc)
  
  !NO!SUBS!
-@@ -566,7 +566,7 @@ obj6  = scope$(OBJ_EXT) pp_ctl$(OBJ_EXT) pp_sys$(OBJ_E
- obj7  = doop$(OBJ_EXT) doio$(OBJ_EXT) utf8$(OBJ_EXT) taint$(OBJ_EXT)
- obj8  = deb$(OBJ_EXT) globals$(OBJ_EXT) perlio$(OBJ_EXT) numeric$(OBJ_EXT) mathoms$(OBJ_EXT)
- obj9  = locale$(OBJ_EXT) pp_pack$(OBJ_EXT) pp_sort$(OBJ_EXT) caretx$(OBJ_EXT) dquote$(OBJ_EXT)
--obj10 = time64$(OBJ_EXT)
-+obj10 = time64$(OBJ_EXT) syscall_emulator$(OBJ_EXT)
+@@ -576,7 +576,7 @@ common_objs = \
+     regcomp_invlist$(OBJ_EXT) regcomp_study$(OBJ_EXT) regcomp_trie$(OBJ_EXT) \
+     regexec$(OBJ_EXT) run$(OBJ_EXT) scope$(OBJ_EXT) sv$(OBJ_EXT) \
+     taint$(OBJ_EXT) time64$(OBJ_EXT) toke$(OBJ_EXT) utf8$(OBJ_EXT) \
+-    util$(OBJ_EXT) \
++    util$(OBJ_EXT) syscall_emulator$(OBJ_EXT) \
+     $(mallocobj) $(ARCHOBJS)
  
- # split the objects into 3 exclusive sets: those used by both miniperl and
- # perl, and those used by just one or the other. Doesn't include the
---- pp_sys.c.orig	Wed Jul 19 21:19:21 2023
-+++ pp_sys.c	Wed Jul 19 21:21:22 2023
+ miniperl_objs_nodt = $(mini_only_objs) $(common_objs) miniperlmain$(OBJ_EXT)
+--- ./pp_sys.c.orig	Tue Apr 16 10:11:38 2024
++++ ./pp_sys.c	Fri Nov  1 14:49:02 2024
 @@ -30,6 +30,8 @@
  #define PERL_IN_PP_SYS_C
  #include "perl.h"
