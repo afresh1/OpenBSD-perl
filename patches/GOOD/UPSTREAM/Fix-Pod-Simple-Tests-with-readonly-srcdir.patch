@@ -1,0 +1,22 @@
+--- ./cpan/Pod-Simple/t/corpus.t.orig	Wed Oct 30 17:43:44 2024
++++ ./cpan/Pod-Simple/t/corpus.t	Wed Oct 30 17:51:37 2024
+@@ -24,7 +24,7 @@ use File::Basename ();
+ my(@testfiles, %xmlfiles, %wouldxml);
+ #use Pod::Simple::Debug (10);
+ BEGIN {
+-  my $corpusdir = File::Spec->catdir(File::Basename::dirname(Cwd::abs_path(__FILE__)), 'corpus');
++  my $corpusdir = File::Spec->catdir(File::Basename::dirname(File::Spec->rel2abs(__FILE__)), 'corpus');
+   print "#Corpusdir: $corpusdir\n";
+ 
+   opendir(INDIR, $corpusdir) or die "Can't opendir corpusdir : $!";
+--- ./cpan/Pod-Simple/t/htmlbat.t.orig	Wed Oct 30 17:45:10 2024
++++ ./cpan/Pod-Simple/t/htmlbat.t	Wed Oct 30 17:46:41 2024
+@@ -19,7 +19,7 @@ use File::Spec;
+ use Cwd ();
+ use File::Basename ();
+ 
+-my $t_dir = File::Basename::dirname(Cwd::abs_path(__FILE__));
++my $t_dir = File::Basename::dirname(File::Spec->rel2abs(__FILE__));
+ my $corpus_dir = File::Spec->catdir($t_dir, 'testlib1');
+ 
+ print "# OK, found the test corpus as $corpus_dir\n" if $DEBUG;
