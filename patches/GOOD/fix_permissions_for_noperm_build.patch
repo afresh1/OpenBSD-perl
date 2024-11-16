@@ -1,3 +1,129 @@
+--- ./cpan/ExtUtils-Install/lib/ExtUtils/Install.pm.orig	Sun Nov 17 13:05:40 2024
++++ ./cpan/ExtUtils-Install/lib/ExtUtils/Install.pm	Sun Nov 17 13:05:48 2024
+@@ -104,6 +104,7 @@ $INSTALL_QUIET = 1
+       $ENV{MAKEFLAGS} =~ /\b(s|silent|quiet)\b/);
+ 
+ my $Curdir = File::Spec->curdir;
++my $Perm_Dir = $ENV{PERL_CORE} ? 0770 : 0755;
+ 
+ sub _estr(@) {
+     return join "\n",'!' x 72,@_,'!' x 72,'';
+@@ -769,7 +770,7 @@ sub install { #XXX OS-SPECIFIC
+         _chdir($cwd);
+     }
+     foreach my $targetdir (sort keys %check_dirs) {
+-        _mkpath( $targetdir, 0, 0755, $verbose, $dry_run );
++        _mkpath( $targetdir, 0, $Perm_Dir, $verbose, $dry_run );
+     }
+     foreach my $found (@found_files) {
+         my ($diff, $ffd, $origfile, $mode, $size, $atime, $mtime,
+@@ -783,7 +784,7 @@ sub install { #XXX OS-SPECIFIC
+                     $targetfile= _unlink_or_rename( $targetfile, 'tryhard', 'install' )
+                         unless $dry_run;
+                 } elsif ( ! -d $targetdir ) {
+-                    _mkpath( $targetdir, 0, 0755, $verbose, $dry_run );
++                    _mkpath( $targetdir, 0, $Perm_Dir, $verbose, $dry_run );
+                 }
+                 print "Installing $targetfile\n";
+ 
+@@ -823,7 +824,7 @@ sub install { #XXX OS-SPECIFIC
+ 
+     if ($pack{'write'}) {
+         $dir = install_rooted_dir(dirname($pack{'write'}));
+-        _mkpath( $dir, 0, 0755, $verbose, $dry_run );
++        _mkpath( $dir, 0, $Perm_Dir, $verbose, $dry_run );
+         print "Writing $pack{'write'}\n" if $verbose;
+         $packlist->write(install_rooted_file($pack{'write'})) unless $dry_run;
+     }
+@@ -1161,7 +1162,7 @@ sub pm_to_blib {
+     my($fromto,$autodir,$pm_filter) = @_;
+ 
+     my %dirs;
+-    _mkpath($autodir,0,0755) if defined $autodir;
++    _mkpath($autodir,0,$Perm_Dir) if defined $autodir;
+     while(my($from, $to) = each %$fromto) {
+         if( -f $to && -s $from == -s $to && -M $to < -M $from ) {
+             print "Skip $to (unchanged)\n" unless $INSTALL_QUIET;
+@@ -1186,7 +1187,7 @@ sub pm_to_blib {
+         } else {
+             my $dirname = dirname($to);
+             if (!$dirs{$dirname}++) {
+-                _mkpath($dirname,0,0755);
++                _mkpath($dirname,0,$Perm_Dir);
+             }
+         }
+         if ($need_filtering) {
+--- ./cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Unix.pm.orig	Sun Nov 17 13:05:40 2024
++++ ./cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Unix.pm	Sun Nov 17 13:05:48 2024
+@@ -2229,7 +2229,8 @@ Called by init_main.  Initializes PERL_*
+ sub init_PERM {
+     my($self) = shift;
+ 
+-    $self->{PERM_DIR} = 755  unless defined $self->{PERM_DIR};
++    my $perm_dir = $self->{PERL_CORE} ? 770 : 755;
++    $self->{PERM_DIR} = $perm_dir  unless defined $self->{PERM_DIR};
+     $self->{PERM_RW}  = 644  unless defined $self->{PERM_RW};
+     $self->{PERM_RWX} = 755  unless defined $self->{PERM_RWX};
+ 
+--- ./cpan/Sys-Syslog/Makefile.PL.orig	Sun Nov 17 13:05:40 2024
++++ ./cpan/Sys-Syslog/Makefile.PL	Sun Nov 17 13:05:48 2024
+@@ -14,7 +14,7 @@ if ($] < 5.008) {
+ }
+ 
+ # create a lib/ dir in order to avoid warnings in Test::Distribution
+-mkdir "lib", 0755;
++mkdir "lib", $ENV{PERL_CORE} ? 0770 : 0755;
+ 
+ # virtual paths given to EU::MM
+ my %virtual_path = ( 'Syslog.pm' => '$(INST_LIBDIR)/Syslog.pm' );
+--- ./install_lib.pl.orig	Sun Nov 17 13:05:40 2024
++++ ./install_lib.pl	Sun Nov 17 13:05:48 2024
+@@ -6,7 +6,7 @@
+ use strict;
+ use vars qw($Is_VMS $Is_W32 $Is_OS2 $Is_Cygwin $Is_Darwin $Is_AmigaOS
+ 	    %opts $packlist);
+-use subs qw(unlink link chmod);
++use subs qw(unlink link chmod chown);
+ require File::Path;
+ require File::Copy;
+ 
+@@ -98,6 +98,9 @@ sub link {
+ 		unless -f $to and (chmod(0666, $to), unlink $to)
+ 			and File::Copy::copy($from, $to) and ++$success;
+ 	}
++	if (defined($opts{uid}) || defined($opts{gid})) {
++	    chown($opts{uid}, $opts{gid}, $to) if $success;
++	}
+ 	$packlist->{$xto} = { type => 'file' };
+     }
+     $success;
+@@ -112,6 +115,16 @@ sub chmod {
+       unless $opts{notify};
+ }
+ 
++sub chown {
++    my($uid,$gid,$name) = @_;
++
++    return if ($^O eq 'dos');
++    printf "  chown %s:%s %s\n", $uid, $gid, $name if $opts{verbose};
++    CORE::chown($uid,$gid,$name)
++	|| warn sprintf("Couldn't chown %s:%s %s: $!\n", $uid, $gid, $name)
++      unless $opts{notify};
++}
++
+ sub samepath {
+     my($p1, $p2) = @_;
+ 
+@@ -143,7 +156,8 @@ sub safe_rename {
+ }
+ 
+ sub mkpath {
+-    File::Path::mkpath(shift , $opts{verbose}, 0777) unless $opts{notify};
++    File::Path::make_path(shift, {owner=>$opts{uid}, group=>$opts{gid},
++        mode=>0777, verbose=>$opts{verbose}}) unless $opts{notify};
+ }
+ 
+ sub unixtoamiga
 --- ./installperl.orig	Sun Nov 17 13:05:40 2024
 +++ ./installperl	Sun Nov 17 13:06:38 2024
 @@ -72,7 +72,7 @@ $opts{destdir} = '';
@@ -71,129 +197,3 @@
      $cmd .= " $from $to";
      $xto =~ s/^\Q$opts{destdir}\E// if $opts{destdir};
      print $opts{verbose} ? "  install $from $xto\n" : "  $xto\n" unless $opts{silent};
---- ./install_lib.pl.orig	Sun Nov 17 13:05:40 2024
-+++ ./install_lib.pl	Sun Nov 17 13:05:48 2024
-@@ -6,7 +6,7 @@
- use strict;
- use vars qw($Is_VMS $Is_W32 $Is_OS2 $Is_Cygwin $Is_Darwin $Is_AmigaOS
- 	    %opts $packlist);
--use subs qw(unlink link chmod);
-+use subs qw(unlink link chmod chown);
- require File::Path;
- require File::Copy;
- 
-@@ -98,6 +98,9 @@ sub link {
- 		unless -f $to and (chmod(0666, $to), unlink $to)
- 			and File::Copy::copy($from, $to) and ++$success;
- 	}
-+	if (defined($opts{uid}) || defined($opts{gid})) {
-+	    chown($opts{uid}, $opts{gid}, $to) if $success;
-+	}
- 	$packlist->{$xto} = { type => 'file' };
-     }
-     $success;
-@@ -112,6 +115,16 @@ sub chmod {
-       unless $opts{notify};
- }
- 
-+sub chown {
-+    my($uid,$gid,$name) = @_;
-+
-+    return if ($^O eq 'dos');
-+    printf "  chown %s:%s %s\n", $uid, $gid, $name if $opts{verbose};
-+    CORE::chown($uid,$gid,$name)
-+	|| warn sprintf("Couldn't chown %s:%s %s: $!\n", $uid, $gid, $name)
-+      unless $opts{notify};
-+}
-+
- sub samepath {
-     my($p1, $p2) = @_;
- 
-@@ -143,7 +156,8 @@ sub safe_rename {
- }
- 
- sub mkpath {
--    File::Path::mkpath(shift , $opts{verbose}, 0777) unless $opts{notify};
-+    File::Path::make_path(shift, {owner=>$opts{uid}, group=>$opts{gid},
-+        mode=>0777, verbose=>$opts{verbose}}) unless $opts{notify};
- }
- 
- sub unixtoamiga
---- ./cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Unix.pm.orig	Sun Nov 17 13:05:40 2024
-+++ ./cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Unix.pm	Sun Nov 17 13:05:48 2024
-@@ -2229,7 +2229,8 @@ Called by init_main.  Initializes PERL_*
- sub init_PERM {
-     my($self) = shift;
- 
--    $self->{PERM_DIR} = 755  unless defined $self->{PERM_DIR};
-+    my $perm_dir = $self->{PERL_CORE} ? 770 : 755;
-+    $self->{PERM_DIR} = $perm_dir  unless defined $self->{PERM_DIR};
-     $self->{PERM_RW}  = 644  unless defined $self->{PERM_RW};
-     $self->{PERM_RWX} = 755  unless defined $self->{PERM_RWX};
- 
---- ./cpan/Sys-Syslog/Makefile.PL.orig	Sun Nov 17 13:05:40 2024
-+++ ./cpan/Sys-Syslog/Makefile.PL	Sun Nov 17 13:05:48 2024
-@@ -14,7 +14,7 @@ if ($] < 5.008) {
- }
- 
- # create a lib/ dir in order to avoid warnings in Test::Distribution
--mkdir "lib", 0755;
-+mkdir "lib", $ENV{PERL_CORE} ? 0770 : 0755;
- 
- # virtual paths given to EU::MM
- my %virtual_path = ( 'Syslog.pm' => '$(INST_LIBDIR)/Syslog.pm' );
---- ./cpan/ExtUtils-Install/lib/ExtUtils/Install.pm.orig	Sun Nov 17 13:05:40 2024
-+++ ./cpan/ExtUtils-Install/lib/ExtUtils/Install.pm	Sun Nov 17 13:05:48 2024
-@@ -104,6 +104,7 @@ $INSTALL_QUIET = 1
-       $ENV{MAKEFLAGS} =~ /\b(s|silent|quiet)\b/);
- 
- my $Curdir = File::Spec->curdir;
-+my $Perm_Dir = $ENV{PERL_CORE} ? 0770 : 0755;
- 
- sub _estr(@) {
-     return join "\n",'!' x 72,@_,'!' x 72,'';
-@@ -769,7 +770,7 @@ sub install { #XXX OS-SPECIFIC
-         _chdir($cwd);
-     }
-     foreach my $targetdir (sort keys %check_dirs) {
--        _mkpath( $targetdir, 0, 0755, $verbose, $dry_run );
-+        _mkpath( $targetdir, 0, $Perm_Dir, $verbose, $dry_run );
-     }
-     foreach my $found (@found_files) {
-         my ($diff, $ffd, $origfile, $mode, $size, $atime, $mtime,
-@@ -783,7 +784,7 @@ sub install { #XXX OS-SPECIFIC
-                     $targetfile= _unlink_or_rename( $targetfile, 'tryhard', 'install' )
-                         unless $dry_run;
-                 } elsif ( ! -d $targetdir ) {
--                    _mkpath( $targetdir, 0, 0755, $verbose, $dry_run );
-+                    _mkpath( $targetdir, 0, $Perm_Dir, $verbose, $dry_run );
-                 }
-                 print "Installing $targetfile\n";
- 
-@@ -823,7 +824,7 @@ sub install { #XXX OS-SPECIFIC
- 
-     if ($pack{'write'}) {
-         $dir = install_rooted_dir(dirname($pack{'write'}));
--        _mkpath( $dir, 0, 0755, $verbose, $dry_run );
-+        _mkpath( $dir, 0, $Perm_Dir, $verbose, $dry_run );
-         print "Writing $pack{'write'}\n" if $verbose;
-         $packlist->write(install_rooted_file($pack{'write'})) unless $dry_run;
-     }
-@@ -1161,7 +1162,7 @@ sub pm_to_blib {
-     my($fromto,$autodir,$pm_filter) = @_;
- 
-     my %dirs;
--    _mkpath($autodir,0,0755) if defined $autodir;
-+    _mkpath($autodir,0,$Perm_Dir) if defined $autodir;
-     while(my($from, $to) = each %$fromto) {
-         if( -f $to && -s $from == -s $to && -M $to < -M $from ) {
-             print "Skip $to (unchanged)\n" unless $INSTALL_QUIET;
-@@ -1186,7 +1187,7 @@ sub pm_to_blib {
-         } else {
-             my $dirname = dirname($to);
-             if (!$dirs{$dirname}++) {
--                _mkpath($dirname,0,0755);
-+                _mkpath($dirname,0,$Perm_Dir);
-             }
-         }
-         if ($need_filtering) {

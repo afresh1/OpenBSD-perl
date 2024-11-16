@@ -1,3 +1,17 @@
+--- ./Porting/pumpkin.pod.orig	Tue Apr 16 10:11:37 2024
++++ ./Porting/pumpkin.pod	Wed Oct 23 23:39:21 2024
+@@ -542,9 +542,9 @@ Here's how I generate a new patch.  I'll use the hypot
+ 5.004_07 to 5.004_08 patch as an example.
+ 
+ 	# unpack perl5.004_07/
+-	gzip -d -c perl5.004_07.tar.gz | tar -xof -
++	gzip -d -c perl5.004_07.tar.gz | tar -xf -
+ 	# unpack perl5.004_08/
+-	gzip -d -c perl5.004_08.tar.gz | tar -xof -
++	gzip -d -c perl5.004_08.tar.gz | tar -xf -
+ 	makepatch perl5.004_07 perl5.004_08 > perl5.004_08.pat
+ 
+ Makepatch will automatically generate appropriate B<rm> commands to remove
 --- ./pod/perlmodinstall.pod.orig	Mon Feb 26 16:50:16 2024
 +++ ./pod/perlmodinstall.pod	Wed Oct 23 23:39:21 2024
 @@ -79,11 +79,11 @@ You can get gzip from L<ftp://prep.ai.mit.edu/pub/gnu/
@@ -14,17 +28,3 @@
  
  C. BUILD
  
---- ./Porting/pumpkin.pod.orig	Tue Apr 16 10:11:37 2024
-+++ ./Porting/pumpkin.pod	Wed Oct 23 23:39:21 2024
-@@ -542,9 +542,9 @@ Here's how I generate a new patch.  I'll use the hypot
- 5.004_07 to 5.004_08 patch as an example.
- 
- 	# unpack perl5.004_07/
--	gzip -d -c perl5.004_07.tar.gz | tar -xof -
-+	gzip -d -c perl5.004_07.tar.gz | tar -xf -
- 	# unpack perl5.004_08/
--	gzip -d -c perl5.004_08.tar.gz | tar -xof -
-+	gzip -d -c perl5.004_08.tar.gz | tar -xf -
- 	makepatch perl5.004_07 perl5.004_08 > perl5.004_08.pat
- 
- Makepatch will automatically generate appropriate B<rm> commands to remove

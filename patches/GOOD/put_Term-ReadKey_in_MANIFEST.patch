@@ -5,21 +5,6 @@ millert@ suggested Term::ReadKey, which looks indeed like a good choice.
 
 Here's the glue + distrib from cpan. Comments welcome.
 
---- ./regen/lib_cleanup.pl.orig	Mon Feb 26 16:50:16 2024
-+++ ./regen/lib_cleanup.pl	Tue Oct 29 17:09:35 2024
-@@ -74,6 +74,12 @@ foreach my $file (@ext) {
-                 $package = $1;
-                 last;
-             }
-+            elsif (/^\s*package\s*$/) {
-+                # If they're hiding their package name, we ignore them
-+                ++$ignore{"/$path"};
-+                $package='';
-+                last;
-+            }
-         }
-         close $fh
-             or die "Can't close $file: $!";
 --- ./MANIFEST.orig	Tue Oct 29 17:09:31 2024
 +++ ./MANIFEST	Tue Oct 29 17:09:38 2024
 @@ -2302,6 +2302,17 @@ cpan/Term-ANSIColor/t/module/true-color.t
@@ -50,3 +35,18 @@ Here's the glue + distrib from cpan. Comments welcome.
  '
  for f in $dynamic_ext; do
      : the dependency named here will never exist
+--- ./regen/lib_cleanup.pl.orig	Mon Feb 26 16:50:16 2024
++++ ./regen/lib_cleanup.pl	Tue Oct 29 17:09:35 2024
+@@ -74,6 +74,12 @@ foreach my $file (@ext) {
+                 $package = $1;
+                 last;
+             }
++            elsif (/^\s*package\s*$/) {
++                # If they're hiding their package name, we ignore them
++                ++$ignore{"/$path"};
++                $package='';
++                last;
++            }
+         }
+         close $fh
+             or die "Can't close $file: $!";

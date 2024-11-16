@@ -13,6 +13,30 @@
    \.\./cpan/Encode/bin/u(?:cm(?:2table|lint|sort)|nidump)
     |
    \.\./cpan/Module-(?:Metadata|Build)
+--- ./utils.lst.orig	Mon Feb 26 16:50:16 2024
++++ ./utils.lst	Thu Oct 24 09:10:00 2024
+@@ -9,20 +9,14 @@ utils/encguess
+ utils/h2ph
+ utils/h2xs
+ utils/instmodsh
+-utils/json_pp
+ utils/libnetcfg
+-utils/perlbug	# link = utils/perlthanks
++utils/perlbug
+ utils/perldoc
+ utils/perlivp
+ utils/piconv
+ utils/pl2pm
+ utils/pod2html
+ utils/prove
+-utils/ptar
+-utils/ptardiff
+-utils/ptargrep
+-utils/shasum
+ utils/splain
+ utils/streamzip
+ utils/xsubpp
+-utils/zipdetails
 --- ./utils/Makefile.PL.orig	Mon Feb 26 16:50:16 2024
 +++ ./utils/Makefile.PL	Thu Oct 24 09:10:00 2024
 @@ -35,9 +35,9 @@ print $fh <<'EOT';
@@ -100,27 +124,3 @@
  smile. 
  
  =back
---- ./utils.lst.orig	Mon Feb 26 16:50:16 2024
-+++ ./utils.lst	Thu Oct 24 09:10:00 2024
-@@ -9,20 +9,14 @@ utils/encguess
- utils/h2ph
- utils/h2xs
- utils/instmodsh
--utils/json_pp
- utils/libnetcfg
--utils/perlbug	# link = utils/perlthanks
-+utils/perlbug
- utils/perldoc
- utils/perlivp
- utils/piconv
- utils/pl2pm
- utils/pod2html
- utils/prove
--utils/ptar
--utils/ptardiff
--utils/ptargrep
--utils/shasum
- utils/splain
- utils/streamzip
- utils/xsubpp
--utils/zipdetails

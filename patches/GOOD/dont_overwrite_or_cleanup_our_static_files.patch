@@ -1,3 +1,29 @@
+--- ./MANIFEST.orig	Fri Nov  1 10:45:46 2024
++++ ./MANIFEST	Fri Nov  1 10:45:53 2024
+@@ -14,6 +14,7 @@ Changes					Describe how to peruse changes between rel
+ charclass_invlists.h			Compiled-in inversion lists
+ class.c					Internals of the `use feature 'class'` object system
+ CODE_OF_CONDUCT.md			Information on where to find the Standards of Conduct
++config.over				Site-specific overrides for Configure defaults
+ config_h.SH				Produces config.h
+ configpm				Produces lib/Config.pm
+ Configure				Portability tool
+@@ -37,6 +38,7 @@ fakesdio.h				stdio in terms of PerlIO
+ feature.h				Feature header
+ form.h					Public declarations for formats
+ generate_uudmap.c			Generate uudmap.h, the uuencode decoding map
++git_version.h				Pre-generated git_version.h for OpenBSD
+ globals.c				File to declare global symbols (for shared library)
+ globvar.sym				Global variables that need hiding when embedded
+ gv.c					Glob value code
+@@ -5353,6 +5355,7 @@ lib/Class/Struct.t			See if Class::Struct works
+ lib/Config.t				See if Config works
+ lib/Config/Extensions.pm		Convenient hash lookup for built extensions
+ lib/Config/Extensions.t			See if Config::Extensions works
++lib/Config_git.pl			Pre-generated Config_git.pl for OpenBSD
+ lib/CORE.pod				document the CORE namespace
+ lib/DB.pm				Debugger API (draft)
+ lib/DB.t				See if DB works
 --- ./Makefile.SH.orig	Fri Nov  1 10:45:46 2024
 +++ ./Makefile.SH	Fri Nov  1 10:45:49 2024
 @@ -497,7 +497,7 @@ shextract=`SH_to_target $SH`
@@ -43,32 +69,6 @@
  
  _cleaner1:
  	-cd os2; rm -f Makefile
---- ./MANIFEST.orig	Fri Nov  1 10:45:46 2024
-+++ ./MANIFEST	Fri Nov  1 10:45:53 2024
-@@ -14,6 +14,7 @@ Changes					Describe how to peruse changes between rel
- charclass_invlists.h			Compiled-in inversion lists
- class.c					Internals of the `use feature 'class'` object system
- CODE_OF_CONDUCT.md			Information on where to find the Standards of Conduct
-+config.over				Site-specific overrides for Configure defaults
- config_h.SH				Produces config.h
- configpm				Produces lib/Config.pm
- Configure				Portability tool
-@@ -37,6 +38,7 @@ fakesdio.h				stdio in terms of PerlIO
- feature.h				Feature header
- form.h					Public declarations for formats
- generate_uudmap.c			Generate uudmap.h, the uuencode decoding map
-+git_version.h				Pre-generated git_version.h for OpenBSD
- globals.c				File to declare global symbols (for shared library)
- globvar.sym				Global variables that need hiding when embedded
- gv.c					Glob value code
-@@ -5353,6 +5355,7 @@ lib/Class/Struct.t			See if Class::Struct works
- lib/Config.t				See if Config works
- lib/Config/Extensions.pm		Convenient hash lookup for built extensions
- lib/Config/Extensions.t			See if Config::Extensions works
-+lib/Config_git.pl			Pre-generated Config_git.pl for OpenBSD
- lib/CORE.pod				document the CORE namespace
- lib/DB.pm				Debugger API (draft)
- lib/DB.t				See if DB works
 --- ./Porting/Maintainers.pl.orig	Sun Apr 28 05:07:47 2024
 +++ ./Porting/Maintainers.pl	Fri Nov  1 10:45:49 2024
 @@ -1517,6 +1517,9 @@ our %Modules = (
