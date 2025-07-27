@@ -1,0 +1,23 @@
+From f7487d631a74c0f50a687f245a945298898de411 Mon Sep 17 00:00:00 2001
+From: bluhm <bluhm@openbsd.org>
+Date: Sun, 13 Apr 2025 13:02:48 +0000
+Subject: [PATCH] In Perl, non-ASCII bytes in the left-hand-side of the `tr`
+ operator can overflow an insufficiently sized buffer.  CVE-2024-56406
+
+from upstream via afresh1@
+---
+ gnu/usr.bin/perl/op.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/gnu/usr.bin/perl/op.c b/gnu/usr.bin/perl/op.c
+index 3fc23eca49af..aeee88e03359 100644
+--- a/gnu/usr.bin/perl/op.c
++++ b/gnu/usr.bin/perl/op.c
+@@ -6649,6 +6649,7 @@ S_pmtrans(pTHX_ OP *o, OP *expr, OP *repl)
+                  * same time.  But otherwise one crosses before the other */
+                 if (t_cp < 256 && r_cp_end > 255 && r_cp != t_cp) {
+                     can_force_utf8 = TRUE;
++                    max_expansion = MAX(2, max_expansion);
+                 }
+             }
+ 
