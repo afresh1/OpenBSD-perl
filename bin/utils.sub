@@ -160,6 +160,12 @@ cvs_rm_add() {
         ! -exec test -e {}/CVS \; \
     -exec cvs add {} \+
 
+    ( # cvs add should do this, but for some reason it didn't
+        cd $dst
+	find . -type d $skip_files -exec \
+            mkdir -p $CVSROOT/src/gnu/usr.bin/perl/{} \;
+    )
+
     # Add any files that aren't in CVS
     find $dst -type f $skip_files \
         ! -execdir grep -q /{}/ CVS/Entries \; \
