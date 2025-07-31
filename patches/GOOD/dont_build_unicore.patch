@@ -1,6 +1,6 @@
---- ./Makefile.SH.orig	Sun Nov  3 18:59:21 2024
-+++ ./Makefile.SH	Sun Nov  3 18:59:24 2024
-@@ -1119,10 +1119,7 @@ $(CONFIGPOD): config.sh $(MINIPERL_EXE) configpm Porti
+--- ./Makefile.SH.orig	Sat Jul 26 16:21:19 2025
++++ ./Makefile.SH	Sat Jul 26 16:21:22 2025
+@@ -1127,10 +1127,7 @@ $(CONFIGPOD): config.sh $(MINIPERL_EXE) configpm Porti
  unidatafiles $(unidatafiles) pod/perluniprops.pod: uni.data
  
  uni.data: $(MINIPERL_EXE) $(CONFIGPM) lib/unicore/mktables $(nonxs_ext)
@@ -12,8 +12,8 @@
  
  # $(PERL_EXE) and ext because pod_lib.pl needs Digest::MD5
  # But also this ensures that all extensions are built before we try to scan
---- ./pod/perlmodlib.PL.orig	Mon Feb 26 16:50:16 2024
-+++ ./pod/perlmodlib.PL	Sun Nov  3 18:59:24 2024
+--- ./pod/perlmodlib.PL.orig	Tue Jun 24 08:23:21 2025
++++ ./pod/perlmodlib.PL	Sat Jul 26 16:21:22 2025
 @@ -64,6 +64,7 @@ for my $filename (@files) {
          die "p5p-controlled module $filename missing =head1 NAME\n"
              if $filename !~ m{^(dist/|cpan/)}n # under our direct control
