@@ -79,3 +79,6 @@ Those scripts work to test importing into a local copy of a repo.
 
 The one note I am sure of is to remind someone that they should use "-k o"
 when importing into cvs so that keywords don't get expanded.
+
+After perl is updated, don't forget to update the locale:
+* cd src/share/locale/ctype && ./gen_ctype_utf8 | tee en_US.UTF-8.src
