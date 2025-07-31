@@ -2,6 +2,8 @@
 # This script generates a perl-5.XX.X.patch file that you can
 # provide to people who want to try installing it in a real system
 
+set -o errexit
+
 BINDIR=$( readlink -f $(dirname $0) )
 . $BINDIR/utils.sub
 
