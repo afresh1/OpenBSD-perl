@@ -1,5 +1,5 @@
---- ./installperl.orig	Wed Feb 23 18:35:27 2022
-+++ ./installperl	Thu Dec  8 13:21:46 2022
+--- ./installperl.orig	Fri Jun 27 07:48:18 2025
++++ ./installperl	Thu Jul  3 03:45:41 2025
 @@ -188,7 +188,7 @@ my $installprivlib = "$opts{destdir}$Config{installpri
  my $installarchlib = "$opts{destdir}$Config{installarchlib}";
  my $installsitelib = "$opts{destdir}$Config{installsitelib}";

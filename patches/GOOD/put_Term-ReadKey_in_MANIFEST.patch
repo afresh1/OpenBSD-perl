@@ -5,9 +5,9 @@ millert@ suggested Term::ReadKey, which looks indeed like a good choice.
 
 Here's the glue + distrib from cpan. Comments welcome.
 
---- ./MANIFEST.orig	Tue Oct 29 17:09:31 2024
-+++ ./MANIFEST	Tue Oct 29 17:09:38 2024
-@@ -2302,6 +2302,17 @@ cpan/Term-ANSIColor/t/module/true-color.t
+--- ./MANIFEST.orig	Thu Jul 17 15:49:09 2025
++++ ./MANIFEST	Thu Jul 17 15:49:16 2025
+@@ -2318,6 +2318,17 @@ cpan/Term-ANSIColor/t/module/true-color.t
  cpan/Term-ANSIColor/t/taint/basic.t
  cpan/Term-Cap/Cap.pm			Perl module supporting termcap usage
  cpan/Term-Cap/test.pl			See if Term::Cap works
@@ -25,9 +25,9 @@ Here's the glue + distrib from cpan. Comments welcome.
  cpan/Term-Table/lib/Term/Table.pm		Term-Table
  cpan/Term-Table/lib/Term/Table/Cell.pm		Term-Table
  cpan/Term-Table/lib/Term/Table/CellStack.pm	Term-Table
---- ./Makefile.SH.orig	Tue Oct 29 17:09:30 2024
-+++ ./Makefile.SH	Tue Oct 29 17:09:35 2024
-@@ -209,6 +209,7 @@ extra_dep='
+--- ./Makefile.SH.orig	Thu Jul 17 15:49:08 2025
++++ ./Makefile.SH	Thu Jul 17 15:49:12 2025
+@@ -217,6 +217,7 @@ extra_dep='
  cpan/Pod-Simple/pm_to_blib: dist/if/pm_to_blib
  ext/Pod-Functions/pm_to_blib: cpan/Pod-Simple/pm_to_blib cpan/Pod-Escapes/pm_to_blib pod/perlfunc.pod
  cpan/IO-Compress/pm_to_blib: dist/lib/pm_to_blib
@@ -35,8 +35,8 @@ Here's the glue + distrib from cpan. Comments welcome.
  '
  for f in $dynamic_ext; do
      : the dependency named here will never exist
---- ./regen/lib_cleanup.pl.orig	Mon Feb 26 16:50:16 2024
-+++ ./regen/lib_cleanup.pl	Tue Oct 29 17:09:35 2024
+--- ./regen/lib_cleanup.pl.orig	Tue Jun 24 08:23:21 2025
++++ ./regen/lib_cleanup.pl	Thu Jul 17 15:49:12 2025
 @@ -74,6 +74,12 @@ foreach my $file (@ext) {
                  $package = $1;
                  last;

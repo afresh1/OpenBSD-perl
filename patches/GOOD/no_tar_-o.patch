@@ -1,5 +1,5 @@
---- ./Porting/pumpkin.pod.orig	Tue Apr 16 10:11:37 2024
-+++ ./Porting/pumpkin.pod	Wed Oct 23 23:39:21 2024
+--- ./Porting/pumpkin.pod.orig	Fri Jun 27 07:48:18 2025
++++ ./Porting/pumpkin.pod	Thu Jul  3 13:03:07 2025
 @@ -542,9 +542,9 @@ Here's how I generate a new patch.  I'll use the hypot
  5.004_07 to 5.004_08 patch as an example.
  
@@ -12,8 +12,8 @@
  	makepatch perl5.004_07 perl5.004_08 > perl5.004_08.pat
  
  Makepatch will automatically generate appropriate B<rm> commands to remove
---- ./pod/perlmodinstall.pod.orig	Mon Feb 26 16:50:16 2024
-+++ ./pod/perlmodinstall.pod	Wed Oct 23 23:39:21 2024
+--- ./pod/perlmodinstall.pod.orig	Fri Jun 27 07:48:19 2025
++++ ./pod/perlmodinstall.pod	Thu Jul  3 13:03:07 2025
 @@ -79,11 +79,11 @@ You can get gzip from L<ftp://prep.ai.mit.edu/pub/gnu/
  
  Or, you can combine this step with the next to save disk space:

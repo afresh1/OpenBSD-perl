@@ -1,7 +1,7 @@
 # https://github.com/Perl/perl5/issues/17725
 # https://github.com/Perl/perl5/pull/17750
---- ./numeric.c.orig	Sun Mar  6 07:58:33 2022
-+++ ./numeric.c	Thu Dec  8 01:19:30 2022
+--- ./numeric.c.orig	Fri Jun 27 07:48:19 2025
++++ ./numeric.c	Wed Jul  2 12:37:38 2025
 @@ -31,8 +31,8 @@ values, including such things as replacements for the 
  PERL_STATIC_INLINE NV
  S_strtod(pTHX_ const char * const s, char ** e)

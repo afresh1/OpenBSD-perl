@@ -1,5 +1,5 @@
---- ./dist/IO/t/cachepropagate-unix.t.orig	Mon Dec 28 08:57:44 2020
-+++ ./dist/IO/t/cachepropagate-unix.t	Thu Dec  8 03:00:37 2022
+--- ./dist/IO/t/cachepropagate-unix.t.orig	Fri Jun 27 07:48:18 2025
++++ ./dist/IO/t/cachepropagate-unix.t	Wed Jul  2 14:28:43 2025
 @@ -120,6 +120,8 @@ SKIP: {
        skip "no Socket::SO_PROTOCOL", 1 if !defined(eval { Socket::SO_PROTOCOL });
        skip "SO_PROTOCOL defined but not implemented", 1

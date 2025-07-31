@@ -1,5 +1,5 @@
---- ./hints/openbsd.sh.orig	Tue Apr 16 10:11:38 2024
-+++ ./hints/openbsd.sh	Wed Oct 23 20:02:56 2024
+--- ./hints/openbsd.sh.orig	Fri Jun 27 07:48:18 2025
++++ ./hints/openbsd.sh	Thu Jul  3 09:20:02 2025
 @@ -163,6 +163,9 @@ ccflags="$ccflags -DNO_LOCALE_NUMERIC -DNO_LOCALE_COLL
  # ASCII characters which are a subset of C.UTF-8.
  ccflags="$ccflags -DLIBC_HANDLES_MISMATCHED_CTYPE"

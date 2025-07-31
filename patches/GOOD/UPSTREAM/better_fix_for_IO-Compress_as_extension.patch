@@ -1,5 +1,5 @@
---- ./installperl.orig	Wed Feb 23 18:35:27 2022
-+++ ./installperl	Wed Dec  7 08:33:09 2022
+--- ./installperl.orig	Fri Jun 27 07:48:18 2025
++++ ./installperl	Tue Jul  1 14:58:35 2025
 @@ -142,7 +142,7 @@ if ((-e "testcompile") && (defined($ENV{'COMPILE'}))) 
  }
  

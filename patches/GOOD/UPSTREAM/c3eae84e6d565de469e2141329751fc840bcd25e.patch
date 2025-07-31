@@ -19,9 +19,9 @@ help and ok afresh1@
 
 diff --git utf8.h utf8.h
 index 01bf447a6149..97bccd086255 100644
---- ./utf8.h.orig	Tue Apr 16 10:11:38 2024
-+++ ./utf8.h	Tue Oct 22 07:34:43 2024
-@@ -409,7 +409,12 @@ C<cp> is Unicode if above 255; otherwise is platform-n
+--- ./utf8.h.orig	Fri Jun 27 07:48:19 2025
++++ ./utf8.h	Tue Jul  1 21:06:32 2025
+@@ -443,7 +443,12 @@ C<cp> is Unicode if above 255; otherwise is platform-n
  
  =cut
   */

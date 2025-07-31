@@ -1,6 +1,6 @@
---- ./MANIFEST.orig	Fri Nov  1 14:48:58 2024
-+++ ./MANIFEST	Fri Nov  1 14:49:05 2024
-@@ -6443,6 +6443,7 @@ t/op/svleak.pl				Test file for svleak.t
+--- ./MANIFEST.orig	Sat Jul 26 09:49:51 2025
++++ ./MANIFEST	Sat Jul 26 09:49:59 2025
+@@ -6483,6 +6483,7 @@ t/op/svleak.pl				Test file for svleak.t
  t/op/svleak.t				See if stuff leaks SVs
  t/op/switch.t				See if switches (given/when) work
  t/op/symbolcache.t			See if undef/delete works on stashes with functions
@@ -8,9 +8,9 @@
  t/op/sysio.t				See if sysread and syswrite work
  t/op/taint.t				See if tainting works
  t/op/threads.t				Misc. tests for perl features with threads
---- ./Makefile.SH.orig	Fri Nov  1 14:48:58 2024
-+++ ./Makefile.SH	Fri Nov  1 14:49:02 2024
-@@ -545,7 +545,7 @@ c_base = \
+--- ./Makefile.SH.orig	Sat Jul 26 09:49:51 2025
++++ ./Makefile.SH	Sat Jul 26 09:49:55 2025
+@@ -553,7 +553,7 @@ c_base = \
      pp.c pp_ctl.c pp_hot.c pp_pack.c pp_sort.c pp_sys.c \
      reentr.c regcomp.c regcomp_debug.c regcomp_invlist.c regcomp_study.c \
      regcomp_trie.c regexec.c run.c scope.c sv.c taint.c time64.c toke.c \
@@ -19,7 +19,7 @@
      $(mallocsrc)
  
  !NO!SUBS!
-@@ -576,7 +576,7 @@ common_objs = \
+@@ -584,7 +584,7 @@ common_objs = \
      regcomp_invlist$(OBJ_EXT) regcomp_study$(OBJ_EXT) regcomp_trie$(OBJ_EXT) \
      regexec$(OBJ_EXT) run$(OBJ_EXT) scope$(OBJ_EXT) sv$(OBJ_EXT) \
      taint$(OBJ_EXT) time64$(OBJ_EXT) toke$(OBJ_EXT) utf8$(OBJ_EXT) \
@@ -28,8 +28,8 @@
      $(mallocobj) $(ARCHOBJS)
  
  miniperl_objs_nodt = $(mini_only_objs) $(common_objs) miniperlmain$(OBJ_EXT)
---- ./pp_sys.c.orig	Tue Apr 16 10:11:38 2024
-+++ ./pp_sys.c	Fri Nov  1 14:49:02 2024
+--- ./pp_sys.c.orig	Tue Jun 24 08:23:21 2025
++++ ./pp_sys.c	Sat Jul 26 09:49:55 2025
 @@ -30,6 +30,8 @@
  #define PERL_IN_PP_SYS_C
  #include "perl.h"

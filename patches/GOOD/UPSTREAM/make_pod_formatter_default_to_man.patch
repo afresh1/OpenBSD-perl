@@ -1,5 +1,5 @@
---- ./cpan/Pod-Perldoc/lib/Pod/Perldoc.pm.orig	Tue Nov 28 03:57:27 2023
-+++ ./cpan/Pod-Perldoc/lib/Pod/Perldoc.pm	Sun Dec 24 22:37:40 2023
+--- ./cpan/Pod-Perldoc/lib/Pod/Perldoc.pm.orig	Fri Jun 27 07:48:18 2025
++++ ./cpan/Pod-Perldoc/lib/Pod/Perldoc.pm	Wed Jul  2 07:03:45 2025
 @@ -486,6 +486,8 @@ sub init_formatter_class_list {
  
    $self->opt_M_with('Pod::Perldoc::ToPod');   # the always-there fallthru
@@ -9,14 +9,14 @@
  
    return;
  }
---- ./t/porting/customized.dat.orig	Mon May  6 18:14:25 2024
-+++ ./t/porting/customized.dat	Tue Oct 22 18:27:27 2024
+--- ./t/porting/customized.dat.orig	Fri Jun 27 07:48:19 2025
++++ ./t/porting/customized.dat	Wed Jul  2 07:03:45 2025
 @@ -9,7 +9,7 @@ Locale::Maketext::Simple cpan/Locale-Maketext-Simple/l
  MIME::Base64 cpan/MIME-Base64/Base64.xs ad617fe2d01932c35b92defa26d40aba601a95a8
  MIME::Base64 cpan/MIME-Base64/lib/MIME/Base64.pm 18e38d197c7c83f96b24f48bef514e93908e6a82
  MIME::Base64 cpan/MIME-Base64/lib/MIME/QuotedPrint.pm 36cbb455ab57b9bbca7e86f50987c8b1df1a8122
 -Pod::Perldoc cpan/Pod-Perldoc/lib/Pod/Perldoc.pm 582be34c077c9ff44d99914724a0cc2140bcd48c
 +Pod::Perldoc cpan/Pod-Perldoc/lib/Pod/Perldoc.pm d97aa26b722e6e3120b19ee0d7cf9af04dfdfb7f
- Scalar::Util cpan/Scalar-List-Utils/t/uniqnum.t 553b0df79a084015b39e4ae9774f801c9eafeb4c
- Time::Piece cpan/Time-Piece/Piece.pm 8cec8b66183ceddb9bf2b6af35dcdd345bc9adfa
- Time::Piece cpan/Time-Piece/Piece.xs 543152540ee17788a638b2c5746b86c3d04401d1
+ Scalar::Util cpan/Scalar-List-Utils/lib/List/Util.pm 98dbc1cb98d448bd929fe42cf0fc47da978df196
+ Scalar::Util cpan/Scalar-List-Utils/lib/List/Util/XS.pm 0e2ef5dcbebb5d808edd4b7adec8f6553cdde916
+ Scalar::Util cpan/Scalar-List-Utils/lib/Scalar/Util.pm dddbfb9e26de572f88598cdf06353902718eb2ec

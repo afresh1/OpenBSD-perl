@@ -1,5 +1,5 @@
---- ./cpan/Pod-Simple/t/corpus.t.orig	Wed Oct 30 17:43:44 2024
-+++ ./cpan/Pod-Simple/t/corpus.t	Wed Oct 30 17:51:37 2024
+--- ./cpan/Pod-Simple/t/corpus.t.orig	Fri Jun 27 07:48:18 2025
++++ ./cpan/Pod-Simple/t/corpus.t	Tue Jul  8 14:34:38 2025
 @@ -24,7 +24,7 @@ use File::Basename ();
  my(@testfiles, %xmlfiles, %wouldxml);
  #use Pod::Simple::Debug (10);
@@ -9,8 +9,8 @@
    print "#Corpusdir: $corpusdir\n";
  
    opendir(INDIR, $corpusdir) or die "Can't opendir corpusdir : $!";
---- ./cpan/Pod-Simple/t/htmlbat.t.orig	Wed Oct 30 17:45:10 2024
-+++ ./cpan/Pod-Simple/t/htmlbat.t	Wed Oct 30 17:46:41 2024
+--- ./cpan/Pod-Simple/t/htmlbat.t.orig	Fri Jun 27 07:48:18 2025
++++ ./cpan/Pod-Simple/t/htmlbat.t	Tue Jul  8 14:34:38 2025
 @@ -19,7 +19,7 @@ use File::Spec;
  use Cwd ();
  use File::Basename ();

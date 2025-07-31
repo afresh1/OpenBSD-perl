@@ -1,5 +1,5 @@
---- ./installperl.orig	Wed Feb 23 18:35:27 2022
-+++ ./installperl	Thu Dec  8 18:23:32 2022
+--- ./installperl.orig	Fri Jun 27 07:48:18 2025
++++ ./installperl	Thu Jul  3 11:11:39 2025
 @@ -233,9 +233,9 @@ else {
      }
  }

@@ -1,5 +1,5 @@
---- ./cpan/Digest-MD5/MD5.xs.orig	Tue Nov 28 03:57:27 2023
-+++ ./cpan/Digest-MD5/MD5.xs	Wed Jan  3 14:49:28 2024
+--- ./cpan/Digest-MD5/MD5.xs.orig	Tue Jun 24 08:23:20 2025
++++ ./cpan/Digest-MD5/MD5.xs	Fri Jul 18 12:37:36 2025
 @@ -36,6 +36,8 @@
  #include "EXTERN.h"
  #include "perl.h"
@@ -418,8 +418,8 @@
  	XSRETURN(3);
  
  void
---- ./cpan/Digest-MD5/t/context.t.orig	Wed Jan  3 14:49:28 2024
-+++ ./cpan/Digest-MD5/t/context.t	Wed Jan  3 14:49:28 2024
+--- ./cpan/Digest-MD5/t/context.t.orig	Fri Jul 18 12:37:36 2025
++++ ./cpan/Digest-MD5/t/context.t	Fri Jul 18 12:37:36 2025
 @@ -0,0 +1,43 @@
 +#!/usr/bin/perl
 +use strict;
@@ -464,14 +464,14 @@
 +}
 +
 +done_testing;
---- ./cpan/Digest-MD5/t/files.t.orig	Tue Nov 28 03:57:27 2023
-+++ ./cpan/Digest-MD5/t/files.t	Wed Jan  3 14:49:28 2024
+--- ./cpan/Digest-MD5/t/files.t.orig	Tue Jun 24 08:23:20 2025
++++ ./cpan/Digest-MD5/t/files.t	Fri Jul 18 12:37:36 2025
 @@ -22,7 +22,7 @@ EOT
      # This is the output of: 'md5sum README MD5.xs rfc1321.txt'
      $EXPECT = <<EOT;
  2f93400875dbb56f36691d5f69f3eba5  README
--f8549bd328fa712f4af41430738c285a  MD5.xs
-+16d90fd139c5eae51f786daa1ea6eb24  MD5.xs
+-f4b5da4e0f19b4c0ab374b7085ed8955  MD5.xs
++1b9a45bc7db0ed1cef1efcddca4e5159  MD5.xs
  754b9db19f79dbc4992f7166eb0f37ce  rfc1321.txt
  EOT
  }

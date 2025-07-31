@@ -18,9 +18,9 @@ rand() without previously seeding it.)
 
 Yay/nay?
 
---- ./util.c.orig	Mon May  6 18:14:20 2024
-+++ ./util.c	Thu Oct 24 03:44:14 2024
-@@ -4694,6 +4694,9 @@ PERL_STATIC_INLINE U32 S_ptr_hash(PTRV u) {
+--- ./util.c.orig	Tue Jun 24 08:23:21 2025
++++ ./util.c	Wed Jul 16 02:01:10 2025
+@@ -4682,6 +4682,9 @@ PERL_STATIC_INLINE U32 S_ptr_hash(PTRV u) {
  U32
  Perl_seed(pTHX)
  {
@@ -30,7 +30,7 @@ Yay/nay?
      /*
       * This is really just a quick hack which grabs various garbage
       * values.  It really should be a real hash algorithm which
-@@ -4763,6 +4766,7 @@ Perl_seed(pTHX)
+@@ -4751,6 +4754,7 @@ Perl_seed(pTHX)
      u += SEED_C5 * ptr_hash(ptruv);
  #endif
      return u;

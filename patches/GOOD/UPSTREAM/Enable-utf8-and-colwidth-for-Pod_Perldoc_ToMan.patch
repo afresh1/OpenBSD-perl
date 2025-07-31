@@ -45,8 +45,8 @@ Index: ToMan.pm
 RCS file: /cvs/src/gnu/usr.bin/perl/cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm,v
 retrieving revision 1.9
 diff -u -p -r1.9 ToMan.pm
---- ./cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm.orig	Mon Feb 18 01:59:21 2019
-+++ ./cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm	Wed Dec  7 05:12:19 2022
+--- ./cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm.orig	Fri Jun 27 07:48:18 2025
++++ ./cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm	Tue Jul  1 06:27:58 2025
 @@ -144,7 +144,9 @@ sub _get_podman_switches {
      #
      # See RT #77465
