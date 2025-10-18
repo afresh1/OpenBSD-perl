@@ -112,7 +112,7 @@ do_build_perl() {
 
 test_build_success() {
     local log=$1
-    local status=`tail -5 $log | grep 'All tests successful.'`
+    local status=`tail -5 $log | grep 'Result: PASS'`
 
     if [ -n "$status" ]; then
         echo "I'm winning, I'm winning!"
