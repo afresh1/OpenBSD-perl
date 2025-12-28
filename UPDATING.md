@@ -69,6 +69,9 @@ This is still an art, not as yet a complete doc, but a start.
 * Run bin/find_base_perl_ports to see what can be removed
 
 ### Updating in CVS
+
+*** GET A BULK PORTS BUILD WITH NEW PERL AND OK FROM PORTS FOLKS ***
+
 The bin/make_src_patch script will generate a patch file that should be
 the full update, however sometimes /usr/bin/patch has some trouble with it.
 * See the notes in bin/utils.sh for creating openbsd-cvs-src.tar.gz
