@@ -9,14 +9,15 @@ This is still an art, not as yet a complete doc, but a start.
 * Update files/shlib_version
 * git rm -rf build_logs/$old_perl_version
 * mv patches/GOOD patches/GOOD.orig and run `bin/cp_good_research`
+* mv files/cpan .
+* Edit Makefile.bsdwrapper1 to remove most of the man pages,
+  or at least those that were in files/cpan
 * Change to a temporary directory and run `NO_LOCAL_PATCHES=1 build_local_perl`
   * See if it runs successfully, it generally should
   * If not, you can add patches to patches/REQUIRED to get it building
 * Run `test_patches` to update and test all patches
   * Updating patches in `patches/RESEARCH` as necessary to get them to apply
     or removing patches that are no longer needed.
-  * You probably need to move files/cpan out of the way until you get to
-    the patches that put them in the Makefile.
   * From time-to time you may need to start over with `cp_good_research`
   * First with `NO_LOCAL_PATCHES=1` until they all apply
   * Then with `NO_BSD_WRAPPER=1` to get patches that rely on each othe

@@ -86,6 +86,20 @@ do_build_perl() {
         echo "make $J -f Makefile.bsd-wrapper all"
         make $J -f Makefile.bsd-wrapper all
 
+    else
+        echo Configuring
+        sh ./Configure -de
+
+        echo Building
+        make
+    fi
+}
+
+do_test_perl() {
+    [ "$NO_LOCAL_PATCHES" ] && NO_BSD_WRAPPER=1
+
+    if [ -z "$NO_BSD_WRAPPER" ]; then
+
         # Some of my test machines are pretty slow
         export PERL_TEST_TIME_OUT_FACTOR=20
 
@@ -97,22 +111,14 @@ do_build_perl() {
             echo "make $J -f Makefile.bsd-wrapper test"
             make $J -f Makefile.bsd-wrapper test
         fi
-
     else
-        echo Configuring
-        sh ./Configure -de
-
-        echo Building
-        make
-
         echo Testing
         make test
     fi
 }
 
 test_build_success() {
-    local log=$1
-    local status=`tail -5 $log | grep 'Result: PASS'`
+    local status=`tail -25 "$1" | grep 'All tests successful'`
 
     if [ -n "$status" ]; then
         echo "I'm winning, I'm winning!"

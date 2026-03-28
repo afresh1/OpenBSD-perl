@@ -2,6 +2,7 @@
 
 BINDIR=$( readlink -f $(dirname $0) )
 . $BINDIR/utils.sub
+set -o errexit -o pipefail -o noclobber
 
 NAME=${1:-*.patch}
 
@@ -12,60 +13,96 @@ find ${SRCDIR}/patches/RESEARCH -name "$NAME" | sort | {
 
         cd $WRKDIR
         log=/tmp/buildlogs/`basename $patch`.log
-        >$log # truncate
+	rm -f "$log"*
 
+	{
         echo Extracting perl
-        do_extract_perl || continue
+        do_extract_perl || exit 1
+
         cd $PERL_BASE
-        do_patch_perl || continue
+
+	if [ -z "$NO_LOCAL_PATCHES" ] && grep -q MANIFEST "$patch"; then
+		sed -n 's,^+\(cpan/[^/]*\)/.*$,\1,p' "$patch" | sort -u > "$log.files"
+		while read -r f; do
+		    [ -e "$SRCDIR/$f" ] &&
+		        cp -a "$SRCDIR/$f" "$( dirname "$f" )"
+		done < "$log.files"
+	fi
+
+        do_patch_perl 2>&1 | tee "$log.do_patch" || exit 1
+
+	grep ^Hunk "$log.do_patch" | grep -qv ' succeeded ' && exit 1
+
         find . -name '*.orig' -delete
 
-        echo Applying $patch 2>&1 | tee -a $log
-        if ! patch -p0 -f -E -F 10 -Ni "$patch" 2>&1 | tee -a $log; then
-            echo "Failed" 2>&1 | tee -a $log
-            continue
+	cp t/porting/customized.dat t/porting/customized.dat.orig.test
+
+        echo Applying $patch
+        if ! patch -p0 -f -E -F 10 -Ni "$patch"; then
+            echo "Failed"
+            exit
         fi
 
-       [ $( find . -name '*.rej' | tee -a log | wc -l ) -gt 0 ] &&
-            echo "Failed" 2>&1 | tee -a $log && continue
+       [ $( find . -name '*.rej' | wc -l ) -gt 0 ] &&
+            echo "Failed" && exit
+
+        mv -f "$patch" "${patch}.old"
 
         # In case the patch touched the MANIFEST, make sure it is sorted
-        perl ./Porting/manisort -o MANIFEST
-	[ -e ./t/porting/customized.dat.orig ] ||
-	    cp t/porting/customized.dat t/porting/customized.dat.orig
-	( export LD_LIBRARY_PATH=${PWD} &&
-	    cd t &&
-	    ./perl -I ../lib porting/customized.t --regen  )
+	# but ignore errors as we regenerated it.
+        perl ./Porting/manisort -o MANIFEST || true
 
+        # Then make sure it is right
+        perl ./regen/lib_cleanup.pl -v || true
+
+        if [ -z "$REGEN_PATCHES" ]; then
+            do_build_perl || exit
+
+	    chmod u+w t/porting/customized.dat
+	    ( [ -d obj ] && cd obj
+ls -l
+                LD_LIBRARY_PATH=${PWD} \
+	        ./perl -It/lib ./t/porting/customized.t --regen || true )
+	    mv t/porting/customized.dat.orig.test t/porting/customized.dat.orig
+        fi
+
+        echo Generating $new_patch
         new_patch=`echo "$patch" | sed -e "s/RESEARCH/APPLIES/"`
         new_dir=`dirname "$new_patch"`
         mkdir -p "$new_dir"
-
-        echo Generating $new_patch
-	"$BINDIR"/update_patch "$patch" > "${new_patch}.new"
+	rm -f "${new_patch}.new"
+	"$BINDIR"/update_patch "$patch.old" > "${new_patch}.new"
 
         if [ -z "$REGEN_PATCHES" ]; then
-            do_patch_perl | tee -a $log
-            do_build_perl | tee -a $log
-        fi
+            do_test_perl 2>&1 | tee "$log.build" || exit
+	fi
 
         echo Renaming patches
-        mv -f "$patch" "${patch}.old"
         patch="$new_patch"
 
         # Did we win?
-        if test_build_success $log; then
+        if test_build_success "$log.build"; then
             new_patch=`echo "$patch" | sed -e "s/APPLIES/GOOD/"`
 
             new_dir=`dirname "$new_patch"`
             mkdir -p "$new_dir"
 
             mv -f "${patch}.new" "$new_patch"
+            if [ -s "$log.files" ]; then
+		while read -r f; do
+		    if [ -e "$SRCDIR/$f" ]; then
+			t="$SRCDIR/files/$( dirname "$f" )"
+			mkdir -p "$t"
+		        mv "$SRCDIR/$f" "$t"
+                    fi
+		done < "$log.files"
+            fi
             patch="$new_patch"
         else
             mv -f "${patch}.new" "$patch"
         fi
 
         echo Patch is now $patch
+	} 2>&1 | tee "$log"
     done
 }

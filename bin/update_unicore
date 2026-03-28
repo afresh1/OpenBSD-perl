@@ -18,6 +18,7 @@ do_extract_perl
 cd $PERL_BASE
 do_patch_perl
 do_build_perl
+do_test_perl
 
 cd $WRKDIR
 mkdir -p unicore/.old

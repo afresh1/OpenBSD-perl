@@ -31,6 +31,7 @@ if [ -z "$NO_READONLY_SRC"  \
 fi
 
 do_build_perl
+do_test_perl
 
 cd $WRKDIR
 
