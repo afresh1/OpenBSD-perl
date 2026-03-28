@@ -13,27 +13,8 @@ upstream.  During regress, set the x-bit of the files in obj
 directory.  Do not touch src tree, it might be read-only.
 
 discussed with anton@; OK afresh1@
----
- gnu/usr.bin/perl/t/porting/exec-bit.t |  4 ++++
- regress/gnu/usr.bin/perl/Makefile     | 20 ++++++++++++--------
- 2 files changed, 16 insertions(+), 8 deletions(-)
-
-diff --git a/gnu/usr.bin/perl/t/porting/exec-bit.t b/gnu/usr.bin/perl/t/porting/exec-bit.t
-index 3e80f844797..2dd2a662b57 100644
---- ./t/porting/exec-bit.t.orig	Fri Jun 27 07:48:19 2025
-+++ ./t/porting/exec-bit.t	Thu Jul  3 19:05:09 2025
-@@ -30,6 +30,10 @@ if ( $^O eq "vos" ) {
-   skip_all( "VOS combines the read and execute permission bits." );
- }
- 
-+if ( $^O eq "openbsd" ) {
-+  skip_all( "OpenBSD CVS src tree execute permission bits do not match Perl distribution." );
-+}
-+
- if ( $Config{usecrosscompile} ) {
-   skip_all( "Not all files are available during cross-compilation" );
- }
-diff --git a/regress/gnu/usr.bin/perl/Makefile b/regress/gnu/usr.bin/perl/Makefile
+--- Plus this patch to the regress suite
+#diff --git a/regress/gnu/usr.bin/perl/Makefile b/regress/gnu/usr.bin/perl/Makefile
 #index 9ca83dee61a..56ebf47f2fc 100644
 #--- a/regress/gnu/usr.bin/perl/Makefile
 #+++ b/regress/gnu/usr.bin/perl/Makefile
@@ -68,3 +49,23 @@ diff --git a/regress/gnu/usr.bin/perl/Makefile b/regress/gnu/usr.bin/perl/Makefi
 # 
 # REGRESS_TARGETS +=	test
 # test:
+---
+ gnu/usr.bin/perl/t/porting/exec-bit.t |  4 ++++
+ regress/gnu/usr.bin/perl/Makefile     | 20 ++++++++++++--------
+ 2 files changed, 16 insertions(+), 8 deletions(-)
+
+diff --git a/gnu/usr.bin/perl/t/porting/exec-bit.t b/gnu/usr.bin/perl/t/porting/exec-bit.t
+index 3e80f844797..2dd2a662b57 100644
+--- ./t/porting/exec-bit.t.orig	Fri Jun 27 07:48:19 2025
++++ ./t/porting/exec-bit.t	Thu Jul  3 19:05:09 2025
+@@ -30,6 +30,10 @@ if ( $^O eq "vos" ) {
+   skip_all( "VOS combines the read and execute permission bits." );
+ }
+ 
++if ( $^O eq "openbsd" ) {
++  skip_all( "OpenBSD CVS src tree execute permission bits do not match Perl distribution." );
++}
++
+ if ( $Config{usecrosscompile} ) {
+   skip_all( "Not all files are available during cross-compilation" );
+ }
