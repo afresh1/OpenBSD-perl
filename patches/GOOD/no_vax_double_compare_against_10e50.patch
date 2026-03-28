@@ -1,13 +1,13 @@
---- ./t/porting/customized.dat.orig	Fri Jun 27 07:48:19 2025
-+++ ./t/porting/customized.dat	Thu Jul  3 14:54:30 2025
-@@ -22,4 +22,5 @@ Win32API::File cpan/Win32API-File/File.pm 8fd212857f82
- Win32API::File cpan/Win32API-File/File.xs beb870fed4490d2faa547b4a8576b8d64d1d27c5
+--- ./t/porting/customized.dat.orig	Mon Mar 23 20:52:34 2026
++++ ./t/porting/customized.dat	Mon Mar 23 21:20:40 2026
+@@ -24,4 +24,4 @@ Win32API::File cpan/Win32API-File/File.xs beb870fed449
  autodie cpan/autodie/t/utime.t f94c3000b5b23db59df64895594050d7151f8333
  podlators pod/perlpodstyle.pod 3430e61d84673b62944ceed6d023bfd5aebe3847
-+version vutil.c 8f1e65848649b125b6e2d3a91d54f5e147d12e41
  version cpan/version/lib/version.pm aa9f25fe6f6815139a9fb85d817b4e2802732c03
---- ./vutil.c.orig	Fri Jun 27 07:48:19 2025
-+++ ./vutil.c	Thu Jul  3 14:54:30 2025
+-version vutil.c d2967934cdd5dfbcc2f7c783712e199d57d69ba1
++version vutil.c b575383bee2e6bb4eee1b63cfa2d4efa54401e02
+--- ./vutil.c.orig	Sun Jan 18 08:32:33 2026
++++ ./vutil.c	Mon Mar 23 20:52:34 2026
 @@ -656,7 +656,11 @@ VER_NV:
  
          /* may get too much accuracy */
