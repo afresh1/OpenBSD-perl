@@ -28,8 +28,19 @@
      $(mallocobj) $(ARCHOBJS)
  
  miniperl_objs_nodt = $(mini_only_objs) $(common_objs) miniperlmain$(OBJ_EXT)
---- ./pp_sys.c.orig	Tue Jun 24 08:23:21 2025
-+++ ./pp_sys.c	Sat Jul 26 09:49:55 2025
+--- ./config.over.orig	Tue Mar 24 12:29:10 2026
++++ ./config.over	Tue Mar 24 12:29:30 2026
+@@ -64,3 +64,8 @@ myuname='openbsd'
+ 
+ # force to use ranlib
+ ranlib='ranlib'
++
++# Enable the syscall emulator,
++# enabling syscall even if we don't have it
++d_syscall=define
++d_syscallproto=define
+--- ./pp_sys.c.orig	Sun Jan 18 09:50:04 2026
++++ ./pp_sys.c	Tue Mar 24 12:29:30 2026
 @@ -30,6 +30,8 @@
  #define PERL_IN_PP_SYS_C
  #include "perl.h"
