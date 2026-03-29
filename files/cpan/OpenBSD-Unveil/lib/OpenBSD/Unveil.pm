@@ -12,7 +12,7 @@ our %EXPORT_TAGS = ( 'all' => [qw( unveil )] );
 our @EXPORT_OK   = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT      = qw( unveil );                           ## no critic 'export'
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 require XSLoader;
 XSLoader::load( 'OpenBSD::Unveil', $VERSION );
@@ -38,10 +38,11 @@ OpenBSD::Unveil - Perl interface to OpenBSD unveil(2)
   use OpenBSD::Unveil;
 
   my $file = "/usr/share/dict/words";
+
   unveil( $file, "r" ) || die "Unable to unveil: $!";
   unveil() || die "Unable to lock unveil: $!";
-  open my $fh, '<', $file or die "Unable to open $file: $!";
 
+  open my $fh, '<', $file or die "Unable to open $file: $!";
   print grep { /unveil/i } readline($fh);
   close $fh;
 
@@ -60,9 +61,11 @@ Exports L</unveil> by default.
 
 Perl interface to L<unveil(2)>.
 
-	unveil($paths, $permissions)
+	unveil($path, $permissions)
 	unveil() # to lock
 
+Takes a string C<$path> and a string of C<$permissions>.
+Calling with no arguments disables future calls to C<unveil>.
 Returns true on success, returns false and sets $! on failure.
 Throws an exception on incorrect number of parameters.
 
@@ -71,6 +74,8 @@ Throws an exception on incorrect number of parameters.
 L<unveil(2)>
 
 L<http://man.openbsd.org/unveil.2>
+
+L<OpenBSD::Pledge>
 
 =head1 AUTHOR
 
