@@ -27,6 +27,11 @@ if [ "$msg" = 'DESTDIR must be set' ]; then
     exit 1
 fi
 
+if [ ! -e "$DESTDIR/etc" ] || [ ! -e "$DESTDIR/usr" ]; then
+	echo "DESTDIR seems to be set wrong" >&2
+	exit 1
+fi
+
 add=${wrkdir}/add
 del=${wrkdir}/del
 
