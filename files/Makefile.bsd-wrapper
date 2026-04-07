@@ -1,9 +1,13 @@
-# $OpenBSD: Makefile.bsd-wrapper,v 1.114 2023/09/03 01:43:09 afresh1 Exp $
+# $OpenBSD: Makefile.bsd-wrapper,v 1.115 2026/04/07 16:41:33 jca Exp $
 #
 # Build wrapper for Perl
 #
 
 CONFIGURE_ARGS=	-dse -Dopenbsd_distribution=defined
+
+.if defined(DEBUG)
+CONFIGURE_ARGS+= -Doptimize="${DEBUG}"
+.endif
 
 .if !exists(${.OBJDIR}/config.over)
 CONFIGURE_ARGS+= -Dmksymlinks
