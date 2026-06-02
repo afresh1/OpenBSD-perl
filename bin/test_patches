@@ -40,6 +40,7 @@ find ${SRCDIR}/patches/RESEARCH -name "$NAME" | sort | {
         echo Applying $patch
         if ! patch -p0 -f -E -F 10 -Ni "$patch"; then
             echo "Failed"
+            find . -name '*.rej' -print -exec cat {} \;
             exit
         fi
 
