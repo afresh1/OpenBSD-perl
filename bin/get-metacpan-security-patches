@@ -1,0 +1,72 @@
+#!/usr/bin/perl
+use v5.42;
+use utf8;      # so literals and identifiers can be in UTF-8
+use warnings  qw(FATAL utf8);    # fatalize encoding glitches
+use open      qw(:std :encoding(UTF-8)); # undeclared streams in UTF-8
+
+use Encode qw< decode >;
+
+use IPC::Cmd qw< run >;
+use Module::CoreList qw<>;
+use Data::Dumper qw< Dumper >;
+
+my $base = 'https://lists.security.metacpan.org/cve-announce';
+#my $date = '2026/05';
+
+my %extra = map { fc $_ => 1 } qw<
+     Perl
+     Term::Cap
+     Term::ReadKey
+>;
+
+sub fetch :prototype($) ($path) {
+	my $url = $path =~ m{://} ? $path : "$base/$path";
+
+	my ($success, $error_message, $full_buf, $stdout_buf) = run(
+	    command => [qw< ftp -o- >, $url],
+	    timeout => 60,
+	);
+	unless ($success) {
+		my $buf = join "", $full_buf->@*;
+		die "$error_message\n\n$buf";
+	}
+
+	return decode 'UTF-8', join '', $stdout_buf->@*;
+}
+
+my $content = fetch "dates/$date/";
+
+my $re = qr{
+    <a[^>]*
+     href="/cve-announce/([^"]*)"
+    [^>]*>
+    (CVE-\d+-\d+):
+    \s*(\S+)
+    \s+(.*?)
+    </a>
+}xms;
+
+while ($content =~ m{$re}g) {
+	my ($cve, $module, $title) = ($2, $3, $4);
+	next unless $extra{fc $module} || Module::CoreList->is_core($module);
+
+	my $url = "$base/$1";
+	my $msg = fetch $url;
+	say "[$cve] $module $title\n  $url";
+
+	my ($announcement) = $msg =~ m{<div\s+class="msg_expanded">.*?<pre>(.*?)</pre>}xms;
+	$announcement =~ s/\x{00a0}/ /g; # No nbsp!
+
+	# Add the mailing list announcment as a reference
+	$announcement =~ s{ ^References$ \s*? ^-+$ \K }{\n$url}xms;
+
+	my @patches = $announcement =~ m{(https://\S+?\.patch)}gxms;
+	my $file = "${module}_${cve}" =~ s/::/-/gr =~ s/[^\w-]/_/gr;
+	$file = @patches ? "$file.patch" : "$file.txt";
+
+	open my $fh, '>', $file or die $!;
+	print $fh $announcement;
+	say $fh "\n----- $_ -----\n", fetch $_ for @patches;
+	close $fh;
+	say "> $file";
+}
