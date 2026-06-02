@@ -82,7 +82,7 @@ ls -l
         patch="$new_patch"
 
         # Did we win?
-        if test_build_success "$log.build"; then
+        if [ -z "$REGEN_PATCHES" ] && test_build_success "$log.build"; then
             new_patch=`echo "$patch" | sed -e "s/APPLIES/GOOD/"`
 
             new_dir=`dirname "$new_patch"`
