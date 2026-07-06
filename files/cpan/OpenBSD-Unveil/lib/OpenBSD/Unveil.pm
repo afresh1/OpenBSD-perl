@@ -1,4 +1,4 @@
-#	$OpenBSD: Unveil.pm,v 1.1 2019/07/09 20:41:54 afresh1 Exp $	#
+#	$OpenBSD: Unveil.pm,v 1.2 2026/03/30 00:00:04 afresh1 Exp $	#
 package OpenBSD::Unveil;
 
 use 5.028;
