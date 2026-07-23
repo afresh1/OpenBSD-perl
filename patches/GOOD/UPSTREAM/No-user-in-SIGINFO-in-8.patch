@@ -1,0 +1,23 @@
+From 872cb83f470ba5906d0d512f813b7507ca5d9086 Mon Sep 17 00:00:00 2001
+From: anton <anton@openbsd.org>
+Date: Sat, 18 Jul 2026 19:51:32 +0000
+Subject: [PATCH] Tweak Perl sigaction test skip logic to cover OpenBSD 8.0.
+
+ok afresh1@
+---
+ gnu/usr.bin/perl/ext/POSIX/t/sigaction.t | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gnu/usr.bin/perl/ext/POSIX/t/sigaction.t b/gnu/usr.bin/perl/ext/POSIX/t/sigaction.t
+index 024c66a1470c..c48e0bc60540 100644
+--- ext/POSIX/t/sigaction.t.orig
++++ ext/POSIX/t/sigaction.t
+@@ -202,7 +202,7 @@ SKIP: {
+     $skip{pid}{$^O} = $skip{uid}{$^O} = "not set for kill()"
+         if (($^O.$Config{osvers}) =~ /^darwin[0-8]\./
+             ||
+-            ($^O.$Config{osvers}) =~ /^openbsd[0-7]\./
++            ($^O.$Config{osvers}) =~ /^openbsd[0-8]\./
+             ||
+             ($^O eq 'gnu')
+             ||
