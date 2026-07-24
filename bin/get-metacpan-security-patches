@@ -66,7 +66,13 @@ while ($content =~ m{$re}g) {
 
 	open my $fh, '>', $file or die $!;
 	print $fh $announcement;
-	say $fh "\n----- $_ -----\n", fetch $_ for @patches;
+	for (@patches) {
+		say $fh "\n----- $_ -----\n";
+		my $p = fetch $_;
+		$p =~ s{^---\s+\Ka/([^\t\n]+)}{$1.orig}gxms;
+		$p =~ s{^\+\+\+\s+\Kb/}{}gxms;
+		say $fh $p;
+	}
 	close $fh;
 	say "> $file";
 }
