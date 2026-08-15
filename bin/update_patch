@@ -13,7 +13,7 @@ die "usage: $0 [$patchfile]\n" if @ARGV;
 
 my $prefix;
 if ($patchfile) {
-	open my $fh, '<', $patchfile or die "Unable top open $patchfile: $!";
+	open my $fh, '<', $patchfile or die "Unable to open $patchfile: $!";
 	while ($_ = $fh->getline) {
 		last if /^--- /;
 		$prefix .= $_;
