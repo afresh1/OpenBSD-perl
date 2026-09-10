@@ -106,7 +106,7 @@ _quick3p=
     perl5420delta 1			pod/perl5420delta.pod \
     perl5421delta 1			pod/perl5421delta.pod \
     perl5422delta 1			pod/perl5422delta.pod \
-    perl5423delta 1			pod/perl5423delta.pod \
+    perl5440delta 1			pod/perl5440delta.pod \
     perl561delta 1			pod/perl561delta.pod \
     perl56delta 1			pod/perl56delta.pod \
     perl581delta 1			pod/perl581delta.pod \
@@ -788,6 +788,7 @@ _quick3p=
     Test2::EventFacet::Trace 3p		lib/Test2/EventFacet/Trace.pm \
     Test2::Formatter 3p			lib/Test2/Formatter.pm \
     Test2::Formatter::TAP 3p		lib/Test2/Formatter/TAP.pm \
+    Test2::Handle 3p			lib/Test2/Handle.pm \
     Test2::Hub 3p			lib/Test2/Hub.pm \
     Test2::Hub::Interceptor 3p		lib/Test2/Hub/Interceptor.pm \
     Test2::Hub::Interceptor::Terminator 3p	lib/Test2/Hub/Interceptor/Terminator.pm \
@@ -883,6 +884,9 @@ _quick3p=
     Test2::Util::Times 3p		lib/Test2/Util/Times.pm \
     Test2::Util::Trace 3p		lib/Test2/Util/Trace.pm \
     Test2::V0 3p			lib/Test2/V0.pm \
+    Test2::V1 3p			lib/Test2/V1.pm \
+    Test2::V1::Base 3p			lib/Test2/V1/Base.pm \
+    Test2::V1::Handle 3p		lib/Test2/V1/Handle.pm \
     Test2::Workflow 3p			lib/Test2/Workflow.pm \
     Test2::Workflow::BlockBase 3p	lib/Test2/Workflow/BlockBase.pm \
     Test2::Workflow::Build 3p		lib/Test2/Workflow/Build.pm \
