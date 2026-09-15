@@ -1,6 +1,6 @@
---- ./MANIFEST.orig	Wed Jul 16 09:52:36 2025
-+++ ./MANIFEST	Wed Jul 16 09:52:50 2025
-@@ -1741,6 +1741,10 @@ cpan/NEXT/t/dynamically_scoped_regex_vars.t	NEXT
+--- ./MANIFEST.orig	Sun Aug 23 19:08:02 2026
++++ ./MANIFEST	Sun Aug 23 19:08:06 2026
+@@ -1762,6 +1762,10 @@ cpan/NEXT/t/dynamically_scoped_regex_vars.t	NEXT
  cpan/NEXT/t/next.t				NEXT
  cpan/NEXT/t/stringify.t				NEXT
  cpan/NEXT/t/unseen.t				NEXT
@@ -11,9 +11,9 @@
  cpan/Params-Check/lib/Params/Check.pm	Params::Check
  cpan/Params-Check/t/01_Params-Check.t	Params::Check tests
  cpan/parent/lib/parent.pm			Establish an ISA relationship with base classes at compile time
---- ./Makefile.SH.orig	Tue Jun 24 08:23:20 2025
-+++ ./Makefile.SH	Wed Jul 16 09:52:46 2025
-@@ -1447,7 +1447,7 @@ _cleaner2:
+--- ./Makefile.SH.orig	Sun Aug 23 19:08:02 2026
++++ ./Makefile.SH	Sun Aug 23 19:08:06 2026
+@@ -1444,7 +1444,7 @@ _cleaner2:
  	-rmdir lib/Sys/Syslog lib/Sys lib/Sub lib/Search lib/Scalar/List
  	-rmdir lib/Scalar lib/Pod/Text lib/Pod/Simple lib/Pod/Perldoc
  	-rmdir lib/Pod/Html lib/PerlIO/via lib/PerlIO lib/Perl lib/Parse/CPAN
@@ -22,9 +22,9 @@
  	-rmdir lib/Module/CoreList lib/Module lib/Memoize lib/Math/BigRat
  	-rmdir lib/Math/BigInt lib/Math/BigFloat lib/Math lib/MIME
  	-rmdir lib/Locale/Maketext lib/Locale lib/List/Util lib/List
---- ./win32/GNUmakefile.orig	Tue Jun 24 08:23:21 2025
-+++ ./win32/GNUmakefile	Wed Jul 16 09:52:46 2025
-@@ -1717,6 +1717,7 @@ distclean: realclean
+--- ./win32/GNUmakefile.orig	Mon Jun 22 17:51:45 2026
++++ ./win32/GNUmakefile	Sun Aug 23 19:08:06 2026
+@@ -1720,6 +1720,7 @@ distclean: realclean
  	-if exist $(LIBDIR)\MIME rmdir /s /q $(LIBDIR)\MIME
  	-if exist $(LIBDIR)\Module rmdir /s /q $(LIBDIR)\Module
  	-if exist $(LIBDIR)\Net\FTP rmdir /s /q $(LIBDIR)\Net\FTP
@@ -32,9 +32,9 @@
  	-if exist $(LIBDIR)\Params rmdir /s /q $(LIBDIR)\Params
  	-if exist $(LIBDIR)\Parse rmdir /s /q $(LIBDIR)\Parse
  	-if exist $(LIBDIR)\Perl rmdir /s /q $(LIBDIR)\Perl
---- ./win32/Makefile.orig	Tue Jun 24 08:23:21 2025
-+++ ./win32/Makefile	Wed Jul 16 09:52:46 2025
-@@ -1245,6 +1245,7 @@ distclean: realclean
+--- ./win32/Makefile.orig	Mon Jun 22 17:51:45 2026
++++ ./win32/Makefile	Sun Aug 23 19:08:06 2026
+@@ -1248,6 +1248,7 @@ distclean: realclean
  	-if exist $(LIBDIR)\MIME rmdir /s /q $(LIBDIR)\MIME
  	-if exist $(LIBDIR)\Module rmdir /s /q $(LIBDIR)\Module
  	-if exist $(LIBDIR)\Net\FTP rmdir /s /q $(LIBDIR)\Net\FTP

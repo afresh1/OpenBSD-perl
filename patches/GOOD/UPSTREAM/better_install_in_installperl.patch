@@ -1,5 +1,5 @@
---- ./installperl.orig	Fri Jun 27 07:48:18 2025
-+++ ./installperl	Tue Jul  1 17:22:27 2025
+--- ./installperl.orig	Mon Jun 22 07:48:00 2026
++++ ./installperl	Wed Aug 19 10:36:37 2026
 @@ -260,6 +260,10 @@ if ($Is_W32 or $Is_Cygwin) {
      $packlist->{"$Config{installbin}/$perldll"} = { type => 'file' };
  } # if ($Is_W32 or $Is_Cygwin)
@@ -21,10 +21,10 @@
 -    fix_dep_names("$installbin/$perl_verbase$ver$exe_ext");
 -    chmod(0755, "$installbin/$perl_verbase$ver$exe_ext");
 +    install("perl$exe_ext", "$installbin/$perl_verbase$ver$exe_ext", "0755");
-     `chtag -r "$installbin/$perl_verbase$ver$exe_ext"` if ($^O eq 'os390');
  }
  
-@@ -559,6 +559,21 @@ sub copy {
+ # Install library files.
+@@ -556,6 +556,21 @@ sub copy {
  	    unless -f $to and (chmod(0666, $to), unlink $to)
  		   and File::Copy::copy($from, $to);
      }

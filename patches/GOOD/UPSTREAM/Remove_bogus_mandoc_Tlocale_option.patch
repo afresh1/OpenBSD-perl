@@ -17,9 +17,9 @@ Subject: [PATCH] Delete totally bogus code specifically targetted at mandoc
 
 diff --git cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm
 index 696c9dd2c31..d8e42b1703b 100644
---- ./cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm.orig	Fri Jun 27 07:48:18 2025
-+++ ./cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm	Tue Jul  1 11:47:57 2025
-@@ -209,12 +209,6 @@ sub _have_groff_with_utf8 {
+--- ./cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm.orig	Tue Aug 25 11:50:36 2026
++++ ./cpan/Pod-Perldoc/lib/Pod/Perldoc/ToMan.pm	Tue Aug 25 11:50:44 2026
+@@ -211,12 +211,6 @@ sub _have_groff_with_utf8 {
  	$version ge $minimum_groff_version;
  	}
  
@@ -32,7 +32,7 @@ index 696c9dd2c31..d8e42b1703b 100644
  sub _collect_nroff_switches {
  	my( $self ) = shift;
  
-@@ -242,7 +236,6 @@ sub _get_device_switches {
+@@ -248,7 +242,6 @@ sub _get_device_switches {
  	   if( $self->_is_nroff  )             { qw()              }
  	elsif( $self->_have_groff_with_utf8 )  { qw(-Kutf8 -Tutf8) }
  	elsif( $self->_is_ebcdic )             { qw(-Tcp1047)      }

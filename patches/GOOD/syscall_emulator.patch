@@ -1,6 +1,6 @@
---- ./MANIFEST.orig	Sat Jul 26 09:49:51 2025
-+++ ./MANIFEST	Sat Jul 26 09:49:59 2025
-@@ -6483,6 +6483,7 @@ t/op/svleak.pl				Test file for svleak.t
+--- ./MANIFEST.orig	Mon Aug 24 15:18:36 2026
++++ ./MANIFEST	Mon Aug 24 15:18:37 2026
+@@ -6535,6 +6535,7 @@ t/op/svleak.pl				Test file for svleak.t
  t/op/svleak.t				See if stuff leaks SVs
  t/op/switch.t				See if switches (given/when) work
  t/op/symbolcache.t			See if undef/delete works on stashes with functions
@@ -8,9 +8,9 @@
  t/op/sysio.t				See if sysread and syswrite work
  t/op/taint.t				See if tainting works
  t/op/threads.t				Misc. tests for perl features with threads
---- ./Makefile.SH.orig	Sat Jul 26 09:49:51 2025
-+++ ./Makefile.SH	Sat Jul 26 09:49:55 2025
-@@ -553,7 +553,7 @@ c_base = \
+--- ./Makefile.SH.orig	Mon Aug 24 15:18:36 2026
++++ ./Makefile.SH	Mon Aug 24 15:18:37 2026
+@@ -549,7 +549,7 @@ c_base = \
      pp.c pp_ctl.c pp_hot.c pp_pack.c pp_sort.c pp_sys.c \
      reentr.c regcomp.c regcomp_debug.c regcomp_invlist.c regcomp_study.c \
      regcomp_trie.c regexec.c run.c scope.c sv.c taint.c time64.c toke.c \
@@ -19,17 +19,16 @@
      $(mallocsrc)
  
  !NO!SUBS!
-@@ -584,7 +584,7 @@ common_objs = \
-     regcomp_invlist$(OBJ_EXT) regcomp_study$(OBJ_EXT) regcomp_trie$(OBJ_EXT) \
-     regexec$(OBJ_EXT) run$(OBJ_EXT) scope$(OBJ_EXT) sv$(OBJ_EXT) \
-     taint$(OBJ_EXT) time64$(OBJ_EXT) toke$(OBJ_EXT) utf8$(OBJ_EXT) \
--    util$(OBJ_EXT) \
-+    util$(OBJ_EXT) syscall_emulator$(OBJ_EXT) \
+@@ -581,6 +581,7 @@ common_objs = \
+     regcomp_study$(OBJ_EXT) regcomp_trie$(OBJ_EXT) regexec$(OBJ_EXT) \
+     run$(OBJ_EXT) scope$(OBJ_EXT) sv$(OBJ_EXT) taint$(OBJ_EXT) \
+     time64$(OBJ_EXT) toke$(OBJ_EXT) utf8$(OBJ_EXT) util$(OBJ_EXT) \
++    syscall_emulator$(OBJ_EXT) \
      $(mallocobj) $(ARCHOBJS)
  
  miniperl_objs_nodt = $(mini_only_objs) $(common_objs) miniperlmain$(OBJ_EXT)
---- ./config.over.orig	Tue Mar 24 12:29:10 2026
-+++ ./config.over	Tue Mar 24 12:29:30 2026
+--- ./config.over.orig	Mon Aug 24 15:18:28 2026
++++ ./config.over	Mon Aug 24 15:18:37 2026
 @@ -64,3 +64,8 @@ myuname='openbsd'
  
  # force to use ranlib
@@ -39,8 +38,8 @@
 +# enabling syscall even if we don't have it
 +d_syscall=define
 +d_syscallproto=define
---- ./pp_sys.c.orig	Sun Jan 18 09:50:04 2026
-+++ ./pp_sys.c	Tue Mar 24 12:29:30 2026
+--- ./pp_sys.c.orig	Mon Jun 22 17:51:45 2026
++++ ./pp_sys.c	Mon Aug 24 15:18:37 2026
 @@ -30,6 +30,8 @@
  #define PERL_IN_PP_SYS_C
  #include "perl.h"

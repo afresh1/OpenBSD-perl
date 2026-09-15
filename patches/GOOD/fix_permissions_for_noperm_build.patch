@@ -1,5 +1,5 @@
---- ./cpan/ExtUtils-Install/lib/ExtUtils/Install.pm.orig	Fri Aug 15 10:39:32 2025
-+++ ./cpan/ExtUtils-Install/lib/ExtUtils/Install.pm	Fri Aug 15 10:39:53 2025
+--- ./cpan/ExtUtils-Install/lib/ExtUtils/Install.pm.orig	Wed May 13 17:58:28 2026
++++ ./cpan/ExtUtils-Install/lib/ExtUtils/Install.pm	Sun Aug 23 18:06:28 2026
 @@ -104,6 +104,7 @@ $INSTALL_QUIET = 1
        $ENV{MAKEFLAGS} =~ /\b(s|silent|quiet)\b/);
  
@@ -53,9 +53,9 @@
              }
          }
          if ($need_filtering) {
---- ./cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Unix.pm.orig	Fri Aug 15 10:39:32 2025
-+++ ./cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Unix.pm	Fri Aug 15 10:39:54 2025
-@@ -2242,7 +2242,8 @@ Called by init_main.  Initializes PERL_*
+--- ./cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Unix.pm.orig	Mon Jun 22 07:48:00 2026
++++ ./cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Unix.pm	Sun Aug 23 18:06:28 2026
+@@ -2243,7 +2243,8 @@ Called by init_main.  Initializes PERL_*
  sub init_PERM {
      my($self) = shift;
  
@@ -65,8 +65,8 @@
      $self->{PERM_RW}  = 644  unless defined $self->{PERM_RW};
      $self->{PERM_RWX} = 755  unless defined $self->{PERM_RWX};
  
---- ./cpan/Sys-Syslog/Makefile.PL.orig	Fri Aug 15 10:39:32 2025
-+++ ./cpan/Sys-Syslog/Makefile.PL	Fri Aug 15 10:39:54 2025
+--- ./cpan/Sys-Syslog/Makefile.PL.orig	Wed May 13 17:58:28 2026
++++ ./cpan/Sys-Syslog/Makefile.PL	Sun Aug 23 18:06:28 2026
 @@ -14,7 +14,7 @@ if ($] < 5.008) {
  }
  
@@ -76,8 +76,8 @@
  
  # virtual paths given to EU::MM
  my %virtual_path = ( 'Syslog.pm' => '$(INST_LIBDIR)/Syslog.pm' );
---- ./install_lib.pl.orig	Fri Aug 15 10:39:32 2025
-+++ ./install_lib.pl	Fri Aug 15 10:39:54 2025
+--- ./install_lib.pl.orig	Wed May 13 17:58:29 2026
++++ ./install_lib.pl	Sun Aug 23 18:06:28 2026
 @@ -6,7 +6,7 @@
  use strict;
  use vars qw($Is_VMS $Is_W32 $Is_OS2 $Is_Cygwin $Is_Darwin $Is_AmigaOS
@@ -124,8 +124,8 @@
  }
  
  sub unixtoamiga
---- ./installperl.orig	Fri Aug 15 10:39:32 2025
-+++ ./installperl	Fri Aug 15 10:40:35 2025
+--- ./installperl.orig	Sun Aug 23 18:06:26 2026
++++ ./installperl	Sun Aug 23 18:06:28 2026
 @@ -72,7 +72,7 @@ $opts{destdir} = '';
      my $usage = 0;
      if (!GetOptions(\%opts, 'notify|n', 'strip|s', 'silent|S',
@@ -152,7 +152,7 @@
  
  $versiononly = 1 if $Config{versiononly} && !defined $versiononly;
  my (@scripts, @tolink);
-@@ -510,6 +514,9 @@ if (!$opts{nopods} && (!$versiononly || ($installprivl
+@@ -507,6 +511,9 @@ if (!$opts{nopods} && (!$versiononly || ($installprivl
  
  
  $packlist->write() unless $opts{notify};
@@ -162,7 +162,7 @@
  print "  Installation complete\n" if $opts{verbose};
  
  exit 0;
-@@ -548,6 +555,7 @@ sub safe_unlink {
+@@ -545,6 +552,7 @@ sub safe_unlink {
  
  sub copy {
      my($from,$to) = @_;
@@ -170,7 +170,7 @@
  
      my $xto = $to;
      $xto =~ s/^\Q$opts{destdir}\E//;
-@@ -555,12 +563,15 @@ sub copy {
+@@ -552,12 +560,15 @@ sub copy {
  	unless $opts{silent};
      print "  creating new version of $xto\n"
  	if $Is_VMS and -e $to and !$opts{silent};
@@ -188,7 +188,7 @@
      $packlist->{$xto} = { type => 'file' };
  }
  
-@@ -569,6 +580,8 @@ sub install {
+@@ -566,6 +577,8 @@ sub install {
  
      my $xto = $to;
      my $cmd = join(' ', @installcmd);

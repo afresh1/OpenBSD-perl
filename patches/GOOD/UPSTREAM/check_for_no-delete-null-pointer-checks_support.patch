@@ -1,6 +1,6 @@
---- ./Configure.orig	Fri Jun 27 07:48:18 2025
-+++ ./Configure	Tue Jul  1 23:29:52 2025
-@@ -5462,6 +5462,25 @@ default|recommended)
+--- ./Configure.orig	Mon Jun 22 07:48:00 2026
++++ ./Configure	Wed Aug 19 12:29:02 2026
+@@ -5467,6 +5467,25 @@ default|recommended)
  		eval $checkccflag
  		;;
  	esac

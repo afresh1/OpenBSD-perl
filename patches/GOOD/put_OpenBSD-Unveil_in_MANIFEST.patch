@@ -1,6 +1,6 @@
---- ./MANIFEST.orig	Wed Jul 16 19:02:41 2025
-+++ ./MANIFEST	Wed Jul 16 19:02:48 2025
-@@ -1748,6 +1748,9 @@ cpan/OpenBSD-MkTemp/t/OpenBSD-MkTemp.t		OpenBSD::MkTem
+--- ./MANIFEST.orig	Sun Aug 23 20:56:45 2026
++++ ./MANIFEST	Sun Aug 23 20:56:47 2026
+@@ -1769,6 +1769,9 @@ cpan/OpenBSD-MkTemp/t/OpenBSD-MkTemp.t		OpenBSD::MkTem
  cpan/OpenBSD-Pledge/lib/OpenBSD/Pledge.pm	OpenBSD::Pledge
  cpan/OpenBSD-Pledge/Pledge.xs			OpenBSD::Pledge
  cpan/OpenBSD-Pledge/t/OpenBSD-Pledge.t		OpenBSD::Pledge test file
