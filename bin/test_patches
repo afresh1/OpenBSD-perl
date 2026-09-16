@@ -54,7 +54,7 @@ find ${SRCDIR}/patches/RESEARCH -name "$NAME" | sort | {
         perl ./Porting/manisort -o MANIFEST || true
 
         # Then make sure it is right
-        perl ./regen/lib_cleanup.pl -v || true
+        perl regen/lib_cleanup.pl -v || true
 
         if [ -z "$REGEN_PATCHES" ]; then
             do_build_perl || exit
