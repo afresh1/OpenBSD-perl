@@ -31,7 +31,10 @@ find ${SRCDIR}/patches/RESEARCH -name "$NAME" | sort | {
 
         do_patch_perl 2>&1 | tee "$log.do_patch" || exit 1
 
-	grep ^Hunk "$log.do_patch" | grep -qv ' succeeded ' && exit 1
+	grep ^Hunk "$log.do_patch" | grep -qv ' succeeded ' && {
+		echo "$patch failed to apply"
+		continue
+	}
 
         find . -name '*.orig' -delete
 
@@ -45,7 +48,7 @@ find ${SRCDIR}/patches/RESEARCH -name "$NAME" | sort | {
         fi
 
        [ $( find . -name '*.rej' | wc -l ) -gt 0 ] &&
-            echo "Failed" && exit
+            echo "Failed" && continue
 
         mv -f "$patch" "${patch}.old"
 
@@ -57,7 +60,7 @@ find ${SRCDIR}/patches/RESEARCH -name "$NAME" | sort | {
         perl regen/lib_cleanup.pl -v || true
 
         if [ -z "$REGEN_PATCHES" ]; then
-            do_build_perl || exit
+            do_build_perl || continue
 
 	    chmod u+w t/porting/customized.dat
 	    ( [ -d obj ] && cd obj
@@ -75,7 +78,7 @@ ls -l
 	"$BINDIR"/update_patch "$patch.old" > "${new_patch}.new"
 
         if [ -z "$REGEN_PATCHES" ]; then
-            do_test_perl 2>&1 | tee "$log.build" || exit
+            do_test_perl 2>&1 | tee "$log.build" || continue
 	fi
 
         echo Renaming patches
