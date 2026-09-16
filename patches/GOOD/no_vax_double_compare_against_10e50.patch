@@ -1,14 +1,6 @@
---- ./t/porting/customized.dat.orig	Mon Mar 23 20:52:34 2026
-+++ ./t/porting/customized.dat	Mon Mar 23 21:20:40 2026
-@@ -24,4 +24,4 @@ Win32API::File cpan/Win32API-File/File.xs beb870fed449
- autodie cpan/autodie/t/utime.t f94c3000b5b23db59df64895594050d7151f8333
- podlators pod/perlpodstyle.pod 3430e61d84673b62944ceed6d023bfd5aebe3847
- version cpan/version/lib/version.pm aa9f25fe6f6815139a9fb85d817b4e2802732c03
--version vutil.c d2967934cdd5dfbcc2f7c783712e199d57d69ba1
-+version vutil.c b575383bee2e6bb4eee1b63cfa2d4efa54401e02
---- ./vutil.c.orig	Sun Jan 18 08:32:33 2026
-+++ ./vutil.c	Mon Mar 23 20:52:34 2026
-@@ -656,7 +656,11 @@ VER_NV:
+--- ./vutil.c.orig	Mon Jun 22 07:48:01 2026
++++ ./vutil.c	Tue Sep 15 16:42:35 2026
+@@ -655,7 +655,11 @@ VER_NV:
  
          /* may get too much accuracy */
          char tbuf[64];
