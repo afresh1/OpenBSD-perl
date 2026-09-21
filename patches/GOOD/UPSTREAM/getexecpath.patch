@@ -1,0 +1,265 @@
+From eb4fb05750ff5956da75164ef121e200e681e614 Mon Sep 17 00:00:00 2001
+From: Brad Smith <brad@comstyle.com>
+Date: Sun, 13 Sep 2026 02:32:28 -0400
+Subject: [PATCH] Where available, use getexecpath() to make $^X absolute
+
+In Configure, check whether getexecpath() can be used to find the
+absolute pathname of the executable. If so, set usegetexecpath in
+config.sh and USE_GETEXECPATH in config.h. If this is set, then
+use this approach in S_set_caret_X() to canonicalise $^X as an
+absolute path. This approach works on OpenBSD.
+---
+ AUTHORS                        |  1 +
+ Configure                      | 40 ++++++++++++++++++++++++++++++++++
+ Cross/config.sh-arm-linux      |  1 +
+ Cross/config.sh-arm-linux-n770 |  1 +
+ Porting/Glossary               |  4 ++++
+ Porting/config.sh              |  1 +
+ caretx.c                       |  9 +++++++-
+ config_h.SH                    |  7 ++++++
+ configure.com                  |  1 +
+ plan9/config_sh.sample         |  1 +
+ t/op/magic.t                   |  4 ++--
+ t/porting/known_pod_issues.dat |  1 +
+ win32/config.gc                |  1 +
+ win32/config.vc                |  1 +
+ 14 files changed, 70 insertions(+), 3 deletions(-)
+
+diff --git a/AUTHORS b/AUTHORS
+index dc16ecdce531..d26a6a2c32c9 100644
+--- a/AUTHORS
++++ b/AUTHORS
+@@ -205,6 +205,7 @@ Brad Gilbert                   <b2gills@gmail.com>
+ Brad Howerter                  <bhower@wgc.woodward.com>
+ Brad Hughes                    <brad@tgsmc.com>
+ Brad Lanam                     <bll@gentoo.com>
++Brad Smith                     <brad@comstyle.com>
+ Bradley Dean                   <bjdean@bjdean.id.au>
+ Bram                           <perl-rt@wizbit.be>
+ Brandon Black                  <blblack@gmail.com>
+diff --git a/Configure b/Configure
+index 947b4bb8b394..86923a48e640 100755
+--- a/Configure
++++ b/Configure
+@@ -1371,6 +1371,7 @@ usedefaultstrict=''
+ dtrace=''
+ usedtrace=''
+ usefaststdio=''
++usegetexecpath=''
+ usekernprocpathname=''
+ ccflags_uselargefiles=''
+ ldflags_uselargefiles=''
+@@ -23658,6 +23659,44 @@ esac
+ set usedefaultstrict
+ eval $setvar
+ 
++: Determine if we can use getexecpath to find executing program
++echo " "
++echo "Determining whether we can use getexecpath to find executing program..." >&4
++$cat >try.c <<'EOM'
++
++#include <sys/param.h>
++#include <unistd.h>
++
++int
++main(int argc, char **argv) {
++    char buf[MAXPATHLEN];
++
++    if (getexecpath(buf, sizeof(buf)) != 0)
++	return 2;
++
++    return 0;
++}
++EOM
++
++val=$undef
++set try
++if eval $compile; then
++	if $run ./try; then
++		echo "You can use getexecpath to find the executing program." >&4
++		val="$define"
++	else
++		echo "Nope, getexecpath doesn't work here." >&4
++		val="$undef"
++	fi
++else
++	echo "I'm unable to compile the test program." >&4
++	echo "I'll assume no getexecpath here." >&4
++	val="$undef"
++fi
++$rm_try
++set usegetexecpath
++eval $setvar
++
+ : Determine if we can use sysctl with KERN_PROC_PATHNAME to find executing program
+ echo " "
+ echo "Determining whether we can use sysctl with KERN_PROC_PATHNAME to find executing program..." >&4
+@@ -26224,6 +26263,7 @@ usedevel='$usedevel'
+ usedl='$usedl'
+ usedtrace='$usedtrace'
+ usefaststdio='$usefaststdio'
++usegetexecpath='$usegetexecpath'
+ useithreads='$useithreads'
+ usekernprocpathname='$usekernprocpathname'
+ uselanginfo='$uselanginfo'
+diff --git a/Cross/config.sh-arm-linux b/Cross/config.sh-arm-linux
+index b5146d587319..0c4a28187058 100644
+--- a/Cross/config.sh-arm-linux
++++ b/Cross/config.sh-arm-linux
+@@ -1161,6 +1161,7 @@ usedevel='undef'
+ usedl='define'
+ usedtrace='undef'
+ usefaststdio='define'
++usegetexecpath='undef'
+ useithreads='undef'
+ usekernprocpathname='undef'
+ uselargefiles='define'
+diff --git a/Cross/config.sh-arm-linux-n770 b/Cross/config.sh-arm-linux-n770
+index 67e78c6317ed..94f2d2fc1e33 100644
+--- a/Cross/config.sh-arm-linux-n770
++++ b/Cross/config.sh-arm-linux-n770
+@@ -1159,6 +1159,7 @@ usedevel='undef'
+ usedl='define'
+ usedtrace='undef'
+ usefaststdio='define'
++usegetexecpath='undef'
+ useithreads='undef'
+ usekernprocpathname='undef'
+ uselargefiles='define'
+diff --git a/Porting/Glossary b/Porting/Glossary
+index 6b2f750438ad..ebfbf25c5865 100644
+--- a/Porting/Glossary
++++ b/Porting/Glossary
+@@ -5707,6 +5707,10 @@ usefaststdio (usefaststdio.U):
+ 	and indicates that Perl should be built to use 'fast stdio'.
+ 	Defaults to define in Perls 5.8 and earlier, to undef later.
+ 
++usegetexecpath (usegetexecpath.U):
++	This variable, indicates that we can use getexecpath to get a full
++	path for the executable, and hence convert $^X to an absolute path.
++
+ useithreads (usethreads.U):
+ 	This variable conditionally defines the USE_ITHREADS symbol,
+ 	and indicates that Perl should be built to use the interpreter-based
+diff --git a/Porting/config.sh b/Porting/config.sh
+index f7c2d85ddf51..b08343ea577b 100644
+--- a/Porting/config.sh
++++ b/Porting/config.sh
+@@ -1187,6 +1187,7 @@ usedevel='define'
+ usedl='define'
+ usedtrace='undef'
+ usefaststdio='undef'
++usegetexecpath='undef'
+ useithreads='define'
+ usekernprocpathname='undef'
+ uselanginfo='true'
+diff --git a/caretx.c b/caretx.c
+index 855608b5e076..ae9cf4354a64 100644
+--- a/caretx.c
++++ b/caretx.c
+@@ -61,7 +61,14 @@ Perl_set_caret_X(pTHX)
+ #else
+     /* We can try a platform-specific one if possible; if it fails, or we
+      * aren't running on a suitable platform, we'll fall back to argv[0]. */
+-# ifdef USE_KERN_PROC_PATHNAME
++# ifdef USE_GETEXECPATH
++    char buf[MAXPATHLEN];
++
++    if (getexecpath(buf, sizeof(buf)) == 0) {
++        sv_setpv(caret_x, buf);
++        return;
++    }
++# elif defined(USE_KERN_PROC_PATHNAME)
+     size_t size = 0;
+     int mib[4];
+     mib[0] = CTL_KERN;
+diff --git a/config_h.SH b/config_h.SH
+index ce4964422015..7d6ccabfc59a 100755
+--- a/config_h.SH
++++ b/config_h.SH
+@@ -4438,6 +4438,13 @@ sed <<!GROK!THIS! >$CONFIG_H -e 's!^#undef\(.*/\)\*!/\*#define\1 \*!' -e 's!^#un
+ #$usefaststdio	USE_FAST_STDIO		/**/
+ #endif
+ 
++/* USE_GETEXECPATH:
++ *	This symbol, if defined, indicates that we can use getexecpath
++ *	to get a full path for the executable, and hence convert $^X to
++ *	an absolute path.
++ */
++#$usegetexecpath	USE_GETEXECPATH	/**/
++
+ /* USE_KERN_PROC_PATHNAME:
+  *	This symbol, if defined, indicates that we can use sysctl with
+  *	KERN_PROC_PATHNAME to get a full path for the executable, and hence
+diff --git a/configure.com b/configure.com
+index b73ef85c8717..d44c453f812a 100644
+--- a/configure.com
++++ b/configure.com
+@@ -6525,6 +6525,7 @@ $ WC "usefaststdio='" + usefaststdio + "'"
+ $ WC "useieee='" + useieee + "'"                    ! VMS-specific
+ $ WC "useithreads='" + useithreads + "'"
+ $ WC "usekernelthreads='" + usekernelthreads + "'"	! VMS-specific
++$ WC "usegetexecpath='undef'"
+ $ WC "usekernprocpathname='undef'"
+ $ WC "usensgetexecutablepath='undef'"
+ $ WC "uselargefiles='" + uselargefiles + "'"
+diff --git a/plan9/config_sh.sample b/plan9/config_sh.sample
+index 3621c3ea0a54..1cf88572a5b2 100644
+--- a/plan9/config_sh.sample
++++ b/plan9/config_sh.sample
+@@ -1132,6 +1132,7 @@ usedevel='undef'
+ usedl='undef'
+ usedtrace='undef'
+ usefaststdio='undef'
++usegetexecpath='undef'
+ useithreads='undef'
+ usekernprocpathname='undef'
+ uselargefiles='define'
+diff --git a/t/op/magic.t b/t/op/magic.t
+index a3e2b42eaca4..c11e701ba594 100644
+--- a/t/op/magic.t
++++ b/t/op/magic.t
+@@ -276,8 +276,8 @@ $$ = $pid; # Tests below use $$
+ 
+ # $^X and $0
+ {
+-    my $is_abs = $Config{d_procselfexe} || $Config{usekernprocpathname}
+-      || $Config{usensgetexecutablepath};
++    my $is_abs = $Config{usegetexecpath} || $Config{d_procselfexe}
++      || $Config{usekernprocpathname} || $Config{usensgetexecutablepath};
+     if ($^O eq 'qnx') {
+ 	chomp($wd = `/usr/bin/fullpath -t`);
+     }
+diff --git a/t/porting/known_pod_issues.dat b/t/porting/known_pod_issues.dat
+index f8fc44b91a2d..f57594a47daa 100644
+--- a/t/porting/known_pod_issues.dat
++++ b/t/porting/known_pod_issues.dat
+@@ -440,3 +440,4 @@ porting/epigraphs.pod	Verbatim line length including indents exceeds 78 by	-1
+ porting/release_managers_guide.pod	Verbatim line length including indents exceeds 78 by	8
+ lib/benchmark.pm	Verbatim line length including indents exceeds 78 by	2
+ lib/config.pod	? Should you be using L<...> instead of	-1
++lib/config.pod	Verbatim line length including indents exceeds 78 by	2
+diff --git a/win32/config.gc b/win32/config.gc
+index f59de8859bdd..78cc025761b0 100644
+--- a/win32/config.gc
++++ b/win32/config.gc
+@@ -1156,6 +1156,7 @@ usedevel='undef'
+ usedl='define'
+ usedtrace='undef'
+ usefaststdio='undef'
++usegetexecpath='undef'
+ useithreads='undef'
+ usekernprocpathname='undef'
+ uselargefiles='define'
+diff --git a/win32/config.vc b/win32/config.vc
+index d9939f52afcc..2bd09b57891c 100644
+--- a/win32/config.vc
++++ b/win32/config.vc
+@@ -1155,6 +1155,7 @@ usedevel='undef'
+ usedl='define'
+ usedtrace='undef'
+ usefaststdio='undef'
++usegetexecpath='undef'
+ useithreads='undef'
+ usekernprocpathname='undef'
+ uselargefiles='define'
