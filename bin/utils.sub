@@ -11,15 +11,18 @@ install_local_files() {
 apply_patches_in_dir() {
     local dir=$1
     local name=${2:-*.patch}
-    local _file;
+    local _file _log
 
     find "$dir" -name "$name" -print | sort | while read _file; do
         echo "Applying $_file"
-        patch -fEp0 -i $_file
-	if [ $( find . -name '*.rej' | wc -l ) -ne 0 ]; then
-		echo $_file failed!
+	_log=$(mktemp "$( basename "$_file" )-XXXXXXXXX")
+        patch -fEp0 -i $_file | tee "$_log"
+	if [ $( find . -name '*.rej' | wc -l ) -ne 0 ] ||
+	    grep -q -e "saving rejects" -e "No file to patch" "$_log"; then
+		echo "$_file failed! See $_log for more details"
 		exit 1;
 	fi
+	rm -f "$_log"
     done
 }
 
